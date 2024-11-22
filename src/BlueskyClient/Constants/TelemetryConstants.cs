@@ -24,6 +24,7 @@ public sealed class TelemetryConstants
     public const string FeedbackClicked = ShellPage + "feedbackClicked";
 
     private const string NewPostDialog = "newPostDialog:";
+    public const string PostSubmissionClicked = NewPostDialog + "submissionClicked";
     public const string NewPostSubmitted = NewPostDialog + "newPostSubmitted";
     public const string ReplySubmitted = NewPostDialog + "replySubmitted";
 }

@@ -63,6 +63,8 @@ public partial class NewPostViewModel : ObservableObject
     [RelayCommand]
     private async Task SubmitAsync()
     {
+        _telemetry.TrackEvent(TelemetryConstants.PostSubmissionClicked);
+
         var input = InputText.Trim();
         if (string.IsNullOrEmpty(input))
         {
