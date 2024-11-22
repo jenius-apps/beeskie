@@ -42,7 +42,7 @@ public sealed partial class ShellPage : Page
     {
         if (e.Key is VirtualKey.Escape)
         {
-            ViewModel.CloseImageViewerCommand.Execute(null);
+            ViewModel.CloseImageViewerCommand.Execute("escapeKey");
             e.Handled = true;
         }
     }
@@ -51,8 +51,13 @@ public sealed partial class ShellPage : Page
     {
         if (e.OriginalSource is Grid g && g == SmokeGrid)
         {
-            ViewModel.CloseImageViewerCommand.Execute(null);
+            ViewModel.CloseImageViewerCommand.Execute("backgroundClicked");
             e.Handled = true;
         }
+    }
+
+    private void OnFeedbackClicked(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+    {
+        App.Services.GetRequiredService<ITelemetry>().TrackEvent(TelemetryConstants.FeedbackClicked);
     }
 }

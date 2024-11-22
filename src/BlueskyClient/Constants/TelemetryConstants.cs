@@ -17,4 +17,9 @@ public sealed class TelemetryConstants
     private const string ShellPage = "shellPage:";
     public const string AuthSuccessFromShellPage = ShellPage + ":authSuccessful";
     public const string AuthFailFromShellPage = ShellPage + ":authFail";
+    public const string MenuItemClicked = ShellPage + ":menuItemClicked";
+    public const string ShellNewPostClicked = ShellPage + ":newPostClicked";
+    public const string ImageViewerOpened = ShellPage + ":imageViewerOpened";
+    public const string ImageViewerClosed = ShellPage + ":imageViewerClosed";
+    public const string FeedbackClicked = ShellPage + ":feedbackClicked";
 }

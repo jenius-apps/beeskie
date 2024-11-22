@@ -146,6 +146,7 @@
                     Grid.Row="4"
                     Margin="8,0,8,8"
                     HorizontalAlignment="Stretch"
+                    Click="OnFeedbackClicked"
                     Content="Send feedback"
                     FontSize="12"
                     Foreground="{ThemeResource TextFillColorTertiaryBrush}"
@@ -190,6 +191,9 @@
                 BorderBrush="Transparent"
                 Canvas.ZIndex="1"
                 Command="{x:Bind ViewModel.CloseImageViewerCommand}">
+                <Button.CommandParameter>
+                    <x:String>button</x:String>
+                </Button.CommandParameter>
                 <FontIcon
                     FontFamily="{StaticResource FluentUIGlyphs}"
                     FontSize="14"

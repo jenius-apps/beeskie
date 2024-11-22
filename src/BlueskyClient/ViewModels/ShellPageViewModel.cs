@@ -115,6 +115,8 @@ public partial class ShellPageViewModel : ObservableObject
             return;
         }
 
+        _telemetry.TrackEvent(TelemetryConstants.ImageViewerOpened);
+
         ImageViewerIndex = args.LaunchIndex < args.Images.Count ? args.LaunchIndex : 0;
         Images = args.Images;
     }
@@ -130,6 +132,14 @@ public partial class ShellPageViewModel : ObservableObject
         if (_lastSelectedMenu is { } lastMenu)
         {
             lastMenu.IsSelected = false;
+
+            // If last menu was null, it means it's the first navigation to shell page.
+            // For this telemetry, we don't care about the first navigation.
+            // Hence, we only make the call when last menu isn't null, but those are subsequent navigations.
+            _telemetry.TrackEvent(TelemetryConstants.MenuItemClicked, new Dictionary<string, string>
+            {
+                { "key", key }
+            });
         }
 
         item.IsSelected = true;
@@ -140,13 +150,19 @@ public partial class ShellPageViewModel : ObservableObject
     [RelayCommand]
     private async Task NewPostAsync()
     {
+        _telemetry.TrackEvent(TelemetryConstants.ShellNewPostClicked);
         await _dialogService.OpenPostDialogAsync();
     }
 
     [RelayCommand]
-    private void CloseImageViewer()
+    private void CloseImageViewer(string? closeMethod)
     {
         Images = null;
         ImageViewerIndex = 0;
+
+        _telemetry.TrackEvent(TelemetryConstants.ImageViewerClosed, new Dictionary<string, string>
+        {
+            { "closeMethod", closeMethod ?? "" }
+        });
     }
 }
