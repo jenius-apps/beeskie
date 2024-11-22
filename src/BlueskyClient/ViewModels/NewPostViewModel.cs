@@ -1,8 +1,11 @@
 ﻿using Bluesky.NET.Models;
+using BlueskyClient.Constants;
 using BlueskyClient.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using JeniusApps.Common.Telemetry;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BlueskyClient.ViewModels;
@@ -11,13 +14,16 @@ public partial class NewPostViewModel : ObservableObject
 {
     private readonly IProfileService _profileService;
     private readonly IPostSubmissionService _postSubmissionService;
+    private readonly ITelemetry _telemetry;
 
     public NewPostViewModel(
         IProfileService profileService,
-        IPostSubmissionService postSubmissionService)
+        IPostSubmissionService postSubmissionService,
+        ITelemetry telemetry)
     {
         _profileService = profileService;
         _postSubmissionService = postSubmissionService;
+        _telemetry = telemetry;
     }
 
     [ObservableProperty]
@@ -63,13 +69,19 @@ public partial class NewPostViewModel : ObservableObject
             return;
         }
 
+        string? newPostAtUri;
         if (TargetPost is { } target)
         {
-            await _postSubmissionService.ReplyAsync(input, target).ConfigureAwait(false);
+            newPostAtUri = await _postSubmissionService.ReplyAsync(input, target).ConfigureAwait(false);
         }
         else
         {
-            await _postSubmissionService.SubmitPostAsync(input).ConfigureAwait(false);
+            newPostAtUri = await _postSubmissionService.SubmitPostAsync(input).ConfigureAwait(false);
         }
+
+        _telemetry.TrackEvent(TargetPost is null ? TelemetryConstants.NewPostSubmitted : TelemetryConstants.ReplySubmitted, new Dictionary<string, string>
+        {
+            { "success", (!string.IsNullOrEmpty(newPostAtUri)).ToString() }
+        });
     }
 }
