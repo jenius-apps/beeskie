@@ -54,6 +54,7 @@
                 Margin="12"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Bottom"
+                Click="OnAppPassHelpClicked"
                 Content="App Password help"
                 FontSize="12"
                 Foreground="{ThemeResource TextFillColorTertiaryBrush}"

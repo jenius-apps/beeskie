@@ -1,4 +1,5 @@
-﻿using BlueskyClient.ViewModels;
+﻿using BlueskyClient.Constants;
+using BlueskyClient.ViewModels;
 using JeniusApps.Common.Telemetry;
 using Microsoft.Extensions.DependencyInjection;
 using Windows.UI.Xaml.Controls;
@@ -18,9 +19,13 @@ public sealed partial class SignInPage : Page
 
     public SignInPageViewModel ViewModel { get; }
 
-    protected override async void OnNavigatedTo(NavigationEventArgs e)
+    protected override void OnNavigatedTo(NavigationEventArgs e)
     {
         App.Services.GetRequiredService<ITelemetry>().TrackPageView(nameof(SignInPage));
-        await ViewModel.InitializeAsync();
+    }
+
+    private void OnAppPassHelpClicked(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+    {
+        App.Services.GetRequiredService<ITelemetry>().TrackEvent(TelemetryConstants.AppPasswordHelpClicked);
     }
 }

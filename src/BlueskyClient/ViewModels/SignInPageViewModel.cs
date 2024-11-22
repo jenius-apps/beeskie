@@ -47,15 +47,12 @@ public partial class SignInPageViewModel : ObservableObject
 
     public bool ErrorBannerVisible => SignInErrorMessage.Length > 0;
 
-    public Task InitializeAsync()
-    {
-        return Task.CompletedTask;
-    }
-
     [RelayCommand]
     private async Task SignInAsync()
     {
         SigningIn = true;
+
+        _telemetry.TrackEvent(TelemetryConstants.SignInClicked);
 
         var result = await _authService.SignInAsync(UserHandleInput, AppPasswordInput);
 
@@ -82,9 +79,5 @@ public partial class SignInPageViewModel : ObservableObject
                 { "userInputContainsAtSymbol", UserHandleInput.Contains("@").ToString() },
                 { "handleContainsAtSymbol", result?.Handle?.Contains("@").ToString() ?? "NullHandle" },
             });
-    }
-
-    private void OnSuccessfulSignIn()
-    {
     }
 }
