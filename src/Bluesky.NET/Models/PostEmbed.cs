@@ -12,4 +12,10 @@ public class PostEmbed
     public ExternalEmbed? External { get; init; }
 
     public FeedRecord? Record { get; init; }
+
+    public string? Playlist { get; init; }
+
+    public string? Thumbnail { get; init; }
+
+    public AspectRatio? AspectRatio { get; init; }
 }

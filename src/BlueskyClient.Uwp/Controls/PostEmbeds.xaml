@@ -12,6 +12,20 @@
 
     <Grid>
         <Border
+            x:Name="VideoPlayerBorder"
+            x:Load="{x:Bind IsVideo}"
+            CornerRadius="12">
+            <MediaPlayerElement
+                x:Name="VideoPlayer"
+                AreTransportControlsEnabled="True"
+                Tapped="OnVideoSurfaceTapped">
+                <MediaPlayerElement.TransportControls>
+                    <MediaTransportControls IsCompact="True" IsZoomButtonVisible="False" />
+                </MediaPlayerElement.TransportControls>
+            </MediaPlayerElement>
+        </Border>
+
+        <Border
             x:Name="SingleEmbedImage"
             HorizontalAlignment="Left"
             x:Load="{x:Bind IsSingleImageEmbed}"
@@ -24,11 +38,12 @@
         </Border>
 
         <GridView
+            x:Name="MultiImageGridView"
+            x:Load="{x:Bind IsMultiImageEmbed}"
             IsItemClickEnabled="True"
             ItemClick="OnGridViewImageClicked"
             ItemsSource="{x:Bind MultiImages}"
-            SelectionMode="None"
-            Visibility="{x:Bind IsMultiImageEmbed}">
+            SelectionMode="None">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="models:ImageEmbed">
                     <Image

@@ -3,9 +3,13 @@ using BlueskyClient.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using Windows.Media.Core;
+using Windows.Media.Playback;
 using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media.Imaging;
 
 #nullable enable
 
@@ -25,7 +29,8 @@ public sealed partial class PostEmbeds : UserControl
     {
         if (d is PostEmbeds p)
         {
-            p.UpdateBindings();
+            p.Bindings.Update();
+            p.TryLoadVideo();
         }
     }
 
@@ -41,13 +46,11 @@ public sealed partial class PostEmbeds : UserControl
         set => SetValue(EmbedProperty, value);
     }
 
+    private bool IsVideo => Embed?.Playlist is { Length: > 0 };
+
     private bool IsExternalUrl => Embed?.External?.Uri is not null;
 
     private string ExternalThumb => Embed?.External?.Thumb ?? "http://localhost";
-
-    private string ExternalTitle => Embed?.External?.Title ?? string.Empty;
-
-    private string ExternalDescription => Embed?.External?.Description ?? string.Empty;
 
     private bool IsSingleImageEmbed => Embed?.Images?.Length == 1;
 
@@ -64,9 +67,19 @@ public sealed partial class PostEmbeds : UserControl
         ? 300
         : double.PositiveInfinity;
 
-    private void UpdateBindings()
+    private void TryLoadVideo()
     {
-        this.Bindings.Update();
+        if (Embed?.Playlist is { Length: > 0 } sourceUrl && 
+            Uri.TryCreate(sourceUrl, UriKind.Absolute, out Uri videoSource))
+        {
+            VideoPlayer.Source = MediaSource.CreateFromUri(videoSource);
+
+            if (Embed?.Thumbnail is { Length: > 0 } thumbUrl && 
+                Uri.TryCreate(thumbUrl, UriKind.Absolute, out Uri thumbSource))
+            {
+                VideoPlayer.PosterSource = new BitmapImage(thumbSource);
+            }
+        }
     }
 
     private async void OnExternalUrlClicked(object sender, RoutedEventArgs e)
@@ -103,11 +116,27 @@ public sealed partial class PostEmbeds : UserControl
         }
     }
 
-    private void OnSingleImageClicked(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+    private void OnSingleImageClicked(object sender, TappedRoutedEventArgs e)
     {
         if (SingleImage is { } image)
         {
             _imageViewerService.RequestImageViewer([image]);
+        }
+    }
+
+    private void OnVideoSurfaceTapped(object sender, TappedRoutedEventArgs e)
+    {
+        if (e.OriginalSource is Grid &&
+            sender is MediaPlayerElement { MediaPlayer: MediaPlayer { PlaybackSession.PlaybackState: MediaPlaybackState state } mp })
+        {
+            if (state is MediaPlaybackState.Playing)
+            {
+                mp.Pause();
+            }
+            else if (state is MediaPlaybackState.Paused)
+            {
+                mp.Play();
+            }
         }
     }
 }
