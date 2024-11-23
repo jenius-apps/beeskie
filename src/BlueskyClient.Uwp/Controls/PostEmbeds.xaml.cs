@@ -129,6 +129,7 @@ public sealed partial class PostEmbeds : UserControl
         if (e.OriginalSource is Grid &&
             sender is MediaPlayerElement { MediaPlayer: MediaPlayer { PlaybackSession.PlaybackState: MediaPlaybackState state } mp })
         {
+            e.Handled = true;
             if (state is MediaPlaybackState.Playing)
             {
                 mp.Pause();
@@ -137,6 +138,15 @@ public sealed partial class PostEmbeds : UserControl
             {
                 mp.Play();
             }
+        }
+    }
+
+    private void OnVideoSurfaceKeyDown(object sender, KeyRoutedEventArgs e)
+    {
+        if (sender is MediaPlayerElement { IsFullWindow: true } mpe && e.Key is VirtualKey.Escape)
+        {
+            mpe.IsFullWindow = false;
+            e.Handled = true;
         }
     }
 }

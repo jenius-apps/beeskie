@@ -18,6 +18,7 @@
             <MediaPlayerElement
                 x:Name="VideoPlayer"
                 AreTransportControlsEnabled="True"
+                KeyDown="OnVideoSurfaceKeyDown"
                 Tapped="OnVideoSurfaceTapped">
                 <MediaPlayerElement.TransportControls>
                     <MediaTransportControls IsCompact="True" IsZoomButtonVisible="False" />
