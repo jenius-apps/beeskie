@@ -50,7 +50,17 @@ public sealed partial class PostEmbeds : UserControl
 
     private bool IsExternalUrl => Embed?.External?.Uri is not null;
 
-    private string ExternalThumb => Embed?.External?.Thumb ?? "http://localhost";
+    private string ExternalThumb => Embed?.External?.Thumb is { Length: > 0 } thumbUrl && Uri.IsWellFormedUriString(thumbUrl, UriKind.Absolute)
+        ? thumbUrl
+        : "ms-appx:///Assets/ExternalThumbnailFallback.png";
+
+    private string ExternalTitle => Embed?.External?.Title is { Length: > 0 } title
+        ? title
+        : Embed?.External?.Uri ?? string.Empty;
+
+    private string ExternalDescription => Embed?.External?.Description is { Length: > 0 } description
+        ? description
+        : string.Empty;
 
     private bool IsSingleImageEmbed => Embed?.Images?.Length == 1;
 

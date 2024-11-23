@@ -9,11 +9,11 @@ public class ExternalEmbed
 {
     public string Uri { get; init; } = string.Empty;
 
-    public string Title { get; init; } = string.Empty;
+    public string? Title { get; init; }
 
-    public string Description { get; init; } = string.Empty;
+    public string? Description { get; init; }
 
-    public string Thumb { get; init; } = string.Empty;
+    public string? Thumb { get; init; }
 
     [JsonIgnore]
     public string RootUri => System.Uri.TryCreate(Uri, UriKind.Absolute, out var uri)
