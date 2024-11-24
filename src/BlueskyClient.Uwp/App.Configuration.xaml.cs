@@ -95,6 +95,7 @@ partial class App
         collection.AddTransient((serviceProvider) =>
         {
             return new ShellPageViewModel(
+                serviceProvider.GetRequiredService<ILocalizer>(),
                 serviceProvider.GetRequiredService<ITelemetry>(),
                 serviceProvider.GetRequiredKeyedService<INavigator>(NavigationConstants.ContentNavigatorKey),
                 serviceProvider.GetRequiredKeyedService<INavigator>(NavigationConstants.RootNavigatorKey),
@@ -127,6 +128,7 @@ partial class App
     [Singleton(typeof(DialogService), typeof(IDialogService))]
     [Singleton(typeof(AppSettings), typeof(IAppSettings))]
     [Singleton(typeof(ImageViewerService), typeof(IImageViewerService))]
+    [Singleton(typeof(ReswLocalizer), typeof(ILocalizer))]
     [Transient(typeof(HomePageViewModel))]
     [Transient(typeof(NotificationsPageViewModel))]
     [Transient(typeof(ProfileControlViewModel))]

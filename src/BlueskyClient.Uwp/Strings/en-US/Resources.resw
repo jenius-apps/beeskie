@@ -120,13 +120,43 @@
   <data name="AppPasswordHelpText" xml:space="preserve">
     <value>What's an App Password?</value>
   </data>
+  <data name="BackText" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="CancelText" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CloseText" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="HomeText" xml:space="preserve">
+    <value>Home</value>
+  </data>
   <data name="IdentifierBoxPlaceholder" xml:space="preserve">
     <value>Bluesky email or username</value>
+  </data>
+  <data name="ManageAccountText" xml:space="preserve">
+    <value>Manage account</value>
+  </data>
+  <data name="NewPostText" xml:space="preserve">
+    <value>New Post</value>
+  </data>
+  <data name="NotificationsText" xml:space="preserve">
+    <value>Notifications</value>
   </data>
   <data name="PasswordBoxPlaceholder" xml:space="preserve">
     <value>Your special App Password</value>
   </data>
+  <data name="ProfileText" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="SendFeedbackText" xml:space="preserve">
+    <value>Send feedback</value>
+  </data>
   <data name="SignInText" xml:space="preserve">
     <value>Sign in</value>
+  </data>
+  <data name="SignOutText" xml:space="preserve">
+    <value>Sign out</value>
   </data>
 </root>

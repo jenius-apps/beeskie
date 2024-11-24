@@ -7,6 +7,7 @@
     xmlns:ex="using:JeniusApps.Common.UI.Uwp"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="using:JeniusApps.Common.Models"
+    xmlns:strings="using:BlueskyClient.Strings"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     winui:BackdropMaterial.ApplyToRootOrPageBackground="True"
     mc:Ignorable="d">
@@ -73,6 +74,8 @@
                     Padding="8,8"
                     HorizontalAlignment="Stretch"
                     HorizontalContentAlignment="Left"
+                    AutomationProperties.HelpText="{x:Bind ViewModel.CurrentUser.DisplayName, Mode=OneWay}"
+                    AutomationProperties.Name="{x:Bind strings:Resources.ManageAccountText}"
                     Background="Transparent"
                     BorderBrush="Transparent"
                     Click="OnProfileControlClicked">
@@ -103,8 +106,9 @@
                             <MenuFlyoutItem
                                 Width="200"
                                 Height="40"
+                                AutomationProperties.Name="{x:Bind strings:Resources.SignOutText}"
                                 Command="{x:Bind ViewModel.LogoutCommand}"
-                                Text="Logout">
+                                Text="{x:Bind strings:Resources.SignOutText}">
                                 <MenuFlyoutItem.Icon>
                                     <FontIcon FontFamily="{StaticResource FluentUIGlyphs}" Glyph="{StaticResource GlyphSignOut}" />
                                 </MenuFlyoutItem.Icon>
@@ -151,6 +155,7 @@
                     MinHeight="48"
                     Margin="24,12,24,0"
                     HorizontalAlignment="Stretch"
+                    AutomationProperties.Name="{x:Bind strings:Resources.NewPostText}"
                     Command="{x:Bind ViewModel.NewPostCommand}"
                     CornerRadius="18">
                     <StackPanel Orientation="Horizontal">
@@ -161,7 +166,7 @@
                         <TextBlock
                             Margin="12,0,12,0"
                             VerticalAlignment="Center"
-                            Text="New Post" />
+                            Text="{x:Bind strings:Resources.NewPostText}" />
                     </StackPanel>
                 </Button>
 
@@ -169,8 +174,9 @@
                     Grid.Row="4"
                     Margin="8,0,8,8"
                     HorizontalAlignment="Stretch"
+                    AutomationProperties.Name="{x:Bind strings:Resources.SendFeedbackText}"
                     Click="OnFeedbackClicked"
-                    Content="Send feedback"
+                    Content="{x:Bind strings:Resources.SendFeedbackText}"
                     FontSize="12"
                     Foreground="{ThemeResource TextFillColorTertiaryBrush}"
                     NavigateUri="mailto:beeskie_app@outlook.com" />
@@ -210,10 +216,12 @@
                 Padding="16"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
+                AutomationProperties.Name="{x:Bind strings:Resources.BackText}"
                 Background="Transparent"
                 BorderBrush="Transparent"
                 Canvas.ZIndex="1"
-                Command="{x:Bind ViewModel.CloseImageViewerCommand}">
+                Command="{x:Bind ViewModel.CloseImageViewerCommand}"
+                ToolTipService.ToolTip="{x:Bind strings:Resources.BackText}">
                 <Button.CommandParameter>
                     <x:String>button</x:String>
                 </Button.CommandParameter>

@@ -16,6 +16,7 @@ namespace BlueskyClient.ViewModels;
 
 public partial class ShellPageViewModel : ObservableObject
 {
+    private readonly ILocalizer _localizer;
     private readonly ITelemetry _telemetry;
     private readonly INavigator _contentNavigator;
     private readonly INavigator _rootNavigator;
@@ -26,6 +27,7 @@ public partial class ShellPageViewModel : ObservableObject
     private MenuItem? _lastSelectedMenu;
 
     public ShellPageViewModel(
+        ILocalizer localizer,
         ITelemetry telemetry,
         INavigator contentNavigator,
         INavigator rootNavigator,
@@ -34,6 +36,7 @@ public partial class ShellPageViewModel : ObservableObject
         IAuthenticationService authenticationService,
         IImageViewerService imageViewerService)
     {
+        _localizer = localizer;
         _telemetry = telemetry;
         _contentNavigator = contentNavigator;
         _rootNavigator = rootNavigator;
@@ -42,9 +45,9 @@ public partial class ShellPageViewModel : ObservableObject
         _authenticationService = authenticationService;
         _imageViewerService = imageViewerService;
 
-        MenuItems.Add(new MenuItem(NavigateContentPageCommand, "Home", "\uEA8A", NavigationConstants.HomePage));
-        MenuItems.Add(new MenuItem(NavigateContentPageCommand, "Notifications", "\uEA8F", NavigationConstants.NotificationsPage));
-        MenuItems.Add(new MenuItem(NavigateContentPageCommand, "Profile", "\uE77B", NavigationConstants.ProfilePage));
+        MenuItems.Add(new MenuItem(NavigateContentPageCommand, _localizer.GetString("HomeText"), "\uEA8A", NavigationConstants.HomePage));
+        MenuItems.Add(new MenuItem(NavigateContentPageCommand, _localizer.GetString("NotificationsText"), "\uEA8F", NavigationConstants.NotificationsPage));
+        MenuItems.Add(new MenuItem(NavigateContentPageCommand, _localizer.GetString("ProfileText"), "\uE77B", NavigationConstants.ProfilePage));
     }
 
     public ObservableCollection<MenuItem> MenuItems = [];

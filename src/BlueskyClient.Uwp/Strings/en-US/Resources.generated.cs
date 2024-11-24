@@ -28,6 +28,58 @@ namespace BlueskyClient.Strings{
         }
         #endregion
 
+        #region BackText
+        /// <summary>
+        ///   Looks up a localized string similar to: Back
+        /// </summary>
+        public static string BackText
+        {
+            get
+            {
+                return _resourceLoader.GetString("BackText");
+            }
+        }
+        #endregion
+
+        #region CancelText
+        /// <summary>
+        ///   Looks up a localized string similar to: Cancel
+        /// </summary>
+        public static string CancelText
+        {
+            get
+            {
+                return _resourceLoader.GetString("CancelText");
+            }
+        }
+        #endregion
+
+        #region CloseText
+        /// <summary>
+        ///   Looks up a localized string similar to: Close
+        /// </summary>
+        public static string CloseText
+        {
+            get
+            {
+                return _resourceLoader.GetString("CloseText");
+            }
+        }
+        #endregion
+
+        #region HomeText
+        /// <summary>
+        ///   Looks up a localized string similar to: Home
+        /// </summary>
+        public static string HomeText
+        {
+            get
+            {
+                return _resourceLoader.GetString("HomeText");
+            }
+        }
+        #endregion
+
         #region IdentifierBoxPlaceholder
         /// <summary>
         ///   Looks up a localized string similar to: Bluesky email or username
@@ -37,6 +89,45 @@ namespace BlueskyClient.Strings{
             get
             {
                 return _resourceLoader.GetString("IdentifierBoxPlaceholder");
+            }
+        }
+        #endregion
+
+        #region ManageAccountText
+        /// <summary>
+        ///   Looks up a localized string similar to: Manage account
+        /// </summary>
+        public static string ManageAccountText
+        {
+            get
+            {
+                return _resourceLoader.GetString("ManageAccountText");
+            }
+        }
+        #endregion
+
+        #region NewPostText
+        /// <summary>
+        ///   Looks up a localized string similar to: New Post
+        /// </summary>
+        public static string NewPostText
+        {
+            get
+            {
+                return _resourceLoader.GetString("NewPostText");
+            }
+        }
+        #endregion
+
+        #region NotificationsText
+        /// <summary>
+        ///   Looks up a localized string similar to: Notifications
+        /// </summary>
+        public static string NotificationsText
+        {
+            get
+            {
+                return _resourceLoader.GetString("NotificationsText");
             }
         }
         #endregion
@@ -54,6 +145,32 @@ namespace BlueskyClient.Strings{
         }
         #endregion
 
+        #region ProfileText
+        /// <summary>
+        ///   Looks up a localized string similar to: Profile
+        /// </summary>
+        public static string ProfileText
+        {
+            get
+            {
+                return _resourceLoader.GetString("ProfileText");
+            }
+        }
+        #endregion
+
+        #region SendFeedbackText
+        /// <summary>
+        ///   Looks up a localized string similar to: Send feedback
+        /// </summary>
+        public static string SendFeedbackText
+        {
+            get
+            {
+                return _resourceLoader.GetString("SendFeedbackText");
+            }
+        }
+        #endregion
+
         #region SignInText
         /// <summary>
         ///   Looks up a localized string similar to: Sign in
@@ -63,6 +180,19 @@ namespace BlueskyClient.Strings{
             get
             {
                 return _resourceLoader.GetString("SignInText");
+            }
+        }
+        #endregion
+
+        #region SignOutText
+        /// <summary>
+        ///   Looks up a localized string similar to: Sign out
+        /// </summary>
+        public static string SignOutText
+        {
+            get
+            {
+                return _resourceLoader.GetString("SignOutText");
             }
         }
         #endregion
@@ -78,9 +208,19 @@ namespace BlueskyClient.Strings{
         {
             __Undefined = 0,
             AppPasswordHelpText,
+            BackText,
+            CancelText,
+            CloseText,
+            HomeText,
             IdentifierBoxPlaceholder,
+            ManageAccountText,
+            NewPostText,
+            NotificationsText,
             PasswordBoxPlaceholder,
+            ProfileText,
+            SendFeedbackText,
             SignInText,
+            SignOutText,
         }
 
         private static ResourceLoader _resourceLoader;
