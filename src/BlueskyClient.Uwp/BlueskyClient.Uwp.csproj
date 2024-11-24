@@ -340,10 +340,14 @@
   </ItemGroup>
   <ItemGroup>
     <XliffResource Include="MultilingualResources\BlueskyClient.Uwp.es.xlf" />
+    <XliffResource Include="MultilingualResources\BlueskyClient.Uwp.pl.xlf" />
     <XliffResource Include="MultilingualResources\BlueskyClient.Uwp.zh-CN.xlf" />
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="Strings\zh-CN\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Strings\pl\Resources.resw" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
