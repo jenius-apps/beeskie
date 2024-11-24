@@ -58,14 +58,57 @@
         </GridView>
 
         <Button
+            x:Name="StarterPackButton"
+            Padding="0,0,0,12"
+            HorizontalAlignment="Stretch"
+            x:Load="{x:Bind IsStarterPack}"
+            Click="OnStarterPackClicked">
+            <StackPanel CornerRadius="4">
+                <Border CornerRadius="4,4,0,0">
+                    <Image
+                        MaxHeight="272"
+                        HorizontalAlignment="Center"
+                        Source="ms-appx:///Assets/ExternalThumbnailFallback.png"
+                        Stretch="UniformToFill" />
+                </Border>
+                <Rectangle
+                    Height="1"
+                    HorizontalAlignment="Stretch"
+                    Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
+                <StackPanel Margin="8,8,8,0" Orientation="Horizontal">
+                    <FontIcon
+                        Margin="4,0,0,0"
+                        VerticalAlignment="Center"
+                        FontFamily="{StaticResource FluentUIGlyphs}"
+                        Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                        Glyph="{StaticResource GlyphStarterPack}" />
+                    <StackPanel Margin="12,0,0,0">
+                        <TextBlock Text="{x:Bind StarterPackName}" TextTrimming="CharacterEllipsis" />
+                        <TextBlock
+                            Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                            Text="{x:Bind StarterPackCreatedByLine}"
+                            TextTrimming="CharacterEllipsis" />
+                    </StackPanel>
+                </StackPanel>
+                <TextBlock
+                    Margin="8,4,8,0"
+                    MaxLines="3"
+                    Text="{x:Bind StarterPackDescription}"
+                    TextTrimming="CharacterEllipsis"
+                    TextWrapping="WrapWholeWords"
+                    Visibility="{x:Bind ex:UIExtensions.CollapsedIfEmpty(StarterPackDescription)}" />
+            </StackPanel>
+        </Button>
+
+        <Button
             x:Name="ExternalUrlButton"
             Padding="0"
             HorizontalAlignment="Stretch"
             HorizontalContentAlignment="Stretch"
             x:Load="{x:Bind IsExternalUrl}"
             Click="OnExternalUrlClicked">
-            <StackPanel CornerRadius="4,4,0,0">
-                <Border Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}">
+            <StackPanel CornerRadius="4">
+                <Border Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}" CornerRadius="4,4,0,0">
                     <Image
                         MaxHeight="272"
                         HorizontalAlignment="Center"

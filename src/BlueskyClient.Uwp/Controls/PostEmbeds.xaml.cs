@@ -1,4 +1,6 @@
-﻿using Bluesky.NET.Models;
+﻿using Bluesky.NET.Constants;
+using Bluesky.NET.Models;
+using BlueskyClient.Extensions;
 using BlueskyClient.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -45,6 +47,14 @@ public sealed partial class PostEmbeds : UserControl
         get => (PostEmbed?)GetValue(EmbedProperty);
         set => SetValue(EmbedProperty, value);
     }
+
+    private bool IsStarterPack => Embed?.Record?.Record?.Type.GetRecordType() is RecordType.StarterPack;
+
+    private string StarterPackName => Embed?.Record?.Record?.Name ?? string.Empty;
+
+    private string StarterPackCreatedByLine => $"Starter pack by {Embed?.Record?.Creator?.AtHandle ?? string.Empty}";
+
+    private string StarterPackDescription => Embed?.Record?.Record?.Description ?? string.Empty;
 
     private bool IsVideo => Embed?.Playlist is { Length: > 0 };
 
@@ -157,6 +167,19 @@ public sealed partial class PostEmbeds : UserControl
         {
             mpe.IsFullWindow = false;
             e.Handled = true;
+        }
+    }
+
+    private async void OnStarterPackClicked(object sender, RoutedEventArgs e)
+    {
+        string link = Embed?.Record?.StarterPackLink() ?? string.Empty;
+        if (!string.IsNullOrEmpty(link) && Uri.TryCreate(link, UriKind.Absolute, out Uri uri))
+        {
+            try
+            {
+                await Launcher.LaunchUriAsync(uri);
+            }
+            catch { }
         }
     }
 }

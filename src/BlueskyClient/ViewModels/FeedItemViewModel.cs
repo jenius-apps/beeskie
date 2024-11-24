@@ -44,7 +44,11 @@ public partial class FeedItemViewModel : ObservableObject
 
     public PostEmbed? PostEmbed => FeedItem.Post?.Embed;
 
-    public FeedRecord? QuotedPost => FeedItem.Post?.Embed?.Record?.Record ?? FeedItem.Post?.Embed?.Record;
+    public FeedRecord? QuotedPost => 
+        (FeedItem.Post?.Embed?.Record?.Record ?? FeedItem.Post?.Embed?.Record) is FeedRecord record &&
+        record.Type.GetRecordType() is not RecordType.StarterPack
+            ? record
+            : null;
 
     [ObservableProperty]
     private bool _isLiked;

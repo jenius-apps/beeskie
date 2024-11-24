@@ -1,4 +1,5 @@
-﻿using Bluesky.NET.Models;
+﻿using Bluesky.NET.Constants;
+using Bluesky.NET.Models;
 using System;
 using System.Diagnostics.CodeAnalysis;
 
@@ -41,4 +42,15 @@ public static class PostExtensions
         url is { Length: > 0 } safeUrl && Uri.IsWellFormedUriString(safeUrl, UriKind.Absolute)
         ? safeUrl
         : "http://localhost";
+
+    public static string StarterPackLink(this FeedRecord? starterPackParentRecord)
+    {
+        if (starterPackParentRecord is { Record.Type: RecordTypes.StarterPack, Creator.Handle: string handle, Uri: string atUri })
+        {
+            string hash = atUri.Split('/')[^1];
+            return $"https://bsky.app/starter-pack/{handle}/{hash}";
+        }
+
+        return string.Empty;
+    }
 }

@@ -32,6 +32,7 @@
                     <x:String x:Key="GlyphAddUser">&#xE8FA;</x:String>
                     <x:String x:Key="GlyphBack">&#xE72B;</x:String>
                     <x:String x:Key="GlyphUser">&#xE77B;</x:String>
+                    <x:String x:Key="GlyphStarterPack">&#xF133;</x:String>
                 </ResourceDictionary>
             </winui:XamlControlsResources.MergedDictionaries>
         </winui:XamlControlsResources>
