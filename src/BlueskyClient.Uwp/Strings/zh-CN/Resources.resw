@@ -13,93 +13,93 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppPasswordHelpText" xml:space="preserve">
-    <value>Ayuda con la contraseña</value>
+    <value>什么是应用程序密码？</value>
   </data>
   <data name="BackText" xml:space="preserve">
-    <value>Atrás</value>
+    <value>返回</value>
   </data>
   <data name="CancelText" xml:space="preserve">
-    <value>Cancelar</value>
+    <value>取消</value>
   </data>
   <data name="CloseText" xml:space="preserve">
-    <value>Cerrar</value>
+    <value>关闭</value>
   </data>
   <data name="FollowersText" xml:space="preserve">
-    <value>Seguidores</value>
+    <value>追随 者</value>
   </data>
   <data name="FollowingText" xml:space="preserve">
-    <value>siguiente</value>
+    <value>以后</value>
   </data>
   <data name="HomeText" xml:space="preserve">
-    <value>Inicio</value>
+    <value>家</value>
   </data>
   <data name="IdentifierBoxPlaceholder" xml:space="preserve">
-    <value>Email o username de Bluesky</value>
+    <value>Bluesky 电子邮件或用户名</value>
   </data>
   <data name="ManageAccountText" xml:space="preserve">
-    <value>Administrar cuenta</value>
+    <value>管理账户</value>
   </data>
   <data name="NewPostPlaceholder" xml:space="preserve">
-    <value>¿Qué pasa?</value>
+    <value>怎么了？</value>
   </data>
   <data name="NewPostText" xml:space="preserve">
-    <value>Nuevo mensaje</value>
+    <value>新帖子</value>
   </data>
   <data name="NotificationsFollowedText" xml:space="preserve">
-    <value>{0} te seguí</value>
+    <value>{0}关注了你</value>
   </data>
   <data name="NotificationsLikedText" xml:space="preserve">
-    <value>{0} ha gustado tu mensaje</value>
+    <value>{0}赞了您的帖子</value>
   </data>
   <data name="NotificationsRepostedText" xml:space="preserve">
-    <value>{0} has vuelto a publicar tu mensaje</value>
+    <value>{0} 重新发布了您的帖子</value>
   </data>
   <data name="NotificationsText" xml:space="preserve">
-    <value>Notificaciones</value>
+    <value>通知</value>
   </data>
   <data name="OkayText" xml:space="preserve">
-    <value>Bien</value>
+    <value>好</value>
   </data>
   <data name="PasswordBoxPlaceholder" xml:space="preserve">
-    <value>Código de contraseña</value>
+    <value>您的特殊 App 专用密码</value>
   </data>
   <data name="PostedReplyText" xml:space="preserve">
-    <value>Ha publicado una respuesta</value>
+    <value>已发布回复</value>
   </data>
   <data name="PostsText" xml:space="preserve">
-    <value>Mensajes</value>
+    <value>职位</value>
   </data>
   <data name="ProfileText" xml:space="preserve">
-    <value>Perfil</value>
+    <value>轮廓</value>
   </data>
   <data name="RepostCaption" xml:space="preserve">
-    <value>Publicado por {0}</value>
+    <value>转载于 {0}</value>
   </data>
   <data name="SendFeedbackText" xml:space="preserve">
-    <value>Enviar comentarios</value>
+    <value>发送反馈</value>
   </data>
   <data name="SessionTimeoutDialogMessage" xml:space="preserve">
-    <value>La sesión ha caducado y tendrás que volver a iniciar sesión.</value>
+    <value>您的会话已过期，您需要重新登录。</value>
   </data>
   <data name="SessionTimeoutDialogTitle" xml:space="preserve">
-    <value>Es necesario iniciar sesión</value>
+    <value>需要登录</value>
   </data>
   <data name="SignInText" xml:space="preserve">
-    <value>Inicia sesión</value>
+    <value>登录</value>
   </data>
   <data name="SignOutDialogMessage" xml:space="preserve">
-    <value>¿Estás seguro? Volverá a la página de inicio de sesión.</value>
+    <value>是否确定？您将返回到登录页面。</value>
   </data>
   <data name="SignOutDialogTitle" xml:space="preserve">
-    <value>Cerrar sesión</value>
+    <value>注销</value>
   </data>
   <data name="SignOutText" xml:space="preserve">
-    <value>Cerrar sesión</value>
+    <value>登出</value>
   </data>
   <data name="StarterPackByText" xml:space="preserve">
-    <value>Paquete de inicio de {0}</value>
+    <value>{0} 的入门包</value>
   </data>
   <data name="SubmitText" xml:space="preserve">
-    <value>Enviar</value>
+    <value>提交</value>
   </data>
 </root>
