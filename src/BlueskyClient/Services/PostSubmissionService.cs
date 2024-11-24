@@ -153,6 +153,22 @@ public class PostSubmissionService : IPostSubmissionService
     }
 
     /// <inheritdoc/>
+    public bool ValidatePost(string text)
+    {
+        if (string.IsNullOrEmpty(text))
+        {
+            return false;
+        }
+
+        if (text.Length > 300)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    /// <inheritdoc/>
     public async Task<string?> SubmitPostAsync(string text)
     {
         text = text.Trim();

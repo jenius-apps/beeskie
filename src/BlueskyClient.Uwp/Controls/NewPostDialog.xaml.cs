@@ -20,6 +20,14 @@ public sealed partial class NewPostDialog : ContentDialog
     private async void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
     {
         var d = args.GetDeferral();
+
+        if (!NewPostControl.ViewModel.CanSubmit())
+        {
+            args.Cancel = true;
+            d.Complete();
+            return;
+        }
+
         await NewPostControl.ViewModel.SubmitCommand.ExecuteAsync(null);
         d.Complete();
     }

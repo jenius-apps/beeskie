@@ -19,6 +19,32 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsLowCharactersRemaining, Mode=OneWay}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="CharsRemainingText.FontWeight" Value="SemiBold" />
+                        <Setter Target="CharsRemainingText.Foreground" Value="{ThemeResource SystemFillColorCautionBrush}" />
+                        <Setter Target="CharsProgressRingBackplate.Foreground" Value="{ThemeResource SystemFillColorCautionBackgroundBrush}" />
+                        <Setter Target="CharsProgressRing.Foreground" Value="{ThemeResource SystemFillColorCautionBrush}" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{x:Bind ViewModel.IsNoCharactersRemaining, Mode=OneWay}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="CharsRemainingText.FontWeight" Value="SemiBold" />
+                        <Setter Target="CharsRemainingText.Foreground" Value="{ThemeResource SystemFillColorCriticalBrush}" />
+                        <Setter Target="CharsProgressRingBackplate.Foreground" Value="{ThemeResource SystemFillColorCriticalBackgroundBrush}" />
+                        <Setter Target="CharsProgressRing.Foreground" Value="{ThemeResource SystemFillColorCriticalBrush}" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
 
         <Grid Margin="0,0,0,20" Visibility="{x:Bind ex:UIExtensions.CollapsedIfNull(ViewModel.TargetPost), Mode=OneWay}">
             <Grid.ColumnDefinitions>
@@ -58,6 +84,8 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
 
             <winui:PersonPicture
@@ -75,16 +103,42 @@
                     Text="{x:Bind ViewModel.Author.AtHandle, Mode=OneWay}"
                     TextTrimming="CharacterEllipsis" />
             </StackPanel>
+
+            <TextBlock
+                x:Name="CharsRemainingText"
+                Grid.Column="2"
+                VerticalAlignment="Center"
+                Text="{x:Bind ViewModel.CharactersRemaining.ToString(), Mode=OneWay}" />
+
+            <Grid Grid.Column="3" Margin="8,0,0,0">
+                <winui:ProgressRing
+                    x:Name="CharsProgressRingBackplate"
+                    Width="20"
+                    Height="20"
+                    Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                    IsIndeterminate="False"
+                    Opacity="0.5"
+                    Value="100" />
+                <winui:ProgressRing
+                    x:Name="CharsProgressRing"
+                    Width="20"
+                    Height="20"
+                    Foreground="{ThemeResource TextFillColorPrimaryBrush}"
+                    IsIndeterminate="False"
+                    Maximum="300"
+                    Value="{x:Bind InputTextBox.Text.Length, Mode=OneWay}" />
+            </Grid>
         </Grid>
 
         <TextBox
+            x:Name="InputTextBox"
             Grid.Row="2"
             MinHeight="300"
             MaxHeight="360"
             Margin="0,12,0,0"
             HorizontalAlignment="Stretch"
             AcceptsReturn="True"
-            MaxLength="500"
+            MaxLength="360"
             PlaceholderText="{x:Bind strings:Resources.NewPostPlaceholder}"
             Text="{x:Bind ViewModel.InputText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             TextWrapping="Wrap" />

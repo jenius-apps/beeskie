@@ -26,7 +26,16 @@ public partial class NewPostViewModel : ObservableObject
         _telemetry = telemetry;
     }
 
+    public bool IsLowCharactersRemaining => CharactersRemaining is > 0 and <= 50;
+
+    public bool IsNoCharactersRemaining => CharactersRemaining is <= 0;
+
+    public int CharactersRemaining => 300 - InputText.Length;
+
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(CharactersRemaining))]
+    [NotifyPropertyChangedFor(nameof(IsNoCharactersRemaining))]
+    [NotifyPropertyChangedFor(nameof(IsLowCharactersRemaining))]
     private string _inputText = string.Empty;
 
     [ObservableProperty]
@@ -60,9 +69,19 @@ public partial class NewPostViewModel : ObservableObject
         Author = await _profileService.GetCurrentUserAsync();
     }
 
+    public bool CanSubmit()
+    {
+        return _postSubmissionService.ValidatePost(InputText);
+    }
+
     [RelayCommand]
     private async Task SubmitAsync()
     {
+        if (!CanSubmit())
+        {
+            return;
+        }
+
         _telemetry.TrackEvent(TelemetryConstants.PostSubmissionClicked);
 
         var input = InputText.Trim();

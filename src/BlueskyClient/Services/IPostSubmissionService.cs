@@ -12,4 +12,5 @@ public interface IPostSubmissionService
     Task<bool> LikeOrRepostAsync(RecordType recordType, string targetUri, string targetCid);
     Task<string?> ReplyAsync(string text, FeedPost parent);
     Task<string?> SubmitPostAsync(string text);
+    bool ValidatePost(string text);
 }
