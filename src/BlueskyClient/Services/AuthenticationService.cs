@@ -48,6 +48,22 @@ public sealed class AuthenticationService : IAuthenticationService
     }
 
     /// <inheritdoc/>
+    public void SignOut()
+    {
+        string? storedDid = _userSettings.Get<string>(UserSettingsConstants.SignedInDIDKey);
+        if (storedDid is { Length: > 0 })
+        {
+            _secureCredentialStorage.SetCredential(storedDid, string.Empty);
+        }
+
+        _userSettings.Set(UserSettingsConstants.LocalUserIdKey, string.Empty);
+        _userSettings.Set(UserSettingsConstants.SignedInDIDKey, string.Empty);
+        _accesToken = null;
+        _refreshToken = null;
+        _expirationTime = null;
+    }
+
+    /// <inheritdoc/>
     public async Task<AuthResponse?> SignInAsync(string rawUserHandleOrEmail, string rawPassword)
     {
         var userHandleOrEmail = rawUserHandleOrEmail.Trim().TrimStart('@');

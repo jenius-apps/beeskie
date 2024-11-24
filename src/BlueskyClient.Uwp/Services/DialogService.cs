@@ -63,4 +63,30 @@ public sealed class DialogService : IDialogService
 
         _dialogOpen = false;
     }
+
+    /// <inheritdoc/>
+    public async Task<bool> LogoutAsync()
+    {
+        if (_dialogOpen)
+        {
+            return false;
+        }
+
+        _dialogOpen = true;
+
+        var dialog = new ContentDialog
+        {
+            Title = "Signing out",
+            Content = "Are you sure? You will be returned to the sign in page.",
+            PrimaryButtonText = "Sign out",
+            CloseButtonText = "Cancel",
+            DefaultButton = ContentDialogButton.Close
+        };
+
+        var result = await dialog.ShowAsync();
+
+        _dialogOpen = false;
+
+        return result is ContentDialogResult.Primary;
+    }
 }

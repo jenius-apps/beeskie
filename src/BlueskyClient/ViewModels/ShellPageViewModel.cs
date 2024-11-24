@@ -6,7 +6,6 @@ using BlueskyClient.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using JeniusApps.Common.Models;
-using JeniusApps.Common.Settings;
 using JeniusApps.Common.Telemetry;
 using JeniusApps.Common.Tools;
 using System.Collections.Generic;
@@ -17,7 +16,6 @@ namespace BlueskyClient.ViewModels;
 
 public partial class ShellPageViewModel : ObservableObject
 {
-    private readonly IUserSettings _userSettings;
     private readonly ITelemetry _telemetry;
     private readonly INavigator _contentNavigator;
     private readonly INavigator _rootNavigator;
@@ -28,7 +26,6 @@ public partial class ShellPageViewModel : ObservableObject
     private MenuItem? _lastSelectedMenu;
 
     public ShellPageViewModel(
-        IUserSettings userSettings,
         ITelemetry telemetry,
         INavigator contentNavigator,
         INavigator rootNavigator,
@@ -37,7 +34,6 @@ public partial class ShellPageViewModel : ObservableObject
         IAuthenticationService authenticationService,
         IImageViewerService imageViewerService)
     {
-        _userSettings = userSettings;
         _telemetry = telemetry;
         _contentNavigator = contentNavigator;
         _rootNavigator = rootNavigator;
@@ -163,6 +159,22 @@ public partial class ShellPageViewModel : ObservableObject
         _telemetry.TrackEvent(TelemetryConstants.ImageViewerClosed, new Dictionary<string, string>
         {
             { "closeMethod", closeMethod ?? "" }
+        });
+    }
+
+    [RelayCommand]
+    private async Task LogoutAsync()
+    {
+        var result = await _dialogService.LogoutAsync();
+        if (result)
+        {
+            _authenticationService.SignOut();
+            _rootNavigator.NavigateTo(NavigationConstants.SignInPage);
+        }
+
+        _telemetry.TrackEvent(TelemetryConstants.LogoutClicked, new Dictionary<string, string>
+        {
+            { "signedOut", result.ToString() }
         });
     }
 }

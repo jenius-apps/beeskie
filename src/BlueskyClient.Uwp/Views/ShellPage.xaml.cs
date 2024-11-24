@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Uwp.Helpers;
 using Windows.System;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 
@@ -59,5 +60,13 @@ public sealed partial class ShellPage : Page
     private void OnFeedbackClicked(object sender, Windows.UI.Xaml.RoutedEventArgs e)
     {
         App.Services.GetRequiredService<ITelemetry>().TrackEvent(TelemetryConstants.FeedbackClicked);
+    }
+
+    private void OnProfileControlClicked(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+    {
+        if (sender is Button b)
+        {
+            FlyoutBase.ShowAttachedFlyout(b);
+        }
     }
 }
