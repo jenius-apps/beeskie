@@ -32,6 +32,7 @@
                 <PasswordBox
                     Margin="0,8,0,0"
                     IsEnabled="{x:Bind ex:UIExtensions.Not(ViewModel.SigningIn), Mode=OneWay}"
+                    KeyDown="OnPasswordBoxKeyDown"
                     Password="{x:Bind ViewModel.AppPasswordInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     PlaceholderText="Your special app password" />
                 <Button
