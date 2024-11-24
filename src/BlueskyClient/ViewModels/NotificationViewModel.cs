@@ -31,8 +31,12 @@ public partial class NotificationViewModel : ObservableObject
     {
         get
         {
-            if (IsAvatarValid(Notification.Author) && Notification.Author.DisplayName is string displayName)
+            if (IsAvatarValid(Notification.Author))
             {
+                string displayName = Notification.Author.DisplayName is string { Length: > 0 } name
+                    ? name
+                    : Notification.Author.Handle;
+
                 return Reason switch
                 {
                     ReasonConstants.Follow => _localizer.GetString("NotificationsFollowedText", displayName),
