@@ -129,6 +129,12 @@
   <data name="CloseText" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="FollowersText" xml:space="preserve">
+    <value>followers</value>
+  </data>
+  <data name="FollowingText" xml:space="preserve">
+    <value>following</value>
+  </data>
   <data name="HomeText" xml:space="preserve">
     <value>Home</value>
   </data>
@@ -144,6 +150,15 @@
   <data name="NewPostText" xml:space="preserve">
     <value>New Post</value>
   </data>
+  <data name="NotificationsFollowedText" xml:space="preserve">
+    <value>{0} followed you</value>
+  </data>
+  <data name="NotificationsLikedText" xml:space="preserve">
+    <value>{0} liked your post</value>
+  </data>
+  <data name="NotificationsRepostedText" xml:space="preserve">
+    <value>{0} reposted your post</value>
+  </data>
   <data name="NotificationsText" xml:space="preserve">
     <value>Notifications</value>
   </data>
@@ -152,6 +167,12 @@
   </data>
   <data name="PasswordBoxPlaceholder" xml:space="preserve">
     <value>Your special App Password</value>
+  </data>
+  <data name="PostedReplyText" xml:space="preserve">
+    <value>Posted a reply</value>
+  </data>
+  <data name="PostsText" xml:space="preserve">
+    <value>posts</value>
   </data>
   <data name="ProfileText" xml:space="preserve">
     <value>Profile</value>
@@ -179,6 +200,9 @@
   </data>
   <data name="SignOutText" xml:space="preserve">
     <value>Sign out</value>
+  </data>
+  <data name="StarterPackByText" xml:space="preserve">
+    <value>Starter pack by {0}</value>
   </data>
   <data name="SubmitText" xml:space="preserve">
     <value>Submit</value>

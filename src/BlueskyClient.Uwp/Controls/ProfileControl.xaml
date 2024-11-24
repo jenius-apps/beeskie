@@ -7,6 +7,7 @@
     xmlns:local="using:BlueskyClient.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:p="using:BlueskyClient.Extensions"
+    xmlns:strings="using:BlueskyClient.Strings"
     xmlns:templates="using:BlueskyClient.ResourceDictionaries"
     d:DesignHeight="300"
     d:DesignWidth="400"
@@ -89,7 +90,7 @@
                 <TextBlock
                     Margin="4,0,0,0"
                     Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                    Text="followers" />
+                    Text="{x:Bind strings:Resources.FollowersText}" />
                 <TextBlock
                     Margin="8,0,0,0"
                     FontWeight="SemiBold"
@@ -97,7 +98,7 @@
                 <TextBlock
                     Margin="4,0,0,0"
                     Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                    Text="following" />
+                    Text="{x:Bind strings:Resources.FollowingText}" />
                 <TextBlock
                     Margin="8,0,0,0"
                     FontWeight="SemiBold"
@@ -105,7 +106,7 @@
                 <TextBlock
                     Margin="4,0,0,0"
                     Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                    Text="posts" />
+                    Text="{x:Bind strings:Resources.PostsText}" />
             </StackPanel>
 
             <TextBlock

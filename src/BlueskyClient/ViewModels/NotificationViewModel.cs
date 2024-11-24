@@ -1,6 +1,7 @@
 ﻿using Bluesky.NET.Constants;
 using Bluesky.NET.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
+using JeniusApps.Common.Tools;
 using System;
 using System.Diagnostics.CodeAnalysis;
 
@@ -8,10 +9,14 @@ namespace BlueskyClient.ViewModels;
 
 public partial class NotificationViewModel : ObservableObject
 {
+    private readonly ILocalizer _localizer;
+
     public NotificationViewModel(
-        Notification notification)
+        Notification notification,
+        ILocalizer localizer)
     {
         Notification = notification;
+        _localizer = localizer;
     }
 
     public Notification Notification { get; }
@@ -26,14 +31,14 @@ public partial class NotificationViewModel : ObservableObject
     {
         get
         {
-            if (IsAvatarValid(Notification.Author))
+            if (IsAvatarValid(Notification.Author) && Notification.Author.DisplayName is string displayName)
             {
                 return Reason switch
                 {
-                    ReasonConstants.Follow => $"{Notification.Author.DisplayName} followed you",
-                    ReasonConstants.Like => $"{Notification.Author.DisplayName} liked your post",
-                    ReasonConstants.Repost => $"{Notification.Author.DisplayName} reposted your post",
-                    ReasonConstants.Reply => "Posted a reply",
+                    ReasonConstants.Follow => _localizer.GetString("NotificationsFollowedText", displayName),
+                    ReasonConstants.Like => _localizer.GetString("NotificationsLikedText", displayName),
+                    ReasonConstants.Repost => _localizer.GetString("NotificationsRepostedText", displayName),
+                    ReasonConstants.Reply => _localizer.GetString("PostedReplyText"),
                     _ => string.Empty
                 };
             }

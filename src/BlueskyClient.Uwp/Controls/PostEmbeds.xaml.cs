@@ -2,6 +2,7 @@
 using Bluesky.NET.Models;
 using BlueskyClient.Extensions;
 using BlueskyClient.Services;
+using JeniusApps.Common.Tools;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace BlueskyClient.Controls;
 public sealed partial class PostEmbeds : UserControl
 {
     private readonly IImageViewerService _imageViewerService;
+    private readonly ILocalizer _localizer;
 
     public static readonly DependencyProperty EmbedProperty = DependencyProperty.Register(
         nameof(Embed),
@@ -40,6 +42,7 @@ public sealed partial class PostEmbeds : UserControl
     {
         this.InitializeComponent();
         _imageViewerService = App.Services.GetRequiredService<IImageViewerService>();
+        _localizer = App.Services.GetRequiredService<ILocalizer>();
     }
 
     public PostEmbed? Embed
@@ -52,7 +55,7 @@ public sealed partial class PostEmbeds : UserControl
 
     private string StarterPackName => Embed?.Record?.Record?.Name ?? string.Empty;
 
-    private string StarterPackCreatedByLine => $"Starter pack by {Embed?.Record?.Creator?.AtHandle ?? string.Empty}";
+    private string StarterPackCreatedByLine => _localizer.GetString("StarterPackByText", Embed?.Record?.Creator?.AtHandle ?? string.Empty);
 
     private string StarterPackDescription => Embed?.Record?.Record?.Description ?? string.Empty;
 

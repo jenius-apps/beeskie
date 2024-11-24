@@ -1,4 +1,6 @@
 ﻿using Bluesky.NET.Models;
+using JeniusApps.Common.Tools;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace BlueskyClient.ViewModels;
@@ -15,6 +17,7 @@ public class NotificationViewModelFactory : INotificationViewModelFactory
     public NotificationViewModel CreateViewModel(Notification notification)
     {
         return new NotificationViewModel(
-            notification);
+            notification,
+            _serviceProvider.GetRequiredService<ILocalizer>());
     }
 }

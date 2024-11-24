@@ -67,6 +67,32 @@ namespace BlueskyClient.Strings{
         }
         #endregion
 
+        #region FollowersText
+        /// <summary>
+        ///   Looks up a localized string similar to: followers
+        /// </summary>
+        public static string FollowersText
+        {
+            get
+            {
+                return _resourceLoader.GetString("FollowersText");
+            }
+        }
+        #endregion
+
+        #region FollowingText
+        /// <summary>
+        ///   Looks up a localized string similar to: following
+        /// </summary>
+        public static string FollowingText
+        {
+            get
+            {
+                return _resourceLoader.GetString("FollowingText");
+            }
+        }
+        #endregion
+
         #region HomeText
         /// <summary>
         ///   Looks up a localized string similar to: Home
@@ -132,6 +158,45 @@ namespace BlueskyClient.Strings{
         }
         #endregion
 
+        #region NotificationsFollowedText
+        /// <summary>
+        ///   Looks up a localized string similar to: {0} followed you
+        /// </summary>
+        public static string NotificationsFollowedText
+        {
+            get
+            {
+                return _resourceLoader.GetString("NotificationsFollowedText");
+            }
+        }
+        #endregion
+
+        #region NotificationsLikedText
+        /// <summary>
+        ///   Looks up a localized string similar to: {0} liked your post
+        /// </summary>
+        public static string NotificationsLikedText
+        {
+            get
+            {
+                return _resourceLoader.GetString("NotificationsLikedText");
+            }
+        }
+        #endregion
+
+        #region NotificationsRepostedText
+        /// <summary>
+        ///   Looks up a localized string similar to: {0} reposted your post
+        /// </summary>
+        public static string NotificationsRepostedText
+        {
+            get
+            {
+                return _resourceLoader.GetString("NotificationsRepostedText");
+            }
+        }
+        #endregion
+
         #region NotificationsText
         /// <summary>
         ///   Looks up a localized string similar to: Notifications
@@ -167,6 +232,32 @@ namespace BlueskyClient.Strings{
             get
             {
                 return _resourceLoader.GetString("PasswordBoxPlaceholder");
+            }
+        }
+        #endregion
+
+        #region PostedReplyText
+        /// <summary>
+        ///   Looks up a localized string similar to: Posted a reply
+        /// </summary>
+        public static string PostedReplyText
+        {
+            get
+            {
+                return _resourceLoader.GetString("PostedReplyText");
+            }
+        }
+        #endregion
+
+        #region PostsText
+        /// <summary>
+        ///   Looks up a localized string similar to: posts
+        /// </summary>
+        public static string PostsText
+        {
+            get
+            {
+                return _resourceLoader.GetString("PostsText");
             }
         }
         #endregion
@@ -288,6 +379,19 @@ namespace BlueskyClient.Strings{
         }
         #endregion
 
+        #region StarterPackByText
+        /// <summary>
+        ///   Looks up a localized string similar to: Starter pack by {0}
+        /// </summary>
+        public static string StarterPackByText
+        {
+            get
+            {
+                return _resourceLoader.GetString("StarterPackByText");
+            }
+        }
+        #endregion
+
         #region SubmitText
         /// <summary>
         ///   Looks up a localized string similar to: Submit
@@ -315,14 +419,21 @@ namespace BlueskyClient.Strings{
             BackText,
             CancelText,
             CloseText,
+            FollowersText,
+            FollowingText,
             HomeText,
             IdentifierBoxPlaceholder,
             ManageAccountText,
             NewPostPlaceholder,
             NewPostText,
+            NotificationsFollowedText,
+            NotificationsLikedText,
+            NotificationsRepostedText,
             NotificationsText,
             OkayText,
             PasswordBoxPlaceholder,
+            PostedReplyText,
+            PostsText,
             ProfileText,
             RepostCaption,
             SendFeedbackText,
@@ -332,6 +443,7 @@ namespace BlueskyClient.Strings{
             SignOutDialogMessage,
             SignOutDialogTitle,
             SignOutText,
+            StarterPackByText,
             SubmitText,
         }
 
