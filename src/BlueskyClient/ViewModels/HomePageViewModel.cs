@@ -1,9 +1,7 @@
 ﻿using BlueskyClient.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BlueskyClient.ViewModels;
@@ -12,6 +10,7 @@ public partial class HomePageViewModel : ObservableObject
 {
     private readonly ITimelineService _timelineService;
     private readonly IFeedItemViewModelFactory _feedItemViewModelFactory;
+    private string? _cursor;
 
     public HomePageViewModel(
         ITimelineService timelineService,
@@ -21,15 +20,26 @@ public partial class HomePageViewModel : ObservableObject
         _feedItemViewModelFactory = feedItemViewModelFactory;
     }
 
+    public bool HasMoreItems => _cursor is not null;
+
     public ObservableCollection<FeedItemViewModel> FeedItems { get; } = [];
 
-    public async Task InitializeAsync()
+    public async Task InitializeAsync(CancellationToken ct)
     {
-        var items = await _timelineService.GetTimelineAsync();
-        foreach (var item in items)
+        await LoadNextPageAsync(ct);
+    }
+
+    public async Task<int> LoadNextPageAsync(CancellationToken ct)
+    {
+        var (Items, Cursor) = await _timelineService.GetTimelineAsync(ct, _cursor);
+        _cursor = Cursor;
+
+        foreach (var item in Items)
         {
             var vm = _feedItemViewModelFactory.CreateViewModel(item);
             FeedItems.Add(vm);
         }
+
+        return Items.Count;
     }
 }

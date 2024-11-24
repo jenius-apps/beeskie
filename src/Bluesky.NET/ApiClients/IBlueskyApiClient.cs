@@ -15,7 +15,7 @@ public interface IBlueskyApiClient
     /// <param name="appPassword">An app password provided by the user.</param>
     /// <returns>An <see cref="AuthResponse"/>.</returns>
     Task<AuthResponse?> AuthenticateAsync(string identifier, string appPassword);
-    Task<IReadOnlyList<FeedItem>> GetTimelineAsync(string accesstoken);
+    Task<FeedResponse> GetTimelineAsync(string accesstoken, string? cursor = null);
     Task<AuthResponse?> RefreshAsync(string refreshToken);
 
     Task<Author?> GetAuthorAsync(string accessToken, string identifier);

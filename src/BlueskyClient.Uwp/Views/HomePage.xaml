@@ -18,8 +18,11 @@
     <Grid>
         <ListView
             Margin="0,40,0,0"
+            DataFetchSize="1"
+            IncrementalLoadingThreshold="1"
+            IncrementalLoadingTrigger="Edge"
             ItemTemplate="{StaticResource FeedItemTemplate}"
-            ItemsSource="{x:Bind ViewModel.FeedItems}"
+            ItemsSource="{x:Bind FeedCollection}"
             SelectionMode="None">
             <ListView.ItemContainerStyle>
                 <Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">

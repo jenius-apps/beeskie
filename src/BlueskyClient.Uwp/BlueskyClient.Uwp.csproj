@@ -122,6 +122,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Collections\HomeFeedCollection.cs" />
     <Compile Include="Controls\EmbeddedPost.xaml.cs">
       <DependentUpon>EmbeddedPost.xaml</DependentUpon>
     </Compile>

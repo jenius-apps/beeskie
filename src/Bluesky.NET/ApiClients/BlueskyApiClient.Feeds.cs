@@ -13,9 +13,14 @@ namespace Bluesky.NET.ApiClients;
 
 partial class BlueskyApiClient
 {
-    public async Task<IReadOnlyList<FeedItem>> GetTimelineAsync(string accesstoken)
+    public async Task<FeedResponse> GetTimelineAsync(string accesstoken, string? cursor = null)
     {
         var timelineUrl = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.TimelinePath}";
+        if (cursor is { Length: > 0 } cursorParameter)
+        {
+            timelineUrl += $"?cursor={cursorParameter}";
+        }
+
         HttpRequestMessage message = new(HttpMethod.Get, timelineUrl);
         message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
         
@@ -26,7 +31,7 @@ partial class BlueskyApiClient
             {
                 using Stream contentStream = await httpResponse.Content.ReadAsStreamAsync();
                 FeedResponse? response = JsonSerializer.Deserialize(contentStream, ModelSerializerContext.CaseInsensitive.FeedResponse);
-                return response?.Feed ?? [];
+                return response ?? new();
             }
         }
         catch (Exception e)
@@ -35,7 +40,7 @@ partial class BlueskyApiClient
             throw;
         }
 
-        return [];
+        return new();
     }
 
     public async Task<IReadOnlyList<FeedItem>> GetAuthorFeedAsync(string accesstoken, string handle)

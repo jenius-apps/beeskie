@@ -95,7 +95,6 @@ partial class App
         collection.AddTransient((serviceProvider) =>
         {
             return new ShellPageViewModel(
-                serviceProvider.GetRequiredService<IUserSettings>(),
                 serviceProvider.GetRequiredService<ITelemetry>(),
                 serviceProvider.GetRequiredKeyedService<INavigator>(NavigationConstants.ContentNavigatorKey),
                 serviceProvider.GetRequiredKeyedService<INavigator>(NavigationConstants.RootNavigatorKey),
