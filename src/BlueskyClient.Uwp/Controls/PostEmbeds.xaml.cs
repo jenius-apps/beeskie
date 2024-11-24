@@ -58,7 +58,13 @@ public sealed partial class PostEmbeds : UserControl
 
     private bool IsVideo => Embed?.Playlist is { Length: > 0 };
 
-    private bool IsExternalUrl => Embed?.External?.Uri is not null;
+    private bool IsExternalUrl => Embed?.External?.Uri is { Length: > 0 } url && !url.Contains(".gif");
+
+    private bool IsGif => Embed?.External?.Uri is { Length: > 0 } url && url.Contains(".gif");
+
+    private string GifUrl => Embed?.External?.Uri is { Length: > 0 } url && Uri.IsWellFormedUriString(url, UriKind.Absolute)
+        ? url
+        : "http://localhost";
 
     private string ExternalThumb => Embed?.External?.Thumb is { Length: > 0 } thumbUrl && Uri.IsWellFormedUriString(thumbUrl, UriKind.Absolute)
         ? thumbUrl

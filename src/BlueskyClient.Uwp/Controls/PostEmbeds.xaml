@@ -39,6 +39,14 @@
                 Stretch="UniformToFill" />
         </Border>
 
+        <Border
+            x:Name="GifImage"
+            HorizontalAlignment="Left"
+            x:Load="{x:Bind IsGif}"
+            CornerRadius="12">
+            <Image Source="{x:Bind GifUrl}" Stretch="Uniform" />
+        </Border>
+
         <GridView
             x:Name="MultiImageGridView"
             x:Load="{x:Bind IsMultiImageEmbed}"
