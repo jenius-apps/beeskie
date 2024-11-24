@@ -12,4 +12,94 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AppPasswordHelpText" xml:space="preserve">
+    <value>Co to jest hasło do aplikacji?</value>
+  </data>
+  <data name="BackText" xml:space="preserve">
+    <value>Wstecz</value>
+  </data>
+  <data name="CancelText" xml:space="preserve">
+    <value>Anuluj</value>
+  </data>
+  <data name="CloseText" xml:space="preserve">
+    <value>Zamykać</value>
+  </data>
+  <data name="FollowersText" xml:space="preserve">
+    <value>Zwolenników</value>
+  </data>
+  <data name="FollowingText" xml:space="preserve">
+    <value>następujący</value>
+  </data>
+  <data name="HomeText" xml:space="preserve">
+    <value>Dom</value>
+  </data>
+  <data name="IdentifierBoxPlaceholder" xml:space="preserve">
+    <value>Adres e-mail lub nazwa użytkownika Bluesky</value>
+  </data>
+  <data name="ManageAccountText" xml:space="preserve">
+    <value>Zarządzaj kontem</value>
+  </data>
+  <data name="NewPostPlaceholder" xml:space="preserve">
+    <value>Co tam?</value>
+  </data>
+  <data name="NewPostText" xml:space="preserve">
+    <value>Nowy post</value>
+  </data>
+  <data name="NotificationsFollowedText" xml:space="preserve">
+    <value>{0} podążał za tobą</value>
+  </data>
+  <data name="NotificationsLikedText" xml:space="preserve">
+    <value>{0} polubił Twój post</value>
+  </data>
+  <data name="NotificationsRepostedText" xml:space="preserve">
+    <value>{0} ponownie opublikował Twój post</value>
+  </data>
+  <data name="NotificationsText" xml:space="preserve">
+    <value>Powiadomienia</value>
+  </data>
+  <data name="OkayText" xml:space="preserve">
+    <value>Porządku</value>
+  </data>
+  <data name="PasswordBoxPlaceholder" xml:space="preserve">
+    <value>Twoje specjalne hasło do aplikacji</value>
+  </data>
+  <data name="PostedReplyText" xml:space="preserve">
+    <value>Dodał(a) odpowiedź</value>
+  </data>
+  <data name="PostsText" xml:space="preserve">
+    <value>Posty</value>
+  </data>
+  <data name="ProfileText" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="RepostCaption" xml:space="preserve">
+    <value>Ponownie opublikowane przez {0}</value>
+  </data>
+  <data name="SendFeedbackText" xml:space="preserve">
+    <value>Wyślij opinię</value>
+  </data>
+  <data name="SessionTimeoutDialogMessage" xml:space="preserve">
+    <value>Twoja sesja wygasła i musisz zalogować się ponownie.</value>
+  </data>
+  <data name="SessionTimeoutDialogTitle" xml:space="preserve">
+    <value>Wymagane logowanie</value>
+  </data>
+  <data name="SignInText" xml:space="preserve">
+    <value>Rejestrowanie</value>
+  </data>
+  <data name="SignOutDialogMessage" xml:space="preserve">
+    <value>Czy na pewno? Nastąpi powrót do strony logowania.</value>
+  </data>
+  <data name="SignOutDialogTitle" xml:space="preserve">
+    <value>Wylogowywanie się</value>
+  </data>
+  <data name="SignOutText" xml:space="preserve">
+    <value>Wyloguj się</value>
+  </data>
+  <data name="StarterPackByText" xml:space="preserve">
+    <value>Pakiet startowy od {0}</value>
+  </data>
+  <data name="SubmitText" xml:space="preserve">
+    <value>Prześlij</value>
+  </data>
 </root>
