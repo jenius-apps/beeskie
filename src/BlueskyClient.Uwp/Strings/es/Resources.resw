@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppPasswordHelpText" xml:space="preserve">
+    <value>Ayuda con la contraseña</value>
+  </data>
+  <data name="BackText" xml:space="preserve">
+    <value>Atrás</value>
+  </data>
+  <data name="CancelText" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="CloseText" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
+  <data name="FollowersText" xml:space="preserve">
+    <value>Seguidores</value>
+  </data>
+  <data name="FollowingText" xml:space="preserve">
+    <value>siguiente</value>
+  </data>
+  <data name="HomeText" xml:space="preserve">
+    <value>Hogar</value>
+  </data>
+  <data name="IdentifierBoxPlaceholder" xml:space="preserve">
+    <value>Email o username de Bluesky</value>
+  </data>
+  <data name="ManageAccountText" xml:space="preserve">
+    <value>Administrar cuenta</value>
+  </data>
+  <data name="NewPostPlaceholder" xml:space="preserve">
+    <value>¿Qué pasa?</value>
+  </data>
+  <data name="NewPostText" xml:space="preserve">
+    <value>Nuevo mensaje</value>
+  </data>
+  <data name="NotificationsFollowedText" xml:space="preserve">
+    <value>{0} te seguí</value>
+  </data>
+  <data name="NotificationsLikedText" xml:space="preserve">
+    <value>{0} ha gustado tu mensaje</value>
+  </data>
+  <data name="NotificationsRepostedText" xml:space="preserve">
+    <value>{0} has vuelto a publicar tu mensaje</value>
+  </data>
+  <data name="NotificationsText" xml:space="preserve">
+    <value>Notificaciones</value>
+  </data>
+  <data name="OkayText" xml:space="preserve">
+    <value>Bien</value>
+  </data>
+  <data name="PasswordBoxPlaceholder" xml:space="preserve">
+    <value>Código de contraseña</value>
+  </data>
+  <data name="PostedReplyText" xml:space="preserve">
+    <value>Ha publicado una respuesta</value>
+  </data>
+  <data name="PostsText" xml:space="preserve">
+    <value>Mensajes</value>
+  </data>
+  <data name="ProfileText" xml:space="preserve">
+    <value>Perfil</value>
+  </data>
+  <data name="RepostCaption" xml:space="preserve">
+    <value>Publicado por {0}</value>
+  </data>
+  <data name="SendFeedbackText" xml:space="preserve">
+    <value>Enviar comentarios</value>
+  </data>
+  <data name="SessionTimeoutDialogMessage" xml:space="preserve">
+    <value>La sesión ha caducado y tendrás que volver a iniciar sesión.</value>
+  </data>
+  <data name="SessionTimeoutDialogTitle" xml:space="preserve">
+    <value>Es necesario iniciar sesión</value>
+  </data>
+  <data name="SignInText" xml:space="preserve">
+    <value>Inicia sesión</value>
+  </data>
+  <data name="SignOutDialogMessage" xml:space="preserve">
+    <value>¿Estás seguro? Volverá a la página de inicio de sesión.</value>
+  </data>
+  <data name="SignOutDialogTitle" xml:space="preserve">
+    <value>Cerrar sesión</value>
+  </data>
+  <data name="SignOutText" xml:space="preserve">
+    <value>Cerrar sesión</value>
+  </data>
+  <data name="StarterPackByText" xml:space="preserve">
+    <value>Paquete de inicio de {0}</value>
+  </data>
+  <data name="SubmitText" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+</root>
