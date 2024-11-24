@@ -144,6 +144,11 @@
       <DependentUpon>FeedItemTemplateResource.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\DialogService.cs" />
+    <Compile Include="Strings\en-US\Resources.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resw</DependentUpon>
+    </Compile>
     <Compile Include="Tools\AppSettings.cs" />
     <Compile Include="Tools\SecureCredentialStorage.cs" />
     <Compile Include="Views\HomePage.xaml.cs">
@@ -316,6 +321,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\fluentui.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Strings\en-US\Resources.resw">
+      <SubType>Designer</SubType>
+      <Generator>ReswPlusGenerator</Generator>
+      <LastGenOutput>Resources.generated.cs</LastGenOutput>
+    </PRIResource>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

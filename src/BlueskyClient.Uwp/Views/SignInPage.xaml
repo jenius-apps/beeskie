@@ -6,6 +6,7 @@
     xmlns:ex="using:JeniusApps.Common.UI.Uwp"
     xmlns:local="using:BlueskyClient.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:strings="using:BlueskyClient.Strings"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     winui:BackdropMaterial.ApplyToRootOrPageBackground="True"
     mc:Ignorable="d">
@@ -27,20 +28,21 @@
                     Margin="0,20,0,0"
                     IsEnabled="{x:Bind ex:UIExtensions.Not(ViewModel.SigningIn), Mode=OneWay}"
                     IsSpellCheckEnabled="False"
-                    PlaceholderText="Bluesky handle or email"
+                    PlaceholderText="{x:Bind strings:Resources.IdentifierBoxPlaceholder}"
                     Text="{x:Bind ViewModel.UserHandleInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 <PasswordBox
                     Margin="0,8,0,0"
                     IsEnabled="{x:Bind ex:UIExtensions.Not(ViewModel.SigningIn), Mode=OneWay}"
                     KeyDown="OnPasswordBoxKeyDown"
                     Password="{x:Bind ViewModel.AppPasswordInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    PlaceholderText="Your special app password" />
+                    PlaceholderText="{x:Bind strings:Resources.PasswordBoxPlaceholder}" />
                 <Button
                     Height="48"
                     Margin="0,8,0,0"
                     HorizontalAlignment="Stretch"
+                    AutomationProperties.Name="{x:Bind strings:Resources.SignInText}"
                     Command="{x:Bind ViewModel.SignInCommand}"
-                    Content="Sign in"
+                    Content="{x:Bind strings:Resources.SignInText}"
                     IsEnabled="{x:Bind ex:UIExtensions.Not(ViewModel.SigningIn), Mode=OneWay}" />
             </StackPanel>
 
@@ -55,8 +57,9 @@
                 Margin="12"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Bottom"
+                AutomationProperties.Name="{x:Bind strings:Resources.AppPasswordHelpText}"
                 Click="OnAppPassHelpClicked"
-                Content="App Password help"
+                Content="{x:Bind strings:Resources.AppPasswordHelpText}"
                 FontSize="12"
                 Foreground="{ThemeResource TextFillColorTertiaryBrush}"
                 NavigateUri="https://github.com/jenius-apps/beeskie/blob/main/docs/appPasswordsHelp.md" />
