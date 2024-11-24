@@ -138,11 +138,17 @@
   <data name="ManageAccountText" xml:space="preserve">
     <value>Manage account</value>
   </data>
+  <data name="NewPostPlaceholder" xml:space="preserve">
+    <value>What's up?</value>
+  </data>
   <data name="NewPostText" xml:space="preserve">
     <value>New Post</value>
   </data>
   <data name="NotificationsText" xml:space="preserve">
     <value>Notifications</value>
+  </data>
+  <data name="OkayText" xml:space="preserve">
+    <value>Okay</value>
   </data>
   <data name="PasswordBoxPlaceholder" xml:space="preserve">
     <value>Your special App Password</value>
@@ -156,10 +162,25 @@
   <data name="SendFeedbackText" xml:space="preserve">
     <value>Send feedback</value>
   </data>
+  <data name="SessionTimeoutDialogMessage" xml:space="preserve">
+    <value>Your session expired, and you'll need to sign in again.</value>
+  </data>
+  <data name="SessionTimeoutDialogTitle" xml:space="preserve">
+    <value>Sign in required</value>
+  </data>
   <data name="SignInText" xml:space="preserve">
     <value>Sign in</value>
   </data>
+  <data name="SignOutDialogMessage" xml:space="preserve">
+    <value>Are you sure? You will return to the sign in page.</value>
+  </data>
+  <data name="SignOutDialogTitle" xml:space="preserve">
+    <value>Signing out</value>
+  </data>
   <data name="SignOutText" xml:space="preserve">
     <value>Sign out</value>
+  </data>
+  <data name="SubmitText" xml:space="preserve">
+    <value>Submit</value>
   </data>
 </root>

@@ -5,11 +5,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:BlueskyClient.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    CloseButtonText="Cancel"
+    xmlns:strings="using:BlueskyClient.Strings"
+    CloseButtonText="{x:Bind strings:Resources.CancelText}"
     DefaultButton="Primary"
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
     PrimaryButtonStyle="{StaticResource AccentButtonStyle}"
-    PrimaryButtonText="Post"
+    PrimaryButtonText="{x:Bind strings:Resources.SubmitText}"
     Style="{StaticResource DefaultContentDialogStyle}"
     mc:Ignorable="d">
 

@@ -6,6 +6,7 @@
     xmlns:ex="using:JeniusApps.Common.UI.Uwp"
     xmlns:local="using:BlueskyClient.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:strings="using:BlueskyClient.Strings"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     d:DesignHeight="300"
     d:DesignWidth="400"
@@ -31,7 +32,6 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Stretch"
                 Fill="{ThemeResource TextFillColorTertiaryBrush}" />
-
 
             <winui:PersonPicture
                 Width="40"
@@ -85,7 +85,7 @@
             HorizontalAlignment="Stretch"
             AcceptsReturn="True"
             MaxLength="500"
-            PlaceholderText="What's up?"
+            PlaceholderText="{x:Bind strings:Resources.NewPostPlaceholder}"
             Text="{x:Bind ViewModel.InputText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             TextWrapping="Wrap" />
     </Grid>

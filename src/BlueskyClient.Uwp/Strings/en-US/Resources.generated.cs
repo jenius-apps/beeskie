@@ -106,6 +106,19 @@ namespace BlueskyClient.Strings{
         }
         #endregion
 
+        #region NewPostPlaceholder
+        /// <summary>
+        ///   Looks up a localized string similar to: What's up?
+        /// </summary>
+        public static string NewPostPlaceholder
+        {
+            get
+            {
+                return _resourceLoader.GetString("NewPostPlaceholder");
+            }
+        }
+        #endregion
+
         #region NewPostText
         /// <summary>
         ///   Looks up a localized string similar to: New Post
@@ -128,6 +141,19 @@ namespace BlueskyClient.Strings{
             get
             {
                 return _resourceLoader.GetString("NotificationsText");
+            }
+        }
+        #endregion
+
+        #region OkayText
+        /// <summary>
+        ///   Looks up a localized string similar to: Okay
+        /// </summary>
+        public static string OkayText
+        {
+            get
+            {
+                return _resourceLoader.GetString("OkayText");
             }
         }
         #endregion
@@ -184,6 +210,32 @@ namespace BlueskyClient.Strings{
         }
         #endregion
 
+        #region SessionTimeoutDialogMessage
+        /// <summary>
+        ///   Looks up a localized string similar to: Your session expired, and you'll need to sign in again.
+        /// </summary>
+        public static string SessionTimeoutDialogMessage
+        {
+            get
+            {
+                return _resourceLoader.GetString("SessionTimeoutDialogMessage");
+            }
+        }
+        #endregion
+
+        #region SessionTimeoutDialogTitle
+        /// <summary>
+        ///   Looks up a localized string similar to: Sign in required
+        /// </summary>
+        public static string SessionTimeoutDialogTitle
+        {
+            get
+            {
+                return _resourceLoader.GetString("SessionTimeoutDialogTitle");
+            }
+        }
+        #endregion
+
         #region SignInText
         /// <summary>
         ///   Looks up a localized string similar to: Sign in
@@ -197,6 +249,32 @@ namespace BlueskyClient.Strings{
         }
         #endregion
 
+        #region SignOutDialogMessage
+        /// <summary>
+        ///   Looks up a localized string similar to: Are you sure? You will return to the sign in page.
+        /// </summary>
+        public static string SignOutDialogMessage
+        {
+            get
+            {
+                return _resourceLoader.GetString("SignOutDialogMessage");
+            }
+        }
+        #endregion
+
+        #region SignOutDialogTitle
+        /// <summary>
+        ///   Looks up a localized string similar to: Signing out
+        /// </summary>
+        public static string SignOutDialogTitle
+        {
+            get
+            {
+                return _resourceLoader.GetString("SignOutDialogTitle");
+            }
+        }
+        #endregion
+
         #region SignOutText
         /// <summary>
         ///   Looks up a localized string similar to: Sign out
@@ -206,6 +284,19 @@ namespace BlueskyClient.Strings{
             get
             {
                 return _resourceLoader.GetString("SignOutText");
+            }
+        }
+        #endregion
+
+        #region SubmitText
+        /// <summary>
+        ///   Looks up a localized string similar to: Submit
+        /// </summary>
+        public static string SubmitText
+        {
+            get
+            {
+                return _resourceLoader.GetString("SubmitText");
             }
         }
         #endregion
@@ -227,14 +318,21 @@ namespace BlueskyClient.Strings{
             HomeText,
             IdentifierBoxPlaceholder,
             ManageAccountText,
+            NewPostPlaceholder,
             NewPostText,
             NotificationsText,
+            OkayText,
             PasswordBoxPlaceholder,
             ProfileText,
             RepostCaption,
             SendFeedbackText,
+            SessionTimeoutDialogMessage,
+            SessionTimeoutDialogTitle,
             SignInText,
+            SignOutDialogMessage,
+            SignOutDialogTitle,
             SignOutText,
+            SubmitText,
         }
 
         private static ResourceLoader _resourceLoader;
