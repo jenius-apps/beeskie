@@ -4,6 +4,7 @@ using BlueskyClient.Extensions;
 using BlueskyClient.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using JeniusApps.Common.Tools;
 using System;
 using System.Threading.Tasks;
 
@@ -13,15 +14,18 @@ public partial class FeedItemViewModel : ObservableObject
 {
     private readonly IPostSubmissionService _postSubmissionService;
     private readonly IDialogService _dialogService;
+    private readonly ILocalizer _localizer;
 
     public FeedItemViewModel(
         FeedItem feedItem,
         IPostSubmissionService postSubmissionService,
-        IDialogService dialogService)
+        IDialogService dialogService,
+        ILocalizer localizer)
     {
         FeedItem = feedItem;
         _postSubmissionService = postSubmissionService;
         _dialogService = dialogService;
+        _localizer = localizer;
         
         IsLiked = feedItem.Post.Viewer?.Like is not null;
         IsReposted = feedItem.Post.Viewer?.Repost is not null;
@@ -39,7 +43,7 @@ public partial class FeedItemViewModel : ObservableObject
         : string.Empty;
 
     public string RepostCaption => IsRepost
-        ? $"Reposted by {ReposterName}"
+        ? _localizer.GetString("RepostCaption", ReposterName)
         : string.Empty;
 
     public PostEmbed? PostEmbed => FeedItem.Post?.Embed;

@@ -150,6 +150,9 @@
   <data name="ProfileText" xml:space="preserve">
     <value>Profile</value>
   </data>
+  <data name="RepostCaption" xml:space="preserve">
+    <value>Reposted by {0}</value>
+  </data>
   <data name="SendFeedbackText" xml:space="preserve">
     <value>Send feedback</value>
   </data>

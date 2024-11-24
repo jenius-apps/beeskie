@@ -158,6 +158,19 @@ namespace BlueskyClient.Strings{
         }
         #endregion
 
+        #region RepostCaption
+        /// <summary>
+        ///   Looks up a localized string similar to: Reposted by {0}
+        /// </summary>
+        public static string RepostCaption
+        {
+            get
+            {
+                return _resourceLoader.GetString("RepostCaption");
+            }
+        }
+        #endregion
+
         #region SendFeedbackText
         /// <summary>
         ///   Looks up a localized string similar to: Send feedback
@@ -218,6 +231,7 @@ namespace BlueskyClient.Strings{
             NotificationsText,
             PasswordBoxPlaceholder,
             ProfileText,
+            RepostCaption,
             SendFeedbackText,
             SignInText,
             SignOutText,

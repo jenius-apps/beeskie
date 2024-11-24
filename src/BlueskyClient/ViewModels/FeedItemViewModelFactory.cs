@@ -1,5 +1,6 @@
 ﻿using Bluesky.NET.Models;
 using BlueskyClient.Services;
+using JeniusApps.Common.Tools;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
@@ -19,6 +20,7 @@ public class FeedItemViewModelFactory : IFeedItemViewModelFactory
         return new FeedItemViewModel(
             feedItem,
             _serviceProvider.GetRequiredService<IPostSubmissionService>(),
-            _serviceProvider.GetRequiredService<IDialogService>());
+            _serviceProvider.GetRequiredService<IDialogService>(),
+            _serviceProvider.GetRequiredService<ILocalizer>());
     }
 }
