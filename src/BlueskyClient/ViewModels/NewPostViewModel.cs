@@ -60,6 +60,9 @@ public partial class NewPostViewModel : ObservableObject
     [NotifyPropertyChangedFor(nameof(TargetAvatar))]
     private FeedPost? _targetPost;
 
+    [ObservableProperty]
+    private bool _uploading;
+
     public string Avatar => Author?.Avatar is string { Length: > 0 } avatarUri && Uri.IsWellFormedUriString(avatarUri, UriKind.Absolute)
         ? avatarUri
         : "http://localhost";
@@ -93,7 +96,10 @@ public partial class NewPostViewModel : ObservableObject
             return;
         }
 
-        _telemetry.TrackEvent(TelemetryConstants.PostSubmissionClicked);
+        _telemetry.TrackEvent(TelemetryConstants.PostSubmissionClicked, new Dictionary<string, string>
+        {
+            { "imageCount", Images.Count.ToString() }
+        });
 
         var input = InputText.Trim();
         if (string.IsNullOrEmpty(input))
@@ -101,23 +107,25 @@ public partial class NewPostViewModel : ObservableObject
             return;
         }
 
+        Uploading = true;
         string? newPostAtUri;
+
         if (TargetPost is { } target)
         {
-            newPostAtUri = await _postSubmissionService.ReplyAsync(input, target).ConfigureAwait(false);
+            newPostAtUri = await _postSubmissionService.ReplyAsync(input, target);
         }
         else if (Images.Count > 0)
         {
             newPostAtUri = await _postSubmissionService.SubmitPostWithImagesAsync(
                 input,
-                Images.Select(x => x.Path).ToArray())
-                .ConfigureAwait(false);
+                Images.Select(x => x.Path).ToArray());
         }
         else
         {
-            newPostAtUri = await _postSubmissionService.SubmitPostAsync(input).ConfigureAwait(false);
+            newPostAtUri = await _postSubmissionService.SubmitPostAsync(input);
         }
 
+        Uploading = false;
         _telemetry.TrackEvent(TargetPost is null ? TelemetryConstants.NewPostSubmitted : TelemetryConstants.ReplySubmitted, new Dictionary<string, string>
         {
             { "success", (!string.IsNullOrEmpty(newPostAtUri)).ToString() }
@@ -131,11 +139,14 @@ public partial class NewPostViewModel : ObservableObject
         {
             return;
         }
-        
-        FutureAccessImage? futureAccessImage = await _picker.PickFileAsync([".jpg", ".jpeg", ".png", ".webp", ".gif"]);
+
+        _telemetry.TrackEvent(TelemetryConstants.NewPostAddImagedClicked);
+
+        FutureAccessImage? futureAccessImage = await _picker.PickFileAsync([".jpg", ".jpeg", ".png", ".webp"]);
         if (futureAccessImage is { } image)
         {
             Images.Add(image);
+            _telemetry.TrackEvent(TelemetryConstants.NewPostAddImageSuccessful);
         }
 
         OnPropertyChanged(nameof(ImageListVisible));

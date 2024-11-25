@@ -417,6 +417,19 @@ namespace BlueskyClient.Strings{
             }
         }
         #endregion
+
+        #region UploadingText
+        /// <summary>
+        ///   Looks up a localized string similar to: Uploading
+        /// </summary>
+        public static string UploadingText
+        {
+            get
+            {
+                return _resourceLoader.GetString("UploadingText");
+            }
+        }
+        #endregion
     }
 
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("DotNetPlus.ReswPlus", "2.1.3")]
@@ -459,6 +472,7 @@ namespace BlueskyClient.Strings{
             SignOutText,
             StarterPackByText,
             SubmitText,
+            UploadingText,
         }
 
         private static ResourceLoader _resourceLoader;

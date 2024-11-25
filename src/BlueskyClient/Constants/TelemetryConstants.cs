@@ -28,4 +28,6 @@ public sealed class TelemetryConstants
     public const string PostSubmissionClicked = NewPostDialog + "submissionClicked";
     public const string NewPostSubmitted = NewPostDialog + "newPostSubmitted";
     public const string ReplySubmitted = NewPostDialog + "replySubmitted";
+    public const string NewPostAddImageSuccessful = NewPostDialog + "addImageSuccess";
+    public const string NewPostAddImagedClicked = NewPostDialog + "addImageClicked";
 }

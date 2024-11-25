@@ -210,4 +210,7 @@
   <data name="SubmitText" xml:space="preserve">
     <value>Submit</value>
   </data>
+  <data name="UploadingText" xml:space="preserve">
+    <value>Uploading</value>
+  </data>
 </root>

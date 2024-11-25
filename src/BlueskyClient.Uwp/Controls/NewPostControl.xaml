@@ -110,7 +110,14 @@
                 x:Name="CharsRemainingText"
                 Grid.Column="2"
                 VerticalAlignment="Center"
-                Text="{x:Bind ViewModel.CharactersRemaining.ToString(), Mode=OneWay}" />
+                Text="{x:Bind ViewModel.CharactersRemaining.ToString(), Mode=OneWay}"
+                Visibility="{x:Bind ex:UIExtensions.InvertBoolToVis(ViewModel.Uploading), Mode=OneWay}" />
+
+            <TextBlock
+                Grid.Column="2"
+                VerticalAlignment="Center"
+                Text="{x:Bind strings:Resources.UploadingText}"
+                Visibility="{x:Bind ViewModel.Uploading, Mode=OneWay}" />
 
             <Grid Grid.Column="3" Margin="8,0,0,0">
                 <winui:ProgressRing
@@ -126,7 +133,7 @@
                     Width="20"
                     Height="20"
                     Foreground="{ThemeResource TextFillColorPrimaryBrush}"
-                    IsIndeterminate="False"
+                    IsIndeterminate="{x:Bind ViewModel.Uploading, Mode=OneWay}"
                     Maximum="300"
                     Value="{x:Bind InputTextBox.Text.Length, Mode=OneWay}" />
             </Grid>

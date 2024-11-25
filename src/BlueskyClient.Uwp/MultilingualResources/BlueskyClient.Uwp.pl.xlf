@@ -130,6 +130,10 @@
           <source>Add image</source>
           <target state="new">Add image</target>
         </trans-unit>
+        <trans-unit id="UploadingText" translate="yes" xml:space="preserve">
+          <source>Uploading</source>
+          <target state="new">Uploading</target>
+        </trans-unit>
       </group>
     </body>
   </file>
