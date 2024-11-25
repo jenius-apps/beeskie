@@ -2,7 +2,7 @@
 
 public class FutureAccessImage
 {
-    public required string Path { get; init; }
+    public string Path { get; init; } = string.Empty;
 
     public string? FutureAccessToken { get; init; }
 }
