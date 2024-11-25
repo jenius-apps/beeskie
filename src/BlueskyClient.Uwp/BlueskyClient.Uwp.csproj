@@ -132,6 +132,9 @@
     <Compile Include="Controls\EmbeddedPost.xaml.cs">
       <DependentUpon>EmbeddedPost.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\LocalImagePreview.xaml.cs">
+      <DependentUpon>LocalImagePreview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\PostEmbeds.xaml.cs">
       <DependentUpon>PostEmbeds.xaml</DependentUpon>
     </Compile>
@@ -156,7 +159,9 @@
       <DependentUpon>Resources.resw</DependentUpon>
     </Compile>
     <Compile Include="Tools\AppSettings.cs" />
+    <Compile Include="Tools\FileReaderWriter.cs" />
     <Compile Include="Tools\SecureCredentialStorage.cs" />
+    <Compile Include="Tools\FutureAccessFilePicker.cs" />
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -266,6 +271,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\EmbeddedPost.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\LocalImagePreview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

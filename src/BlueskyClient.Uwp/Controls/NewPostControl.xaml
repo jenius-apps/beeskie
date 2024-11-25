@@ -6,16 +6,18 @@
     xmlns:ex="using:JeniusApps.Common.UI.Uwp"
     xmlns:local="using:BlueskyClient.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:BlueskyClient.Models"
     xmlns:strings="using:BlueskyClient.Strings"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     d:DesignHeight="300"
     d:DesignWidth="400"
     mc:Ignorable="d">
 
-    <Grid>
+    <Grid MinHeight="360">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
@@ -133,14 +135,54 @@
         <TextBox
             x:Name="InputTextBox"
             Grid.Row="2"
-            MinHeight="300"
             MaxHeight="360"
             Margin="0,12,0,0"
             HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
             AcceptsReturn="True"
             MaxLength="360"
+            Paste="OnPasteDetected"
             PlaceholderText="{x:Bind strings:Resources.NewPostPlaceholder}"
             Text="{x:Bind ViewModel.InputText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             TextWrapping="Wrap" />
+
+        <GridView
+            Grid.Row="3"
+            ItemsSource="{x:Bind ViewModel.Images}"
+            SelectionMode="None"
+            Visibility="{x:Bind ViewModel.ImageListVisible, Mode=OneWay}">
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="models:FutureAccessImage">
+                    <local:LocalImagePreview ImageReference="{x:Bind}" />
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+
+        <Image
+            Grid.Row="2"
+            Height="100"
+            Source="C:\Users\kid_j\Downloads\10million.jpeg" />
+
+        <Grid Grid.Row="4" Margin="0,4,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Horizontal">
+                <Button
+                    Width="40"
+                    Height="40"
+                    Padding="4"
+                    AutomationProperties.Name="{x:Bind strings:Resources.ImageSelectText}"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Command="{x:Bind ViewModel.AddImageCommand}"
+                    ToolTipService.ToolTip="{x:Bind strings:Resources.ImageSelectText}">
+                    <FontIcon FontFamily="{StaticResource FluentUIGlyphs}" Glyph="{StaticResource GlyphPhoto}" />
+                </Button>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

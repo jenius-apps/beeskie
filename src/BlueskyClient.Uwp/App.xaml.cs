@@ -4,10 +4,13 @@ using JeniusApps.Common.Settings;
 using JeniusApps.Common.Telemetry;
 using JeniusApps.Common.Tools;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Core;
 using Windows.ApplicationModel.Resources.Core;
+using Windows.Storage.AccessCache;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -33,6 +36,12 @@ sealed partial class App : Application
     public App()
     {
         this.InitializeComponent();
+        this.Suspending += OnSuspending;
+    }
+
+    private void OnSuspending(object sender, SuspendingEventArgs e)
+    {
+        StorageApplicationPermissions.FutureAccessList.Clear();
     }
 
     protected override async void OnLaunched(LaunchActivatedEventArgs args)

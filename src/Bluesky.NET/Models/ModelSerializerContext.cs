@@ -21,6 +21,9 @@ namespace Bluesky.NET.Models;
 [JsonSerializable(typeof(FeedPostReason))]
 [JsonSerializable(typeof(ImageEmbed))]
 [JsonSerializable(typeof(AspectRatio))]
+[JsonSerializable(typeof(BlobRef))]
+[JsonSerializable(typeof(Blob))]
+[JsonSerializable(typeof(SubmissionImageBlob))]
 public sealed partial class ModelSerializerContext : JsonSerializerContext
 {
     /// <summary>

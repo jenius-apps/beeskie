@@ -126,6 +126,10 @@
           <source>Submit</source>
           <target state="translated">Prześlij</target>
         </trans-unit>
+        <trans-unit id="ImageSelectText" translate="yes" xml:space="preserve">
+          <source>Add image</source>
+          <target state="new">Add image</target>
+        </trans-unit>
       </group>
     </body>
   </file>

@@ -174,8 +174,8 @@ public sealed partial class PostEmbeds : UserControl
     {
         if (sender is MediaPlayerElement { IsFullWindow: true } mpe && e.Key is VirtualKey.Escape)
         {
-            mpe.IsFullWindow = false;
             e.Handled = true;
+            mpe.IsFullWindow = false;
         }
     }
 

@@ -141,6 +141,9 @@
   <data name="IdentifierBoxPlaceholder" xml:space="preserve">
     <value>Bluesky email or username</value>
   </data>
+  <data name="ImageSelectText" xml:space="preserve">
+    <value>Add image</value>
+  </data>
   <data name="ManageAccountText" xml:space="preserve">
     <value>Manage account</value>
   </data>

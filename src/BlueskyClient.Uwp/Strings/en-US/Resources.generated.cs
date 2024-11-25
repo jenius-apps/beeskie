@@ -119,6 +119,19 @@ namespace BlueskyClient.Strings{
         }
         #endregion
 
+        #region ImageSelectText
+        /// <summary>
+        ///   Looks up a localized string similar to: Add image
+        /// </summary>
+        public static string ImageSelectText
+        {
+            get
+            {
+                return _resourceLoader.GetString("ImageSelectText");
+            }
+        }
+        #endregion
+
         #region ManageAccountText
         /// <summary>
         ///   Looks up a localized string similar to: Manage account
@@ -423,6 +436,7 @@ namespace BlueskyClient.Strings{
             FollowingText,
             HomeText,
             IdentifierBoxPlaceholder,
+            ImageSelectText,
             ManageAccountText,
             NewPostPlaceholder,
             NewPostText,

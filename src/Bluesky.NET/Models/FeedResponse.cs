@@ -9,4 +9,6 @@ public class FeedResponse
     public Notification[]? Notifications { get; init; }
 
     public FeedPost[]? Posts { get; init; }
+
+    public Blob? Blob { get; init; }
 }
