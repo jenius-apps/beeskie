@@ -11,6 +11,7 @@
 
     <Image
         x:Name="LocalImage"
-        Width="160"
-        Height="90" />
+        Width="116"
+        Height="116"
+        Stretch="UniformToFill" />
 </UserControl>

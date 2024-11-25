@@ -148,6 +148,7 @@
 
         <GridView
             Grid.Row="3"
+            Margin="0,12,0,-24"
             ItemsSource="{x:Bind ViewModel.Images}"
             SelectionMode="None"
             Visibility="{x:Bind ViewModel.ImageListVisible, Mode=OneWay}">
@@ -158,19 +159,22 @@
             </GridView.ItemTemplate>
         </GridView>
 
-        <Image
-            Grid.Row="2"
-            Height="100"
-            Source="C:\Users\kid_j\Downloads\10million.jpeg" />
-
-        <Grid Grid.Row="4" Margin="0,4,0,0">
+        <Grid Grid.Row="4" Margin="0,24,0,-20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
 
-            <StackPanel Orientation="Horizontal">
+            <Rectangle
+                Grid.ColumnSpan="3"
+                Height="1"
+                Margin="-24,0,-24,0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Top"
+                Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
+
+            <StackPanel Margin="-8,4,0,0" Orientation="Horizontal">
                 <Button
                     Width="40"
                     Height="40"
