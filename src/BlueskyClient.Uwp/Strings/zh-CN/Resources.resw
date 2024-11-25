@@ -102,4 +102,10 @@
   <data name="SubmitText" xml:space="preserve">
     <value>提交</value>
   </data>
+  <data name="ImageSelectText" xml:space="preserve">
+    <value>添加图片</value>
+  </data>
+  <data name="UploadingText" xml:space="preserve">
+    <value>上传</value>
+  </data>
 </root>

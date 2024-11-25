@@ -128,11 +128,11 @@
         </trans-unit>
         <trans-unit id="ImageSelectText" translate="yes" xml:space="preserve">
           <source>Add image</source>
-          <target state="new">Add image</target>
+          <target state="translated">添加图片</target>
         </trans-unit>
         <trans-unit id="UploadingText" translate="yes" xml:space="preserve">
           <source>Uploading</source>
-          <target state="new">Uploading</target>
+          <target state="translated">上传</target>
         </trans-unit>
       </group>
     </body>

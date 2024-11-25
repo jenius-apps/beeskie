@@ -102,4 +102,10 @@
   <data name="SubmitText" xml:space="preserve">
     <value>Prześlij</value>
   </data>
+  <data name="ImageSelectText" xml:space="preserve">
+    <value>Dodaj obraz</value>
+  </data>
+  <data name="UploadingText" xml:space="preserve">
+    <value>Przesyłanie</value>
+  </data>
 </root>
