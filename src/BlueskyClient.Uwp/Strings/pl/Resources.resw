@@ -13,7 +13,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppPasswordHelpText" xml:space="preserve">
-    <value>Co to jest hasło do aplikacji?</value>
+    <value>Czym jest hasło do aplikacji?</value>
   </data>
   <data name="BackText" xml:space="preserve">
     <value>Wstecz</value>
@@ -22,16 +22,16 @@
     <value>Anuluj</value>
   </data>
   <data name="CloseText" xml:space="preserve">
-    <value>Zamykać</value>
+    <value>Zamknij</value>
   </data>
   <data name="FollowersText" xml:space="preserve">
-    <value>Zwolenników</value>
+    <value>obserwujących</value>
   </data>
   <data name="FollowingText" xml:space="preserve">
-    <value>następujący</value>
+    <value>obserwowanych</value>
   </data>
   <data name="HomeText" xml:space="preserve">
-    <value>Dom</value>
+    <value>Główna</value>
   </data>
   <data name="IdentifierBoxPlaceholder" xml:space="preserve">
     <value>Adres e-mail lub nazwa użytkownika Bluesky</value>
@@ -46,19 +46,19 @@
     <value>Nowy post</value>
   </data>
   <data name="NotificationsFollowedText" xml:space="preserve">
-    <value>{0} podążał za tobą</value>
+    <value>{0} teraz Cię obserwuje</value>
   </data>
   <data name="NotificationsLikedText" xml:space="preserve">
-    <value>{0} polubił Twój post</value>
+    <value>{0} lubi Twój post</value>
   </data>
   <data name="NotificationsRepostedText" xml:space="preserve">
-    <value>{0} ponownie opublikował Twój post</value>
+    <value>{0} zrepostował(a) Twój post</value>
   </data>
   <data name="NotificationsText" xml:space="preserve">
     <value>Powiadomienia</value>
   </data>
   <data name="OkayText" xml:space="preserve">
-    <value>Porządku</value>
+    <value>Okej</value>
   </data>
   <data name="PasswordBoxPlaceholder" xml:space="preserve">
     <value>Twoje specjalne hasło do aplikacji</value>
@@ -73,7 +73,7 @@
     <value>Profil</value>
   </data>
   <data name="RepostCaption" xml:space="preserve">
-    <value>Ponownie opublikowane przez {0}</value>
+    <value>Repostowane przez {0}</value>
   </data>
   <data name="SendFeedbackText" xml:space="preserve">
     <value>Wyślij opinię</value>
@@ -85,13 +85,13 @@
     <value>Wymagane logowanie</value>
   </data>
   <data name="SignInText" xml:space="preserve">
-    <value>Rejestrowanie</value>
+    <value>Rejestracja</value>
   </data>
   <data name="SignOutDialogMessage" xml:space="preserve">
-    <value>Czy na pewno? Nastąpi powrót do strony logowania.</value>
+    <value>Na pewno? Nastąpi powrót do strony logowania.</value>
   </data>
   <data name="SignOutDialogTitle" xml:space="preserve">
-    <value>Wylogowywanie się</value>
+    <value>Wylogowywanie</value>
   </data>
   <data name="SignOutText" xml:space="preserve">
     <value>Wyloguj się</value>
