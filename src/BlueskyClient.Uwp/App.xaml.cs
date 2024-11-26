@@ -37,11 +37,28 @@ sealed partial class App : Application
     {
         this.InitializeComponent();
         this.Suspending += OnSuspending;
+        this.UnhandledException += OnUnhandledException;
     }
 
-    private void OnSuspending(object sender, SuspendingEventArgs e)
+    private async void OnUnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs e)
     {
+        if (_serviceProvider is { } serviceProvider)
+        {
+            var telemetry = serviceProvider.GetRequiredService<ITelemetry>();
+            telemetry.TrackError(e.Exception);
+            await telemetry.FlushAsync();
+        }
+    }
+
+    private async void OnSuspending(object sender, SuspendingEventArgs e)
+    {
+        var d = e.SuspendingOperation.GetDeferral();
         StorageApplicationPermissions.FutureAccessList.Clear();
+
+        if (_serviceProvider is { } serviceProvider)
+        {
+            await serviceProvider.GetRequiredService<ITelemetry>().FlushAsync();
+        }
     }
 
     protected override async void OnLaunched(LaunchActivatedEventArgs args)
