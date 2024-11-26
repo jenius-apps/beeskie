@@ -63,7 +63,7 @@ public partial class ShellPageViewModel : ObservableObject
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(SafeAvatarUrl))]
-    private Author? _currentUser;
+    private Author _currentUser = new();
 
     public string SafeAvatarUrl => CurrentUser.SafeAvatarUrl();
 
@@ -99,7 +99,7 @@ public partial class ShellPageViewModel : ObservableObject
 
         Task<Author?> profileTask = _profileService.GetCurrentUserAsync();
         NavigateContentPage(MenuItems[0]);
-        CurrentUser = await profileTask;
+        CurrentUser = await profileTask ?? new();
     }
 
     public void Unitialize()
