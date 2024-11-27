@@ -5,15 +5,15 @@ namespace Bluesky.NET.Models;
 
 public class Author
 {
-    public string Did { get; init; } = string.Empty;
+    public string? Did { get; init; }
 
-    public string Handle { get; init; } = string.Empty;
+    public string? Handle { get; init; }
 
-    public string DisplayName { get; init; } = string.Empty;
+    public string? DisplayName { get; init; }
 
-    public string Avatar { get; init; } = string.Empty;
+    public string? Avatar { get; init; }
 
-    public string Banner { get; init; } = string.Empty;
+    public string? Banner { get; init; }
 
     public string? Description { get; init; }
 
@@ -24,5 +24,5 @@ public class Author
     public int? PostsCount { get; init; }
 
     [JsonIgnore]
-    public string AtHandle => $"@{Handle}";
+    public string AtHandle => Handle is null ? string.Empty : $"@{Handle}";
 }

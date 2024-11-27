@@ -35,6 +35,10 @@ public partial class NewPostViewModel : ObservableObject
 
     public bool ImageListVisible => Images.Count > 0;
 
+    public AuthorViewModel AuthorViewModel { get; } = new();
+
+    public AuthorViewModel ReplyTargetAuthorViewModel { get; } = new();
+
     public ObservableCollection<FutureAccessImage> Images { get; } = [];
 
     public bool IsLowCharactersRemaining => CharactersRemaining is > 0 and <= 50;
@@ -50,37 +54,19 @@ public partial class NewPostViewModel : ObservableObject
     private string _inputText = string.Empty;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(Avatar))]
-    [NotifyPropertyChangedFor(nameof(Handle))]
-    private Author? _author;
-
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(TargetName))]
     [NotifyPropertyChangedFor(nameof(TargetText))]
-    [NotifyPropertyChangedFor(nameof(TargetAvatar))]
     private FeedPost? _targetPost;
 
     [ObservableProperty]
     private bool _uploading;
 
-    public string Avatar => Author?.Avatar is string { Length: > 0 } avatarUri && Uri.IsWellFormedUriString(avatarUri, UriKind.Absolute)
-        ? avatarUri
-        : "http://localhost";
-
-    public string Handle => Author?.AtHandle ?? string.Empty;
-
-    public string TargetName => TargetPost?.Author?.DisplayName ?? string.Empty;
-
     public string TargetText => TargetPost?.Record?.Text ?? string.Empty;
-
-    public string TargetAvatar => TargetPost?.Author?.Avatar is string { Length: > 0 } avatarUri && Uri.IsWellFormedUriString(avatarUri, UriKind.Absolute)
-        ? avatarUri
-        : "http://localhost";
 
     public async Task InitializeAsync(FeedPost? targetPost = null)
     {
         TargetPost = targetPost;
-        Author = await _profileService.GetCurrentUserAsync();
+        ReplyTargetAuthorViewModel.SetAuthor(targetPost?.Author);
+        AuthorViewModel.SetAuthor(await _profileService.GetCurrentUserAsync());
     }
 
     public bool CanSubmit()

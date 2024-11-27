@@ -23,6 +23,7 @@ public partial class FeedItemViewModel : ObservableObject
         ILocalizer localizer)
     {
         FeedItem = feedItem;
+        AuthorViewModel.SetAuthor(feedItem.Post.Author);
         _postSubmissionService = postSubmissionService;
         _dialogService = dialogService;
         _localizer = localizer;
@@ -33,6 +34,8 @@ public partial class FeedItemViewModel : ObservableObject
         RepostCount = feedItem.Post.GetRepostCount();
         LikeCount = feedItem.Post.GetLikeCount();
     }
+
+    public AuthorViewModel AuthorViewModel { get; } = new();
 
     public FeedItem FeedItem { get; }
 

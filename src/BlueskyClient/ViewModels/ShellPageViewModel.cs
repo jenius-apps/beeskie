@@ -50,7 +50,9 @@ public partial class ShellPageViewModel : ObservableObject
         MenuItems.Add(new MenuItem(NavigateContentPageCommand, _localizer.GetString("ProfileText"), "\uE77B", NavigationConstants.ProfilePage));
     }
 
-    public ObservableCollection<MenuItem> MenuItems = [];
+    public AuthorViewModel AuthorViewModel { get; } = new();
+
+    public ObservableCollection<MenuItem> MenuItems { get; } = [];
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsImageViewerVisible))]
@@ -60,12 +62,6 @@ public partial class ShellPageViewModel : ObservableObject
 
     [ObservableProperty]
     private int _imageViewerIndex;
-
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(SafeAvatarUrl))]
-    private Author _currentUser = new();
-
-    public string SafeAvatarUrl => CurrentUser.SafeAvatarUrl();
 
     public async Task InitializeAsync(ShellPageNavigationArgs args)
     {
@@ -99,7 +95,7 @@ public partial class ShellPageViewModel : ObservableObject
 
         Task<Author?> profileTask = _profileService.GetCurrentUserAsync();
         NavigateContentPage(MenuItems[0]);
-        CurrentUser = await profileTask ?? new();
+        AuthorViewModel.SetAuthor(await profileTask);
     }
 
     public void Unitialize()

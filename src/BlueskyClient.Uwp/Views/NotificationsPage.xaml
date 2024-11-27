@@ -27,7 +27,7 @@
                 HorizontalAlignment="Center"
                 Orientation="Horizontal"
                 Spacing="12">
-                <TextBlock Text="{x:Bind Notification.Author.AtHandle}" />
+                <TextBlock Text="{x:Bind AuthorViewModel.AtHandle}" />
                 <TextBlock Text="{x:Bind Notification.Reason}" />
             </StackPanel>
         </DataTemplate>
@@ -44,7 +44,7 @@
                     Margin="0,4,0,0"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
-                    ProfilePicture="{x:Bind SafeAvatarUrl}" />
+                    ProfilePicture="{x:Bind AuthorViewModel.AvatarUrl}" />
 
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
@@ -55,11 +55,11 @@
                     </Grid.RowDefinitions>
 
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock FontWeight="SemiBold" Text="{x:Bind Notification.Author.DisplayName}" />
+                        <TextBlock FontWeight="SemiBold" Text="{x:Bind AuthorViewModel.DisplayName}" />
                         <TextBlock
                             Margin="4,0,0,0"
                             Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                            Text="{x:Bind Notification.Author.AtHandle}" />
+                            Text="{x:Bind AuthorViewModel.AtHandle}" />
                     </StackPanel>
 
                     <StackPanel
@@ -122,7 +122,7 @@
                     <PersonPicture
                         Width="32"
                         HorizontalAlignment="Left"
-                        ProfilePicture="{x:Bind SafeAvatarUrl}" />
+                        ProfilePicture="{x:Bind AuthorViewModel.AvatarUrl}" />
                     <TextBlock
                         Grid.Row="1"
                         Margin="0,8,0,0"
@@ -179,7 +179,7 @@
                     <PersonPicture
                         Width="32"
                         HorizontalAlignment="Left"
-                        ProfilePicture="{x:Bind SafeAvatarUrl}" />
+                        ProfilePicture="{x:Bind AuthorViewModel.AvatarUrl}" />
                     <TextBlock
                         Grid.Row="1"
                         Margin="0,8,0,0"

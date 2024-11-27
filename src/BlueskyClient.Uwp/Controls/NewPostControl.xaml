@@ -65,13 +65,13 @@
                 Width="40"
                 VerticalAlignment="Top"
                 PreferSmallImage="True"
-                ProfilePicture="{x:Bind ViewModel.TargetAvatar, Mode=OneWay}" />
+                ProfilePicture="{x:Bind ViewModel.ReplyTargetAuthorViewModel.AvatarUrl, Mode=OneWay}" />
 
             <StackPanel
                 Grid.Column="1"
                 Margin="12,0,0,0"
                 VerticalAlignment="Center">
-                <TextBlock FontWeight="SemiBold" Text="{x:Bind ViewModel.TargetName, Mode=OneWay}" />
+                <TextBlock FontWeight="SemiBold" Text="{x:Bind ViewModel.ReplyTargetAuthorViewModel.DisplayName, Mode=OneWay}" />
                 <TextBlock
                     Foreground="{ThemeResource TextFillColorTertiaryBrush}"
                     MaxLines="4"
@@ -93,16 +93,16 @@
             <winui:PersonPicture
                 Width="40"
                 PreferSmallImage="True"
-                ProfilePicture="{x:Bind ViewModel.Avatar, Mode=OneWay}" />
+                ProfilePicture="{x:Bind ViewModel.AuthorViewModel.AvatarUrl, Mode=OneWay}" />
 
             <StackPanel
                 Grid.Column="1"
                 Margin="12,0,0,0"
                 VerticalAlignment="Center">
-                <TextBlock FontWeight="SemiBold" Text="{x:Bind ViewModel.Author.DisplayName, Mode=OneWay}" />
+                <TextBlock FontWeight="SemiBold" Text="{x:Bind ViewModel.AuthorViewModel.DisplayName, Mode=OneWay}" />
                 <TextBlock
                     Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                    Text="{x:Bind ViewModel.Author.AtHandle, Mode=OneWay}"
+                    Text="{x:Bind ViewModel.AuthorViewModel.AtHandle, Mode=OneWay}"
                     TextTrimming="CharacterEllipsis" />
             </StackPanel>
 

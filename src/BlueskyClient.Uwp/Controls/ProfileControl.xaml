@@ -42,14 +42,14 @@
             <Rectangle
                 Height="180"
                 Fill="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                Visibility="{x:Bind ex:UIExtensions.InvertBoolToVis(ViewModel.IsBannerVisible), Mode=OneWay}" />
+                Visibility="{x:Bind ex:UIExtensions.InvertBoolToVis(ViewModel.AuthorViewModel.BannerVisible), Mode=OneWay}" />
 
             <Image
                 Height="180"
                 Stretch="UniformToFill"
-                Visibility="{x:Bind ViewModel.IsBannerVisible, Mode=OneWay}">
+                Visibility="{x:Bind ViewModel.AuthorViewModel.BannerVisible, Mode=OneWay}">
                 <Image.Source>
-                    <BitmapImage UriSource="{x:Bind p:PostExtensions.SafeBannerUri(ViewModel.Author), Mode=OneWay}" />
+                    <BitmapImage UriSource="{x:Bind ViewModel.AuthorViewModel.BannerUri, Mode=OneWay}" />
                 </Image.Source>
             </Image>
 
@@ -62,7 +62,7 @@
                 <PersonPicture
                     Height="120"
                     HorizontalAlignment="Left"
-                    ProfilePicture="{x:Bind ViewModel.SafeAvatarUrl, Mode=OneWay}" />
+                    ProfilePicture="{x:Bind ViewModel.AuthorViewModel.AvatarUrl, Mode=OneWay}" />
             </Grid>
 
             <TextBlock
@@ -71,7 +71,7 @@
                 FontSize="16"
                 FontWeight="SemiBold"
                 MaxLines="2"
-                Text="{x:Bind ViewModel.Author.DisplayName, Mode=OneWay}"
+                Text="{x:Bind ViewModel.AuthorViewModel.DisplayName, Mode=OneWay}"
                 TextTrimming="CharacterEllipsis"
                 TextWrapping="Wrap" />
 
@@ -79,14 +79,14 @@
                 Grid.Row="3"
                 Margin="20,0"
                 Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                Text="{x:Bind ViewModel.Author.AtHandle, Mode=OneWay}"
+                Text="{x:Bind ViewModel.AuthorViewModel.AtHandle, Mode=OneWay}"
                 TextTrimming="CharacterEllipsis" />
 
             <StackPanel
                 Grid.Row="4"
                 Margin="20,4,20,0"
                 Orientation="Horizontal">
-                <TextBlock FontWeight="SemiBold" Text="{x:Bind p:PostExtensions.FollowersCount(ViewModel.Author), Mode=OneWay}" />
+                <TextBlock FontWeight="SemiBold" Text="{x:Bind ViewModel.AuthorViewModel.FollowersCount, Mode=OneWay}" />
                 <TextBlock
                     Margin="4,0,0,0"
                     Foreground="{ThemeResource TextFillColorTertiaryBrush}"
@@ -94,7 +94,7 @@
                 <TextBlock
                     Margin="8,0,0,0"
                     FontWeight="SemiBold"
-                    Text="{x:Bind p:PostExtensions.FollowsCount(ViewModel.Author), Mode=OneWay}" />
+                    Text="{x:Bind ViewModel.AuthorViewModel.FollowingCount, Mode=OneWay}" />
                 <TextBlock
                     Margin="4,0,0,0"
                     Foreground="{ThemeResource TextFillColorTertiaryBrush}"
@@ -102,7 +102,7 @@
                 <TextBlock
                     Margin="8,0,0,0"
                     FontWeight="SemiBold"
-                    Text="{x:Bind p:PostExtensions.PostsCount(ViewModel.Author), Mode=OneWay}" />
+                    Text="{x:Bind ViewModel.AuthorViewModel.PostsCount, Mode=OneWay}" />
                 <TextBlock
                     Margin="4,0,0,0"
                     Foreground="{ThemeResource TextFillColorTertiaryBrush}"
@@ -113,7 +113,7 @@
                 Grid.Row="5"
                 Margin="20,12,20,0"
                 MaxLines="10"
-                Text="{x:Bind ViewModel.Author.Description, Mode=OneWay}"
+                Text="{x:Bind ViewModel.AuthorViewModel.Description, Mode=OneWay}"
                 TextTrimming="CharacterEllipsis"
                 TextWrapping="Wrap" />
         </Grid>

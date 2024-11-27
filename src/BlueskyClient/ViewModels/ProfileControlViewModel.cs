@@ -24,28 +24,23 @@ public partial class ProfileControlViewModel : ObservableObject
         _feedItemViewModelFactory = feedItemViewModelFactory;
     }
 
+    public AuthorViewModel AuthorViewModel { get; } = new();
+
     public ObservableCollection<FeedItemViewModel> FeedItems { get; } = [];
-
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(SafeAvatarUrl))]
-    [NotifyPropertyChangedFor(nameof(IsBannerVisible))]
-    private Author? _author;
-
-    public string SafeAvatarUrl => Author.SafeAvatarUrl();
-
-    public bool IsBannerVisible => Author?.Banner is not null;
 
     public async Task InitializeCurrentUserProfileAsync(CancellationToken ct)
     {
         ct.ThrowIfCancellationRequested();
-        Author = await _profileService.GetCurrentUserAsync();
-        if (Author is null)
+        Author? author = await _profileService.GetCurrentUserAsync();
+        AuthorViewModel.SetAuthor(author);
+
+        if (author?.Handle is not { Length: > 0 } handle)
         {
             return;
         }
         ct.ThrowIfCancellationRequested();
 
-        var feedItems = await _profileService.GetProfileFeedAsync(Author.Handle);
+        var feedItems = await _profileService.GetProfileFeedAsync(handle);
         foreach (var f in feedItems)
         {
             ct.ThrowIfCancellationRequested();

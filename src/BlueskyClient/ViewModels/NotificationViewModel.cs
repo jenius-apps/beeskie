@@ -2,8 +2,6 @@
 using Bluesky.NET.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using JeniusApps.Common.Tools;
-using System;
-using System.Diagnostics.CodeAnalysis;
 
 namespace BlueskyClient.ViewModels;
 
@@ -17,13 +15,12 @@ public partial class NotificationViewModel : ObservableObject
     {
         Notification = notification;
         _localizer = localizer;
+        AuthorViewModel.SetAuthor(notification.Author);
     }
 
+    public AuthorViewModel AuthorViewModel { get; } = new();
+
     public Notification Notification { get; }
-
-    public bool AvatarValid => IsAvatarValid(Notification.Author);
-
-    public string SafeAvatarUrl => IsAvatarValid(Notification.Author) ? Notification.Author.Avatar : "http://local";
 
     public string Reason => Notification.Reason;
 
@@ -31,23 +28,16 @@ public partial class NotificationViewModel : ObservableObject
     {
         get
         {
-            if (IsAvatarValid(Notification.Author))
+            string displayName = AuthorViewModel.DisplayName;
+
+            return Reason switch
             {
-                string displayName = Notification.Author.DisplayName is string { Length: > 0 } name
-                    ? name
-                    : Notification.Author.Handle;
-
-                return Reason switch
-                {
-                    ReasonConstants.Follow => _localizer.GetString("NotificationsFollowedText", displayName),
-                    ReasonConstants.Like => _localizer.GetString("NotificationsLikedText", displayName),
-                    ReasonConstants.Repost => _localizer.GetString("NotificationsRepostedText", displayName),
-                    ReasonConstants.Reply => _localizer.GetString("PostedReplyText"),
-                    _ => string.Empty
-                };
-            }
-
-            return string.Empty;
+                ReasonConstants.Follow => _localizer.GetString("NotificationsFollowedText", displayName),
+                ReasonConstants.Like => _localizer.GetString("NotificationsLikedText", displayName),
+                ReasonConstants.Repost => _localizer.GetString("NotificationsRepostedText", displayName),
+                ReasonConstants.Reply => _localizer.GetString("PostedReplyText"),
+                _ => string.Empty
+            };
         }
     }
 
@@ -60,8 +50,4 @@ public partial class NotificationViewModel : ObservableObject
     private FeedPost? _subjectPost;
 
     public string SubjectText => SubjectPost?.Record?.Text ?? string.Empty;
-
-    private bool IsAvatarValid([NotNullWhen(true)] Author? author) =>
-        author?.Avatar is string avatarUrl &&
-        Uri.IsWellFormedUriString(avatarUrl, UriKind.Absolute);
 }

@@ -61,7 +61,7 @@
                     Width="48"
                     Height="48"
                     VerticalAlignment="Top"
-                    ProfilePicture="{x:Bind FeedItem.Post.Author.Avatar}" />
+                    ProfilePicture="{x:Bind AuthorViewModel.AvatarUrl, Mode=OneWay}" />
 
                 <Grid Grid.Column="1" Margin="12,0,0,0">
                     <Grid.RowDefinitions>
@@ -73,11 +73,11 @@
                     </Grid.RowDefinitions>
 
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock FontWeight="SemiBold" Text="{x:Bind FeedItem.Post.Author.DisplayName}" />
+                        <TextBlock FontWeight="SemiBold" Text="{x:Bind AuthorViewModel.DisplayName, Mode=OneWay}" />
                         <TextBlock
                             Margin="4,0,0,0"
                             Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                            Text="{x:Bind FeedItem.Post.Author.AtHandle}" />
+                            Text="{x:Bind AuthorViewModel.AtHandle, Mode=OneWay}" />
                     </StackPanel>
 
                     <TextBlock

@@ -28,18 +28,18 @@
                 <winui:PersonPicture
                     Width="20"
                     PreferSmallImage="True"
-                    ProfilePicture="{x:Bind Avatar}" />
+                    ProfilePicture="{x:Bind AuthorViewModel.AvatarUrl, Mode=OneWay}" />
 
                 <TextBlock
                     Margin="6,0,0,0"
                     VerticalAlignment="Center"
-                    Text="{x:Bind DisplayName}" />
+                    Text="{x:Bind AuthorViewModel.DisplayName, Mode=OneWay}" />
 
                 <TextBlock
                     Margin="4,0,0,0"
                     VerticalAlignment="Center"
                     Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                    Text="{x:Bind Handle}" />
+                    Text="{x:Bind AuthorViewModel.Handle, Mode=OneWay}" />
             </StackPanel>
 
             <TextBlock

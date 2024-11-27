@@ -1,5 +1,6 @@
 ﻿using Bluesky.NET.Models;
 using BlueskyClient.Extensions;
+using BlueskyClient.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -19,7 +20,7 @@ public sealed partial class EmbeddedPost : UserControl
     {
         if (d is EmbeddedPost post)
         {
-            post.Bindings.Update();
+            post.Update();
         }
     }
 
@@ -34,11 +35,7 @@ public sealed partial class EmbeddedPost : UserControl
         set => SetValue(RecordProperty, value);
     }
 
-    public string Avatar => Record.SafeAvatarUrl();
-
-    public string Handle => Record?.Author?.AtHandle ?? string.Empty;
-
-    public string DisplayName => Record?.Author?.DisplayName ?? string.Empty;
+    public AuthorViewModel AuthorViewModel { get; } = new();
 
     public string PostText => Record?.Value?.Text ?? string.Empty;
 
@@ -47,4 +44,10 @@ public sealed partial class EmbeddedPost : UserControl
     public bool PostEmbedVisible => PostEmbed is not null;
 
     public int QuotePostMaxLines => PostEmbedVisible ? 3 : 0;
+
+    private void Update()
+    {
+        AuthorViewModel.SetAuthor(Record?.Author);
+        this.Bindings.Update();
+    }
 }
