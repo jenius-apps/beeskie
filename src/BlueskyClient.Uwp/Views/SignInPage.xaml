@@ -24,18 +24,37 @@
                     Width="100"
                     HorizontalAlignment="Center"
                     Source="ms-appx:///Assets/AppLogo300.png" />
-                <TextBox
+
+                <TextBlock
+                    x:Name="IdentifierHeader"
                     Margin="0,20,0,0"
+                    FontSize="12"
+                    Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                    Text="{x:Bind strings:Resources.IdentifierBoxPlaceholder}"
+                    TextWrapping="WrapWholeWords" />
+                <TextBox
+                    Margin="0,4,0,0"
+                    AutomationProperties.LabeledBy="{x:Bind IdentifierHeader}"
                     IsEnabled="{x:Bind ex:UIExtensions.Not(ViewModel.SigningIn), Mode=OneWay}"
                     IsSpellCheckEnabled="False"
-                    PlaceholderText="{x:Bind strings:Resources.IdentifierBoxPlaceholder}"
+                    PlaceholderText="beeskieapp.bsky.social"
                     Text="{x:Bind ViewModel.UserHandleInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                <PasswordBox
+
+                <TextBlock
+                    x:Name="PasswordHeader"
                     Margin="0,8,0,0"
+                    FontSize="12"
+                    Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                    Text="{x:Bind strings:Resources.PasswordBoxPlaceholder}"
+                    TextWrapping="WrapWholeWords" />
+                <PasswordBox
+                    Margin="0,4,0,0"
+                    AutomationProperties.LabeledBy="{x:Bind PasswordHeader}"
                     IsEnabled="{x:Bind ex:UIExtensions.Not(ViewModel.SigningIn), Mode=OneWay}"
                     KeyDown="OnPasswordBoxKeyDown"
                     Password="{x:Bind ViewModel.AppPasswordInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    PlaceholderText="{x:Bind strings:Resources.PasswordBoxPlaceholder}" />
+                    PlaceholderText="••••" />
+
                 <Button
                     Height="48"
                     Margin="0,8,0,0"
@@ -51,7 +70,8 @@
                 VerticalAlignment="Bottom"
                 IsOpen="{x:Bind ViewModel.ErrorBannerVisible, Mode=OneWay}"
                 Message="{x:Bind ViewModel.SignInErrorMessage, Mode=OneWay}"
-                Severity="Error" />
+                Severity="Error"
+                Visibility="Collapsed" />
 
             <HyperlinkButton
                 Margin="12"
@@ -62,7 +82,7 @@
                 Content="{x:Bind strings:Resources.AppPasswordHelpText}"
                 FontSize="12"
                 Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                NavigateUri="https://github.com/jenius-apps/beeskie/blob/main/docs/appPasswordsHelp.md" />
+                NavigateUri="https://bsky.app/settings/app-passwords" />
         </Grid>
 
         <Rectangle
