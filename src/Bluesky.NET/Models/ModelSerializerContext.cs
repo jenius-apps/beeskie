@@ -5,10 +5,13 @@ namespace Bluesky.NET.Models;
 
 [JsonSerializable(typeof(AuthResponse))]
 [JsonSerializable(typeof(AuthRequestBody))]
+[JsonSerializable(typeof(PreferenceItem[]), GenerationMode = JsonSourceGenerationMode.Metadata)] // Only used to deserialize
+[JsonSerializable(typeof(FeedMetaData[]), GenerationMode = JsonSourceGenerationMode.Metadata)] // Only used to deserialize
 [JsonSerializable(typeof(FeedItem[]), GenerationMode = JsonSourceGenerationMode.Metadata)] // Only used to deserialize
 [JsonSerializable(typeof(FeedPost[]), GenerationMode = JsonSourceGenerationMode.Metadata)] // Only used to deserialize
 [JsonSerializable(typeof(Notification[]), GenerationMode = JsonSourceGenerationMode.Metadata)] // Only used to deserialize
 [JsonSerializable(typeof(FeedResponse), GenerationMode = JsonSourceGenerationMode.Metadata)] // Only used to deserialize
+[JsonSerializable(typeof(TypedItem), GenerationMode = JsonSourceGenerationMode.Metadata)] // Only used to deserialize
 [JsonSerializable(typeof(FeedRecord[]))]
 [JsonSerializable(typeof(Author))]
 [JsonSerializable(typeof(Notification))]
@@ -35,7 +38,7 @@ public sealed partial class ModelSerializerContext : JsonSerializerContext
     /// A case insensitive variant of <see cref="Default"/>.
     /// </summary>
     public static ModelSerializerContext CaseInsensitive => _caseInsensitive ??= new ModelSerializerContext(new JsonSerializerOptions(s_defaultOptions) 
-    { 
+    {
         PropertyNameCaseInsensitive = true,
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,

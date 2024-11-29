@@ -2,6 +2,7 @@
 using Bluesky.NET.Models;
 using FluentResults;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Bluesky.NET.ApiClients;
@@ -26,4 +27,12 @@ public interface IBlueskyApiClient
     Task<CreateRecordResponse?> SubmitPostAsync(string accessToken, string handle, SubmissionRecord record, RecordType recordType);
     Task<IReadOnlyList<FeedItem>> GetAuthorFeedAsync(string accesstoken, string handle);
     Task<Blob?> UploadBlobAsync(string accessToken, byte[] blob, string mimeType);
+
+    /// <summary>
+    /// Retrieves the list of user's preferences.
+    /// </summary>
+    /// <param name="accessToken">Access token for the logged in user.</param>
+    /// <param name="ct">A cancellation token.</param>
+    /// <returns>List of the user's preferences.</returns>
+    Task<Result<IReadOnlyList<PreferenceItem>>> GetPreferencesAsync(string accessToken, CancellationToken ct);
 }

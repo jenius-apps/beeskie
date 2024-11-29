@@ -11,4 +11,6 @@ public class FeedResponse
     public FeedPost[]? Posts { get; init; }
 
     public Blob? Blob { get; init; }
+
+    public PreferenceItem[]? Preferences { get; init; }
 }
