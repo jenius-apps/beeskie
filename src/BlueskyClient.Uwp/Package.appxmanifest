@@ -9,7 +9,7 @@
   <Identity
     Name="3f0e2c34-cf68-46e7-a834-87bed10fad7d"
     Publisher="CN=0B44CA61-7898-42FE-825C-ADA43BC01A93"
-    Version="0.6.11.0" />
+    Version="0.6.12.0" />
 
   <mp:PhoneIdentity PhoneProductId="37ca6a7c-c70c-48bb-8290-04de0c8cf186" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
