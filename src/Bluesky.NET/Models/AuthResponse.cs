@@ -3,7 +3,6 @@
 public class AuthResponse
 {
     public string? Did { get; init; }
-    public bool Success { get; set; }
     public string? Handle { get; set; }
     public string? Email { get; set; }
     public bool? EmailConfirmed { get; set; }
@@ -11,5 +10,4 @@ public class AuthResponse
     public string? AccessJwt { get; set; }
     public string? RefreshJwt { get; set; }
     public bool? Active { get; set; }
-    public string? ErrorMessage { get; set; }
 }

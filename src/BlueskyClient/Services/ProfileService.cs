@@ -2,6 +2,7 @@
 using Bluesky.NET.Models;
 using BlueskyClient.Caches;
 using BlueskyClient.Constants;
+using FluentResults;
 using JeniusApps.Common.Settings;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -45,12 +46,12 @@ public class ProfileService : IProfileService
             return [];
         }
 
-        var token = await _authenticationService.TryGetFreshTokenAsync();
-        if (token is not { Length: > 0 })
+        Result<string> tokenResult = await _authenticationService.TryGetFreshTokenAsync();
+        if (tokenResult.IsFailed)
         {
             return [];
         }
 
-        return await _apiClient.GetAuthorFeedAsync(token, handle);
+        return await _apiClient.GetAuthorFeedAsync(tokenResult.Value, handle);
     }
 }

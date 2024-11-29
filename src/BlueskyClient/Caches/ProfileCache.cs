@@ -3,6 +3,7 @@ using Bluesky.NET.Constants;
 using Bluesky.NET.Models;
 using BlueskyClient.Constants;
 using BlueskyClient.Services;
+using FluentResults;
 using JeniusApps.Common.Telemetry;
 using System;
 using System.Collections.Concurrent;
@@ -39,8 +40,8 @@ public class ProfileCache : ICache<Author>
         // At this point, either the data doesn't exist or it's expired.
         // Regardless, get fresh data.
 
-        var accessToken = await _authenticationService.TryGetFreshTokenAsync();
-        if (accessToken is null)
+        Result<string> accessTokenResult = await _authenticationService.TryGetFreshTokenAsync();
+        if (accessTokenResult.IsFailed)
         {
             return null;
         }
@@ -49,7 +50,7 @@ public class ProfileCache : ICache<Author>
 
         try
         {
-            author = await _apiClient.GetAuthorAsync(accessToken, identifier);
+            author = await _apiClient.GetAuthorAsync(accessTokenResult.Value, identifier);
         }
         catch (Exception e)
         {

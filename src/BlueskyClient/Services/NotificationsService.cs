@@ -3,6 +3,7 @@ using Bluesky.NET.Constants;
 using Bluesky.NET.Models;
 using BlueskyClient.Constants;
 using BlueskyClient.ViewModels;
+using FluentResults;
 using JeniusApps.Common.Telemetry;
 using System;
 using System.Collections.Generic;
@@ -28,15 +29,15 @@ public class NotificationsService : INotificationsService
 
     public async Task<IReadOnlyList<Notification>> GetNotificationsAsync()
     {
-        var token = await _authenticationService.TryGetFreshTokenAsync();
-        if (token is null)
+        Result<string> accessTokenResult = await _authenticationService.TryGetFreshTokenAsync();
+        if (accessTokenResult.IsFailed)
         {
             return [];
         }
 
         try
         {
-            return await _blueskyApiClient.GetNotificationsAsync(token);
+            return await _blueskyApiClient.GetNotificationsAsync(accessTokenResult.Value);
         }
         catch (Exception e)
         {
@@ -53,8 +54,8 @@ public class NotificationsService : INotificationsService
 
     public async Task HydrateAsync(NotificationViewModel notification)
     {
-        var token = await _authenticationService.TryGetFreshTokenAsync();
-        if (token is null)
+        Result<string> accessTokenResult = await _authenticationService.TryGetFreshTokenAsync();
+        if (accessTokenResult.IsFailed)
         {
             return;
         }
@@ -66,7 +67,7 @@ public class NotificationsService : INotificationsService
 
             try
             {
-                subjectPosts = await _blueskyApiClient.GetPostsAsync(token, [subjectUri]);
+                subjectPosts = await _blueskyApiClient.GetPostsAsync(accessTokenResult.Value, [subjectUri]);
             }
             catch (Exception e)
             {

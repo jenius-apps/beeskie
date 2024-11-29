@@ -5,6 +5,7 @@ using BlueskyClient.Models;
 using BlueskyClient.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using FluentResults;
 using JeniusApps.Common.Models;
 using JeniusApps.Common.Telemetry;
 using JeniusApps.Common.Tools;
@@ -66,18 +67,21 @@ public partial class ShellPageViewModel : ObservableObject
     public async Task InitializeAsync(ShellPageNavigationArgs args)
     {
         bool shouldAbortToSignInPage;
+        string errorMessage = string.Empty;
 
         if (args.AlreadySignedIn)
         {
-            string? testToken = await _authenticationService.TryGetFreshTokenAsync();
-            shouldAbortToSignInPage = string.IsNullOrEmpty(testToken);
+            Result<string> result = await _authenticationService.TryGetFreshTokenAsync();
+            shouldAbortToSignInPage = result.IsFailed;
+            errorMessage = string.Join(", ", result.Errors);
         }
         else
         {
-            (bool signInSuccessful, string errorMessage) = await _authenticationService.TrySilentSignInAsync();
-            shouldAbortToSignInPage = !signInSuccessful;
+            Result<AuthResponse> result = await _authenticationService.TrySilentSignInAsync();
+            shouldAbortToSignInPage = result.IsFailed;
+            errorMessage = string.Join(", ", result.Errors);
 
-            if (signInSuccessful)
+            if (result.IsSuccess)
             {
                 _telemetry.TrackEvent(TelemetryConstants.AuthSuccessFromShellPage);
             }
@@ -85,7 +89,10 @@ public partial class ShellPageViewModel : ObservableObject
 
         if (shouldAbortToSignInPage)
         {
-            _telemetry.TrackEvent(TelemetryConstants.AuthFailFromShellPage);
+            _telemetry.TrackEvent(TelemetryConstants.AuthFailFromShellPage, new Dictionary<string, string>
+            {
+                { "errorMessage", errorMessage }
+            });
             await _dialogService.OpenSignInRequiredAsync();
             _rootNavigator.NavigateTo(NavigationConstants.SignInPage);
             return;

@@ -1,6 +1,7 @@
 ﻿using Bluesky.NET.ApiClients;
 using Bluesky.NET.Models;
 using BlueskyClient.Tools;
+using FluentResults;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -43,8 +44,8 @@ public sealed class UploadBlobService : IUploadBlobService
             return null;
         }
 
-        string? token = await _authenticationService.TryGetFreshTokenAsync().ConfigureAwait(false);
-        if (token is not { Length: > 0 })
+        Result<string> tokenResult = await _authenticationService.TryGetFreshTokenAsync().ConfigureAwait(false);
+        if (tokenResult.IsFailed)
         {
             return null;
         }
@@ -62,7 +63,7 @@ public sealed class UploadBlobService : IUploadBlobService
             return null;
         }
 
-        var result = await _apiClient.UploadBlobAsync(token, bytes, mimeType).ConfigureAwait(false);
+        var result = await _apiClient.UploadBlobAsync(tokenResult.Value, bytes, mimeType).ConfigureAwait(false);
         await _fileReadWriter.DeleteLocalFileAsync(cachedPath).ConfigureAwait(false);
 
         return result;

@@ -1,13 +1,15 @@
-﻿using BlueskyClient.Constants;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Bluesky.NET.Models;
+using BlueskyClient.Constants;
 using BlueskyClient.Models;
 using BlueskyClient.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using FluentResults;
 using JeniusApps.Common.Settings;
 using JeniusApps.Common.Telemetry;
 using JeniusApps.Common.Tools;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace BlueskyClient.ViewModels;
 
@@ -54,30 +56,31 @@ public partial class SignInPageViewModel : ObservableObject
 
         _telemetry.TrackEvent(TelemetryConstants.SignInClicked);
 
-        var result = await _authService.SignInAsync(UserHandleInput, AppPasswordInput);
+        Result<AuthResponse> result = await _authService.SignInAsync(UserHandleInput, AppPasswordInput);
 
-        SignInErrorMessage = result?.Success is true
+        SignInErrorMessage = result.IsSuccess
             ? string.Empty
-            : result?.ErrorMessage ?? "Null response";
+            : string.Join(", ", result.Errors);
 
-        if (result?.Success is true)
+        if (result.IsSuccess)
         {
             _userSettings.Set(UserSettingsConstants.LastUsedUserIdentifierInputKey, UserHandleInput);
 
-            _navigator.NavigateTo(NavigationConstants.ShellPage, new ShellPageNavigationArgs 
-            { 
-                AlreadySignedIn = true 
+            _navigator.NavigateTo(NavigationConstants.ShellPage, new ShellPageNavigationArgs
+            {
+                AlreadySignedIn = true
+            });
+
+            _telemetry.TrackEvent(TelemetryConstants.AuthSuccessFromSignInPage);
+        }
+        else
+        {
+            _telemetry.TrackEvent(TelemetryConstants.AuthFailFromSignInPage, new Dictionary<string, string>
+            {
+                { "errorMessage", SignInErrorMessage }
             });
         }
 
         SigningIn = false;
-
-        _telemetry.TrackEvent(
-            result?.Success is true ? TelemetryConstants.AuthSuccessFromSignInPage : TelemetryConstants.AuthFailFromSignInPage,
-            new Dictionary<string, string>
-            {
-                { "userInputContainsAtSymbol", UserHandleInput.Contains("@").ToString() },
-                { "handleContainsAtSymbol", result?.Handle?.Contains("@").ToString() ?? "NullHandle" },
-            });
     }
 }

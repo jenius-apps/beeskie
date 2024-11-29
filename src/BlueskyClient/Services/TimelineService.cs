@@ -39,7 +39,7 @@ public class TimelineService : ITimelineService
             return ([], null);
         }
 
-        if (await _authentication.TryGetFreshTokenAsync() is not string { Length: > 0 } token)
+        if (await _authentication.TryGetFreshTokenAsync() is not { IsSuccess: true, Value: string { Length: > 0 } token })
         {
             return ([], null);
         }

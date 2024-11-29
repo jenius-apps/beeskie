@@ -2,6 +2,7 @@
 using Bluesky.NET.Constants;
 using Bluesky.NET.Models;
 using BlueskyClient.Constants;
+using FluentResults;
 using JeniusApps.Common.Settings;
 using JeniusApps.Common.Telemetry;
 using System;
@@ -75,16 +76,8 @@ public class PostSubmissionService : IPostSubmissionService
     public async Task<bool> LikeOrRepostAsync(RecordType recordType, string targetUri, string targetCid)
     {
         if ((recordType is not RecordType.Like && recordType is not RecordType.Repost) ||
-            string.IsNullOrEmpty(targetUri) || 
+            string.IsNullOrEmpty(targetUri) ||
             string.IsNullOrEmpty(targetCid))
-        {
-            return false;
-        }
-
-        var token = await _authenticationService.TryGetFreshTokenAsync();
-        var handle = _userSettings.Get<string>(UserSettingsConstants.SignedInDIDKey);
-
-        if (token is null || handle is null)
         {
             return false;
         }
@@ -163,10 +156,10 @@ public class PostSubmissionService : IPostSubmissionService
 
     private async Task<CreateRecordResponse?> SubmitAsync(SubmissionRecord record, RecordType recordType)
     {
-        var token = await _authenticationService.TryGetFreshTokenAsync();
+        Result<string> tokenResult = await _authenticationService.TryGetFreshTokenAsync();
         var handle = _userSettings.Get<string>(UserSettingsConstants.SignedInDIDKey);
 
-        if (token is null || handle is null)
+        if (tokenResult.IsFailed || handle is null)
         {
             return null;
         }
@@ -175,7 +168,7 @@ public class PostSubmissionService : IPostSubmissionService
 
         try
         {
-            result = await _blueskyApiClient.SubmitPostAsync(token, handle, record, recordType);
+            result = await _blueskyApiClient.SubmitPostAsync(tokenResult.Value, handle, record, recordType);
         }
         catch (Exception e)
         {
