@@ -1,6 +1,8 @@
-﻿using Bluesky.NET.Models;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using Bluesky.NET.Models;
 using BlueskyClient.Constants;
-using BlueskyClient.Extensions;
 using BlueskyClient.Models;
 using BlueskyClient.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -9,9 +11,6 @@ using FluentResults;
 using JeniusApps.Common.Models;
 using JeniusApps.Common.Telemetry;
 using JeniusApps.Common.Tools;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 
 namespace BlueskyClient.ViewModels;
 
