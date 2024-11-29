@@ -63,6 +63,8 @@ public sealed partial class PostEmbeds : UserControl
 
     private bool IsExternalUrl => Embed?.External?.Uri is { Length: > 0 } url && !url.Contains(".gif");
 
+    private string ExternalRootUri => Embed?.External?.RootUri ?? string.Empty;
+
     private bool IsGif => Embed?.External?.Uri is { Length: > 0 } url && url.Contains(".gif");
 
     private string GifUrl => Embed?.External?.Uri is { Length: > 0 } url && Uri.IsWellFormedUriString(url, UriKind.Absolute)

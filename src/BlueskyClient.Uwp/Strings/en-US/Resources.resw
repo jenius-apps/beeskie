@@ -144,6 +144,9 @@
   <data name="ImageSelectText" xml:space="preserve">
     <value>Add image</value>
   </data>
+  <data name="LikeText" xml:space="preserve">
+    <value>Like</value>
+  </data>
   <data name="ManageAccountText" xml:space="preserve">
     <value>Manage account</value>
   </data>
@@ -180,8 +183,14 @@
   <data name="ProfileText" xml:space="preserve">
     <value>Profile</value>
   </data>
+  <data name="ReplyText" xml:space="preserve">
+    <value>Reply</value>
+  </data>
   <data name="RepostCaption" xml:space="preserve">
     <value>Reposted by {0}</value>
+  </data>
+  <data name="RepostText" xml:space="preserve">
+    <value>Repost</value>
   </data>
   <data name="SendFeedbackText" xml:space="preserve">
     <value>Send feedback</value>

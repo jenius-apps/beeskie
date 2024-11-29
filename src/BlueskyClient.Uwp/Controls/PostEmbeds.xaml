@@ -70,6 +70,7 @@
             Padding="0,0,0,12"
             HorizontalAlignment="Stretch"
             x:Load="{x:Bind IsStarterPack}"
+            AutomationProperties.Name="{x:Bind StarterPackName}"
             Click="OnStarterPackClicked">
             <StackPanel CornerRadius="4">
                 <Border CornerRadius="4,4,0,0">
@@ -114,6 +115,8 @@
             HorizontalAlignment="Stretch"
             HorizontalContentAlignment="Stretch"
             x:Load="{x:Bind IsExternalUrl}"
+            AutomationProperties.HelpText="{x:Bind ExternalRootUri}"
+            AutomationProperties.Name="{x:Bind ExternalTitle}"
             Click="OnExternalUrlClicked">
             <StackPanel CornerRadius="4">
                 <Border Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}" CornerRadius="4,4,0,0">
@@ -155,7 +158,7 @@
                         Margin="4,0,0,0"
                         FontSize="12"
                         Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                        Text="{x:Bind Embed.External.RootUri}" />
+                        Text="{x:Bind ExternalRootUri}" />
                 </StackPanel>
             </StackPanel>
         </Button>

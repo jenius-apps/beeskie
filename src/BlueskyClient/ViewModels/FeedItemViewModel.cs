@@ -119,4 +119,9 @@ public partial class FeedItemViewModel : ObservableObject
 
         IsReposted = result;
     }
+
+    public override string ToString()
+    {
+        return $"{AuthorViewModel.DisplayName}: {FeedItem.Post.Record?.Text}";
+    }
 }
