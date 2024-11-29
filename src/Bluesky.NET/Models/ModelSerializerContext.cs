@@ -12,6 +12,7 @@ namespace Bluesky.NET.Models;
 [JsonSerializable(typeof(Notification[]), GenerationMode = JsonSourceGenerationMode.Metadata)] // Only used to deserialize
 [JsonSerializable(typeof(FeedResponse), GenerationMode = JsonSourceGenerationMode.Metadata)] // Only used to deserialize
 [JsonSerializable(typeof(TypedItem), GenerationMode = JsonSourceGenerationMode.Metadata)] // Only used to deserialize
+[JsonSerializable(typeof(PreferenceItemSavedFeeds), GenerationMode = JsonSourceGenerationMode.Metadata)] // Only used to deserialize
 [JsonSerializable(typeof(FeedRecord[]))]
 [JsonSerializable(typeof(Author))]
 [JsonSerializable(typeof(Notification))]

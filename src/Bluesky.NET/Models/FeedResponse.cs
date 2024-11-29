@@ -1,4 +1,7 @@
-﻿namespace Bluesky.NET.Models;
+﻿using System.Text.Json.Serialization;
+using Bluesky.NET.Models.JsonConverters;
+
+namespace Bluesky.NET.Models;
 
 public class FeedResponse
 {
@@ -12,5 +15,6 @@ public class FeedResponse
 
     public Blob? Blob { get; init; }
 
+    [JsonConverter(typeof(ArrayConverter<PreferenceItem, PreferenceItemConverter>))]
     public PreferenceItem[]? Preferences { get; init; }
 }

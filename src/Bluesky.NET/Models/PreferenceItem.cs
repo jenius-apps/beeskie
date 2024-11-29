@@ -2,7 +2,10 @@
 
 public class PreferenceItem : TypedItem
 {
-    public const string PreferenceSavedFeedsTypeKey = "app.bsky.actor.defs#savedFeedsPrefV2";
+    public const string SavedFeedsKey = "app.bsky.actor.defs#savedFeedsPrefV2";
+}
 
+public class PreferenceItemSavedFeeds : PreferenceItem
+{
     public FeedMetaData[]? Items { get; init; }
 }
