@@ -129,6 +129,9 @@
   <data name="CloseText" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="FeedsText" xml:space="preserve">
+    <value>Feeds</value>
+  </data>
   <data name="FollowersText" xml:space="preserve">
     <value>followers</value>
   </data>

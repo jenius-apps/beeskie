@@ -1,4 +1,5 @@
 ﻿using BlueskyClient.ViewModels;
+using JeniusApps.Common.Telemetry;
 using Microsoft.Extensions.DependencyInjection;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -19,6 +20,7 @@ public sealed partial class NotificationsPage : Page
 
     protected async override void OnNavigatedTo(NavigationEventArgs e)
     {
+        App.Services.GetRequiredService<ITelemetry>().TrackPageView(nameof(NotificationsPage));
         await ViewModel.InitializeAsync();
     }
 }

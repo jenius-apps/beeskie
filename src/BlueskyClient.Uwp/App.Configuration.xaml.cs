@@ -137,6 +137,7 @@ partial class App
     [Transient(typeof(NotificationsPageViewModel))]
     [Transient(typeof(ProfileControlViewModel))]
     [Transient(typeof(NewPostViewModel))]
+    [Transient(typeof(FeedsPageViewModel))]
     private static partial void ConfigureServices(IServiceCollection services);
 
     private static TelemetryContext? GetContext()
