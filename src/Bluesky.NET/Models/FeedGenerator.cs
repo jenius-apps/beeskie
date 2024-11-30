@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Bluesky.NET.Models;
+﻿namespace Bluesky.NET.Models;
 
 public class FeedGenerator
 {

@@ -8,6 +8,7 @@ using JeniusApps.Common.Telemetry;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BlueskyClient.Caches;
@@ -29,8 +30,9 @@ public class ProfileCache : ICache<Author>
         _telemetry = telemetry;
     }
 
-    public async Task<Author?> GetItemAsync(string identifier)
+    public async Task<Author?> GetItemAsync(string identifier, CancellationToken ct)
     {
+        ct.ThrowIfCancellationRequested();
         if (_cache.TryGetValue(identifier, out CachedItem<Author> cachedResult) &&
             DateTime.Now < cachedResult.ExpirationTime)
         {
@@ -78,12 +80,12 @@ public class ProfileCache : ICache<Author>
         return author;
     }
 
-    public Task<IReadOnlyDictionary<string, Author>> GetItemsAsync()
+    public Task<IReadOnlyDictionary<string, Author>> GetItemsAsync(CancellationToken ct)
     {
         throw new NotImplementedException();
     }
 
-    public Task<IReadOnlyDictionary<string, Author>> GetItemsAsync(IReadOnlyList<string> ids)
+    public Task<IReadOnlyDictionary<string, Author>> GetItemsAsync(IReadOnlyList<string> ids, CancellationToken ct)
     {
         throw new NotImplementedException();
     }
