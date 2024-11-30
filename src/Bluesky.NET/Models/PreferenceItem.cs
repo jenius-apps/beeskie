@@ -7,5 +7,5 @@ public class PreferenceItem : TypedItem
 
 public class PreferenceItemSavedFeeds : PreferenceItem
 {
-    public FeedMetaData[]? Items { get; init; }
+    public PreferenceFeedInfo[]? Items { get; init; }
 }

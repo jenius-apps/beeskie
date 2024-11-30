@@ -4,7 +4,7 @@
 /// Metadata describing a feed object such as 
 /// Following and Discover feeds.
 /// </summary>
-public class FeedMetaData
+public class PreferenceFeedInfo
 {
     /// <summary>
     /// A short string uniquely identifying the feed object.
