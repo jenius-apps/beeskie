@@ -34,5 +34,19 @@ public interface IBlueskyApiClient
     /// <param name="accessToken">Access token for the logged in user.</param>
     /// <param name="ct">A cancellation token.</param>
     /// <returns>List of the user's preferences.</returns>
-    Task<Result<IReadOnlyList<PreferenceItem>>> GetPreferencesAsync(string accessToken, CancellationToken ct);
+    Task<Result<IReadOnlyList<PreferenceItem>>> GetPreferencesAsync(
+        string accessToken,
+        CancellationToken ct);
+
+    /// <summary>
+    /// Retrieves list of feed generator data.
+    /// </summary>
+    /// <param name="accessToken">Access token for the logged in user.</param>
+    /// <param name="atUris">List of at:// URIs that represent different feed generators.</param>
+    /// <param name="ct">A cancellation token.</param>
+    /// <returns>List of feed generator data.</returns>
+    Task<Result<IReadOnlyList<FeedGenerator>>> GetFeedGeneratorsAsync(
+        string accessToken,
+        IReadOnlyList<string> atUris,
+        CancellationToken ct);
 }

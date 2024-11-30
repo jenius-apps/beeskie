@@ -19,4 +19,6 @@ public sealed class UrlConstants
     public const string AuthorFeedPath = "xrpc/app.bsky.feed.getAuthorFeed";
     public const string UploadBlobPath = "xrpc/com.atproto.repo.uploadBlob";
     public const string PreferencesPath = "xrpc/app.bsky.actor.getPreferences";
+    public const string FeedGeneratorPath = "xrpc/app.bsky.feed.getFeedGenerator";
+    public const string FeedGeneratorsPath = "xrpc/app.bsky.feed.getFeedGenerators";
 }

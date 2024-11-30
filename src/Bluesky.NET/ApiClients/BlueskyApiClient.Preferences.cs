@@ -30,7 +30,6 @@ partial class BlueskyApiClient
             var httpResponse = await _httpClient.SendAsync(message, ct);
             if (httpResponse.IsSuccessStatusCode)
             {
-                var content = await httpResponse.Content.ReadAsStringAsync();
                 using Stream contentStream = await httpResponse.Content.ReadAsStreamAsync();
                 FeedResponse? response = JsonSerializer.Deserialize(contentStream, ModelSerializerContext.CaseInsensitive.FeedResponse);
                 return response?.Preferences is IReadOnlyList<PreferenceItem> { } preferences

@@ -1,13 +1,15 @@
-﻿using Bluesky.NET.Constants;
-using Bluesky.NET.Models;
-using FluentResults;
-using System;
+﻿using System;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization.Metadata;
+using System.Threading;
 using System.Threading.Tasks;
+using Bluesky.NET.Constants;
+using Bluesky.NET.Models;
+using FluentResults;
 
 namespace Bluesky.NET.ApiClients;
 
@@ -69,6 +71,35 @@ public partial class BlueskyApiClient : IBlueskyApiClient
         catch (Exception e)
         {
             return Result.Fail<AuthResponse>(e.Message);
+        }
+    }
+
+    private async Task<Result<T>> SendMessageAsync<T>(
+        HttpRequestMessage message,
+        JsonTypeInfo<T> jsonTypeInfo,
+        CancellationToken ct)
+    {
+        try
+        {
+            var httpResponse = await _httpClient.SendAsync(message, ct);
+            if (httpResponse.IsSuccessStatusCode)
+            {
+                var content = await httpResponse.Content.ReadAsStringAsync();
+                using Stream contentStream = await httpResponse.Content.ReadAsStreamAsync();
+                T? response = JsonSerializer.Deserialize(contentStream, jsonTypeInfo);
+                return response is not null
+                    ? Result.Ok(response)
+                    : Result.Fail<T>("Deserialization result was null");
+            }
+            else
+            {
+                var errorMessage = await httpResponse.Content.ReadAsStringAsync();
+                return Result.Fail<T>(errorMessage);
+            }
+        }
+        catch (Exception e)
+        {
+            return Result.Fail<T>(e.Message);
         }
     }
 }

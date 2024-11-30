@@ -9,6 +9,8 @@ public class FeedResponse
 
     public FeedItem[]? Feed { get; init; }
 
+    public FeedGenerator[]? Feeds { get; init; }
+
     public Notification[]? Notifications { get; init; }
 
     public FeedPost[]? Posts { get; init; }
