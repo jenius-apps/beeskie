@@ -22,21 +22,38 @@
             <ColumnDefinition Width="auto" />
         </Grid.ColumnDefinitions>
 
-        <ListView
-            Margin="0,40,0,0"
-            DataFetchSize="1"
-            IncrementalLoadingThreshold="1"
-            IncrementalLoadingTrigger="Edge"
-            ItemTemplate="{StaticResource FeedItemTemplate}"
-            ItemsSource="{x:Bind FeedCollection}"
-            SelectionMode="None">
-            <ListView.ItemContainerStyle>
-                <Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                    <Setter Property="Padding" Value="20,0,20,20" />
-                </Style>
-            </ListView.ItemContainerStyle>
-        </ListView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid Background="{ThemeResource SystemControlAcrylicElementBrush}" Canvas.ZIndex="1">
+                <TextBlock
+                    Margin="0,0,0,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontWeight="SemiBold"
+                    Text="{x:Bind ViewModel.SelectedFeed.DisplayName, Mode=OneWay}" />
+            </Grid>
+
+            <ListView
+                Grid.Row="1"
+                Padding="0,12,0,0"
+                DataFetchSize="1"
+                IncrementalLoadingThreshold="1"
+                IncrementalLoadingTrigger="Edge"
+                ItemTemplate="{StaticResource FeedItemTemplate}"
+                ItemsSource="{x:Bind FeedCollection}"
+                SelectionMode="None">
+                <ListView.ItemContainerStyle>
+                    <Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="Padding" Value="20,0,20,20" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+        </Grid>
 
         <Rectangle
             Grid.Column="1"
@@ -47,7 +64,7 @@
         <Grid
             Grid.Column="2"
             Width="240"
-            Padding="20,40,20,0">
+            Padding="20,48,20,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
