@@ -33,6 +33,10 @@ public class HomeFeedCollection : ObservableCollection<FeedItemViewModel>, ISupp
         {
             this.RemoveAt(e.OldStartingIndex);
         }
+        else if (e.Action is NotifyCollectionChangedAction.Reset)
+        {
+            this.Clear();
+        }
     }
 
     public IAsyncOperation<LoadMoreItemsResult> LoadMoreItemsAsync(uint count)

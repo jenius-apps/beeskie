@@ -1,5 +1,6 @@
 ﻿using BlueskyClient.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
@@ -31,7 +32,7 @@ public partial class HomePageViewModel : ObservableObject
 
     public bool HasMoreItems => _cursor is not null;
 
-    public ObservableCollection<FeedGeneratorViewModel> FeedGenerators { get; } = [];
+    public ObservableCollection<FeedGeneratorViewModel> Feeds { get; } = [];
 
     public ObservableCollection<FeedItemViewModel> FeedItems { get; } = [];
 
@@ -43,7 +44,7 @@ public partial class HomePageViewModel : ObservableObject
         foreach (var f in feedGenerators)
         {
             var vm = _feedGeneratorViewModelFactory.Create(f);
-            FeedGenerators.Add(vm);
+            Feeds.Add(vm);
             SelectedFeed ??= vm;
         }
 
@@ -65,5 +66,19 @@ public partial class HomePageViewModel : ObservableObject
         }
 
         return Items.Count;
+    }
+
+    [RelayCommand]
+    private async Task ChangeFeedsAsync(FeedGeneratorViewModel? vm)
+    {
+        if (vm is null || SelectedFeed == vm)
+        {
+            return;
+        }
+
+        _cursor = null;
+        FeedItems.Clear();
+        SelectedFeed = vm;
+        await LoadNextPageAsync(default);
     }
 }

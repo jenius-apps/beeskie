@@ -2,6 +2,7 @@
 using BlueskyClient.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Linq;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -31,6 +32,14 @@ public sealed partial class HomePage : Page
         catch (OperationCanceledException)
         {
 
+        }
+    }
+
+    private async void OnFeedSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (e.AddedItems.FirstOrDefault() is FeedGeneratorViewModel vm)
+        {
+            await ViewModel.ChangeFeedsCommand.ExecuteAsync(vm);
         }
     }
 }
