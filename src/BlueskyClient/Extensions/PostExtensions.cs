@@ -1,7 +1,6 @@
-﻿using Bluesky.NET.Constants;
+﻿using System;
+using Bluesky.NET.Constants;
 using Bluesky.NET.Models;
-using System;
-using System.Diagnostics.CodeAnalysis;
 
 namespace BlueskyClient.Extensions;
 
@@ -25,6 +24,8 @@ public static class PostExtensions
     public static string SafeAvatarUrl(this FeedPost? post) => SafeUrl(post?.Author?.Avatar);
 
     public static string SafeAvatarUrl(this FeedRecord? record) => SafeUrl(record?.Author?.Avatar);
+
+    public static string SafeAvatarUrl(this FeedGenerator? feed) => SafeUrl(feed?.Avatar);
 
     public static string FollowersCount(this Author? author) => (author?.FollowersCount ?? 0).ToString();
 

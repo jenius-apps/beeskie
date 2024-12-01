@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Bluesky.NET.ApiClients;
+using Bluesky.NET.Constants;
 using Bluesky.NET.Models;
 using BlueskyClient.Caches;
 
@@ -10,6 +11,7 @@ namespace BlueskyClient.Services;
 
 public class FeedGeneratorService : IFeedGeneratorService
 {
+    private readonly TimelineFeedGenerator _timelineFeed = new();
     private readonly IBlueskyApiClient _apiClient;
     private readonly IAuthenticationService _authenticationService;
     private readonly ICache<FeedGenerator> _feedCache;
@@ -45,27 +47,35 @@ public class FeedGeneratorService : IFeedGeneratorService
             return [];
         }
 
-        List<string> feedUris = [];
-        foreach (var preference in preferencesResult.Value)
+        PreferenceItemSavedFeeds? savedFeeds = preferencesResult.Value
+            .Where(x => x is PreferenceItemSavedFeeds)
+            .Cast<PreferenceItemSavedFeeds>()
+            .FirstOrDefault();
+
+        if (savedFeeds.Items is not { Length: > 0 } preferenceFeedInfoList)
         {
-            if (preference is PreferenceItemSavedFeeds savedFeeds)
-            {
-                feedUris = savedFeeds.Items?
-                    .Where(x => !pinnedFeedsOnly || x.Pinned)
-                    .Select(x => x.Value ?? string.Empty)
-                    .Where(x => !string.IsNullOrEmpty(x))
-                    .ToList() ?? [];
-                break;
-            }
+            return [];
         }
+
+        List<string> feedUris = preferenceFeedInfoList
+            .Where(x => x.Type == PreferenceFeedTypes.Feed)
+            .Where(x => !pinnedFeedsOnly || x.Pinned)
+            .Select(x => x.Value ?? string.Empty)
+            .Where(x => !string.IsNullOrEmpty(x))
+            .ToList();
 
         IReadOnlyDictionary<string, FeedGenerator> feeds = await _feedCache.GetItemsAsync(feedUris, ct);
 
         ct.ThrowIfCancellationRequested();
         List<FeedGenerator> result = [];
-        foreach (var uri in feedUris)
+        foreach (var feedInfo in preferenceFeedInfoList)
         {
-            if (feeds.TryGetValue(uri, out var feed))
+            if (feedInfo is { Type: PreferenceFeedTypes.Timeline })
+            {
+                result.Add(_timelineFeed);
+            }
+            else if (feedInfo is { Type: PreferenceFeedTypes.Feed, Value: string atUri } &&
+                feeds.TryGetValue(atUri, out var feed))
             {
                 result.Add(feed);
             }

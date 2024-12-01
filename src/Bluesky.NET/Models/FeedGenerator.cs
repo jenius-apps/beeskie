@@ -1,16 +1,12 @@
-﻿namespace Bluesky.NET.Models;
+﻿using System.Text.Json.Serialization;
+
+namespace Bluesky.NET.Models;
 
 public class FeedGenerator
 {
-    public bool IsValid { get; init; }
+    [JsonIgnore]
+    public virtual bool IsTimeline { get; }
 
-    public bool IsOnline { get; init; }
-
-    public FeedGeneratorView? View { get; init; }
-}
-
-public class FeedGeneratorView
-{
     public string? Uri { get; init; }
 
     public string? Cid { get; init; }
@@ -26,4 +22,19 @@ public class FeedGeneratorView
     public string? Avatar { get; init; }
 
     public double LikeCount { get; init; }
+}
+
+public class FeedGeneratorWrapper
+{
+    public bool IsValid { get; init; }
+
+    public bool IsOnline { get; init; }
+
+    public FeedGenerator? View { get; init; }
+}
+
+public class TimelineFeedGenerator : FeedGenerator
+{
+    [JsonIgnore]
+    public override bool IsTimeline => true;
 }

@@ -36,7 +36,7 @@ public class ProfileService : IProfileService
             return null;
         }
 
-        return await _profileCache.GetItemAsync(identifier);
+        return await _profileCache.GetItemAsync(identifier, default);
     }
 
     public async Task<IReadOnlyList<FeedItem>> GetProfileFeedAsync(string handle)

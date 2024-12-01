@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net.Http.Headers;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
-using System.Text;
+using System.Net.Http.Headers;
+using System.Threading;
+using System.Threading.Tasks;
 using Bluesky.NET.Constants;
 using Bluesky.NET.Models;
 using FluentResults;
-using System.Text.Json;
-using System.Threading.Tasks;
-using System.Threading;
 
 namespace Bluesky.NET.ApiClients;
 
@@ -23,7 +20,13 @@ partial class BlueskyApiClient
     {
         ct.ThrowIfCancellationRequested();
 
-        var url = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.FeedGeneratorsPath}?feeds={string.Join(",", atUris)}";
+        var feedParameters = atUris
+            .Where(x => x.StartsWith("at://"))
+            .Select(x => $"feeds={x}");
+
+        string combined = string.Join("&", feedParameters);
+
+        var url = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.FeedGeneratorsPath}?{combined}";
         HttpRequestMessage message = new(HttpMethod.Get, url);
         message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 

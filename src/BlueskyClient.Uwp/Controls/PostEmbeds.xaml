@@ -35,7 +35,7 @@
             Tapped="OnSingleImageClicked">
             <Image
                 MaxWidth="{x:Bind SingleImageMaxWidth}"
-                Source="{x:Bind SingleImage.Thumb}"
+                Source="{x:Bind SingleImageSource}"
                 Stretch="UniformToFill" />
         </Border>
 

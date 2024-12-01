@@ -5,7 +5,74 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:BlueskyClient.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:BlueskyClient.ViewModels"
     mc:Ignorable="d">
 
-    <Grid />
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+
+        <!--  Main section  -->
+        <Grid />
+
+
+        <Rectangle
+            Grid.Column="1"
+            Width="1"
+            VerticalAlignment="Stretch"
+            Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
+
+        <Grid
+            Grid.Column="2"
+            Width="300"
+            Padding="20,40,20,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid VerticalAlignment="Top">
+                    <Ellipse
+                        Width="40"
+                        Height="40"
+                        Fill="{ThemeResource AccentFillColorDefaultBrush}" />
+                    <FontIcon
+                        Margin="0,2,0,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontFamily="{StaticResource FluentUIGlyphs}"
+                        Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}"
+                        Glyph="{StaticResource GlyphFeeds}" />
+                </Grid>
+
+                <StackPanel Grid.Column="1" Margin="12,0,0,0">
+                    <TextBlock FontWeight="SemiBold" Text="My Feeds" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                        Text="All the feeds you've saved, right in one place."
+                        TextWrapping="Wrap" />
+                </StackPanel>
+            </Grid>
+
+            <ListView Grid.Row="1" ItemsSource="{x:Bind ViewModel.Feeds}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="vm:FeedGeneratorViewModel">
+                        <StackPanel>
+                            <TextBlock Text="{x:Bind DisplayName}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </Grid>
 </Page>

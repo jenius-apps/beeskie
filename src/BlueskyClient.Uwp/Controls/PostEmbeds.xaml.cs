@@ -93,6 +93,8 @@ public sealed partial class PostEmbeds : UserControl
         ? image
         : null;
 
+    private string SingleImageSource => SingleImage?.Thumb ?? "http://localhost";
+
     private double SingleImageMaxWidth =>
         SingleImage?.AspectRatio is { Height: double height, Width: double width } && height > width
         ? 300

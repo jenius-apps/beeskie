@@ -75,8 +75,9 @@ public class FeedGeneratorCache : ICache<FeedGenerator>
 
         foreach (var feed in response.Value)
         {
-            if (feed is { View.Uri: { Length: > 0 } uri })
+            if (feed is { Uri: { Length: > 0 } uri })
             {
+                _cache[uri] = feed;
                 result.Add(uri, feed);
             }
         }

@@ -32,6 +32,9 @@ public sealed partial class FeedsPage : Page
     protected async override void OnNavigatedTo(NavigationEventArgs e)
     {
         App.Services.GetRequiredService<ITelemetry>().TrackPageView(nameof(FeedsPage));
-        await ViewModel.InitializeAsync();
+
+
+        // TODO cancel on nav from
+        await ViewModel.InitializeAsync(default);
     }
 }

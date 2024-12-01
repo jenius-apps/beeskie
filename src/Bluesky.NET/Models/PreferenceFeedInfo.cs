@@ -1,4 +1,6 @@
-﻿namespace Bluesky.NET.Models;
+﻿using Bluesky.NET.Constants;
+
+namespace Bluesky.NET.Models;
 
 /// <summary>
 /// Metadata describing a feed object such as 
@@ -12,7 +14,7 @@ public class PreferenceFeedInfo
     public string? Id { get; init; }
 
     /// <summary>
-    /// One of 'feed', 'list', or 'timeline'.
+    /// One of 'feed', 'list', or 'timeline'. See <see cref="PreferenceFeedTypes"/>.
     /// </summary>
     /// <remarks>
     /// Source: https://docs.bsky.app/docs/api/app-bsky-actor-get-preferences.

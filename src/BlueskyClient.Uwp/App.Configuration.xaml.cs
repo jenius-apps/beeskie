@@ -121,6 +121,7 @@ partial class App
     [Singleton(typeof(TimelineService), typeof(ITimelineService))]
     [Singleton(typeof(FeedItemViewModelFactory), typeof(IFeedItemViewModelFactory))]
     [Singleton(typeof(NotificationViewModelFactory), typeof(INotificationViewModelFactory))]
+    [Singleton(typeof(FeedGeneratorViewModelFactory), typeof(IFeedGeneratorViewModelFactory))]
     [Singleton(typeof(SecureCredentialStorage), typeof(ISecureCredentialStorage))]
     [Singleton(typeof(NotificationsService), typeof(INotificationsService))]
     [Singleton(typeof(ProfileCache), typeof(ICache<Author>))]
