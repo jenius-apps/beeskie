@@ -95,7 +95,11 @@ public class FeedGeneratorCache : ICache<FeedGenerator>
 
         foreach (var key in keys)
         {
-            if (cache.TryGetValue(key, out FeedGenerator storedFeed))
+            if (result.ContainsKey(key))
+            {
+                continue;
+            }
+            else if (cache.TryGetValue(key, out FeedGenerator storedFeed))
             {
                 result.Add(key, storedFeed);
             }
