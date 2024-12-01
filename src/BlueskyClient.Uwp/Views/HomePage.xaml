@@ -30,7 +30,6 @@
 
             <Grid Background="{ThemeResource SystemControlAcrylicElementBrush}" Canvas.ZIndex="1">
                 <TextBlock
-                    Margin="0,0,0,0"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     FontWeight="SemiBold"
