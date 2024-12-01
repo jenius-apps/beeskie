@@ -49,4 +49,18 @@ public interface IBlueskyApiClient
         string accessToken,
         IReadOnlyList<string> atUris,
         CancellationToken ct);
+
+    /// <summary>
+    /// Retrieves the posts for the given feed.
+    /// </summary>
+    /// <param name="accessToken">Access token for the logged in user.</param>
+    /// <param name="atUris">The at:// URI that represents a feed.</param>
+    /// <param name="ct">A cancellation token.</param>
+    /// <param name="cursor">A bluesky-provided string to help with pagination.</param>
+    /// <returns>The items for the feed.</returns>
+    Task<Result<FeedResponse>> GetFeedAsync(
+        string accessToken,
+        string atUri,
+        CancellationToken ct,
+        string? cursor = null);
 }

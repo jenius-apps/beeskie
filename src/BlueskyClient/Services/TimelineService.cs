@@ -1,11 +1,12 @@
-﻿using Bluesky.NET.ApiClients;
-using Bluesky.NET.Models;
-using BlueskyClient.Constants;
-using JeniusApps.Common.Telemetry;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Bluesky.NET.ApiClients;
+using Bluesky.NET.Models;
+using BlueskyClient.Constants;
+using FluentResults;
+using JeniusApps.Common.Telemetry;
 
 namespace BlueskyClient.Services;
 
@@ -29,6 +30,30 @@ public class TimelineService : ITimelineService
         _telemetry = telemetry;
 
         _currentUser = new Lazy<Task<Author?>>(() => _profileService.GetCurrentUserAsync());
+    }
+
+    /// <inheritdoc/>
+    public async Task<(IReadOnlyList<FeedItem> Items, string? Cursor)> GetFeedItemsAsync(
+        string feedAtUri,
+        CancellationToken ct,
+        string? cursor = null)
+    {
+        ct.ThrowIfCancellationRequested();
+        var tokenResult = await _authentication.TryGetFreshTokenAsync();
+        if (tokenResult.IsFailed)
+        {
+            return ([], null);
+        }
+
+        Result<FeedResponse> response = await _apiClient.GetFeedAsync(
+            tokenResult.Value,
+            feedAtUri,
+            ct,
+            cursor);
+
+        return response is { IsSuccess: true, Value.Feed: IReadOnlyList<FeedItem> feed }
+            ? (feed, response.Value.Cursor)
+            : ([], null);
     }
 
     public async Task<(IReadOnlyList<FeedItem> Items, string? Cursor)> GetTimelineAsync(CancellationToken ct, string? cursor = null)

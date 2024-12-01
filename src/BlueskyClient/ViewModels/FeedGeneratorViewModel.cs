@@ -14,6 +14,10 @@ public partial class FeedGeneratorViewModel : ObservableObject
         AuthorViewModel.SetAuthor(feedGenerator.Creator);
     }
 
+    public string? RawAtUri => _feedGenerator.Uri;
+
+    public bool IsTimeline => _feedGenerator.IsTimeline;
+
     public string DisplayName => _feedGenerator.IsTimeline
         ? "Following" // TODO consider making this change in the UI instead
         : _feedGenerator.DisplayName ?? string.Empty;

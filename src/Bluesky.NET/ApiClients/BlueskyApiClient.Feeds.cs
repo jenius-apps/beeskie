@@ -1,18 +1,48 @@
-﻿using Bluesky.NET.Constants;
-using Bluesky.NET.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
+using Bluesky.NET.Constants;
+using Bluesky.NET.Models;
+using FluentResults;
 
 namespace Bluesky.NET.ApiClients;
 
 partial class BlueskyApiClient
 {
+    /// <inheritdoc/>
+    public async Task<Result<FeedResponse>> GetFeedAsync(
+        string accessToken,
+        string atUri,
+        CancellationToken ct,
+        string? cursor = null)
+    {
+        ct.ThrowIfCancellationRequested();
+
+        var url = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.FeedPath}?feed={atUri}";
+        if (cursor is { Length: > 0 } cursorParameter)
+        {
+            url += $"&cursor={cursorParameter}";
+        }
+
+        HttpRequestMessage message = new(HttpMethod.Get, url);
+        message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+        Result<FeedResponse> response = await SendMessageAsync(
+            message,
+            ModelSerializerContext.CaseInsensitive.FeedResponse,
+            ct);
+
+        return response.IsSuccess && response.Value is FeedResponse feedResponse
+            ? Result.Ok(feedResponse)
+            : Result.Fail<FeedResponse>(response.Errors);
+    }
+
     public async Task<FeedResponse> GetTimelineAsync(string accesstoken, string? cursor = null)
     {
         var timelineUrl = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.TimelinePath}";
@@ -23,7 +53,6 @@ partial class BlueskyApiClient
 
         HttpRequestMessage message = new(HttpMethod.Get, timelineUrl);
         message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
-        
         try
         {
             var httpResponse = await _httpClient.SendAsync(message);
