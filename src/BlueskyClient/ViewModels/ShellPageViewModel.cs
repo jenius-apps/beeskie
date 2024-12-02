@@ -48,7 +48,9 @@ public partial class ShellPageViewModel : ObservableObject
         MenuItems.Add(new MenuItem(NavigateContentPageCommand, _localizer.GetString("HomeText"), "\uEA8A", NavigationConstants.HomePage));
         MenuItems.Add(new MenuItem(NavigateContentPageCommand, _localizer.GetString("NotificationsText"), "\uEA8F", NavigationConstants.NotificationsPage));
         MenuItems.Add(new MenuItem(NavigateContentPageCommand, _localizer.GetString("ProfileText"), "\uE77B", NavigationConstants.ProfilePage));
+#if DEBUG
         MenuItems.Add(new MenuItem(NavigateContentPageCommand, _localizer.GetString("FeedsText"), "\uF57F", NavigationConstants.FeedsPage));
+#endif
     }
 
     public AuthorViewModel AuthorViewModel { get; } = new();
