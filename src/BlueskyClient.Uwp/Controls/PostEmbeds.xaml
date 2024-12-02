@@ -114,10 +114,10 @@
             Padding="0"
             HorizontalAlignment="Stretch"
             HorizontalContentAlignment="Stretch"
-            x:Load="{x:Bind IsExternalUrl}"
             AutomationProperties.HelpText="{x:Bind ExternalRootUri}"
             AutomationProperties.Name="{x:Bind ExternalTitle}"
-            Click="OnExternalUrlClicked">
+            Click="OnExternalUrlClicked"
+            Visibility="{x:Bind IsExternalUrl}">
             <StackPanel CornerRadius="4">
                 <Border Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}" CornerRadius="4,4,0,0">
                     <Image
