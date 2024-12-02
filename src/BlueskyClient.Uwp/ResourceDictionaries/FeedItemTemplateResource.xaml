@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ex="using:JeniusApps.Common.UI.Uwp"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:strings="using:BlueskyClient.Strings"
     xmlns:vm="using:BlueskyClient.ViewModels">
 
     <Style x:Key="PostButtonIconStyle" TargetType="FontIcon">
@@ -106,7 +107,10 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <HyperlinkButton Command="{x:Bind ReplyCommand}" IsEnabled="{x:Bind ex:UIExtensions.Not(ReplyCommand.IsRunning), Mode=OneWay}">
+                        <HyperlinkButton
+                            AutomationProperties.Name="{x:Bind strings:Resources.ReplyText}"
+                            Command="{x:Bind ReplyCommand}"
+                            IsEnabled="{x:Bind ex:UIExtensions.Not(ReplyCommand.IsRunning), Mode=OneWay}">
                             <StackPanel Orientation="Horizontal">
                                 <FontIcon Glyph="{StaticResource GlyphMessage}" Style="{StaticResource PostButtonIconStyle}" />
                                 <TextBlock
@@ -117,6 +121,7 @@
                         </HyperlinkButton>
                         <HyperlinkButton
                             Grid.Column="1"
+                            AutomationProperties.Name="{x:Bind strings:Resources.RepostText}"
                             Command="{x:Bind RepostCommand}"
                             IsEnabled="{x:Bind ex:UIExtensions.Not(RepostCommand.IsRunning), Mode=OneWay}">
                             <StackPanel Orientation="Horizontal">
@@ -139,6 +144,7 @@
                         </HyperlinkButton>
                         <HyperlinkButton
                             Grid.Column="2"
+                            AutomationProperties.Name="{x:Bind strings:Resources.LikeText}"
                             Command="{x:Bind LikeCommand}"
                             IsEnabled="{x:Bind ex:UIExtensions.Not(LikeCommand.IsRunning), Mode=OneWay}">
                             <StackPanel Orientation="Horizontal">

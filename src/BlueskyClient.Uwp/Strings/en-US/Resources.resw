@@ -135,6 +135,9 @@
   <data name="FollowersText" xml:space="preserve">
     <value>followers</value>
   </data>
+  <data name="FollowingFeedName" xml:space="preserve">
+    <value>Following</value>
+  </data>
   <data name="FollowingText" xml:space="preserve">
     <value>following</value>
   </data>
@@ -152,6 +155,12 @@
   </data>
   <data name="ManageAccountText" xml:space="preserve">
     <value>Manage account</value>
+  </data>
+  <data name="MyFeedsSubtitle" xml:space="preserve">
+    <value>All the feeds you've saved, all in one place</value>
+  </data>
+  <data name="MyFeedsTitle" xml:space="preserve">
+    <value>My Feeds</value>
   </data>
   <data name="NewPostPlaceholder" xml:space="preserve">
     <value>What's up?</value>
@@ -176,6 +185,12 @@
   </data>
   <data name="PasswordBoxPlaceholder" xml:space="preserve">
     <value>Your special App Password</value>
+  </data>
+  <data name="PinnedFeedsSubtitle" xml:space="preserve">
+    <value>Select a feed to change your view</value>
+  </data>
+  <data name="PinnedFeedsTitle" xml:space="preserve">
+    <value>Pinned Feeds</value>
   </data>
   <data name="PostedReplyText" xml:space="preserve">
     <value>Posted a reply</value>

@@ -67,6 +67,19 @@ namespace BlueskyClient.Strings{
         }
         #endregion
 
+        #region FeedsText
+        /// <summary>
+        ///   Looks up a localized string similar to: Feeds
+        /// </summary>
+        public static string FeedsText
+        {
+            get
+            {
+                return _resourceLoader.GetString("FeedsText");
+            }
+        }
+        #endregion
+
         #region FollowersText
         /// <summary>
         ///   Looks up a localized string similar to: followers
@@ -76,6 +89,19 @@ namespace BlueskyClient.Strings{
             get
             {
                 return _resourceLoader.GetString("FollowersText");
+            }
+        }
+        #endregion
+
+        #region FollowingFeedName
+        /// <summary>
+        ///   Looks up a localized string similar to: Following
+        /// </summary>
+        public static string FollowingFeedName
+        {
+            get
+            {
+                return _resourceLoader.GetString("FollowingFeedName");
             }
         }
         #endregion
@@ -132,6 +158,19 @@ namespace BlueskyClient.Strings{
         }
         #endregion
 
+        #region LikeText
+        /// <summary>
+        ///   Looks up a localized string similar to: Like
+        /// </summary>
+        public static string LikeText
+        {
+            get
+            {
+                return _resourceLoader.GetString("LikeText");
+            }
+        }
+        #endregion
+
         #region ManageAccountText
         /// <summary>
         ///   Looks up a localized string similar to: Manage account
@@ -141,6 +180,32 @@ namespace BlueskyClient.Strings{
             get
             {
                 return _resourceLoader.GetString("ManageAccountText");
+            }
+        }
+        #endregion
+
+        #region MyFeedsSubtitle
+        /// <summary>
+        ///   Looks up a localized string similar to: All the feeds you've saved, all in one place
+        /// </summary>
+        public static string MyFeedsSubtitle
+        {
+            get
+            {
+                return _resourceLoader.GetString("MyFeedsSubtitle");
+            }
+        }
+        #endregion
+
+        #region MyFeedsTitle
+        /// <summary>
+        ///   Looks up a localized string similar to: My Feeds
+        /// </summary>
+        public static string MyFeedsTitle
+        {
+            get
+            {
+                return _resourceLoader.GetString("MyFeedsTitle");
             }
         }
         #endregion
@@ -249,6 +314,32 @@ namespace BlueskyClient.Strings{
         }
         #endregion
 
+        #region PinnedFeedsSubtitle
+        /// <summary>
+        ///   Looks up a localized string similar to: Select a feed to change your view
+        /// </summary>
+        public static string PinnedFeedsSubtitle
+        {
+            get
+            {
+                return _resourceLoader.GetString("PinnedFeedsSubtitle");
+            }
+        }
+        #endregion
+
+        #region PinnedFeedsTitle
+        /// <summary>
+        ///   Looks up a localized string similar to: Pinned Feeds
+        /// </summary>
+        public static string PinnedFeedsTitle
+        {
+            get
+            {
+                return _resourceLoader.GetString("PinnedFeedsTitle");
+            }
+        }
+        #endregion
+
         #region PostedReplyText
         /// <summary>
         ///   Looks up a localized string similar to: Posted a reply
@@ -288,6 +379,19 @@ namespace BlueskyClient.Strings{
         }
         #endregion
 
+        #region ReplyText
+        /// <summary>
+        ///   Looks up a localized string similar to: Reply
+        /// </summary>
+        public static string ReplyText
+        {
+            get
+            {
+                return _resourceLoader.GetString("ReplyText");
+            }
+        }
+        #endregion
+
         #region RepostCaption
         /// <summary>
         ///   Looks up a localized string similar to: Reposted by {0}
@@ -297,6 +401,19 @@ namespace BlueskyClient.Strings{
             get
             {
                 return _resourceLoader.GetString("RepostCaption");
+            }
+        }
+        #endregion
+
+        #region RepostText
+        /// <summary>
+        ///   Looks up a localized string similar to: Repost
+        /// </summary>
+        public static string RepostText
+        {
+            get
+            {
+                return _resourceLoader.GetString("RepostText");
             }
         }
         #endregion
@@ -445,12 +562,17 @@ namespace BlueskyClient.Strings{
             BackText,
             CancelText,
             CloseText,
+            FeedsText,
             FollowersText,
+            FollowingFeedName,
             FollowingText,
             HomeText,
             IdentifierBoxPlaceholder,
             ImageSelectText,
+            LikeText,
             ManageAccountText,
+            MyFeedsSubtitle,
+            MyFeedsTitle,
             NewPostPlaceholder,
             NewPostText,
             NotificationsFollowedText,
@@ -459,10 +581,14 @@ namespace BlueskyClient.Strings{
             NotificationsText,
             OkayText,
             PasswordBoxPlaceholder,
+            PinnedFeedsSubtitle,
+            PinnedFeedsTitle,
             PostedReplyText,
             PostsText,
             ProfileText,
+            ReplyText,
             RepostCaption,
+            RepostText,
             SendFeedbackText,
             SessionTimeoutDialogMessage,
             SessionTimeoutDialogTitle,

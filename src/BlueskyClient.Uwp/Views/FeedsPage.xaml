@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:BlueskyClient.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:strings="using:BlueskyClient.Strings"
     xmlns:vm="using:BlueskyClient.ViewModels"
     mc:Ignorable="d">
 
@@ -55,11 +56,11 @@
                 </Grid>
 
                 <StackPanel Grid.Column="1" Margin="12,0,0,0">
-                    <TextBlock FontWeight="SemiBold" Text="My Feeds" />
+                    <TextBlock FontWeight="SemiBold" Text="{x:Bind strings:Resources.MyFeedsTitle}" />
                     <TextBlock
                         FontSize="12"
                         Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                        Text="All the feeds you've saved, right in one place."
+                        Text="{x:Bind strings:Resources.MyFeedsSubtitle}"
                         TextWrapping="Wrap" />
                 </StackPanel>
             </Grid>

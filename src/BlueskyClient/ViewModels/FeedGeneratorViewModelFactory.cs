@@ -1,5 +1,7 @@
-﻿using System;
-using Bluesky.NET.Models;
+﻿using Bluesky.NET.Models;
+using JeniusApps.Common.Tools;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace BlueskyClient.ViewModels;
 
@@ -14,6 +16,8 @@ public class FeedGeneratorViewModelFactory : IFeedGeneratorViewModelFactory
 
     public FeedGeneratorViewModel Create(FeedGenerator feedGenerator)
     {
-        return new FeedGeneratorViewModel(feedGenerator);
+        return new FeedGeneratorViewModel(
+            feedGenerator,
+            _serviceProvider.GetRequiredService<ILocalizer>());
     }
 }

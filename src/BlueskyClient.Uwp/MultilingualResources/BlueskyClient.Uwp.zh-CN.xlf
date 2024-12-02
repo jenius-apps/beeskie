@@ -134,6 +134,42 @@
           <source>Uploading</source>
           <target state="translated">上传</target>
         </trans-unit>
+        <trans-unit id="FeedsText" translate="yes" xml:space="preserve">
+          <source>Feeds</source>
+          <target state="new">Feeds</target>
+        </trans-unit>
+        <trans-unit id="LikeText" translate="yes" xml:space="preserve">
+          <source>Like</source>
+          <target state="new">Like</target>
+        </trans-unit>
+        <trans-unit id="ReplyText" translate="yes" xml:space="preserve">
+          <source>Reply</source>
+          <target state="new">Reply</target>
+        </trans-unit>
+        <trans-unit id="RepostText" translate="yes" xml:space="preserve">
+          <source>Repost</source>
+          <target state="new">Repost</target>
+        </trans-unit>
+        <trans-unit id="FollowingFeedName" translate="yes" xml:space="preserve">
+          <source>Following</source>
+          <target state="new">Following</target>
+        </trans-unit>
+        <trans-unit id="MyFeedsSubtitle" translate="yes" xml:space="preserve">
+          <source>All the feeds you've saved, all in one place</source>
+          <target state="new">All the feeds you've saved, all in one place</target>
+        </trans-unit>
+        <trans-unit id="MyFeedsTitle" translate="yes" xml:space="preserve">
+          <source>My Feeds</source>
+          <target state="new">My Feeds</target>
+        </trans-unit>
+        <trans-unit id="PinnedFeedsSubtitle" translate="yes" xml:space="preserve">
+          <source>Select a feed to change your view</source>
+          <target state="new">Select a feed to change your view</target>
+        </trans-unit>
+        <trans-unit id="PinnedFeedsTitle" translate="yes" xml:space="preserve">
+          <source>Pinned Feeds</source>
+          <target state="new">Pinned Feeds</target>
+        </trans-unit>
       </group>
     </body>
   </file>

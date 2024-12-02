@@ -7,6 +7,7 @@
     xmlns:ex="using:JeniusApps.Common.UI.Uwp"
     xmlns:local="using:BlueskyClient.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:strings="using:BlueskyClient.Strings"
     xmlns:templates="using:BlueskyClient.ResourceDictionaries"
     xmlns:vm="using:BlueskyClient.ViewModels"
     mc:Ignorable="d">
@@ -90,11 +91,11 @@
                 </Grid>
 
                 <StackPanel Grid.Column="1" Margin="12,0,0,0">
-                    <TextBlock FontWeight="SemiBold" Text="Pinned feeds" />
+                    <TextBlock FontWeight="SemiBold" Text="{x:Bind strings:Resources.PinnedFeedsTitle}" />
                     <TextBlock
                         FontSize="12"
                         Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                        Text="Select a feed to change your view"
+                        Text="{x:Bind strings:Resources.PinnedFeedsSubtitle}"
                         TextWrapping="Wrap" />
                 </StackPanel>
             </Grid>
