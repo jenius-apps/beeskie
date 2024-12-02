@@ -108,4 +108,31 @@
   <data name="UploadingText" xml:space="preserve">
     <value>上传</value>
   </data>
+  <data name="FeedsText" xml:space="preserve">
+    <value>饲料</value>
+  </data>
+  <data name="LikeText" xml:space="preserve">
+    <value>喜欢</value>
+  </data>
+  <data name="ReplyText" xml:space="preserve">
+    <value>答</value>
+  </data>
+  <data name="RepostText" xml:space="preserve">
+    <value>转贴</value>
+  </data>
+  <data name="FollowingFeedName" xml:space="preserve">
+    <value>以后</value>
+  </data>
+  <data name="MyFeedsSubtitle" xml:space="preserve">
+    <value>您保存的所有源都集中在一个位置</value>
+  </data>
+  <data name="MyFeedsTitle" xml:space="preserve">
+    <value>我的源</value>
+  </data>
+  <data name="PinnedFeedsSubtitle" xml:space="preserve">
+    <value>选择源以更改视图</value>
+  </data>
+  <data name="PinnedFeedsTitle" xml:space="preserve">
+    <value>固定源</value>
+  </data>
 </root>

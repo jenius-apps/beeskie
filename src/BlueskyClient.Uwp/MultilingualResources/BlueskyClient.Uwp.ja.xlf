@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
-  <file datatype="xml" source-language="en-US" target-language="pl" original="BLUESKYCLIENT.UWP/STRINGS/EN-US/RESOURCES.RESW" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+  <file datatype="xml" source-language="en-US" target-language="ja" original="BLUESKYCLIENT.UWP/STRINGS/EN-US/RESOURCES.RESW" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
     <header>
       <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="1.0.0.0" tool-company="Microsoft" />
     </header>
@@ -8,167 +8,167 @@
       <group id="BLUESKYCLIENT.UWP/STRINGS/EN-US/RESOURCES.RESW" datatype="resx">
         <trans-unit id="AppPasswordHelpText" translate="yes" xml:space="preserve">
           <source>What's an App Password?</source>
-          <target state="translated">Czym jest hasło do aplikacji?</target>
+          <target state="translated">アプリパスワードとは?</target>
         </trans-unit>
         <trans-unit id="BackText" translate="yes" xml:space="preserve">
           <source>Back</source>
-          <target state="translated">Wstecz</target>
+          <target state="translated">戻る</target>
         </trans-unit>
         <trans-unit id="CancelText" translate="yes" xml:space="preserve">
           <source>Cancel</source>
-          <target state="translated">Anuluj</target>
+          <target state="translated">キャンセル</target>
         </trans-unit>
         <trans-unit id="CloseText" translate="yes" xml:space="preserve">
           <source>Close</source>
-          <target state="translated">Zamknij</target>
-        </trans-unit>
-        <trans-unit id="FollowersText" translate="yes" xml:space="preserve">
-          <source>followers</source>
-          <target state="translated">obserwujących</target>
-        </trans-unit>
-        <trans-unit id="FollowingText" translate="yes" xml:space="preserve">
-          <source>following</source>
-          <target state="translated">obserwowanych</target>
-        </trans-unit>
-        <trans-unit id="HomeText" translate="yes" xml:space="preserve">
-          <source>Home</source>
-          <target state="translated">Główna</target>
-        </trans-unit>
-        <trans-unit id="IdentifierBoxPlaceholder" translate="yes" xml:space="preserve">
-          <source>Bluesky email or username</source>
-          <target state="translated">Adres e-mail lub nazwa użytkownika Bluesky</target>
-        </trans-unit>
-        <trans-unit id="ManageAccountText" translate="yes" xml:space="preserve">
-          <source>Manage account</source>
-          <target state="translated">Zarządzaj kontem</target>
-        </trans-unit>
-        <trans-unit id="NewPostPlaceholder" translate="yes" xml:space="preserve">
-          <source>What's up?</source>
-          <target state="translated">Co tam?</target>
-        </trans-unit>
-        <trans-unit id="NewPostText" translate="yes" xml:space="preserve">
-          <source>New Post</source>
-          <target state="translated">Nowy post</target>
-        </trans-unit>
-        <trans-unit id="NotificationsFollowedText" translate="yes" xml:space="preserve">
-          <source>{0} followed you</source>
-          <target state="translated">{0} teraz Cię obserwuje</target>
-        </trans-unit>
-        <trans-unit id="NotificationsLikedText" translate="yes" xml:space="preserve">
-          <source>{0} liked your post</source>
-          <target state="translated">{0} lubi Twój post</target>
-        </trans-unit>
-        <trans-unit id="NotificationsRepostedText" translate="yes" xml:space="preserve">
-          <source>{0} reposted your post</source>
-          <target state="translated">{0} zrepostował(a) Twój post</target>
-        </trans-unit>
-        <trans-unit id="NotificationsText" translate="yes" xml:space="preserve">
-          <source>Notifications</source>
-          <target state="translated">Powiadomienia</target>
-        </trans-unit>
-        <trans-unit id="OkayText" translate="yes" xml:space="preserve">
-          <source>Okay</source>
-          <target state="translated">Okej</target>
-        </trans-unit>
-        <trans-unit id="PasswordBoxPlaceholder" translate="yes" xml:space="preserve">
-          <source>Your special App Password</source>
-          <target state="translated">Twoje specjalne hasło do aplikacji</target>
-        </trans-unit>
-        <trans-unit id="PostedReplyText" translate="yes" xml:space="preserve">
-          <source>Posted a reply</source>
-          <target state="translated">Dodał(a) odpowiedź</target>
-        </trans-unit>
-        <trans-unit id="PostsText" translate="yes" xml:space="preserve">
-          <source>posts</source>
-          <target state="translated">Posty</target>
-        </trans-unit>
-        <trans-unit id="ProfileText" translate="yes" xml:space="preserve">
-          <source>Profile</source>
-          <target state="translated">Profil</target>
-        </trans-unit>
-        <trans-unit id="RepostCaption" translate="yes" xml:space="preserve">
-          <source>Reposted by {0}</source>
-          <target state="translated">Repostowane przez {0}</target>
-        </trans-unit>
-        <trans-unit id="SendFeedbackText" translate="yes" xml:space="preserve">
-          <source>Send feedback</source>
-          <target state="translated">Wyślij opinię</target>
-        </trans-unit>
-        <trans-unit id="SessionTimeoutDialogMessage" translate="yes" xml:space="preserve">
-          <source>Your session expired, and you'll need to sign in again.</source>
-          <target state="translated">Twoja sesja wygasła i musisz zalogować się ponownie.</target>
-        </trans-unit>
-        <trans-unit id="SessionTimeoutDialogTitle" translate="yes" xml:space="preserve">
-          <source>Sign in required</source>
-          <target state="translated">Wymagane logowanie</target>
-        </trans-unit>
-        <trans-unit id="SignInText" translate="yes" xml:space="preserve">
-          <source>Sign in</source>
-          <target state="translated">Rejestracja</target>
-        </trans-unit>
-        <trans-unit id="SignOutDialogMessage" translate="yes" xml:space="preserve">
-          <source>Are you sure? You will return to the sign in page.</source>
-          <target state="translated">Na pewno? Nastąpi powrót do strony logowania.</target>
-        </trans-unit>
-        <trans-unit id="SignOutDialogTitle" translate="yes" xml:space="preserve">
-          <source>Signing out</source>
-          <target state="translated">Wylogowywanie</target>
-        </trans-unit>
-        <trans-unit id="SignOutText" translate="yes" xml:space="preserve">
-          <source>Sign out</source>
-          <target state="translated">Wyloguj się</target>
-        </trans-unit>
-        <trans-unit id="StarterPackByText" translate="yes" xml:space="preserve">
-          <source>Starter pack by {0}</source>
-          <target state="translated">Pakiet startowy od {0}</target>
-        </trans-unit>
-        <trans-unit id="SubmitText" translate="yes" xml:space="preserve">
-          <source>Submit</source>
-          <target state="translated">Prześlij</target>
-        </trans-unit>
-        <trans-unit id="ImageSelectText" translate="yes" xml:space="preserve">
-          <source>Add image</source>
-          <target state="translated">Dodaj obraz</target>
-        </trans-unit>
-        <trans-unit id="UploadingText" translate="yes" xml:space="preserve">
-          <source>Uploading</source>
-          <target state="translated">Przesyłanie</target>
+          <target state="translated">閉める</target>
         </trans-unit>
         <trans-unit id="FeedsText" translate="yes" xml:space="preserve">
           <source>Feeds</source>
-          <target state="translated">Kanały</target>
+          <target state="translated">フィード</target>
         </trans-unit>
-        <trans-unit id="LikeText" translate="yes" xml:space="preserve">
-          <source>Like</source>
-          <target state="translated">Lubić</target>
-        </trans-unit>
-        <trans-unit id="ReplyText" translate="yes" xml:space="preserve">
-          <source>Reply</source>
-          <target state="translated">Odpowiedź</target>
-        </trans-unit>
-        <trans-unit id="RepostText" translate="yes" xml:space="preserve">
-          <source>Repost</source>
-          <target state="new">Repost</target>
+        <trans-unit id="FollowersText" translate="yes" xml:space="preserve">
+          <source>followers</source>
+          <target state="translated">取り巻き</target>
         </trans-unit>
         <trans-unit id="FollowingFeedName" translate="yes" xml:space="preserve">
           <source>Following</source>
-          <target state="translated">Następujący</target>
+          <target state="translated">次</target>
+        </trans-unit>
+        <trans-unit id="FollowingText" translate="yes" xml:space="preserve">
+          <source>following</source>
+          <target state="translated">次</target>
+        </trans-unit>
+        <trans-unit id="HomeText" translate="yes" xml:space="preserve">
+          <source>Home</source>
+          <target state="translated">家</target>
+        </trans-unit>
+        <trans-unit id="IdentifierBoxPlaceholder" translate="yes" xml:space="preserve">
+          <source>Bluesky email or username</source>
+          <target state="translated">Blueskyのメールアドレスまたはユーザー名</target>
+        </trans-unit>
+        <trans-unit id="ImageSelectText" translate="yes" xml:space="preserve">
+          <source>Add image</source>
+          <target state="translated">画像を追加</target>
+        </trans-unit>
+        <trans-unit id="LikeText" translate="yes" xml:space="preserve">
+          <source>Like</source>
+          <target state="translated">という感じで</target>
+        </trans-unit>
+        <trans-unit id="ManageAccountText" translate="yes" xml:space="preserve">
+          <source>Manage account</source>
+          <target state="translated">アカウントの管理</target>
         </trans-unit>
         <trans-unit id="MyFeedsSubtitle" translate="yes" xml:space="preserve">
           <source>All the feeds you've saved, all in one place</source>
-          <target state="translated">Wszystkie zapisane kanały w jednym miejscu</target>
+          <target state="translated">保存したすべてのフィードを 1 か所にまとめる</target>
         </trans-unit>
         <trans-unit id="MyFeedsTitle" translate="yes" xml:space="preserve">
           <source>My Feeds</source>
-          <target state="translated">Moje kanały informacyjne</target>
+          <target state="translated">マイフィード</target>
+        </trans-unit>
+        <trans-unit id="NewPostPlaceholder" translate="yes" xml:space="preserve">
+          <source>What's up?</source>
+          <target state="translated">最近どうですか。</target>
+        </trans-unit>
+        <trans-unit id="NewPostText" translate="yes" xml:space="preserve">
+          <source>New Post</source>
+          <target state="translated">新しい投稿</target>
+        </trans-unit>
+        <trans-unit id="NotificationsFollowedText" translate="yes" xml:space="preserve">
+          <source>{0} followed you</source>
+          <target state="translated">{0}あなたをフォローしました</target>
+        </trans-unit>
+        <trans-unit id="NotificationsLikedText" translate="yes" xml:space="preserve">
+          <source>{0} liked your post</source>
+          <target state="translated">{0}あなたの投稿をいいねしました</target>
+        </trans-unit>
+        <trans-unit id="NotificationsRepostedText" translate="yes" xml:space="preserve">
+          <source>{0} reposted your post</source>
+          <target state="translated">{0}投稿を再投稿しました</target>
+        </trans-unit>
+        <trans-unit id="NotificationsText" translate="yes" xml:space="preserve">
+          <source>Notifications</source>
+          <target state="translated">通知</target>
+        </trans-unit>
+        <trans-unit id="OkayText" translate="yes" xml:space="preserve">
+          <source>Okay</source>
+          <target state="translated">大丈夫です</target>
+        </trans-unit>
+        <trans-unit id="PasswordBoxPlaceholder" translate="yes" xml:space="preserve">
+          <source>Your special App Password</source>
+          <target state="translated">特別なアプリパスワード</target>
         </trans-unit>
         <trans-unit id="PinnedFeedsSubtitle" translate="yes" xml:space="preserve">
           <source>Select a feed to change your view</source>
-          <target state="translated">Wybierz plik danych, aby zmienić widok</target>
+          <target state="translated">フィードを選択してビューを変更する</target>
         </trans-unit>
         <trans-unit id="PinnedFeedsTitle" translate="yes" xml:space="preserve">
           <source>Pinned Feeds</source>
-          <target state="translated">Przypięte kanały informacyjne</target>
+          <target state="translated">ピン留めされたフィード</target>
+        </trans-unit>
+        <trans-unit id="PostedReplyText" translate="yes" xml:space="preserve">
+          <source>Posted a reply</source>
+          <target state="translated">返信を投稿しました</target>
+        </trans-unit>
+        <trans-unit id="PostsText" translate="yes" xml:space="preserve">
+          <source>posts</source>
+          <target state="translated">楨</target>
+        </trans-unit>
+        <trans-unit id="ProfileText" translate="yes" xml:space="preserve">
+          <source>Profile</source>
+          <target state="translated">プロフィール</target>
+        </trans-unit>
+        <trans-unit id="ReplyText" translate="yes" xml:space="preserve">
+          <source>Reply</source>
+          <target state="translated">答える</target>
+        </trans-unit>
+        <trans-unit id="RepostCaption" translate="yes" xml:space="preserve">
+          <source>Reposted by {0}</source>
+          <target state="translated">再投稿 {0}</target>
+        </trans-unit>
+        <trans-unit id="RepostText" translate="yes" xml:space="preserve">
+          <source>Repost</source>
+          <target state="translated">再</target>
+        </trans-unit>
+        <trans-unit id="SendFeedbackText" translate="yes" xml:space="preserve">
+          <source>Send feedback</source>
+          <target state="translated">フィードバックの送信</target>
+        </trans-unit>
+        <trans-unit id="SessionTimeoutDialogMessage" translate="yes" xml:space="preserve">
+          <source>Your session expired, and you'll need to sign in again.</source>
+          <target state="translated">セッションの有効期限が切れたため、再度サインインする必要があります。</target>
+        </trans-unit>
+        <trans-unit id="SessionTimeoutDialogTitle" translate="yes" xml:space="preserve">
+          <source>Sign in required</source>
+          <target state="translated">サインインが必要です</target>
+        </trans-unit>
+        <trans-unit id="SignInText" translate="yes" xml:space="preserve">
+          <source>Sign in</source>
+          <target state="translated">サインイン</target>
+        </trans-unit>
+        <trans-unit id="SignOutDialogMessage" translate="yes" xml:space="preserve">
+          <source>Are you sure? You will return to the sign in page.</source>
+          <target state="translated">確かですか。サインイン ページに戻ります。</target>
+        </trans-unit>
+        <trans-unit id="SignOutDialogTitle" translate="yes" xml:space="preserve">
+          <source>Signing out</source>
+          <target state="translated">サインアウト</target>
+        </trans-unit>
+        <trans-unit id="SignOutText" translate="yes" xml:space="preserve">
+          <source>Sign out</source>
+          <target state="translated">サインアウト</target>
+        </trans-unit>
+        <trans-unit id="StarterPackByText" translate="yes" xml:space="preserve">
+          <source>Starter pack by {0}</source>
+          <target state="translated">スターターパック by {0}</target>
+        </trans-unit>
+        <trans-unit id="SubmitText" translate="yes" xml:space="preserve">
+          <source>Submit</source>
+          <target state="translated">送信</target>
+        </trans-unit>
+        <trans-unit id="UploadingText" translate="yes" xml:space="preserve">
+          <source>Uploading</source>
+          <target state="translated">アップロード</target>
         </trans-unit>
       </group>
     </body>

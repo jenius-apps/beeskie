@@ -136,39 +136,39 @@
         </trans-unit>
         <trans-unit id="FeedsText" translate="yes" xml:space="preserve">
           <source>Feeds</source>
-          <target state="new">Feeds</target>
+          <target state="translated">Alimenta</target>
         </trans-unit>
         <trans-unit id="LikeText" translate="yes" xml:space="preserve">
           <source>Like</source>
-          <target state="new">Like</target>
+          <target state="translated">Gustar</target>
         </trans-unit>
         <trans-unit id="ReplyText" translate="yes" xml:space="preserve">
           <source>Reply</source>
-          <target state="new">Reply</target>
+          <target state="translated">Respuesta</target>
         </trans-unit>
         <trans-unit id="RepostText" translate="yes" xml:space="preserve">
           <source>Repost</source>
-          <target state="new">Repost</target>
+          <target state="translated">Repostear</target>
         </trans-unit>
         <trans-unit id="FollowingFeedName" translate="yes" xml:space="preserve">
           <source>Following</source>
-          <target state="new">Following</target>
+          <target state="translated">Siguiente</target>
         </trans-unit>
         <trans-unit id="MyFeedsSubtitle" translate="yes" xml:space="preserve">
           <source>All the feeds you've saved, all in one place</source>
-          <target state="new">All the feeds you've saved, all in one place</target>
+          <target state="translated">Todos los feeds que has guardado, todo en un solo lugar</target>
         </trans-unit>
         <trans-unit id="MyFeedsTitle" translate="yes" xml:space="preserve">
           <source>My Feeds</source>
-          <target state="new">My Feeds</target>
+          <target state="translated">Mis Feeds</target>
         </trans-unit>
         <trans-unit id="PinnedFeedsSubtitle" translate="yes" xml:space="preserve">
           <source>Select a feed to change your view</source>
-          <target state="new">Select a feed to change your view</target>
+          <target state="translated">Selecciona un feed para cambiar la vista</target>
         </trans-unit>
         <trans-unit id="PinnedFeedsTitle" translate="yes" xml:space="preserve">
           <source>Pinned Feeds</source>
-          <target state="new">Pinned Feeds</target>
+          <target state="translated">Feeds anclados</target>
         </trans-unit>
       </group>
     </body>

@@ -108,4 +108,31 @@
   <data name="UploadingText" xml:space="preserve">
     <value>Cargar</value>
   </data>
+  <data name="FeedsText" xml:space="preserve">
+    <value>Alimenta</value>
+  </data>
+  <data name="LikeText" xml:space="preserve">
+    <value>Gustar</value>
+  </data>
+  <data name="ReplyText" xml:space="preserve">
+    <value>Respuesta</value>
+  </data>
+  <data name="RepostText" xml:space="preserve">
+    <value>Repostear</value>
+  </data>
+  <data name="FollowingFeedName" xml:space="preserve">
+    <value>Siguiente</value>
+  </data>
+  <data name="MyFeedsSubtitle" xml:space="preserve">
+    <value>Todos los feeds que has guardado, todo en un solo lugar</value>
+  </data>
+  <data name="MyFeedsTitle" xml:space="preserve">
+    <value>Mis Feeds</value>
+  </data>
+  <data name="PinnedFeedsSubtitle" xml:space="preserve">
+    <value>Selecciona un feed para cambiar la vista</value>
+  </data>
+  <data name="PinnedFeedsTitle" xml:space="preserve">
+    <value>Feeds anclados</value>
+  </data>
 </root>

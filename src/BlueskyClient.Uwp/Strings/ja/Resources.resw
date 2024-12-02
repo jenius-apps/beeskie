@@ -13,123 +13,126 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppPasswordHelpText" xml:space="preserve">
-    <value>Czym jest hasło do aplikacji?</value>
+    <value>アプリパスワードとは?</value>
   </data>
   <data name="BackText" xml:space="preserve">
-    <value>Wstecz</value>
+    <value>戻る</value>
   </data>
   <data name="CancelText" xml:space="preserve">
-    <value>Anuluj</value>
+    <value>キャンセル</value>
   </data>
   <data name="CloseText" xml:space="preserve">
-    <value>Zamknij</value>
-  </data>
-  <data name="FollowersText" xml:space="preserve">
-    <value>obserwujących</value>
-  </data>
-  <data name="FollowingText" xml:space="preserve">
-    <value>obserwowanych</value>
-  </data>
-  <data name="HomeText" xml:space="preserve">
-    <value>Główna</value>
-  </data>
-  <data name="IdentifierBoxPlaceholder" xml:space="preserve">
-    <value>Adres e-mail lub nazwa użytkownika Bluesky</value>
-  </data>
-  <data name="ManageAccountText" xml:space="preserve">
-    <value>Zarządzaj kontem</value>
-  </data>
-  <data name="NewPostPlaceholder" xml:space="preserve">
-    <value>Co tam?</value>
-  </data>
-  <data name="NewPostText" xml:space="preserve">
-    <value>Nowy post</value>
-  </data>
-  <data name="NotificationsFollowedText" xml:space="preserve">
-    <value>{0} teraz Cię obserwuje</value>
-  </data>
-  <data name="NotificationsLikedText" xml:space="preserve">
-    <value>{0} lubi Twój post</value>
-  </data>
-  <data name="NotificationsRepostedText" xml:space="preserve">
-    <value>{0} zrepostował(a) Twój post</value>
-  </data>
-  <data name="NotificationsText" xml:space="preserve">
-    <value>Powiadomienia</value>
-  </data>
-  <data name="OkayText" xml:space="preserve">
-    <value>Okej</value>
-  </data>
-  <data name="PasswordBoxPlaceholder" xml:space="preserve">
-    <value>Twoje specjalne hasło do aplikacji</value>
-  </data>
-  <data name="PostedReplyText" xml:space="preserve">
-    <value>Dodał(a) odpowiedź</value>
-  </data>
-  <data name="PostsText" xml:space="preserve">
-    <value>Posty</value>
-  </data>
-  <data name="ProfileText" xml:space="preserve">
-    <value>Profil</value>
-  </data>
-  <data name="RepostCaption" xml:space="preserve">
-    <value>Repostowane przez {0}</value>
-  </data>
-  <data name="SendFeedbackText" xml:space="preserve">
-    <value>Wyślij opinię</value>
-  </data>
-  <data name="SessionTimeoutDialogMessage" xml:space="preserve">
-    <value>Twoja sesja wygasła i musisz zalogować się ponownie.</value>
-  </data>
-  <data name="SessionTimeoutDialogTitle" xml:space="preserve">
-    <value>Wymagane logowanie</value>
-  </data>
-  <data name="SignInText" xml:space="preserve">
-    <value>Rejestracja</value>
-  </data>
-  <data name="SignOutDialogMessage" xml:space="preserve">
-    <value>Na pewno? Nastąpi powrót do strony logowania.</value>
-  </data>
-  <data name="SignOutDialogTitle" xml:space="preserve">
-    <value>Wylogowywanie</value>
-  </data>
-  <data name="SignOutText" xml:space="preserve">
-    <value>Wyloguj się</value>
-  </data>
-  <data name="StarterPackByText" xml:space="preserve">
-    <value>Pakiet startowy od {0}</value>
-  </data>
-  <data name="SubmitText" xml:space="preserve">
-    <value>Prześlij</value>
-  </data>
-  <data name="ImageSelectText" xml:space="preserve">
-    <value>Dodaj obraz</value>
-  </data>
-  <data name="UploadingText" xml:space="preserve">
-    <value>Przesyłanie</value>
+    <value>閉める</value>
   </data>
   <data name="FeedsText" xml:space="preserve">
-    <value>Kanały</value>
+    <value>フィード</value>
   </data>
-  <data name="LikeText" xml:space="preserve">
-    <value>Lubić</value>
-  </data>
-  <data name="ReplyText" xml:space="preserve">
-    <value>Odpowiedź</value>
+  <data name="FollowersText" xml:space="preserve">
+    <value>取り巻き</value>
   </data>
   <data name="FollowingFeedName" xml:space="preserve">
-    <value>Następujący</value>
+    <value>次</value>
+  </data>
+  <data name="FollowingText" xml:space="preserve">
+    <value>次</value>
+  </data>
+  <data name="HomeText" xml:space="preserve">
+    <value>家</value>
+  </data>
+  <data name="IdentifierBoxPlaceholder" xml:space="preserve">
+    <value>Blueskyのメールアドレスまたはユーザー名</value>
+  </data>
+  <data name="ImageSelectText" xml:space="preserve">
+    <value>画像を追加</value>
+  </data>
+  <data name="LikeText" xml:space="preserve">
+    <value>という感じで</value>
+  </data>
+  <data name="ManageAccountText" xml:space="preserve">
+    <value>アカウントの管理</value>
   </data>
   <data name="MyFeedsSubtitle" xml:space="preserve">
-    <value>Wszystkie zapisane kanały w jednym miejscu</value>
+    <value>保存したすべてのフィードを 1 か所にまとめる</value>
   </data>
   <data name="MyFeedsTitle" xml:space="preserve">
-    <value>Moje kanały informacyjne</value>
+    <value>マイフィード</value>
+  </data>
+  <data name="NewPostPlaceholder" xml:space="preserve">
+    <value>最近どうですか。</value>
+  </data>
+  <data name="NewPostText" xml:space="preserve">
+    <value>新しい投稿</value>
+  </data>
+  <data name="NotificationsFollowedText" xml:space="preserve">
+    <value>{0}あなたをフォローしました</value>
+  </data>
+  <data name="NotificationsLikedText" xml:space="preserve">
+    <value>{0}あなたの投稿をいいねしました</value>
+  </data>
+  <data name="NotificationsRepostedText" xml:space="preserve">
+    <value>{0}投稿を再投稿しました</value>
+  </data>
+  <data name="NotificationsText" xml:space="preserve">
+    <value>通知</value>
+  </data>
+  <data name="OkayText" xml:space="preserve">
+    <value>大丈夫です</value>
+  </data>
+  <data name="PasswordBoxPlaceholder" xml:space="preserve">
+    <value>特別なアプリパスワード</value>
   </data>
   <data name="PinnedFeedsSubtitle" xml:space="preserve">
-    <value>Wybierz plik danych, aby zmienić widok</value>
+    <value>フィードを選択してビューを変更する</value>
   </data>
   <data name="PinnedFeedsTitle" xml:space="preserve">
-    <value>Przypięte kanały informacyjne</value>
+    <value>ピン留めされたフィード</value>
+  </data>
+  <data name="PostedReplyText" xml:space="preserve">
+    <value>返信を投稿しました</value>
+  </data>
+  <data name="PostsText" xml:space="preserve">
+    <value>楨</value>
+  </data>
+  <data name="ProfileText" xml:space="preserve">
+    <value>プロフィール</value>
+  </data>
+  <data name="ReplyText" xml:space="preserve">
+    <value>答える</value>
+  </data>
+  <data name="RepostCaption" xml:space="preserve">
+    <value>再投稿 {0}</value>
+  </data>
+  <data name="RepostText" xml:space="preserve">
+    <value>再</value>
+  </data>
+  <data name="SendFeedbackText" xml:space="preserve">
+    <value>フィードバックの送信</value>
+  </data>
+  <data name="SessionTimeoutDialogMessage" xml:space="preserve">
+    <value>セッションの有効期限が切れたため、再度サインインする必要があります。</value>
+  </data>
+  <data name="SessionTimeoutDialogTitle" xml:space="preserve">
+    <value>サインインが必要です</value>
+  </data>
+  <data name="SignInText" xml:space="preserve">
+    <value>サインイン</value>
+  </data>
+  <data name="SignOutDialogMessage" xml:space="preserve">
+    <value>確かですか。サインイン ページに戻ります。</value>
+  </data>
+  <data name="SignOutDialogTitle" xml:space="preserve">
+    <value>サインアウト</value>
+  </data>
+  <data name="SignOutText" xml:space="preserve">
+    <value>サインアウト</value>
+  </data>
+  <data name="StarterPackByText" xml:space="preserve">
+    <value>スターターパック by {0}</value>
+  </data>
+  <data name="SubmitText" xml:space="preserve">
+    <value>送信</value>
+  </data>
+  <data name="UploadingText" xml:space="preserve">
+    <value>アップロード</value>
   </data>
 </root>
