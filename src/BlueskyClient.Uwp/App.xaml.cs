@@ -59,6 +59,7 @@ sealed partial class App : Application
         {
             await serviceProvider.GetRequiredService<ITelemetry>().FlushAsync();
         }
+        d.Complete();
     }
 
     protected override async void OnLaunched(LaunchActivatedEventArgs args)
