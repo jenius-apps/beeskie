@@ -1,8 +1,10 @@
 ﻿using BlueskyClient.Collections;
 using BlueskyClient.ViewModels;
+using CommunityToolkit.WinUI;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -40,6 +42,15 @@ public sealed partial class HomePage : Page
         if (e.AddedItems.FirstOrDefault() is FeedGeneratorViewModel vm)
         {
             await ViewModel.ChangeFeedsCommand.ExecuteAsync(vm);
+        }
+    }
+
+    private void OnListViewLoaded(object sender, RoutedEventArgs e)
+    {
+        if (sender is ListView listView &&
+            listView.FindDescendant<ScrollViewer>() is ScrollViewer s)
+        {
+            s.CanContentRenderOutsideBounds = true;
         }
     }
 }

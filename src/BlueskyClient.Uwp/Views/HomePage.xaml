@@ -35,6 +35,12 @@
                     VerticalAlignment="Center"
                     FontWeight="SemiBold"
                     Text="{x:Bind ViewModel.SelectedFeed.DisplayName, Mode=OneWay}" />
+
+                <Rectangle
+                    Height="1"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Bottom"
+                    Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
             </Grid>
 
             <ListView
@@ -45,6 +51,7 @@
                 IncrementalLoadingTrigger="Edge"
                 ItemTemplate="{StaticResource FeedItemTemplate}"
                 ItemsSource="{x:Bind FeedCollection}"
+                Loaded="OnListViewLoaded"
                 SelectionMode="None">
                 <ListView.ItemContainerStyle>
                     <Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
