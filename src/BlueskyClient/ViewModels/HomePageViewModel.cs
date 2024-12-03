@@ -57,7 +57,6 @@ public partial class HomePageViewModel : ObservableObject
 
     public async Task<int> LoadNextPageAsync(CancellationToken ct)
     {
-        FeedLoading = true;
         var (Items, Cursor) = SelectedFeed is { RawAtUri: string atUri, IsTimeline: false }
             ? await _timelineService.GetFeedItemsAsync(atUri, ct, _cursor)
             : await _timelineService.GetTimelineAsync(ct, _cursor);
@@ -85,6 +84,7 @@ public partial class HomePageViewModel : ObservableObject
         _cursor = null;
         FeedItems.Clear();
         SelectedFeed = vm;
+        FeedLoading = true;
         await LoadNextPageAsync(default);
     }
 }
