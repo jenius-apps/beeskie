@@ -28,6 +28,9 @@ public partial class HomePageViewModel : ObservableObject
     }
 
     [ObservableProperty]
+    private bool _feedLoading;
+
+    [ObservableProperty]
     private FeedGeneratorViewModel? _selectedFeed;
 
     public bool HasMoreItems => _cursor is not null;
@@ -39,6 +42,7 @@ public partial class HomePageViewModel : ObservableObject
     public async Task InitializeAsync(CancellationToken ct)
     {
         ct.ThrowIfCancellationRequested();
+        FeedLoading = true;
 
         var feedGenerators = await _feedGeneratorService.GetSavedFeedsAsync(true, ct);
         foreach (var f in feedGenerators)
@@ -53,6 +57,7 @@ public partial class HomePageViewModel : ObservableObject
 
     public async Task<int> LoadNextPageAsync(CancellationToken ct)
     {
+        FeedLoading = true;
         var (Items, Cursor) = SelectedFeed is { RawAtUri: string atUri, IsTimeline: false }
             ? await _timelineService.GetFeedItemsAsync(atUri, ct, _cursor)
             : await _timelineService.GetTimelineAsync(ct, _cursor);
@@ -63,6 +68,7 @@ public partial class HomePageViewModel : ObservableObject
         {
             var vm = _feedItemViewModelFactory.CreateViewModel(item);
             FeedItems.Add(vm);
+            FeedLoading = false;
         }
 
         return Items.Count;

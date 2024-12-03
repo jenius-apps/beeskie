@@ -2,6 +2,7 @@
     x:Class="BlueskyClient.Views.HomePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ani="using:CommunityToolkit.WinUI.Animations"
     xmlns:controls="using:BlueskyClient.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ex="using:JeniusApps.Common.UI.Uwp"
@@ -44,15 +45,23 @@
             </Grid>
 
             <ListView
+                x:Name="FeedListView"
                 Grid.Row="1"
-                Padding="0,12,0,0"
+                Padding="0,20,0,0"
                 DataFetchSize="1"
                 IncrementalLoadingThreshold="1"
                 IncrementalLoadingTrigger="Edge"
                 ItemTemplate="{StaticResource FeedItemTemplate}"
                 ItemsSource="{x:Bind FeedCollection}"
-                Loaded="OnListViewLoaded"
-                SelectionMode="None">
+                SelectionMode="None"
+                Visibility="{x:Bind ex:UIExtensions.InvertBoolToVis(ViewModel.FeedLoading), Mode=OneWay}">
+                <ani:Implicit.ShowAnimations>
+                    <ani:OpacityAnimation
+                        From="0"
+                        To="1"
+                        Duration="0:0:0.3" />
+                </ani:Implicit.ShowAnimations>
+
                 <ListView.ItemContainerStyle>
                     <Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -60,6 +69,15 @@
                     </Style>
                 </ListView.ItemContainerStyle>
             </ListView>
+
+            <StackPanel
+                Grid.Row="1"
+                Margin="0,20,0,0"
+                Visibility="{x:Bind ViewModel.FeedLoading, Mode=OneWay}">
+                <controls:FeedItemShimmer />
+                <controls:FeedItemShimmer Margin="0,12,0,0" />
+                <controls:FeedItemShimmer Margin="0,12,0,0" />
+            </StackPanel>
         </Grid>
 
         <Rectangle

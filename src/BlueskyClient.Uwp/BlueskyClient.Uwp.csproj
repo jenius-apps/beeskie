@@ -132,6 +132,9 @@
     <Compile Include="Controls\EmbeddedPost.xaml.cs">
       <DependentUpon>EmbeddedPost.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\FeedItemShimmer.xaml.cs">
+      <DependentUpon>FeedItemShimmer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\LocalImagePreview.xaml.cs">
       <DependentUpon>LocalImagePreview.xaml</DependentUpon>
     </Compile>
@@ -277,6 +280,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\EmbeddedPost.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\FeedItemShimmer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -4,6 +4,7 @@ using CommunityToolkit.WinUI;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -35,6 +36,13 @@ public sealed partial class HomePage : Page
         {
 
         }
+
+        // We set this up after the initialization because
+        // setting it up only works after the feed is visible with items.
+        // If we run it before the initialization is complete,
+        // the scrollviewer can't be found.
+        await Task.Delay(1); // Also required so that the listview's scrollviewer is discoverable.
+        SetupRenderOutsideBounds(FeedListView);
     }
 
     private async void OnFeedSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -45,9 +53,9 @@ public sealed partial class HomePage : Page
         }
     }
 
-    private void OnListViewLoaded(object sender, RoutedEventArgs e)
+    private static void SetupRenderOutsideBounds(ListView? rawListView)
     {
-        if (sender is ListView listView &&
+        if (rawListView is ListView listView &&
             listView.FindDescendant<ScrollViewer>() is ScrollViewer s)
         {
             s.CanContentRenderOutsideBounds = true;
