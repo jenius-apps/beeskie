@@ -170,6 +170,10 @@
           <source>Pinned Feeds</source>
           <target state="translated">固定源</target>
         </trans-unit>
+        <trans-unit id="RefreshText" translate="yes" xml:space="preserve">
+          <source>Refresh</source>
+          <target state="new">Refresh</target>
+        </trans-unit>
       </group>
     </body>
   </file>

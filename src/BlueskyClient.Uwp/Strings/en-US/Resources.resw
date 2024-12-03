@@ -201,6 +201,9 @@
   <data name="ProfileText" xml:space="preserve">
     <value>Profile</value>
   </data>
+  <data name="RefreshText" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
   <data name="ReplyText" xml:space="preserve">
     <value>Reply</value>
   </data>

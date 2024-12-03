@@ -170,6 +170,10 @@
           <source>Uploading</source>
           <target state="translated">アップロード</target>
         </trans-unit>
+        <trans-unit id="RefreshText" translate="yes" xml:space="preserve">
+          <source>Refresh</source>
+          <target state="new">Refresh</target>
+        </trans-unit>
       </group>
     </body>
   </file>

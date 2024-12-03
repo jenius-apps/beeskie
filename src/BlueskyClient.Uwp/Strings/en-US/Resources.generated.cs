@@ -379,6 +379,19 @@ namespace BlueskyClient.Strings{
         }
         #endregion
 
+        #region RefreshText
+        /// <summary>
+        ///   Looks up a localized string similar to: Refresh
+        /// </summary>
+        public static string RefreshText
+        {
+            get
+            {
+                return _resourceLoader.GetString("RefreshText");
+            }
+        }
+        #endregion
+
         #region ReplyText
         /// <summary>
         ///   Looks up a localized string similar to: Reply
@@ -586,6 +599,7 @@ namespace BlueskyClient.Strings{
             PostedReplyText,
             PostsText,
             ProfileText,
+            RefreshText,
             ReplyText,
             RepostCaption,
             RepostText,

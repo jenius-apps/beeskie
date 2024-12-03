@@ -38,6 +38,7 @@
                     <x:String x:Key="GlyphFeeds">&#xF57F;</x:String>
                     <x:String x:Key="GlyphPinned">&#xE840;</x:String>
                     <x:String x:Key="GlyphPinnedFillOverlay">&#xE842;</x:String>
+                    <x:String x:Key="GlyphRefresh">&#xE72C;</x:String>
                 </ResourceDictionary>
             </winui:XamlControlsResources.MergedDictionaries>
         </winui:XamlControlsResources>

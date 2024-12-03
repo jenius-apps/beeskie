@@ -81,9 +81,15 @@ public partial class HomePageViewModel : ObservableObject
             return;
         }
 
+        SelectedFeed = vm;
+        await RefreshFeedAsync();
+    }
+
+    [RelayCommand]
+    private async Task RefreshFeedAsync()
+    {
         _cursor = null;
         FeedItems.Clear();
-        SelectedFeed = vm;
         FeedLoading = true;
         await LoadNextPageAsync(default);
     }
