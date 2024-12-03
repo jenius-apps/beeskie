@@ -1,6 +1,9 @@
-﻿using BlueskyClient.Services;
+﻿using BlueskyClient.Constants;
+using BlueskyClient.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using JeniusApps.Common.Telemetry;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,18 +16,21 @@ public partial class HomePageViewModel : ObservableObject
     private readonly IFeedItemViewModelFactory _feedItemViewModelFactory;
     private readonly IFeedGeneratorService _feedGeneratorService;
     private readonly IFeedGeneratorViewModelFactory _feedGeneratorViewModelFactory;
+    private readonly ITelemetry _telemetry;
     private string? _cursor;
 
     public HomePageViewModel(
         ITimelineService timelineService,
         IFeedItemViewModelFactory feedItemViewModelFactory,
         IFeedGeneratorService feedGeneratorService,
-        IFeedGeneratorViewModelFactory feedGeneratorViewModelFactory)
+        IFeedGeneratorViewModelFactory feedGeneratorViewModelFactory,
+        ITelemetry telemetry)
     {
         _timelineService = timelineService;
         _feedItemViewModelFactory = feedItemViewModelFactory;
         _feedGeneratorService = feedGeneratorService;
         _feedGeneratorViewModelFactory = feedGeneratorViewModelFactory;
+        _telemetry = telemetry;
     }
 
     [ObservableProperty]
@@ -57,6 +63,14 @@ public partial class HomePageViewModel : ObservableObject
 
     public async Task<int> LoadNextPageAsync(CancellationToken ct)
     {
+        if (_cursor is not null)
+        {
+            _telemetry.TrackEvent(TelemetryConstants.NextPageLoaded, new Dictionary<string, string>
+            {
+                { "currentFeed", SelectedFeed?.DisplayName ?? "none" }
+            });
+        }
+
         var (Items, Cursor) = SelectedFeed is { RawAtUri: string atUri, IsTimeline: false }
             ? await _timelineService.GetFeedItemsAsync(atUri, ct, _cursor)
             : await _timelineService.GetTimelineAsync(ct, _cursor);
@@ -81,12 +95,23 @@ public partial class HomePageViewModel : ObservableObject
             return;
         }
 
+        _telemetry.TrackEvent(TelemetryConstants.FeedChanged, new Dictionary<string, string>
+        {
+            { "feedName", vm.DisplayName }
+        });
+
         SelectedFeed = vm;
-        await RefreshFeedAsync();
+        await RefreshAsync();
     }
 
     [RelayCommand]
     private async Task RefreshFeedAsync()
+    {
+        _telemetry.TrackEvent(TelemetryConstants.HomeRefreshClicked);
+        await RefreshAsync();
+    }
+
+    private async Task RefreshAsync()
     {
         _cursor = null;
         FeedItems.Clear();

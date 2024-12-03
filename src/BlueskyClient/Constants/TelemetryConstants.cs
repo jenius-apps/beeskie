@@ -30,4 +30,9 @@ public sealed class TelemetryConstants
     public const string ReplySubmitted = NewPostDialog + "replySubmitted";
     public const string NewPostAddImageSuccessful = NewPostDialog + "addImageSuccess";
     public const string NewPostAddImagedClicked = NewPostDialog + "addImageClicked";
+
+    private const string HomePage = "homePage:";
+    public const string HomeRefreshClicked = HomePage + "refreshClicked";
+    public const string FeedChanged = HomePage + "feedChanged";
+    public const string NextPageLoaded = HomePage + "nextPageLoaded";
 }
