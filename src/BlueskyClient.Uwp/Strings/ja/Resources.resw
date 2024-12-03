@@ -135,4 +135,7 @@
   <data name="UploadingText" xml:space="preserve">
     <value>アップロード</value>
   </data>
+  <data name="RefreshText" xml:space="preserve">
+    <value>リフレッシュ</value>
+  </data>
 </root>

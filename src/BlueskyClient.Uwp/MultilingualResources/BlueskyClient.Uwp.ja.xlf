@@ -172,7 +172,7 @@
         </trans-unit>
         <trans-unit id="RefreshText" translate="yes" xml:space="preserve">
           <source>Refresh</source>
-          <target state="new">Refresh</target>
+          <target state="translated">リフレッシュ</target>
         </trans-unit>
       </group>
     </body>

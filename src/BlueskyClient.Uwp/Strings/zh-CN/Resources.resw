@@ -135,4 +135,7 @@
   <data name="PinnedFeedsTitle" xml:space="preserve">
     <value>固定源</value>
   </data>
+  <data name="RefreshText" xml:space="preserve">
+    <value>刷新</value>
+  </data>
 </root>

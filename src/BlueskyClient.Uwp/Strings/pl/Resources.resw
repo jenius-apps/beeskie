@@ -132,4 +132,7 @@
   <data name="PinnedFeedsTitle" xml:space="preserve">
     <value>Przypięte kanały informacyjne</value>
   </data>
+  <data name="RefreshText" xml:space="preserve">
+    <value>Odświeżyć</value>
+  </data>
 </root>

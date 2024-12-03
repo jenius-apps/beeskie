@@ -135,4 +135,7 @@
   <data name="PinnedFeedsTitle" xml:space="preserve">
     <value>Feeds anclados</value>
   </data>
+  <data name="RefreshText" xml:space="preserve">
+    <value>Actualizar</value>
+  </data>
 </root>
