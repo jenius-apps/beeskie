@@ -172,9 +172,11 @@
             <ListView
                 Grid.Row="1"
                 Margin="0,12,0,0"
+                AutomationProperties.Name="{x:Bind strings:Resources.PinnedFeedsTitle}"
                 ItemsSource="{x:Bind ViewModel.Feeds}"
                 SelectedItem="{x:Bind ViewModel.SelectedFeed, Mode=OneWay}"
-                SelectionChanged="OnFeedSelectionChanged">
+                SelectionChanged="OnFeedSelectionChanged"
+                SingleSelectionFollowsFocus="False">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="vm:FeedGeneratorViewModel">
                         <StackPanel>
