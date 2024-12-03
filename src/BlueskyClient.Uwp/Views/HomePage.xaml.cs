@@ -20,6 +20,8 @@ public sealed partial class HomePage : Page
         this.InitializeComponent();
         ViewModel = App.Services.GetRequiredService<HomePageViewModel>();
         FeedCollection = new HomeFeedCollection(ViewModel);
+
+        Window.Current.SetTitleBar(TitleBar);
     }
 
     public HomePageViewModel ViewModel { get; }

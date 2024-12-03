@@ -18,103 +18,113 @@
     </Page.Resources>
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="auto" />
         </Grid.ColumnDefinitions>
 
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="48" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <Border Background="{ThemeResource SystemControlAcrylicElementBrush}" Canvas.ZIndex="1" />
 
-            <Grid Background="{ThemeResource SystemControlAcrylicElementBrush}" Canvas.ZIndex="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="60" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="60" />
-                </Grid.ColumnDefinitions>
-
-                <TextBlock
-                    Grid.Column="1"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontWeight="SemiBold"
-                    Text="{x:Bind ViewModel.SelectedFeed.DisplayName, Mode=OneWay}" />
-
-                <Button
-                    Grid.Column="2"
-                    Margin="0,0,12,0"
-                    Padding="8"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Center"
-                    AutomationProperties.Name="{x:Bind strings:Resources.RefreshText}"
-                    Background="Transparent"
-                    BorderBrush="Transparent"
-                    Command="{x:Bind ViewModel.RefreshFeedCommand}"
-                    ToolTipService.ToolTip="{x:Bind RefreshTooltip}">
-                    <Button.KeyboardAccelerators>
-                        <KeyboardAccelerator Key="R" Modifiers="Control" />
-                    </Button.KeyboardAccelerators>
-                    <FontIcon
-                        FontFamily="{StaticResource FluentUIGlyphs}"
-                        FontSize="14"
-                        Glyph="{StaticResource GlyphRefresh}" />
-                </Button>
-
-                <Rectangle
-                    Grid.ColumnSpan="3"
-                    Height="1"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Bottom"
-                    Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
-            </Grid>
-
-            <ListView
-                x:Name="FeedListView"
-                Grid.Row="1"
-                Padding="0,20,0,0"
-                DataFetchSize="1"
-                IncrementalLoadingThreshold="1"
-                IncrementalLoadingTrigger="Edge"
-                ItemTemplate="{StaticResource FeedItemTemplate}"
-                ItemsSource="{x:Bind FeedCollection}"
-                SelectionMode="None"
-                Visibility="{x:Bind ex:UIExtensions.InvertBoolToVis(ViewModel.FeedLoading), Mode=OneWay}">
-                <ani:Implicit.ShowAnimations>
-                    <ani:OpacityAnimation
-                        From="0"
-                        To="1"
-                        Duration="0:0:0.3" />
-                </ani:Implicit.ShowAnimations>
-
-                <ListView.ItemContainerStyle>
-                    <Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                        <Setter Property="Padding" Value="20,0,20,20" />
-                    </Style>
-                </ListView.ItemContainerStyle>
-            </ListView>
-
-            <StackPanel
-                Grid.Row="1"
-                Margin="0,20,0,0"
-                Visibility="{x:Bind ViewModel.FeedLoading, Mode=OneWay}">
-                <controls:FeedItemShimmer />
-                <controls:FeedItemShimmer Margin="0,12,0,0" />
-                <controls:FeedItemShimmer Margin="0,12,0,0" />
-            </StackPanel>
+        <Grid
+            x:Name="TitleBar"
+            Grid.ColumnSpan="3"
+            Height="32"
+            Margin="-240,0,0,0"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top"
+            Background="Transparent"
+            Canvas.ZIndex="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="LeftPaddingColumn" Width="0" />
+                <ColumnDefinition />
+                <ColumnDefinition x:Name="RightPaddingColumn" Width="0" />
+            </Grid.ColumnDefinitions>
         </Grid>
 
+        <TextBlock
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Canvas.ZIndex="1"
+            FontWeight="SemiBold"
+            Text="{x:Bind ViewModel.SelectedFeed.DisplayName, Mode=OneWay}" />
+
+        <Button
+            Margin="0,0,12,0"
+            Padding="8"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            AutomationProperties.Name="{x:Bind strings:Resources.RefreshText}"
+            Background="Transparent"
+            BorderBrush="Transparent"
+            Canvas.ZIndex="3"
+            Command="{x:Bind ViewModel.RefreshFeedCommand}"
+            ToolTipService.ToolTip="{x:Bind RefreshTooltip}">
+            <Button.KeyboardAccelerators>
+                <KeyboardAccelerator Key="R" Modifiers="Control" />
+            </Button.KeyboardAccelerators>
+            <FontIcon
+                FontFamily="{StaticResource FluentUIGlyphs}"
+                FontSize="14"
+                Glyph="{StaticResource GlyphRefresh}" />
+        </Button>
+
         <Rectangle
+            Height="1"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Bottom"
+            Canvas.ZIndex="1"
+            Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
+
+        <ListView
+            x:Name="FeedListView"
+            Grid.Row="1"
+            Padding="0,20,0,0"
+            DataFetchSize="1"
+            IncrementalLoadingThreshold="1"
+            IncrementalLoadingTrigger="Edge"
+            ItemTemplate="{StaticResource FeedItemTemplate}"
+            ItemsSource="{x:Bind FeedCollection}"
+            SelectionMode="None"
+            Visibility="{x:Bind ex:UIExtensions.InvertBoolToVis(ViewModel.FeedLoading), Mode=OneWay}">
+            <ani:Implicit.ShowAnimations>
+                <ani:OpacityAnimation
+                    From="0"
+                    To="1"
+                    Duration="0:0:0.3" />
+            </ani:Implicit.ShowAnimations>
+
+            <ListView.ItemContainerStyle>
+                <Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="Padding" Value="20,0,20,20" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+
+        <StackPanel
+            Grid.Row="1"
+            Margin="0,20,0,0"
+            Visibility="{x:Bind ViewModel.FeedLoading, Mode=OneWay}">
+            <controls:FeedItemShimmer />
+            <controls:FeedItemShimmer Margin="0,12,0,0" />
+            <controls:FeedItemShimmer Margin="0,12,0,0" />
+        </StackPanel>
+
+        <Rectangle
+            Grid.RowSpan="2"
             Grid.Column="1"
             Width="1"
             VerticalAlignment="Stretch"
             Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
 
         <Grid
+            Grid.RowSpan="2"
             Grid.Column="2"
             Width="240"
             Padding="20,48,20,0">
