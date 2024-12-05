@@ -12,7 +12,8 @@ public class FeedRecord
 
     public string? Cid { get; init; }
 
-    public DateTime CreatedAt { get; init; }
+    [JsonPropertyName("createdAt")]
+    public DateTime CreatedAtUtc { get; init; }
 
     public string? Description { get; init; }
 

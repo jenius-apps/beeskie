@@ -79,6 +79,11 @@
                             Margin="4,0,0,0"
                             Foreground="{ThemeResource TextFillColorTertiaryBrush}"
                             Text="{x:Bind AuthorViewModel.AtHandle, Mode=OneWay}" />
+                        <TextBlock
+                            Margin="4,0"
+                            Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                            Text="•" />
+                        <TextBlock Foreground="{ThemeResource TextFillColorTertiaryBrush}" Text="{x:Bind TimeSinceCreation}" />
                     </StackPanel>
 
                     <TextBlock

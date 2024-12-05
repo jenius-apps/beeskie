@@ -4,6 +4,8 @@ using BlueskyClient.Extensions;
 using BlueskyClient.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Humanizer;
+using Humanizer.Localisation;
 using JeniusApps.Common.Tools;
 using System;
 using System.Threading.Tasks;
@@ -38,6 +40,22 @@ public partial class FeedItemViewModel : ObservableObject
     public AuthorViewModel AuthorViewModel { get; } = new();
 
     public FeedItem FeedItem { get; }
+
+    public string TimeSinceCreation
+    {
+        get
+        {
+            var now = DateTime.Now;
+
+            if (FeedItem.Post.Record?.CreatedAtUtc.ToLocalTime() is not DateTime createdAt ||
+                createdAt > now)
+            {
+                return string.Empty;
+            }
+
+            return now.Subtract(createdAt).Humanize(maxUnit: TimeUnit.Year);
+        }
+    }
 
     public bool IsRepost => FeedItem.Reason?.Type.EndsWith("#reasonRepost", StringComparison.OrdinalIgnoreCase) ?? false;
 
