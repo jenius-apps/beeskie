@@ -12,4 +12,130 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AppPasswordHelpText" xml:space="preserve">
+    <value>Що таке пароль додатку?</value>
+  </data>
+  <data name="BackText" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="CancelText" xml:space="preserve">
+    <value>Скасувати</value>
+  </data>
+  <data name="CloseText" xml:space="preserve">
+    <value>Закрити</value>
+  </data>
+  <data name="FeedsText" xml:space="preserve">
+    <value>Cтрічки</value>
+  </data>
+  <data name="FollowersText" xml:space="preserve">
+    <value>підписники</value>
+  </data>
+  <data name="FollowingFeedName" xml:space="preserve">
+    <value>Підписки</value>
+  </data>
+  <data name="FollowingText" xml:space="preserve">
+    <value>підписки</value>
+  </data>
+  <data name="HomeText" xml:space="preserve">
+    <value>Головна</value>
+  </data>
+  <data name="IdentifierBoxPlaceholder" xml:space="preserve">
+    <value>Електронна пошта або ім'я користувача Bluesky</value>
+  </data>
+  <data name="ImageSelectText" xml:space="preserve">
+    <value>Додати зображення</value>
+  </data>
+  <data name="LikeText" xml:space="preserve">
+    <value>Уподобати</value>
+  </data>
+  <data name="ManageAccountText" xml:space="preserve">
+    <value>Управління обліковим записом</value>
+  </data>
+  <data name="MyFeedsSubtitle" xml:space="preserve">
+    <value>Усі збережені стрічки в одному місці</value>
+  </data>
+  <data name="MyFeedsTitle" xml:space="preserve">
+    <value>Мої стрічки</value>
+  </data>
+  <data name="NewPostPlaceholder" xml:space="preserve">
+    <value>Як справи?</value>
+  </data>
+  <data name="NewPostText" xml:space="preserve">
+    <value>Новий допис</value>
+  </data>
+  <data name="NotificationsFollowedText" xml:space="preserve">
+    <value>{0} підписався на тебе</value>
+  </data>
+  <data name="NotificationsLikedText" xml:space="preserve">
+    <value>{0} уподобав твій допис</value>
+  </data>
+  <data name="NotificationsRepostedText" xml:space="preserve">
+    <value>{0} поширив твій допис</value>
+  </data>
+  <data name="NotificationsText" xml:space="preserve">
+    <value>Сповіщення</value>
+  </data>
+  <data name="OkayText" xml:space="preserve">
+    <value>Добре</value>
+  </data>
+  <data name="PasswordBoxPlaceholder" xml:space="preserve">
+    <value>Твій спеціальний пароль додатку</value>
+  </data>
+  <data name="PinnedFeedsSubtitle" xml:space="preserve">
+    <value>Виберіть стрічку, щоби змінити вигляд</value>
+  </data>
+  <data name="PinnedFeedsTitle" xml:space="preserve">
+    <value>Закріплені стрічки</value>
+  </data>
+  <data name="PostedReplyText" xml:space="preserve">
+    <value>Написав відповідь</value>
+  </data>
+  <data name="PostsText" xml:space="preserve">
+    <value>дописи</value>
+  </data>
+  <data name="ProfileText" xml:space="preserve">
+    <value>Профіль</value>
+  </data>
+  <data name="RefreshText" xml:space="preserve">
+    <value>Оновити</value>
+  </data>
+  <data name="ReplyText" xml:space="preserve">
+    <value>Відповісти</value>
+  </data>
+  <data name="RepostCaption" xml:space="preserve">
+    <value>Поширений {0}</value>
+  </data>
+  <data name="RepostText" xml:space="preserve">
+    <value>Поширити</value>
+  </data>
+  <data name="SendFeedbackText" xml:space="preserve">
+    <value>Надіслати відгук</value>
+  </data>
+  <data name="SessionTimeoutDialogMessage" xml:space="preserve">
+    <value>Твоя сесія закінчена, тобі потрібно увійти знову.</value>
+  </data>
+  <data name="SessionTimeoutDialogTitle" xml:space="preserve">
+    <value>Вимагається вхід</value>
+  </data>
+  <data name="SignInText" xml:space="preserve">
+    <value>Увійти</value>
+  </data>
+  <data name="SignOutDialogMessage" xml:space="preserve">
+    <value>Упевнені? Вас буде перенаправлено на сторінку входу.</value>
+  </data>
+  <data name="SignOutDialogTitle" xml:space="preserve">
+    <value>Виходимо</value>
+  </data>
+  <data name="SignOutText" xml:space="preserve">
+    <value>Вийти</value>
+  </data>
+  <data name="StarterPackByText" xml:space="preserve">
+    <value>Стартовий пакет від {0}</value>
+  </data>
+  <data name="SubmitText" xml:space="preserve">
+    <value>Опублікувати</value>
+  </data>
+  <data name="UploadingText" xml:space="preserve">
+    <value>Вивантажуємо</value>
+  </data>
 </root>

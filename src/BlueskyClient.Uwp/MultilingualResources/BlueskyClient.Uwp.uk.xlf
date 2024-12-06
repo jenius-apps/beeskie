@@ -8,171 +8,171 @@
       <group id="BLUESKYCLIENT.UWP/STRINGS/EN-US/RESOURCES.RESW" datatype="resx">
         <trans-unit id="AppPasswordHelpText" translate="yes" xml:space="preserve">
           <source>What's an App Password?</source>
-          <target state="new">Що таке пароль додатку?</target>
+          <target state="translated">Що таке пароль додатку?</target>
         </trans-unit>
         <trans-unit id="BackText" translate="yes" xml:space="preserve">
           <source>Back</source>
-          <target state="new">Назад</target>
+          <target state="translated">Назад</target>
         </trans-unit>
         <trans-unit id="CancelText" translate="yes" xml:space="preserve">
           <source>Cancel</source>
-          <target state="new">Скасувати</target>
+          <target state="translated">Скасувати</target>
         </trans-unit>
         <trans-unit id="CloseText" translate="yes" xml:space="preserve">
           <source>Close</source>
-          <target state="new">Закрити</target>
+          <target state="translated">Закрити</target>
         </trans-unit>
         <trans-unit id="FeedsText" translate="yes" xml:space="preserve">
           <source>Feeds</source>
-          <target state="new">Cтрічки</target>
+          <target state="translated">Cтрічки</target>
         </trans-unit>
         <trans-unit id="FollowersText" translate="yes" xml:space="preserve">
           <source>followers</source>
-          <target state="new">підписники</target>
+          <target state="translated">підписники</target>
         </trans-unit>
         <trans-unit id="FollowingFeedName" translate="yes" xml:space="preserve">
           <source>Following</source>
-          <target state="new">Підписки</target>
+          <target state="translated">Підписки</target>
         </trans-unit>
         <trans-unit id="FollowingText" translate="yes" xml:space="preserve">
           <source>following</source>
-          <target state="new">підписки</target>
+          <target state="translated">підписки</target>
         </trans-unit>
         <trans-unit id="HomeText" translate="yes" xml:space="preserve">
           <source>Home</source>
-          <target state="new">Головна</target>
+          <target state="translated">Головна</target>
         </trans-unit>
         <trans-unit id="IdentifierBoxPlaceholder" translate="yes" xml:space="preserve">
           <source>Bluesky email or username</source>
-          <target state="new">Електронна пошта або ім'я користувача Bluesky</target>
+          <target state="translated">Електронна пошта або ім'я користувача Bluesky</target>
         </trans-unit>
         <trans-unit id="ImageSelectText" translate="yes" xml:space="preserve">
           <source>Add image</source>
-          <target state="new">Додати зображення</target>
+          <target state="translated">Додати зображення</target>
         </trans-unit>
         <trans-unit id="LikeText" translate="yes" xml:space="preserve">
           <source>Like</source>
-          <target state="new">Уподобати</target>
+          <target state="translated">Уподобати</target>
         </trans-unit>
         <trans-unit id="ManageAccountText" translate="yes" xml:space="preserve">
           <source>Manage account</source>
-          <target state="new">Управління обліковим записом</target>
+          <target state="translated">Управління обліковим записом</target>
         </trans-unit>
         <trans-unit id="MyFeedsSubtitle" translate="yes" xml:space="preserve">
           <source>All the feeds you've saved, all in one place</source>
-          <target state="new">Усі збережені стрічки в одному місці</target>
+          <target state="translated">Усі збережені стрічки в одному місці</target>
         </trans-unit>
         <trans-unit id="MyFeedsTitle" translate="yes" xml:space="preserve">
           <source>My Feeds</source>
-          <target state="new">Мої стрічки</target>
+          <target state="translated">Мої стрічки</target>
         </trans-unit>
         <trans-unit id="NewPostPlaceholder" translate="yes" xml:space="preserve">
           <source>What's up?</source>
-          <target state="new">Як справи?</target>
+          <target state="translated">Як справи?</target>
         </trans-unit>
         <trans-unit id="NewPostText" translate="yes" xml:space="preserve">
           <source>New Post</source>
-          <target state="new">Новий допис</target>
+          <target state="translated">Новий допис</target>
         </trans-unit>
         <trans-unit id="NotificationsFollowedText" translate="yes" xml:space="preserve">
           <source>{0} followed you</source>
-          <target state="new">{0} підписався на тебе</target>
+          <target state="translated">{0} підписався на тебе</target>
         </trans-unit>
         <trans-unit id="NotificationsLikedText" translate="yes" xml:space="preserve">
           <source>{0} liked your post</source>
-          <target state="new">{0} уподобав твій допис</target>
+          <target state="translated">{0} уподобав твій допис</target>
         </trans-unit>
         <trans-unit id="NotificationsRepostedText" translate="yes" xml:space="preserve">
           <source>{0} reposted your post</source>
-          <target state="new">{0} поширив твій допис</target>
+          <target state="translated">{0} поширив твій допис</target>
         </trans-unit>
         <trans-unit id="NotificationsText" translate="yes" xml:space="preserve">
           <source>Notifications</source>
-          <target state="new">Сповіщення</target>
+          <target state="translated">Сповіщення</target>
         </trans-unit>
         <trans-unit id="OkayText" translate="yes" xml:space="preserve">
           <source>Okay</source>
-          <target state="new">Добре</target>
+          <target state="translated">Добре</target>
         </trans-unit>
         <trans-unit id="PasswordBoxPlaceholder" translate="yes" xml:space="preserve">
           <source>Your special App Password</source>
-          <target state="new">Твій спеціальний пароль додатку</target>
+          <target state="translated">Твій спеціальний пароль додатку</target>
         </trans-unit>
         <trans-unit id="PinnedFeedsSubtitle" translate="yes" xml:space="preserve">
           <source>Select a feed to change your view</source>
-          <target state="new">Виберіть стрічку, щоби змінити вигляд</target>
+          <target state="translated">Виберіть стрічку, щоби змінити вигляд</target>
         </trans-unit>
         <trans-unit id="PinnedFeedsTitle" translate="yes" xml:space="preserve">
           <source>Pinned Feeds</source>
-          <target state="new">Закріплені стрічки</target>
+          <target state="translated">Закріплені стрічки</target>
         </trans-unit>
         <trans-unit id="PostedReplyText" translate="yes" xml:space="preserve">
           <source>Posted a reply</source>
-          <target state="new">Написав відповідь</target>
+          <target state="translated">Написав відповідь</target>
         </trans-unit>
         <trans-unit id="PostsText" translate="yes" xml:space="preserve">
           <source>posts</source>
-          <target state="new">дописи</target>
+          <target state="translated">дописи</target>
         </trans-unit>
         <trans-unit id="ProfileText" translate="yes" xml:space="preserve">
           <source>Profile</source>
-          <target state="new">Профіль</target>
+          <target state="translated">Профіль</target>
         </trans-unit>
         <trans-unit id="RefreshText" translate="yes" xml:space="preserve">
           <source>Refresh</source>
-          <target state="new">Оновити</target>
+          <target state="translated">Оновити</target>
         </trans-unit>
         <trans-unit id="ReplyText" translate="yes" xml:space="preserve">
           <source>Reply</source>
-          <target state="new">Відповісти</target>
+          <target state="translated">Відповісти</target>
         </trans-unit>
         <trans-unit id="RepostCaption" translate="yes" xml:space="preserve">
           <source>Reposted by {0}</source>
-          <target state="new">Поширений {0}</target>
+          <target state="translated">Поширений {0}</target>
         </trans-unit>
         <trans-unit id="RepostText" translate="yes" xml:space="preserve">
           <source>Repost</source>
-          <target state="new">Поширити</target>
+          <target state="translated">Поширити</target>
         </trans-unit>
         <trans-unit id="SendFeedbackText" translate="yes" xml:space="preserve">
           <source>Send feedback</source>
-          <target state="new">Надіслати відгук</target>
+          <target state="translated">Надіслати відгук</target>
         </trans-unit>
         <trans-unit id="SessionTimeoutDialogMessage" translate="yes" xml:space="preserve">
           <source>Your session expired, and you'll need to sign in again.</source>
-          <target state="new">Твоя сесія закінчена, тобі потрібно увійти знову.</target>
+          <target state="translated">Твоя сесія закінчена, тобі потрібно увійти знову.</target>
         </trans-unit>
         <trans-unit id="SessionTimeoutDialogTitle" translate="yes" xml:space="preserve">
           <source>Sign in required</source>
-          <target state="new">Вимагається вхід</target>
+          <target state="translated">Вимагається вхід</target>
         </trans-unit>
         <trans-unit id="SignInText" translate="yes" xml:space="preserve">
           <source>Sign in</source>
-          <target state="new">Увійти</target>
+          <target state="translated">Увійти</target>
         </trans-unit>
         <trans-unit id="SignOutDialogMessage" translate="yes" xml:space="preserve">
           <source>Are you sure? You will return to the sign in page.</source>
-          <target state="new">Упевнені? Вас буде перенаправлено на сторінку входу.</target>
+          <target state="translated">Упевнені? Вас буде перенаправлено на сторінку входу.</target>
         </trans-unit>
         <trans-unit id="SignOutDialogTitle" translate="yes" xml:space="preserve">
           <source>Signing out</source>
-          <target state="new">Виходимо</target>
+          <target state="translated">Виходимо</target>
         </trans-unit>
         <trans-unit id="SignOutText" translate="yes" xml:space="preserve">
           <source>Sign out</source>
-          <target state="new">Вийти</target>
+          <target state="translated">Вийти</target>
         </trans-unit>
         <trans-unit id="StarterPackByText" translate="yes" xml:space="preserve">
           <source>Starter pack by {0}</source>
-          <target state="new">Стартовий пакет від {0}</target>
+          <target state="translated">Стартовий пакет від {0}</target>
         </trans-unit>
         <trans-unit id="SubmitText" translate="yes" xml:space="preserve">
           <source>Submit</source>
-          <target state="new">Опублікувати</target>
+          <target state="translated">Опублікувати</target>
         </trans-unit>
         <trans-unit id="UploadingText" translate="yes" xml:space="preserve">
           <source>Uploading</source>
-          <target state="new">Вивантажуємо</target>
+          <target state="translated">Вивантажуємо</target>
         </trans-unit>
       </group>
     </body>
