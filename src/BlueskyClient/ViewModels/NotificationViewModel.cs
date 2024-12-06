@@ -50,4 +50,13 @@ public partial class NotificationViewModel : ObservableObject
     private FeedPost? _subjectPost;
 
     public string SubjectText => SubjectPost?.Record?.Text ?? string.Empty;
+
+    public override string ToString()
+    {
+        return Reason switch
+        {
+            ReasonConstants.Reply => $"{AuthorViewModel.DisplayName}, {_localizer.GetString("PostedReplyText")}",
+            _ => CaptionString
+        };
+    }
 }
