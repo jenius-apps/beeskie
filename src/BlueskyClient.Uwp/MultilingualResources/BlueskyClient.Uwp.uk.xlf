@@ -28,7 +28,7 @@
         </trans-unit>
         <trans-unit id="FollowersText" translate="yes" xml:space="preserve">
           <source>followers</source>
-          <target state="translated">підписники</target>
+          <target state="translated">підписників</target>
         </trans-unit>
         <trans-unit id="FollowingFeedName" translate="yes" xml:space="preserve">
           <source>Following</source>
@@ -36,7 +36,7 @@
         </trans-unit>
         <trans-unit id="FollowingText" translate="yes" xml:space="preserve">
           <source>following</source>
-          <target state="translated">підписки</target>
+          <target state="translated">підписок</target>
         </trans-unit>
         <trans-unit id="HomeText" translate="yes" xml:space="preserve">
           <source>Home</source>
@@ -44,7 +44,7 @@
         </trans-unit>
         <trans-unit id="IdentifierBoxPlaceholder" translate="yes" xml:space="preserve">
           <source>Bluesky email or username</source>
-          <target state="translated">Електронна пошта або ім'я користувача Bluesky</target>
+          <target state="translated">Ел. пошта або ім'я користувача Bluesky</target>
         </trans-unit>
         <trans-unit id="ImageSelectText" translate="yes" xml:space="preserve">
           <source>Add image</source>
@@ -100,7 +100,7 @@
         </trans-unit>
         <trans-unit id="PinnedFeedsSubtitle" translate="yes" xml:space="preserve">
           <source>Select a feed to change your view</source>
-          <target state="translated">Виберіть стрічку, щоби змінити вигляд</target>
+          <target state="translated">Виберіть стрічку, яку ви хочете переглянути</target>
         </trans-unit>
         <trans-unit id="PinnedFeedsTitle" translate="yes" xml:space="preserve">
           <source>Pinned Feeds</source>
@@ -112,7 +112,7 @@
         </trans-unit>
         <trans-unit id="PostsText" translate="yes" xml:space="preserve">
           <source>posts</source>
-          <target state="translated">дописи</target>
+          <target state="translated">дописів</target>
         </trans-unit>
         <trans-unit id="ProfileText" translate="yes" xml:space="preserve">
           <source>Profile</source>
@@ -156,7 +156,7 @@
         </trans-unit>
         <trans-unit id="SignOutDialogTitle" translate="yes" xml:space="preserve">
           <source>Signing out</source>
-          <target state="translated">Виходимо</target>
+          <target state="translated">Перед виходом</target>
         </trans-unit>
         <trans-unit id="SignOutText" translate="yes" xml:space="preserve">
           <source>Sign out</source>
@@ -172,7 +172,7 @@
         </trans-unit>
         <trans-unit id="UploadingText" translate="yes" xml:space="preserve">
           <source>Uploading</source>
-          <target state="translated">Вивантажуємо</target>
+          <target state="translated">Опубліковуємо</target>
         </trans-unit>
       </group>
     </body>
