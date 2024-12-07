@@ -18,7 +18,8 @@ public class FeedItemViewModelFactory : IFeedItemViewModelFactory
     public FeedItemViewModel CreateViewModel(FeedItem feedItem)
     {
         return new FeedItemViewModel(
-            feedItem,
+            feedItem.Post,
+            feedItem.Reason,
             _serviceProvider.GetRequiredService<IPostSubmissionService>(),
             _serviceProvider.GetRequiredService<IDialogService>(),
             _serviceProvider.GetRequiredService<ILocalizer>());
