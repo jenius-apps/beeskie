@@ -152,6 +152,7 @@
     <Compile Include="Controls\ProfileControl.xaml.cs">
       <DependentUpon>ProfileControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\ListViewExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceDictionaries\FeedItemTemplateResource.xaml.cs">
       <DependentUpon>FeedItemTemplateResource.xaml</DependentUpon>

@@ -83,7 +83,7 @@
         -->
 
         <ListView
-            x:Name="FeedListView"
+            x:Name="SearchResultsListView"
             Grid.Row="2"
             Padding="0,20,0,0"
             ItemTemplate="{StaticResource FeedItemTemplate}"

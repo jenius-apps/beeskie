@@ -1,4 +1,5 @@
-﻿using BlueskyClient.ViewModels;
+﻿using BlueskyClient.Extensions.Uwp;
+using BlueskyClient.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,17 @@ public sealed partial class SearchPage : Page
     }
 
     public SearchPageViewModel ViewModel { get; }
+
+    protected override async void OnNavigatedTo(NavigationEventArgs e)
+    {
+        try
+        {
+            await ViewModel.InitializeAsync(default);
+        }
+        catch (OperationCanceledException) { }
+
+        SearchResultsListView.SetupRenderOutsideBounds();
+    }
 
     private async void OnQuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
     {
