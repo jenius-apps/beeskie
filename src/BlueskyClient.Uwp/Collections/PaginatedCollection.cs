@@ -7,14 +7,14 @@ using Windows.UI.Xaml.Data;
 
 namespace BlueskyClient.Collections;
 
-public class HomeFeedCollection : ObservableCollection<FeedItemViewModel>, ISupportIncrementalLoading
+public class PaginatedCollection<T> : ObservableCollection<T>, ISupportIncrementalLoading
 {
-    private readonly HomePageViewModel _viewModel;
+    private readonly ISupportPagination<T> _paginationSource;
 
-    public HomeFeedCollection(HomePageViewModel homePageViewModel)
+    public PaginatedCollection(ISupportPagination<T> source)
     {
-        _viewModel = homePageViewModel;
-        _viewModel.FeedItems.CollectionChanged += OnCollectionChanged;
+        _paginationSource = source;
+        source.CollectionSource.CollectionChanged += OnCollectionChanged;
     }
 
     private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -23,7 +23,7 @@ public class HomeFeedCollection : ObservableCollection<FeedItemViewModel>, ISupp
         {
             foreach (var newItem in e.NewItems)
             {
-                if (newItem is FeedItemViewModel item)
+                if (newItem is T item)
                 {
                     this.Add(item);
                 }
@@ -43,10 +43,10 @@ public class HomeFeedCollection : ObservableCollection<FeedItemViewModel>, ISupp
     {
         return AsyncInfo.Run(async cancelToken =>
         {
-            var countAdded = await _viewModel.LoadNextPageAsync(cancelToken);
+            var countAdded = await _paginationSource.LoadNextPageAsync(cancelToken);
             return new LoadMoreItemsResult { Count = (uint)countAdded };
         });
     }
 
-    public bool HasMoreItems => _viewModel.HasMoreItems;
+    public bool HasMoreItems => _paginationSource.HasMoreItems;
 }

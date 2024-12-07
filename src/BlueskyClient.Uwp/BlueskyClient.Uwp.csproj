@@ -128,7 +128,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Collections\HomeFeedCollection.cs" />
+    <Compile Include="Collections\PaginatedCollection.cs" />
     <Compile Include="Constants\StringShortcuts.cs" />
     <Compile Include="Controls\EmbeddedPost.xaml.cs">
       <DependentUpon>EmbeddedPost.xaml</DependentUpon>

@@ -20,14 +20,14 @@ public sealed partial class HomePage : Page
     {
         this.InitializeComponent();
         ViewModel = App.Services.GetRequiredService<HomePageViewModel>();
-        FeedCollection = new HomeFeedCollection(ViewModel);
+        FeedCollection = new PaginatedCollection<FeedItemViewModel>(ViewModel);
 
         Window.Current.SetTitleBar(TitleBar);
     }
 
     public HomePageViewModel ViewModel { get; }
 
-    public HomeFeedCollection FeedCollection { get; }
+    public PaginatedCollection<FeedItemViewModel> FeedCollection { get; }
 
     protected override async void OnNavigatedTo(NavigationEventArgs e)
     {
