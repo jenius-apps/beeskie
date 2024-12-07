@@ -28,31 +28,31 @@
     <value>Seguidores</value>
   </data>
   <data name="FollowingText" xml:space="preserve">
-    <value>siguiente</value>
+    <value>siguiendo</value>
   </data>
   <data name="HomeText" xml:space="preserve">
     <value>Inicio</value>
   </data>
   <data name="IdentifierBoxPlaceholder" xml:space="preserve">
-    <value>Email o username de Bluesky</value>
+    <value>Correo o usuario de Bluesky</value>
   </data>
   <data name="ManageAccountText" xml:space="preserve">
     <value>Administrar cuenta</value>
   </data>
   <data name="NewPostPlaceholder" xml:space="preserve">
-    <value>¿Qué pasa?</value>
+    <value>¿Qué está pasando?</value>
   </data>
   <data name="NewPostText" xml:space="preserve">
     <value>Nuevo mensaje</value>
   </data>
   <data name="NotificationsFollowedText" xml:space="preserve">
-    <value>{0} te seguí</value>
+    <value>{0} ahora te sigue</value>
   </data>
   <data name="NotificationsLikedText" xml:space="preserve">
-    <value>{0} ha gustado tu mensaje</value>
+    <value>A {0} le ha gustado tu mensaje</value>
   </data>
   <data name="NotificationsRepostedText" xml:space="preserve">
-    <value>{0} has vuelto a publicar tu mensaje</value>
+    <value>{0} ha vuelto a publicar tu mensaje</value>
   </data>
   <data name="NotificationsText" xml:space="preserve">
     <value>Notificaciones</value>
@@ -79,7 +79,7 @@
     <value>Enviar comentarios</value>
   </data>
   <data name="SessionTimeoutDialogMessage" xml:space="preserve">
-    <value>La sesión ha caducado y tendrás que volver a iniciar sesión.</value>
+    <value>La sesión ha caducado y has de volver a iniciar sesión.</value>
   </data>
   <data name="SessionTimeoutDialogTitle" xml:space="preserve">
     <value>Es necesario iniciar sesión</value>
@@ -88,7 +88,7 @@
     <value>Inicia sesión</value>
   </data>
   <data name="SignOutDialogMessage" xml:space="preserve">
-    <value>¿Estás seguro? Volverá a la página de inicio de sesión.</value>
+    <value>¿Estás seguro? Volverás a la página de inicio de sesión.</value>
   </data>
   <data name="SignOutDialogTitle" xml:space="preserve">
     <value>Cerrar sesión</value>
@@ -109,7 +109,7 @@
     <value>Cargar</value>
   </data>
   <data name="FeedsText" xml:space="preserve">
-    <value>Alimenta</value>
+    <value>Feeds</value>
   </data>
   <data name="LikeText" xml:space="preserve">
     <value>Gustar</value>
@@ -121,7 +121,7 @@
     <value>Repostear</value>
   </data>
   <data name="FollowingFeedName" xml:space="preserve">
-    <value>Siguiente</value>
+    <value>Siguiendo</value>
   </data>
   <data name="MyFeedsSubtitle" xml:space="preserve">
     <value>Todos los feeds que has guardado, todo en un solo lugar</value>
