@@ -76,18 +76,16 @@
             VerticalAlignment="Bottom"
             Canvas.ZIndex="1"
             Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
-        <!--
-            DataFetchSize="1"
-            IncrementalLoadingThreshold="1"
-            IncrementalLoadingTrigger="Edge"
-        -->
 
         <ListView
             x:Name="SearchResultsListView"
             Grid.Row="2"
             Padding="0,20,0,0"
+            DataFetchSize="1"
+            IncrementalLoadingThreshold="1"
+            IncrementalLoadingTrigger="Edge"
             ItemTemplate="{StaticResource FeedItemTemplate}"
-            ItemsSource="{x:Bind ViewModel.SearchResults}"
+            ItemsSource="{x:Bind FeedCollection}"
             SelectionMode="None"
             Visibility="{x:Bind ex:UIExtensions.InvertBoolToVis(ViewModel.SearchLoading), Mode=OneWay}">
             <ani:Implicit.ShowAnimations>
