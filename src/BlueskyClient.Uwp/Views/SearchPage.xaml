@@ -2,18 +2,26 @@
     x:Class="BlueskyClient.Views.SearchPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ani="using:CommunityToolkit.WinUI.Animations"
     xmlns:const="using:BlueskyClient.Constants.Uwp"
+    xmlns:controls="using:BlueskyClient.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ex="using:JeniusApps.Common.UI.Uwp"
     xmlns:local="using:BlueskyClient.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:strings="using:BlueskyClient.Strings"
+    xmlns:templates="using:BlueskyClient.ResourceDictionaries"
+    xmlns:wct="using:CommunityToolkit.WinUI.Controls"
     Background="Transparent"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <templates:FeedItemTemplateResource />
+    </Page.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="48" />
-            <RowDefinition Height="auto" />
+            <RowDefinition Height="112" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -41,31 +49,26 @@
             </Grid.ColumnDefinitions>
         </Grid>
 
-        <TextBlock
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Canvas.ZIndex="1"
-            FontWeight="SemiBold"
-            Text="{x:Bind strings:Resources.SearchText}" />
 
-        <Button
-            Margin="0,0,12,0"
-            Padding="8"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Center"
-            AutomationProperties.Name="{x:Bind strings:Resources.RefreshText}"
-            Background="Transparent"
-            BorderBrush="Transparent"
-            Canvas.ZIndex="3"
-            ToolTipService.ToolTip="{x:Bind const:StringShortcuts.RefreshTooltip}">
-            <Button.KeyboardAccelerators>
-                <KeyboardAccelerator Key="R" Modifiers="Control" />
-            </Button.KeyboardAccelerators>
-            <FontIcon
-                FontFamily="{StaticResource FluentUIGlyphs}"
-                FontSize="14"
-                Glyph="{StaticResource GlyphRefresh}" />
-        </Button>
+        <StackPanel
+            MaxWidth="{StaticResource SearchHeaderMaxWidth}"
+            Margin="20,20,20,0"
+            Canvas.ZIndex="3">
+
+            <AutoSuggestBox
+                Margin="0"
+                PlaceholderText="{x:Bind strings:Resources.SearchText}"
+                QueryIcon="Find"
+                QuerySubmitted="OnQuerySubmitted"
+                Text="{x:Bind ViewModel.Query, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+            <wct:Segmented Margin="0,12,0,0">
+                <wct:SegmentedItem Content="Top" />
+                <wct:SegmentedItem Content="Latest" />
+            </wct:Segmented>
+
+        </StackPanel>
+
 
         <Rectangle
             Height="1"
@@ -73,11 +76,42 @@
             VerticalAlignment="Bottom"
             Canvas.ZIndex="1"
             Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
+        <!--
+            DataFetchSize="1"
+            IncrementalLoadingThreshold="1"
+            IncrementalLoadingTrigger="Edge"
+        -->
 
-        <AutoSuggestBox
-            Grid.Row="1"
-            Margin="20,20,20,0"
-            PlaceholderText="{x:Bind strings:Resources.SearchText}" />
+        <ListView
+            x:Name="FeedListView"
+            Grid.Row="2"
+            Padding="0,20,0,0"
+            ItemTemplate="{StaticResource FeedItemTemplate}"
+            ItemsSource="{x:Bind ViewModel.SearchResults}"
+            SelectionMode="None"
+            Visibility="{x:Bind ex:UIExtensions.InvertBoolToVis(ViewModel.SearchLoading), Mode=OneWay}">
+            <ani:Implicit.ShowAnimations>
+                <ani:OpacityAnimation
+                    From="0"
+                    To="1"
+                    Duration="0:0:0.3" />
+            </ani:Implicit.ShowAnimations>
 
+            <ListView.ItemContainerStyle>
+                <Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="Padding" Value="20,0,20,20" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+
+        <StackPanel
+            Grid.Row="2"
+            Margin="0,20,0,0"
+            Visibility="{x:Bind ViewModel.SearchLoading, Mode=OneWay}">
+            <controls:FeedItemShimmer />
+            <controls:FeedItemShimmer Margin="0,12,0,0" />
+            <controls:FeedItemShimmer Margin="0,12,0,0" />
+        </StackPanel>
     </Grid>
 </Page>

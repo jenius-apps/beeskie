@@ -21,7 +21,7 @@
     </Style>
 
     <DataTemplate x:Key="FeedItemTemplate" x:DataType="vm:FeedItemViewModel">
-        <Grid MaxWidth="600">
+        <Grid MaxWidth="{StaticResource FeedMaxWidth}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />

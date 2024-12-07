@@ -120,6 +120,7 @@ partial class App
     [Singleton(typeof(BlueskyApiClient), typeof(IBlueskyApiClient))]
     [Singleton(typeof(AuthenticationService), typeof(IAuthenticationService))]
     [Singleton(typeof(TimelineService), typeof(ITimelineService))]
+    [Singleton(typeof(SearchService), typeof(ISearchService))]
     [Singleton(typeof(FeedItemViewModelFactory), typeof(IFeedItemViewModelFactory))]
     [Singleton(typeof(NotificationViewModelFactory), typeof(INotificationViewModelFactory))]
     [Singleton(typeof(FeedGeneratorViewModelFactory), typeof(IFeedGeneratorViewModelFactory))]

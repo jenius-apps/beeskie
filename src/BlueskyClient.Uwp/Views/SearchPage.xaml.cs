@@ -30,4 +30,12 @@ public sealed partial class SearchPage : Page
     }
 
     public SearchPageViewModel ViewModel { get; }
+
+    private async void OnQuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+    {
+        if (!ViewModel.NewSearchCommand.IsRunning)
+        {
+            await ViewModel.NewSearchCommand.ExecuteAsync(null);
+        }
+    }
 }
