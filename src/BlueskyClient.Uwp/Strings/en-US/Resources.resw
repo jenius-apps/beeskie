@@ -213,6 +213,9 @@
   <data name="RepostText" xml:space="preserve">
     <value>Repost</value>
   </data>
+  <data name="SearchText" xml:space="preserve">
+    <value>Search</value>
+  </data>
   <data name="SendFeedbackText" xml:space="preserve">
     <value>Send feedback</value>
   </data>

@@ -174,6 +174,10 @@
           <source>Refresh</source>
           <target state="translated">リフレッシュ</target>
         </trans-unit>
+        <trans-unit id="SearchText" translate="yes" xml:space="preserve">
+          <source>Search</source>
+          <target state="translated">捜索</target>
+        </trans-unit>
       </group>
     </body>
   </file>

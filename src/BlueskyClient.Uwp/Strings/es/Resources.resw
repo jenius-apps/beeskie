@@ -138,4 +138,7 @@
   <data name="RefreshText" xml:space="preserve">
     <value>Actualizar</value>
   </data>
+  <data name="SearchText" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
 </root>

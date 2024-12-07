@@ -1,180 +1,184 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
-	<file datatype="xml" source-language="en-US" target-language="es" original="BLUESKYCLIENT.UWP/STRINGS/EN-US/RESOURCES.RESW" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
-		<header>
-			<tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="1.0.0.0" tool-company="Microsoft" />
-		</header>
-		<body>
-			<group id="BLUESKYCLIENT.UWP/STRINGS/EN-US/RESOURCES.RESW" datatype="resx">
-				<trans-unit id="AppPasswordHelpText" translate="yes" xml:space="preserve">
+  <file datatype="xml" source-language="en-US" target-language="es" original="BLUESKYCLIENT.UWP/STRINGS/EN-US/RESOURCES.RESW" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="1.0.0.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="BLUESKYCLIENT.UWP/STRINGS/EN-US/RESOURCES.RESW" datatype="resx">
+        <trans-unit id="AppPasswordHelpText" translate="yes" xml:space="preserve">
           <source>What's an App Password?</source>
           <target state="translated">Ayuda con la contraseña</target>
         </trans-unit>
-				<trans-unit id="BackText" translate="yes" xml:space="preserve">
+        <trans-unit id="BackText" translate="yes" xml:space="preserve">
           <source>Back</source>
           <target state="translated">Atrás</target>
         </trans-unit>
-				<trans-unit id="CancelText" translate="yes" xml:space="preserve">
+        <trans-unit id="CancelText" translate="yes" xml:space="preserve">
           <source>Cancel</source>
           <target state="translated">Cancelar</target>
         </trans-unit>
-				<trans-unit id="CloseText" translate="yes" xml:space="preserve">
+        <trans-unit id="CloseText" translate="yes" xml:space="preserve">
           <source>Close</source>
           <target state="translated">Cerrar</target>
         </trans-unit>
-				<trans-unit id="FollowersText" translate="yes" xml:space="preserve">
+        <trans-unit id="FollowersText" translate="yes" xml:space="preserve">
           <source>followers</source>
           <target state="translated">Seguidores</target>
         </trans-unit>
-				<trans-unit id="FollowingText" translate="yes" xml:space="preserve">
+        <trans-unit id="FollowingText" translate="yes" xml:space="preserve">
           <source>following</source>
           <target state="translated">siguiendo</target>
         </trans-unit>
-				<trans-unit id="HomeText" translate="yes" xml:space="preserve">
+        <trans-unit id="HomeText" translate="yes" xml:space="preserve">
           <source>Home</source>
           <target state="translated">Inicio</target>
         </trans-unit>
-				<trans-unit id="IdentifierBoxPlaceholder" translate="yes" xml:space="preserve">
+        <trans-unit id="IdentifierBoxPlaceholder" translate="yes" xml:space="preserve">
           <source>Bluesky email or username</source>
           <target state="translated">Correo o usuario de Bluesky</target>
         </trans-unit>
-				<trans-unit id="ManageAccountText" translate="yes" xml:space="preserve">
+        <trans-unit id="ManageAccountText" translate="yes" xml:space="preserve">
           <source>Manage account</source>
           <target state="translated">Administrar cuenta</target>
         </trans-unit>
-				<trans-unit id="NewPostPlaceholder" translate="yes" xml:space="preserve">
+        <trans-unit id="NewPostPlaceholder" translate="yes" xml:space="preserve">
           <source>What's up?</source>
           <target state="translated">¿Qué está pasando?</target>
         </trans-unit>
-				<trans-unit id="NewPostText" translate="yes" xml:space="preserve">
+        <trans-unit id="NewPostText" translate="yes" xml:space="preserve">
           <source>New Post</source>
           <target state="translated">Nuevo mensaje</target>
         </trans-unit>
-				<trans-unit id="NotificationsFollowedText" translate="yes" xml:space="preserve">
+        <trans-unit id="NotificationsFollowedText" translate="yes" xml:space="preserve">
           <source>{0} followed you</source>
           <target state="translated">{0} ahora te sigue</target>
         </trans-unit>
-				<trans-unit id="NotificationsLikedText" translate="yes" xml:space="preserve">
+        <trans-unit id="NotificationsLikedText" translate="yes" xml:space="preserve">
           <source>{0} liked your post</source>
           <target state="translated">A {0} le ha gustado tu mensaje</target>
         </trans-unit>
-				<trans-unit id="NotificationsRepostedText" translate="yes" xml:space="preserve">
+        <trans-unit id="NotificationsRepostedText" translate="yes" xml:space="preserve">
           <source>{0} reposted your post</source>
           <target state="translated">{0} ha vuelto a publicar tu mensaje</target>
         </trans-unit>
-				<trans-unit id="NotificationsText" translate="yes" xml:space="preserve">
+        <trans-unit id="NotificationsText" translate="yes" xml:space="preserve">
           <source>Notifications</source>
           <target state="translated">Notificaciones</target>
         </trans-unit>
-				<trans-unit id="OkayText" translate="yes" xml:space="preserve">
+        <trans-unit id="OkayText" translate="yes" xml:space="preserve">
           <source>Okay</source>
           <target state="translated">Bien</target>
         </trans-unit>
-				<trans-unit id="PasswordBoxPlaceholder" translate="yes" xml:space="preserve">
+        <trans-unit id="PasswordBoxPlaceholder" translate="yes" xml:space="preserve">
           <source>Your special App Password</source>
           <target state="translated">Código de contraseña</target>
         </trans-unit>
-				<trans-unit id="PostedReplyText" translate="yes" xml:space="preserve">
+        <trans-unit id="PostedReplyText" translate="yes" xml:space="preserve">
           <source>Posted a reply</source>
           <target state="translated">Ha publicado una respuesta</target>
         </trans-unit>
-				<trans-unit id="PostsText" translate="yes" xml:space="preserve">
+        <trans-unit id="PostsText" translate="yes" xml:space="preserve">
           <source>posts</source>
           <target state="translated">Mensajes</target>
         </trans-unit>
-				<trans-unit id="ProfileText" translate="yes" xml:space="preserve">
+        <trans-unit id="ProfileText" translate="yes" xml:space="preserve">
           <source>Profile</source>
           <target state="translated">Perfil</target>
         </trans-unit>
-				<trans-unit id="RepostCaption" translate="yes" xml:space="preserve">
+        <trans-unit id="RepostCaption" translate="yes" xml:space="preserve">
           <source>Reposted by {0}</source>
           <target state="translated">Publicado por {0}</target>
         </trans-unit>
-				<trans-unit id="SendFeedbackText" translate="yes" xml:space="preserve">
+        <trans-unit id="SendFeedbackText" translate="yes" xml:space="preserve">
           <source>Send feedback</source>
           <target state="translated">Enviar comentarios</target>
         </trans-unit>
-				<trans-unit id="SessionTimeoutDialogMessage" translate="yes" xml:space="preserve">
+        <trans-unit id="SessionTimeoutDialogMessage" translate="yes" xml:space="preserve">
           <source>Your session expired, and you'll need to sign in again.</source>
           <target state="translated">La sesión ha caducado y has de volver a iniciar sesión.</target>
         </trans-unit>
-				<trans-unit id="SessionTimeoutDialogTitle" translate="yes" xml:space="preserve">
+        <trans-unit id="SessionTimeoutDialogTitle" translate="yes" xml:space="preserve">
           <source>Sign in required</source>
           <target state="translated">Es necesario iniciar sesión</target>
         </trans-unit>
-				<trans-unit id="SignInText" translate="yes" xml:space="preserve">
+        <trans-unit id="SignInText" translate="yes" xml:space="preserve">
           <source>Sign in</source>
           <target state="translated">Inicia sesión</target>
         </trans-unit>
-				<trans-unit id="SignOutDialogMessage" translate="yes" xml:space="preserve">
+        <trans-unit id="SignOutDialogMessage" translate="yes" xml:space="preserve">
           <source>Are you sure? You will return to the sign in page.</source>
           <target state="translated">¿Estás seguro? Volverás a la página de inicio de sesión.</target>
         </trans-unit>
-				<trans-unit id="SignOutDialogTitle" translate="yes" xml:space="preserve">
+        <trans-unit id="SignOutDialogTitle" translate="yes" xml:space="preserve">
           <source>Signing out</source>
           <target state="translated">Cerrar sesión</target>
         </trans-unit>
-				<trans-unit id="SignOutText" translate="yes" xml:space="preserve">
+        <trans-unit id="SignOutText" translate="yes" xml:space="preserve">
           <source>Sign out</source>
           <target state="translated">Cerrar sesión</target>
         </trans-unit>
-				<trans-unit id="StarterPackByText" translate="yes" xml:space="preserve">
+        <trans-unit id="StarterPackByText" translate="yes" xml:space="preserve">
           <source>Starter pack by {0}</source>
           <target state="translated">Paquete de inicio de {0}</target>
         </trans-unit>
-				<trans-unit id="SubmitText" translate="yes" xml:space="preserve">
+        <trans-unit id="SubmitText" translate="yes" xml:space="preserve">
           <source>Submit</source>
           <target state="translated">Enviar</target>
         </trans-unit>
-				<trans-unit id="ImageSelectText" translate="yes" xml:space="preserve">
+        <trans-unit id="ImageSelectText" translate="yes" xml:space="preserve">
           <source>Add image</source>
           <target state="translated">Añadir imagen</target>
         </trans-unit>
-				<trans-unit id="UploadingText" translate="yes" xml:space="preserve">
+        <trans-unit id="UploadingText" translate="yes" xml:space="preserve">
           <source>Uploading</source>
           <target state="translated">Cargar</target>
         </trans-unit>
-				<trans-unit id="FeedsText" translate="yes" xml:space="preserve">
+        <trans-unit id="FeedsText" translate="yes" xml:space="preserve">
           <source>Feeds</source>
           <target state="translated">Feeds</target>
         </trans-unit>
-				<trans-unit id="LikeText" translate="yes" xml:space="preserve">
+        <trans-unit id="LikeText" translate="yes" xml:space="preserve">
           <source>Like</source>
           <target state="translated">Gustar</target>
         </trans-unit>
-				<trans-unit id="ReplyText" translate="yes" xml:space="preserve">
+        <trans-unit id="ReplyText" translate="yes" xml:space="preserve">
           <source>Reply</source>
           <target state="translated">Respuesta</target>
         </trans-unit>
-				<trans-unit id="RepostText" translate="yes" xml:space="preserve">
+        <trans-unit id="RepostText" translate="yes" xml:space="preserve">
           <source>Repost</source>
           <target state="translated">Repostear</target>
         </trans-unit>
-				<trans-unit id="FollowingFeedName" translate="yes" xml:space="preserve">
+        <trans-unit id="FollowingFeedName" translate="yes" xml:space="preserve">
           <source>Following</source>
           <target state="translated">Siguiendo</target>
         </trans-unit>
-				<trans-unit id="MyFeedsSubtitle" translate="yes" xml:space="preserve">
+        <trans-unit id="MyFeedsSubtitle" translate="yes" xml:space="preserve">
           <source>All the feeds you've saved, all in one place</source>
           <target state="translated">Todos los feeds que has guardado, todo en un solo lugar</target>
         </trans-unit>
-				<trans-unit id="MyFeedsTitle" translate="yes" xml:space="preserve">
+        <trans-unit id="MyFeedsTitle" translate="yes" xml:space="preserve">
           <source>My Feeds</source>
           <target state="translated">Mis Feeds</target>
         </trans-unit>
-				<trans-unit id="PinnedFeedsSubtitle" translate="yes" xml:space="preserve">
+        <trans-unit id="PinnedFeedsSubtitle" translate="yes" xml:space="preserve">
           <source>Select a feed to change your view</source>
           <target state="translated">Selecciona un feed para cambiar la vista</target>
         </trans-unit>
-				<trans-unit id="PinnedFeedsTitle" translate="yes" xml:space="preserve">
+        <trans-unit id="PinnedFeedsTitle" translate="yes" xml:space="preserve">
           <source>Pinned Feeds</source>
           <target state="translated">Feeds anclados</target>
         </trans-unit>
-				<trans-unit id="RefreshText" translate="yes" xml:space="preserve">
+        <trans-unit id="RefreshText" translate="yes" xml:space="preserve">
           <source>Refresh</source>
           <target state="translated">Actualizar</target>
         </trans-unit>
-			</group>
-		</body>
-	</file>
+        <trans-unit id="SearchText" translate="yes" xml:space="preserve">
+          <source>Search</source>
+          <target state="translated">Buscar</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
 </xliff>

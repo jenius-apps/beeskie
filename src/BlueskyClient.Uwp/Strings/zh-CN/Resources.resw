@@ -138,4 +138,7 @@
   <data name="RefreshText" xml:space="preserve">
     <value>刷新</value>
   </data>
+  <data name="SearchText" xml:space="preserve">
+    <value>搜索</value>
+  </data>
 </root>

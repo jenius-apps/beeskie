@@ -25,6 +25,8 @@ public sealed partial class SearchPage : Page
     {
         this.InitializeComponent();
         ViewModel = App.Services.GetRequiredService<SearchPageViewModel>();
+
+        Window.Current.SetTitleBar(TitleBar);
     }
 
     public SearchPageViewModel ViewModel { get; }

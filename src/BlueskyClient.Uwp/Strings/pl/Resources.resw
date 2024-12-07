@@ -135,4 +135,7 @@
   <data name="RefreshText" xml:space="preserve">
     <value>Odświeżyć</value>
   </data>
+  <data name="SearchText" xml:space="preserve">
+    <value>Szukać</value>
+  </data>
 </root>

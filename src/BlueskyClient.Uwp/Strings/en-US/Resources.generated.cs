@@ -431,6 +431,19 @@ namespace BlueskyClient.Strings{
         }
         #endregion
 
+        #region SearchText
+        /// <summary>
+        ///   Looks up a localized string similar to: Search
+        /// </summary>
+        public static string SearchText
+        {
+            get
+            {
+                return _resourceLoader.GetString("SearchText");
+            }
+        }
+        #endregion
+
         #region SendFeedbackText
         /// <summary>
         ///   Looks up a localized string similar to: Send feedback
@@ -603,6 +616,7 @@ namespace BlueskyClient.Strings{
             ReplyText,
             RepostCaption,
             RepostText,
+            SearchText,
             SendFeedbackText,
             SessionTimeoutDialogMessage,
             SessionTimeoutDialogTitle,

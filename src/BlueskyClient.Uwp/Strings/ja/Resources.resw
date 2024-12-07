@@ -138,4 +138,7 @@
   <data name="RefreshText" xml:space="preserve">
     <value>リフレッシュ</value>
   </data>
+  <data name="SearchText" xml:space="preserve">
+    <value>捜索</value>
+  </data>
 </root>

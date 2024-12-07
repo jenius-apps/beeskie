@@ -28,8 +28,6 @@ public sealed partial class HomePage : Page
 
     public HomeFeedCollection FeedCollection { get; }
 
-    private string RefreshTooltip => $"{Strings.Resources.RefreshText} (Ctrl+R)";
-
     protected override async void OnNavigatedTo(NavigationEventArgs e)
     {
         try

@@ -81,6 +81,7 @@ partial class App
                 { NavigationConstants.NotificationsPage, typeof(NotificationsPage) },
                 { NavigationConstants.ProfilePage, typeof(ProfilePage) },
                 { NavigationConstants.FeedsPage, typeof(FeedsPage) },
+                { NavigationConstants.SearchPage, typeof(SearchPage) },
             });
         });
 
