@@ -10,7 +10,7 @@
     d:DesignWidth="400"
     mc:Ignorable="d">
 
-    <Grid MaxWidth="600" Padding="20,0">
+    <Grid MaxWidth="{StaticResource FeedMaxWidth}" Padding="20,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="*" />

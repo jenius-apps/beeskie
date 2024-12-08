@@ -174,6 +174,22 @@
           <source>Refresh</source>
           <target state="translated">刷新</target>
         </trans-unit>
+        <trans-unit id="SearchText" translate="yes" xml:space="preserve">
+          <source>Search</source>
+          <target state="translated">搜索</target>
+        </trans-unit>
+        <trans-unit id="SortLatestText" translate="yes" xml:space="preserve">
+          <source>Latest</source>
+          <target state="new">Latest</target>
+        </trans-unit>
+        <trans-unit id="SortTopText" translate="yes" xml:space="preserve">
+          <source>Top</source>
+          <target state="new">Top</target>
+        </trans-unit>
+        <trans-unit id="SearchTabAutomationName" translate="yes" xml:space="preserve">
+          <source>Sorting options</source>
+          <target state="new">Sorting options</target>
+        </trans-unit>
       </group>
     </body>
   </file>

@@ -34,5 +34,8 @@ public sealed class TelemetryConstants
     private const string HomePage = "homePage:";
     public const string HomeRefreshClicked = HomePage + "refreshClicked";
     public const string FeedChanged = HomePage + "feedChanged";
-    public const string NextPageLoaded = HomePage + "nextPageLoaded";
+    public const string HomeNextPageLoaded = HomePage + "nextPageLoaded";
+
+    private const string SearchPage = "searchPage:";
+    public const string SearchNextPageLoaded = SearchPage + "nextPageLoaded";
 }

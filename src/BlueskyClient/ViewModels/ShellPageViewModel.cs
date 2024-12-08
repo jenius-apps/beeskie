@@ -46,6 +46,7 @@ public partial class ShellPageViewModel : ObservableObject
         _imageViewerService = imageViewerService;
 
         MenuItems.Add(new MenuItem(NavigateContentPageCommand, _localizer.GetString("HomeText"), "\uEA8A", NavigationConstants.HomePage));
+        MenuItems.Add(new MenuItem(NavigateContentPageCommand, _localizer.GetString("SearchText"), "\uE721", NavigationConstants.SearchPage));
         MenuItems.Add(new MenuItem(NavigateContentPageCommand, _localizer.GetString("NotificationsText"), "\uEA8F", NavigationConstants.NotificationsPage));
         MenuItems.Add(new MenuItem(NavigateContentPageCommand, _localizer.GetString("ProfileText"), "\uE77B", NavigationConstants.ProfilePage));
 #if DEBUG

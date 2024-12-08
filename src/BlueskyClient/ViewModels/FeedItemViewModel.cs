@@ -17,29 +17,32 @@ public partial class FeedItemViewModel : ObservableObject
     private readonly IPostSubmissionService _postSubmissionService;
     private readonly IDialogService _dialogService;
     private readonly ILocalizer _localizer;
+    private readonly FeedPostReason? _reason;
 
     public FeedItemViewModel(
-        FeedItem feedItem,
+        FeedPost post,
+        FeedPostReason? reason,
         IPostSubmissionService postSubmissionService,
         IDialogService dialogService,
         ILocalizer localizer)
     {
-        FeedItem = feedItem;
-        AuthorViewModel.SetAuthor(feedItem.Post.Author);
+        Post = post;
+        _reason = reason;
+        AuthorViewModel.SetAuthor(post.Author);
         _postSubmissionService = postSubmissionService;
         _dialogService = dialogService;
         _localizer = localizer;
         
-        IsLiked = feedItem.Post.Viewer?.Like is not null;
-        IsReposted = feedItem.Post.Viewer?.Repost is not null;
-        ReplyCount = feedItem.Post.GetReplyCount();
-        RepostCount = feedItem.Post.GetRepostCount();
-        LikeCount = feedItem.Post.GetLikeCount();
+        IsLiked = post.Viewer?.Like is not null;
+        IsReposted = post.Viewer?.Repost is not null;
+        ReplyCount = post.GetReplyCount();
+        RepostCount = post.GetRepostCount();
+        LikeCount = post.GetLikeCount();
     }
 
     public AuthorViewModel AuthorViewModel { get; } = new();
 
-    public FeedItem FeedItem { get; }
+    public FeedPost Post { get; }
 
     public string TimeSinceCreation
     {
@@ -47,7 +50,7 @@ public partial class FeedItemViewModel : ObservableObject
         {
             var now = DateTime.Now;
 
-            if (FeedItem.Post.Record?.CreatedAtUtc.ToLocalTime() is not DateTime createdAt ||
+            if (Post.Record?.CreatedAtUtc.ToLocalTime() is not DateTime createdAt ||
                 createdAt > now)
             {
                 return string.Empty;
@@ -57,20 +60,20 @@ public partial class FeedItemViewModel : ObservableObject
         }
     }
 
-    public bool IsRepost => FeedItem.Reason?.Type.EndsWith("#reasonRepost", StringComparison.OrdinalIgnoreCase) ?? false;
+    public bool IsRepost => _reason?.Type.EndsWith("#reasonRepost", StringComparison.OrdinalIgnoreCase) ?? false;
 
     public string ReposterName => IsRepost
-        ? FeedItem.Reason?.By?.DisplayName ?? string.Empty
+        ? _reason?.By?.DisplayName ?? string.Empty
         : string.Empty;
 
     public string RepostCaption => IsRepost
         ? _localizer.GetString("RepostCaption", ReposterName)
         : string.Empty;
 
-    public PostEmbed? PostEmbed => FeedItem.Post?.Embed;
+    public PostEmbed? PostEmbed => Post?.Embed;
 
     public FeedRecord? QuotedPost => 
-        (FeedItem.Post?.Embed?.Record?.Record ?? FeedItem.Post?.Embed?.Record) is FeedRecord record &&
+        (Post?.Embed?.Record?.Record ?? Post?.Embed?.Record) is FeedRecord record &&
         record.Type.GetRecordType() is not RecordType.StarterPack
             ? record
             : null;
@@ -93,7 +96,7 @@ public partial class FeedItemViewModel : ObservableObject
     [RelayCommand]
     private async Task ReplyAsync()
     {
-        await _dialogService.OpenReplyDialogAsync(FeedItem.Post);
+        await _dialogService.OpenReplyDialogAsync(Post);
     }
 
     [RelayCommand]
@@ -106,12 +109,12 @@ public partial class FeedItemViewModel : ObservableObject
 
         var result = await _postSubmissionService.LikeOrRepostAsync(
             RecordType.Like,
-            FeedItem.Post.Uri,
-            FeedItem.Post.Cid);
+            Post.Uri,
+            Post.Cid);
 
         if (result)
         {
-            LikeCount = (FeedItem.Post.LikeCount + 1).ToString();
+            LikeCount = (Post.LikeCount + 1).ToString();
         }
 
         IsLiked = result;
@@ -127,12 +130,12 @@ public partial class FeedItemViewModel : ObservableObject
 
         var result = await _postSubmissionService.LikeOrRepostAsync(
             RecordType.Repost,
-            FeedItem.Post.Uri,
-            FeedItem.Post.Cid);
+            Post.Uri,
+            Post.Cid);
 
         if (result)
         {
-            RepostCount = (FeedItem.Post.RepostCount + 1).ToString();
+            RepostCount = (Post.RepostCount + 1).ToString();
         }
 
         IsReposted = result;
@@ -140,6 +143,6 @@ public partial class FeedItemViewModel : ObservableObject
 
     public override string ToString()
     {
-        return $"{AuthorViewModel.DisplayName}: {FeedItem.Post.Record?.Text}";
+        return $"{AuthorViewModel.DisplayName}: {Post.Record?.Text}";
     }
 }
