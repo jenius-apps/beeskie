@@ -1,4 +1,6 @@
-﻿using BlueskyClient.Constants;
+﻿using Bluesky.NET.ApiClients;
+using Bluesky.NET.Constants;
+using BlueskyClient.Constants;
 using BlueskyClient.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -16,6 +18,7 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
     private readonly ITelemetry _telemetry;
     private string? _cursor;
     private string? _currentQuery;
+    private SearchOptions? _currentOptions;
 
     public SearchPageViewModel(
         ISearchService searchService,
@@ -26,6 +29,9 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
         _feedItemFactory = feedItemFactory;
         _telemetry = telemetry;
     }
+
+    [ObservableProperty]
+    private int _searchTabIndex = 0;
 
     /// <inheritdoc/>
     public ObservableCollection<FeedItemViewModel> CollectionSource { get; } = [];
@@ -58,11 +64,21 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
             _telemetry.TrackEvent(TelemetryConstants.SearchNextPageLoaded);
         }
 
+        _currentOptions ??= new()
+        {
+            Sort = SearchTabIndex switch
+            {
+                0 => SearchConstants.SortTop,
+                1 => SearchConstants.SortLatest,
+                _ => SearchConstants.SortTop
+            }
+        };
+
         var (Posts, Cursor) = await _searchService.SearchPostsAsync(
            _currentQuery,
            ct,
            cursor: _cursor,
-           options: null);
+           options: _currentOptions);
 
         _cursor = Cursor;
 
@@ -91,7 +107,14 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
         _cursor = null;
         CollectionSource.Clear();
         _currentQuery = query;
+        _currentOptions = null;
 
         await LoadNextPageAsync(ct);
+    }
+
+    async partial void OnSearchTabIndexChanged(int value)
+    {
+        NewSearchCommand.Cancel();
+        await NewSearchCommand.ExecuteAsync(null);
     }
 }

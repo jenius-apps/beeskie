@@ -431,6 +431,19 @@ namespace BlueskyClient.Strings{
         }
         #endregion
 
+        #region SearchTabAutomationName
+        /// <summary>
+        ///   Looks up a localized string similar to: Sorting options
+        /// </summary>
+        public static string SearchTabAutomationName
+        {
+            get
+            {
+                return _resourceLoader.GetString("SearchTabAutomationName");
+            }
+        }
+        #endregion
+
         #region SearchText
         /// <summary>
         ///   Looks up a localized string similar to: Search
@@ -535,6 +548,32 @@ namespace BlueskyClient.Strings{
         }
         #endregion
 
+        #region SortLatestText
+        /// <summary>
+        ///   Looks up a localized string similar to: Latest
+        /// </summary>
+        public static string SortLatestText
+        {
+            get
+            {
+                return _resourceLoader.GetString("SortLatestText");
+            }
+        }
+        #endregion
+
+        #region SortTopText
+        /// <summary>
+        ///   Looks up a localized string similar to: Top
+        /// </summary>
+        public static string SortTopText
+        {
+            get
+            {
+                return _resourceLoader.GetString("SortTopText");
+            }
+        }
+        #endregion
+
         #region StarterPackByText
         /// <summary>
         ///   Looks up a localized string similar to: Starter pack by {0}
@@ -616,6 +655,7 @@ namespace BlueskyClient.Strings{
             ReplyText,
             RepostCaption,
             RepostText,
+            SearchTabAutomationName,
             SearchText,
             SendFeedbackText,
             SessionTimeoutDialogMessage,
@@ -624,6 +664,8 @@ namespace BlueskyClient.Strings{
             SignOutDialogMessage,
             SignOutDialogTitle,
             SignOutText,
+            SortLatestText,
+            SortTopText,
             StarterPackByText,
             SubmitText,
             UploadingText,

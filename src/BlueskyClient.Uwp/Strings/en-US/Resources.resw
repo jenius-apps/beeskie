@@ -213,6 +213,9 @@
   <data name="RepostText" xml:space="preserve">
     <value>Repost</value>
   </data>
+  <data name="SearchTabAutomationName" xml:space="preserve">
+    <value>Sorting options</value>
+  </data>
   <data name="SearchText" xml:space="preserve">
     <value>Search</value>
   </data>
@@ -236,6 +239,12 @@
   </data>
   <data name="SignOutText" xml:space="preserve">
     <value>Sign out</value>
+  </data>
+  <data name="SortLatestText" xml:space="preserve">
+    <value>Latest</value>
+  </data>
+  <data name="SortTopText" xml:space="preserve">
+    <value>Top</value>
   </data>
   <data name="StarterPackByText" xml:space="preserve">
     <value>Starter pack by {0}</value>

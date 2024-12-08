@@ -62,9 +62,9 @@
                 QuerySubmitted="OnQuerySubmitted"
                 Text="{x:Bind ViewModel.Query, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-            <wct:Segmented Margin="0,12,0,0">
-                <wct:SegmentedItem Content="Top" />
-                <wct:SegmentedItem Content="Latest" />
+            <wct:Segmented Margin="0,12,0,0" SelectedIndex="{x:Bind ViewModel.SearchTabIndex, Mode=TwoWay}">
+                <wct:SegmentedItem Content="{x:Bind strings:Resources.SortTopText}" />
+                <wct:SegmentedItem Content="{x:Bind strings:Resources.SortLatestText}" />
             </wct:Segmented>
 
         </StackPanel>
