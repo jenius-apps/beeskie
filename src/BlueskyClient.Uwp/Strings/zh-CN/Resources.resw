@@ -141,4 +141,28 @@
   <data name="SearchText" xml:space="preserve">
     <value>搜索</value>
   </data>
+  <data name="SortLatestText" xml:space="preserve">
+    <value>最近的</value>
+  </data>
+  <data name="SortTopText" xml:space="preserve">
+    <value>返回页首</value>
+  </data>
+  <data name="SearchTabAutomationName" xml:space="preserve">
+    <value>排序选项</value>
+  </data>
+  <data name="DeleteText" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="RecentSearchesText" xml:space="preserve">
+    <value>最近搜索</value>
+  </data>
+  <data name="RecentSearchesPlaceholder" xml:space="preserve">
+    <value>您最近的搜索将在此处显示。开始搜索吧！</value>
+  </data>
+  <data name="SearchPagePlaceholder1" xml:space="preserve">
+    <value>你还在等什么？</value>
+  </data>
+  <data name="SearchPagePlaceholder2" xml:space="preserve">
+    <value>开始搜索吧！</value>
+  </data>
 </root>

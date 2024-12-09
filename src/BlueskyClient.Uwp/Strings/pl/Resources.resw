@@ -138,4 +138,28 @@
   <data name="SearchText" xml:space="preserve">
     <value>Szukać</value>
   </data>
+  <data name="SortLatestText" xml:space="preserve">
+    <value>Najnowszy</value>
+  </data>
+  <data name="SortTopText" xml:space="preserve">
+    <value>Do góry</value>
+  </data>
+  <data name="SearchTabAutomationName" xml:space="preserve">
+    <value>Opcje sortowania</value>
+  </data>
+  <data name="DeleteText" xml:space="preserve">
+    <value>Usunąć</value>
+  </data>
+  <data name="RecentSearchesText" xml:space="preserve">
+    <value>Ostatnie wyszukiwania</value>
+  </data>
+  <data name="RecentSearchesPlaceholder" xml:space="preserve">
+    <value>W tym miejscu pojawią się Twoje ostatnie wyszukiwania. Zacznij szukać!</value>
+  </data>
+  <data name="SearchPagePlaceholder1" xml:space="preserve">
+    <value>Na co czekasz?</value>
+  </data>
+  <data name="SearchPagePlaceholder2" xml:space="preserve">
+    <value>Zacznij szukać!</value>
+  </data>
 </root>

@@ -141,4 +141,28 @@
   <data name="SearchText" xml:space="preserve">
     <value>捜索</value>
   </data>
+  <data name="SortLatestText" xml:space="preserve">
+    <value>最新</value>
+  </data>
+  <data name="SortTopText" xml:space="preserve">
+    <value>ページのトップへ</value>
+  </data>
+  <data name="SearchTabAutomationName" xml:space="preserve">
+    <value>並べ替えオプション</value>
+  </data>
+  <data name="DeleteText" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="RecentSearchesText" xml:space="preserve">
+    <value>最近の検索</value>
+  </data>
+  <data name="RecentSearchesPlaceholder" xml:space="preserve">
+    <value>最近の検索内容がここに表示されます。検索を始めましょう!</value>
+  </data>
+  <data name="SearchPagePlaceholder1" xml:space="preserve">
+    <value>何をためらっているんですか。</value>
+  </data>
+  <data name="SearchPagePlaceholder2" xml:space="preserve">
+    <value>検索を始めましょう!</value>
+  </data>
 </root>
