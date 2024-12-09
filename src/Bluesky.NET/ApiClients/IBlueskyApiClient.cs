@@ -54,7 +54,7 @@ public interface IBlueskyApiClient
     /// Retrieves the posts for the given feed.
     /// </summary>
     /// <param name="accessToken">Access token for the logged in user.</param>
-    /// <param name="atUris">The at:// URI that represents a feed.</param>
+    /// <param name="atUri">The at:// URI that represents a feed.</param>
     /// <param name="ct">A cancellation token.</param>
     /// <param name="cursor">A bluesky-provided string to help with pagination.</param>
     /// <returns>The items for the feed.</returns>
@@ -63,4 +63,20 @@ public interface IBlueskyApiClient
         string atUri,
         CancellationToken ct,
         string? cursor = null);
+
+    /// <summary>
+    /// Performs posts search.
+    /// </summary>
+    /// <param name="accessToken">Access token for the logged in user.</param>
+    /// <param name="query">The user-provided search query to use.</param>
+    /// <param name="ct">A cancellation token.</param>
+    /// <param name="cursor">A bluesky-provided string to help with pagination.</param>
+    /// <param name="options">A <see cref="SearchOptions"/> object with filter parameters.</param>
+    /// <returns>List of posts returned by the search service and a cursor.</returns>
+    Task<Result<(IReadOnlyList<FeedPost> Posts, string? Cursor)>> SearchPostsAsync(
+        string accessToken,
+        string query,
+        CancellationToken ct,
+        string? cursor = null,
+        SearchOptions? options = null);
 }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BlueskyClient.ViewModels;
 
-public partial class HomePageViewModel : ObservableObject
+public partial class HomePageViewModel : ObservableObject, ISupportPagination<FeedItemViewModel>
 {
     private readonly ITimelineService _timelineService;
     private readonly IFeedItemViewModelFactory _feedItemViewModelFactory;
@@ -43,7 +43,7 @@ public partial class HomePageViewModel : ObservableObject
 
     public ObservableCollection<FeedGeneratorViewModel> Feeds { get; } = [];
 
-    public ObservableCollection<FeedItemViewModel> FeedItems { get; } = [];
+    public ObservableCollection<FeedItemViewModel> CollectionSource { get; } = [];
 
     public async Task InitializeAsync(CancellationToken ct)
     {
@@ -65,7 +65,7 @@ public partial class HomePageViewModel : ObservableObject
     {
         if (_cursor is not null)
         {
-            _telemetry.TrackEvent(TelemetryConstants.NextPageLoaded, new Dictionary<string, string>
+            _telemetry.TrackEvent(TelemetryConstants.HomeNextPageLoaded, new Dictionary<string, string>
             {
                 { "currentFeed", SelectedFeed?.DisplayName ?? "none" }
             });
@@ -80,7 +80,7 @@ public partial class HomePageViewModel : ObservableObject
         foreach (var item in Items)
         {
             var vm = _feedItemViewModelFactory.CreateViewModel(item);
-            FeedItems.Add(vm);
+            CollectionSource.Add(vm);
             FeedLoading = false;
         }
 
@@ -114,7 +114,7 @@ public partial class HomePageViewModel : ObservableObject
     private async Task RefreshAsync()
     {
         _cursor = null;
-        FeedItems.Clear();
+        CollectionSource.Clear();
         FeedLoading = true;
         await LoadNextPageAsync(default);
     }

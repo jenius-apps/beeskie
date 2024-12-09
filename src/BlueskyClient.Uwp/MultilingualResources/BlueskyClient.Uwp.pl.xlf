@@ -174,6 +174,42 @@
           <source>Refresh</source>
           <target state="translated">Odświeżyć</target>
         </trans-unit>
+        <trans-unit id="SearchText" translate="yes" xml:space="preserve">
+          <source>Search</source>
+          <target state="translated">Szukać</target>
+        </trans-unit>
+        <trans-unit id="SortLatestText" translate="yes" xml:space="preserve">
+          <source>Latest</source>
+          <target state="translated">Najnowszy</target>
+        </trans-unit>
+        <trans-unit id="SortTopText" translate="yes" xml:space="preserve">
+          <source>Top</source>
+          <target state="translated">Do góry</target>
+        </trans-unit>
+        <trans-unit id="SearchTabAutomationName" translate="yes" xml:space="preserve">
+          <source>Sorting options</source>
+          <target state="translated">Opcje sortowania</target>
+        </trans-unit>
+        <trans-unit id="DeleteText" translate="yes" xml:space="preserve">
+          <source>Delete</source>
+          <target state="translated">Usunąć</target>
+        </trans-unit>
+        <trans-unit id="RecentSearchesText" translate="yes" xml:space="preserve">
+          <source>Recent searches</source>
+          <target state="translated">Ostatnie wyszukiwania</target>
+        </trans-unit>
+        <trans-unit id="RecentSearchesPlaceholder" translate="yes" xml:space="preserve">
+          <source>Your recent searches will appear here. Start searching!</source>
+          <target state="translated">W tym miejscu pojawią się Twoje ostatnie wyszukiwania. Zacznij szukać!</target>
+        </trans-unit>
+        <trans-unit id="SearchPagePlaceholder1" translate="yes" xml:space="preserve">
+          <source>What are you waiting for?</source>
+          <target state="translated">Na co czekasz?</target>
+        </trans-unit>
+        <trans-unit id="SearchPagePlaceholder2" translate="yes" xml:space="preserve">
+          <source>Start searching!</source>
+          <target state="translated">Zacznij szukać!</target>
+        </trans-unit>
       </group>
     </body>
   </file>

@@ -81,6 +81,7 @@ partial class App
                 { NavigationConstants.NotificationsPage, typeof(NotificationsPage) },
                 { NavigationConstants.ProfilePage, typeof(ProfilePage) },
                 { NavigationConstants.FeedsPage, typeof(FeedsPage) },
+                { NavigationConstants.SearchPage, typeof(SearchPage) },
             });
         });
 
@@ -119,6 +120,7 @@ partial class App
     [Singleton(typeof(BlueskyApiClient), typeof(IBlueskyApiClient))]
     [Singleton(typeof(AuthenticationService), typeof(IAuthenticationService))]
     [Singleton(typeof(TimelineService), typeof(ITimelineService))]
+    [Singleton(typeof(SearchService), typeof(ISearchService))]
     [Singleton(typeof(FeedItemViewModelFactory), typeof(IFeedItemViewModelFactory))]
     [Singleton(typeof(NotificationViewModelFactory), typeof(INotificationViewModelFactory))]
     [Singleton(typeof(FeedGeneratorViewModelFactory), typeof(IFeedGeneratorViewModelFactory))]
@@ -141,6 +143,7 @@ partial class App
     [Transient(typeof(ProfileControlViewModel))]
     [Transient(typeof(NewPostViewModel))]
     [Transient(typeof(FeedsPageViewModel))]
+    [Transient(typeof(SearchPageViewModel))]
     private static partial void ConfigureServices(IServiceCollection services);
 
     private static TelemetryContext? GetContext()

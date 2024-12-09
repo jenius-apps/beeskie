@@ -138,4 +138,31 @@
   <data name="UploadingText" xml:space="preserve">
     <value>Опубліковуємо</value>
   </data>
+  <data name="SearchText" xml:space="preserve">
+    <value>Шукати</value>
+  </data>
+  <data name="SortLatestText" xml:space="preserve">
+    <value>Останні</value>
+  </data>
+  <data name="SortTopText" xml:space="preserve">
+    <value>Верх</value>
+  </data>
+  <data name="SearchTabAutomationName" xml:space="preserve">
+    <value>Параметри сортування</value>
+  </data>
+  <data name="DeleteText" xml:space="preserve">
+    <value>Видалити</value>
+  </data>
+  <data name="RecentSearchesText" xml:space="preserve">
+    <value>Нещодавні пошукові запити</value>
+  </data>
+  <data name="RecentSearchesPlaceholder" xml:space="preserve">
+    <value>Тут з'являться ваші останні пошукові запити. Приступайте до пошуку!</value>
+  </data>
+  <data name="SearchPagePlaceholder1" xml:space="preserve">
+    <value>Чого ви чекаєте?</value>
+  </data>
+  <data name="SearchPagePlaceholder2" xml:space="preserve">
+    <value>Приступайте до пошуку!</value>
+  </data>
 </root>

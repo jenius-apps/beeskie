@@ -1,0 +1,226 @@
+﻿<Page
+    x:Class="BlueskyClient.Views.SearchPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ani="using:CommunityToolkit.WinUI.Animations"
+    xmlns:const="using:BlueskyClient.Constants.Uwp"
+    xmlns:controls="using:BlueskyClient.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ex="using:JeniusApps.Common.UI.Uwp"
+    xmlns:local="using:BlueskyClient.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:strings="using:BlueskyClient.Strings"
+    xmlns:templates="using:BlueskyClient.ResourceDictionaries"
+    xmlns:vm="using:BlueskyClient.ViewModels"
+    xmlns:wct="using:CommunityToolkit.WinUI.Controls"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    Background="Transparent"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <templates:FeedItemTemplateResource />
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="104" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="240" />
+        </Grid.ColumnDefinitions>
+
+        <Border Background="{ThemeResource SystemControlAcrylicElementBrush}" Canvas.ZIndex="1" />
+
+        <Grid
+            x:Name="TitleBar"
+            Grid.ColumnSpan="3"
+            Height="32"
+            Margin="-240,0,0,0"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top"
+            Background="Transparent"
+            Canvas.ZIndex="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="LeftPaddingColumn" Width="0" />
+                <ColumnDefinition />
+                <ColumnDefinition x:Name="RightPaddingColumn" Width="0" />
+            </Grid.ColumnDefinitions>
+        </Grid>
+
+        <StackPanel
+            MaxWidth="{StaticResource SearchHeaderMaxWidth}"
+            Margin="20,20,20,0"
+            Canvas.ZIndex="3">
+
+            <AutoSuggestBox
+                Margin="0"
+                PlaceholderText="{x:Bind strings:Resources.SearchText}"
+                QueryIcon="Find"
+                QuerySubmitted="OnQuerySubmitted"
+                Text="{x:Bind ViewModel.Query, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+            <wct:Segmented Margin="0,8,0,0" SelectedIndex="{x:Bind ViewModel.SearchTabIndex, Mode=TwoWay}">
+                <wct:SegmentedItem Content="{x:Bind strings:Resources.SortTopText}" />
+                <wct:SegmentedItem Content="{x:Bind strings:Resources.SortLatestText}" />
+            </wct:Segmented>
+
+        </StackPanel>
+
+        <Rectangle
+            Height="1"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Bottom"
+            Canvas.ZIndex="1"
+            Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
+
+        <ListView
+            x:Name="SearchResultsListView"
+            Grid.Row="2"
+            Padding="0,20,0,0"
+            DataFetchSize="1"
+            IncrementalLoadingThreshold="1"
+            IncrementalLoadingTrigger="Edge"
+            ItemTemplate="{StaticResource FeedItemTemplate}"
+            ItemsSource="{x:Bind FeedCollection}"
+            SelectionMode="None"
+            Visibility="{x:Bind ex:UIExtensions.InvertBoolToVis(ViewModel.SearchLoading), Mode=OneWay}">
+            <ani:Implicit.ShowAnimations>
+                <ani:OpacityAnimation
+                    From="0"
+                    To="1"
+                    Duration="0:0:0.3" />
+            </ani:Implicit.ShowAnimations>
+
+            <ListView.ItemContainerStyle>
+                <Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="Padding" Value="20,0,20,20" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+
+        <StackPanel
+            Grid.Row="2"
+            Margin="0,20,0,0"
+            Visibility="{x:Bind ViewModel.SearchLoading, Mode=OneWay}">
+            <controls:FeedItemShimmer />
+            <controls:FeedItemShimmer Margin="0,12,0,0" />
+            <controls:FeedItemShimmer Margin="0,12,0,0" />
+        </StackPanel>
+
+        <StackPanel
+            Grid.Row="2"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Visibility="{x:Bind ViewModel.SearchPagePlaceholderVisible, Mode=OneWay}">
+            <FontIcon
+                FontFamily="{StaticResource FluentUIGlyphs}"
+                FontSize="60"
+                Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                Glyph="{StaticResource GlyphSearch}" />
+            <TextBlock
+                Margin="0,12,0,0"
+                FontSize="12"
+                Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                Text="{x:Bind strings:Resources.SearchPagePlaceholder1}"
+                TextAlignment="Center" />
+            <TextBlock
+                Margin="0,2,0,0"
+                FontSize="12"
+                Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                Text="{x:Bind strings:Resources.SearchPagePlaceholder2}"
+                TextAlignment="Center" />
+        </StackPanel>
+
+        <Rectangle
+            Grid.RowSpan="2"
+            Grid.Column="1"
+            Width="1"
+            VerticalAlignment="Stretch"
+            Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
+
+        <Grid
+            Grid.RowSpan="2"
+            Grid.Column="2"
+            Margin="0,66,0,0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <TextBlock
+                x:Name="RecentSearchesTitle"
+                Margin="20,0"
+                FontWeight="SemiBold"
+                Text="{x:Bind strings:Resources.RecentSearchesText}"
+                TextTrimming="CharacterEllipsis" />
+
+            <ListView
+                Grid.Row="1"
+                Padding="12,16,20,20"
+                AutomationProperties.LabeledBy="{x:Bind RecentSearchesTitle}"
+                ItemsSource="{x:Bind ViewModel.RecentSearches}"
+                SelectionMode="None">
+                <ListView.ItemContainerStyle>
+                    <Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="Margin" Value="0" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="vm:RecentSearchViewModel">
+                        <ListViewItem MinHeight="28" IsTabStop="False">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
+                                <HyperlinkButton
+                                    Padding="8,4"
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="Left"
+                                    AutomationProperties.Name="{x:Bind Query}"
+                                    Command="{x:Bind RunQueryCommand}"
+                                    CommandParameter="{x:Bind Query}"
+                                    FontSize="12"
+                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+                                    <TextBlock Text="{x:Bind Query}" TextTrimming="CharacterEllipsis" />
+                                </HyperlinkButton>
+                                <Button
+                                    Grid.Column="1"
+                                    Margin="4,0,0,0"
+                                    Padding="4"
+                                    AutomationProperties.Name="{x:Bind strings:Resources.DeleteText}"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent"
+                                    Command="{x:Bind DeleteCommand}"
+                                    CommandParameter="{x:Bind}"
+                                    ToolTipService.ToolTip="{x:Bind strings:Resources.DeleteText}">
+                                    <FontIcon
+                                        FontFamily="{StaticResource FluentUIGlyphs}"
+                                        FontSize="14"
+                                        Glyph="{StaticResource GlyphCloseThin}" />
+                                </Button>
+                            </Grid>
+                        </ListViewItem>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <TextBlock
+                Grid.Row="1"
+                Margin="20,16,20,0"
+                FontSize="12"
+                Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                Text="{x:Bind strings:Resources.RecentSearchesPlaceholder}"
+                TextWrapping="WrapWholeWords"
+                Visibility="{x:Bind ViewModel.RecentSearchPlaceholderVisible, Mode=OneWay}" />
+        </Grid>
+    </Grid>
+</Page>

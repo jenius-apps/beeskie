@@ -129,6 +129,9 @@
   <data name="CloseText" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="DeleteText" xml:space="preserve">
+    <value>Delete</value>
+  </data>
   <data name="FeedsText" xml:space="preserve">
     <value>Feeds</value>
   </data>
@@ -201,6 +204,12 @@
   <data name="ProfileText" xml:space="preserve">
     <value>Profile</value>
   </data>
+  <data name="RecentSearchesPlaceholder" xml:space="preserve">
+    <value>Your recent searches will appear here. Start searching!</value>
+  </data>
+  <data name="RecentSearchesText" xml:space="preserve">
+    <value>Recent searches</value>
+  </data>
   <data name="RefreshText" xml:space="preserve">
     <value>Refresh</value>
   </data>
@@ -212,6 +221,18 @@
   </data>
   <data name="RepostText" xml:space="preserve">
     <value>Repost</value>
+  </data>
+  <data name="SearchPagePlaceholder1" xml:space="preserve">
+    <value>What are you waiting for?</value>
+  </data>
+  <data name="SearchPagePlaceholder2" xml:space="preserve">
+    <value>Start searching!</value>
+  </data>
+  <data name="SearchTabAutomationName" xml:space="preserve">
+    <value>Sorting options</value>
+  </data>
+  <data name="SearchText" xml:space="preserve">
+    <value>Search</value>
   </data>
   <data name="SendFeedbackText" xml:space="preserve">
     <value>Send feedback</value>
@@ -233,6 +254,12 @@
   </data>
   <data name="SignOutText" xml:space="preserve">
     <value>Sign out</value>
+  </data>
+  <data name="SortLatestText" xml:space="preserve">
+    <value>Latest</value>
+  </data>
+  <data name="SortTopText" xml:space="preserve">
+    <value>Top</value>
   </data>
   <data name="StarterPackByText" xml:space="preserve">
     <value>Starter pack by {0}</value>

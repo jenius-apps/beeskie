@@ -23,7 +23,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid MaxWidth="600">
+        <Grid MaxWidth="{StaticResource FeedMaxWidth}">
             <Grid.RowDefinitions>
                 <!--  0 hero image  -->
                 <RowDefinition Height="auto" />

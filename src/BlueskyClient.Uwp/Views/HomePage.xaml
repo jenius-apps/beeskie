@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:ani="using:CommunityToolkit.WinUI.Animations"
+    xmlns:const="using:BlueskyClient.Constants.Uwp"
     xmlns:controls="using:BlueskyClient.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ex="using:JeniusApps.Common.UI.Uwp"
@@ -64,7 +65,7 @@
             BorderBrush="Transparent"
             Canvas.ZIndex="3"
             Command="{x:Bind ViewModel.RefreshFeedCommand}"
-            ToolTipService.ToolTip="{x:Bind RefreshTooltip}">
+            ToolTipService.ToolTip="{x:Bind const:StringShortcuts.RefreshTooltip}">
             <Button.KeyboardAccelerators>
                 <KeyboardAccelerator Key="R" Modifiers="Control" />
             </Button.KeyboardAccelerators>

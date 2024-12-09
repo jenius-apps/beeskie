@@ -21,7 +21,7 @@
     </Style>
 
     <DataTemplate x:Key="FeedItemTemplate" x:DataType="vm:FeedItemViewModel">
-        <Grid MaxWidth="600">
+        <Grid MaxWidth="{StaticResource FeedMaxWidth}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
@@ -88,7 +88,7 @@
 
                     <TextBlock
                         Grid.Row="1"
-                        Text="{x:Bind FeedItem.Post.Record.Text}"
+                        Text="{x:Bind Post.Record.Text}"
                         TextWrapping="WrapWholeWords" />
 
                     <controls:PostEmbeds

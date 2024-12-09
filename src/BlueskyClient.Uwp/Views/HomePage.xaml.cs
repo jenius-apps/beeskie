@@ -1,4 +1,5 @@
 ﻿using BlueskyClient.Collections;
+using BlueskyClient.Extensions.Uwp;
 using BlueskyClient.ViewModels;
 using CommunityToolkit.WinUI;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,16 +20,14 @@ public sealed partial class HomePage : Page
     {
         this.InitializeComponent();
         ViewModel = App.Services.GetRequiredService<HomePageViewModel>();
-        FeedCollection = new HomeFeedCollection(ViewModel);
+        FeedCollection = new PaginatedCollection<FeedItemViewModel>(ViewModel);
 
         Window.Current.SetTitleBar(TitleBar);
     }
 
     public HomePageViewModel ViewModel { get; }
 
-    public HomeFeedCollection FeedCollection { get; }
-
-    private string RefreshTooltip => $"{Strings.Resources.RefreshText} (Ctrl+R)";
+    public PaginatedCollection<FeedItemViewModel> FeedCollection { get; }
 
     protected override async void OnNavigatedTo(NavigationEventArgs e)
     {
@@ -46,7 +45,7 @@ public sealed partial class HomePage : Page
         // If we run it before the initialization is complete,
         // the scrollviewer can't be found.
         await Task.Delay(1); // Also required so that the listview's scrollviewer is discoverable.
-        SetupRenderOutsideBounds(FeedListView);
+        FeedListView.SetupRenderOutsideBounds();
     }
 
     private async void OnFeedSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -54,15 +53,6 @@ public sealed partial class HomePage : Page
         if (e.AddedItems.FirstOrDefault() is FeedGeneratorViewModel vm)
         {
             await ViewModel.ChangeFeedsCommand.ExecuteAsync(vm);
-        }
-    }
-
-    private static void SetupRenderOutsideBounds(ListView? rawListView)
-    {
-        if (rawListView is ListView listView &&
-            listView.FindDescendant<ScrollViewer>() is ScrollViewer s)
-        {
-            s.CanContentRenderOutsideBounds = true;
         }
     }
 }

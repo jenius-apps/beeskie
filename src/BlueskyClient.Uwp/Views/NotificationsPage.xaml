@@ -11,7 +11,6 @@
 
     <Page.Resources>
         <GridLength x:Key="LeftGutterWidth">60</GridLength>
-        <x:Double x:Key="ItemMaxWidth">600</x:Double>
         <x:Double x:Key="GutterGapSpacing">20</x:Double>
 
         <controls:NotificationTemplateSelector
@@ -23,7 +22,7 @@
 
         <DataTemplate x:Name="FallbackTemplate" x:DataType="vm:NotificationViewModel">
             <StackPanel
-                MaxWidth="{StaticResource ItemMaxWidth}"
+                MaxWidth="{StaticResource FeedMaxWidth}"
                 HorizontalAlignment="Center"
                 Orientation="Horizontal"
                 Spacing="12">
@@ -33,7 +32,7 @@
         </DataTemplate>
 
         <DataTemplate x:Name="ReplyTemplate" x:DataType="vm:NotificationViewModel">
-            <Grid MaxWidth="{StaticResource ItemMaxWidth}" ColumnSpacing="{StaticResource GutterGapSpacing}">
+            <Grid MaxWidth="{StaticResource FeedMaxWidth}" ColumnSpacing="{StaticResource GutterGapSpacing}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="{StaticResource LeftGutterWidth}" />
                     <ColumnDefinition Width="*" />
@@ -97,7 +96,7 @@
         </DataTemplate>
 
         <DataTemplate x:Name="FollowTemplate" x:DataType="vm:NotificationViewModel">
-            <Grid MaxWidth="{StaticResource ItemMaxWidth}" ColumnSpacing="{StaticResource GutterGapSpacing}">
+            <Grid MaxWidth="{StaticResource FeedMaxWidth}" ColumnSpacing="{StaticResource GutterGapSpacing}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="{StaticResource LeftGutterWidth}" />
                     <ColumnDefinition Width="*" />
@@ -141,7 +140,7 @@
         </DataTemplate>
 
         <DataTemplate x:Name="LikeRepostTemplate" x:DataType="vm:NotificationViewModel">
-            <Grid MaxWidth="{StaticResource ItemMaxWidth}" ColumnSpacing="{StaticResource GutterGapSpacing}">
+            <Grid MaxWidth="{StaticResource FeedMaxWidth}" ColumnSpacing="{StaticResource GutterGapSpacing}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="{StaticResource LeftGutterWidth}" />
                     <ColumnDefinition Width="*" />

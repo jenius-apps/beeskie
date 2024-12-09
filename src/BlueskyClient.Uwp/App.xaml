@@ -39,6 +39,15 @@
                     <x:String x:Key="GlyphPinned">&#xE840;</x:String>
                     <x:String x:Key="GlyphPinnedFillOverlay">&#xE842;</x:String>
                     <x:String x:Key="GlyphRefresh">&#xE72C;</x:String>
+                    <x:String x:Key="GlyphSearch">&#xE721;</x:String>
+                    <x:String x:Key="GlyphDelete">&#xE74D;</x:String>
+                    <x:String x:Key="GlyphHistory">&#xE81C;</x:String>
+                    <x:String x:Key="GlyphCloseThick">&#xEF2C;</x:String>
+                    <x:String x:Key="GlyphClose">&#xE653;</x:String>
+                    <x:String x:Key="GlyphCloseThin">&#xE894;</x:String>
+
+                    <x:Double x:Key="FeedMaxWidth">600</x:Double>
+                    <x:Double x:Key="SearchHeaderMaxWidth">640</x:Double>
                 </ResourceDictionary>
             </winui:XamlControlsResources.MergedDictionaries>
         </winui:XamlControlsResources>
