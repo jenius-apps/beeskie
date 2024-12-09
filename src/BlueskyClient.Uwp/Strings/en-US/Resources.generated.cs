@@ -67,6 +67,19 @@ namespace BlueskyClient.Strings{
         }
         #endregion
 
+        #region DeleteText
+        /// <summary>
+        ///   Looks up a localized string similar to: Delete
+        /// </summary>
+        public static string DeleteText
+        {
+            get
+            {
+                return _resourceLoader.GetString("DeleteText");
+            }
+        }
+        #endregion
+
         #region FeedsText
         /// <summary>
         ///   Looks up a localized string similar to: Feeds
@@ -379,6 +392,19 @@ namespace BlueskyClient.Strings{
         }
         #endregion
 
+        #region RecentSearchesText
+        /// <summary>
+        ///   Looks up a localized string similar to: Recent searches
+        /// </summary>
+        public static string RecentSearchesText
+        {
+            get
+            {
+                return _resourceLoader.GetString("RecentSearchesText");
+            }
+        }
+        #endregion
+
         #region RefreshText
         /// <summary>
         ///   Looks up a localized string similar to: Refresh
@@ -627,6 +653,7 @@ namespace BlueskyClient.Strings{
             BackText,
             CancelText,
             CloseText,
+            DeleteText,
             FeedsText,
             FollowersText,
             FollowingFeedName,
@@ -651,6 +678,7 @@ namespace BlueskyClient.Strings{
             PostedReplyText,
             PostsText,
             ProfileText,
+            RecentSearchesText,
             RefreshText,
             ReplyText,
             RepostCaption,

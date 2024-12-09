@@ -190,6 +190,14 @@
           <source>Sorting options</source>
           <target state="new">Sorting options</target>
         </trans-unit>
+        <trans-unit id="DeleteText" translate="yes" xml:space="preserve">
+          <source>Delete</source>
+          <target state="new">Delete</target>
+        </trans-unit>
+        <trans-unit id="RecentSearchesText" translate="yes" xml:space="preserve">
+          <source>Recent searches</source>
+          <target state="new">Recent searches</target>
+        </trans-unit>
       </group>
     </body>
   </file>
