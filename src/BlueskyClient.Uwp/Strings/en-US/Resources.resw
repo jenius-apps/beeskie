@@ -129,6 +129,9 @@
   <data name="CloseText" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="DeleteText" xml:space="preserve">
+    <value>Delete</value>
+  </data>
   <data name="FeedsText" xml:space="preserve">
     <value>Feeds</value>
   </data>
@@ -200,6 +203,9 @@
   </data>
   <data name="ProfileText" xml:space="preserve">
     <value>Profile</value>
+  </data>
+  <data name="RecentSearchesText" xml:space="preserve">
+    <value>Recent searches</value>
   </data>
   <data name="RefreshText" xml:space="preserve">
     <value>Refresh</value>

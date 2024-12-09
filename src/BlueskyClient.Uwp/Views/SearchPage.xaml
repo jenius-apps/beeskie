@@ -124,10 +124,14 @@
             Grid.Column="2"
             Margin="20,66,20,20">
 
-            <TextBlock FontWeight="SemiBold" Text="Recent searches" />
+            <TextBlock
+                x:Name="RecentSearchesTitle"
+                FontWeight="SemiBold"
+                Text="{x:Bind strings:Resources.RecentSearchesText}" />
 
             <ListView
                 Margin="-8,16,0,0"
+                AutomationProperties.LabeledBy="{x:Bind RecentSearchesTitle}"
                 ItemsSource="{x:Bind ViewModel.RecentSearches}"
                 SelectionMode="None">
                 <ListView.ItemContainerStyle>
@@ -149,6 +153,8 @@
                                     Padding="8,4"
                                     HorizontalAlignment="Stretch"
                                     HorizontalContentAlignment="Left"
+                                    Command="{x:Bind RunQueryCommand}"
+                                    CommandParameter="{x:Bind Query}"
                                     Content="{x:Bind Query}"
                                     FontSize="12"
                                     Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
@@ -156,10 +162,12 @@
                                     Grid.Column="1"
                                     Margin="4,0,0,0"
                                     Padding="4"
+                                    AutomationProperties.Name="{x:Bind strings:Resources.DeleteText}"
                                     Background="Transparent"
                                     BorderBrush="Transparent"
                                     Command="{x:Bind DeleteCommand}"
-                                    CommandParameter="{x:Bind}">
+                                    CommandParameter="{x:Bind}"
+                                    ToolTipService.ToolTip="{x:Bind strings:Resources.DeleteText}">
                                     <FontIcon
                                         FontFamily="{StaticResource FluentUIGlyphs}"
                                         FontSize="14"

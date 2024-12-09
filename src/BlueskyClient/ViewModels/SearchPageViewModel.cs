@@ -59,8 +59,20 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
         var recentSearches = _searchService.GetRecentSearches();
         foreach (var r in recentSearches)
         {
-            RecentSearches.Add(new RecentSearchViewModel(r, DeleteRecentSearchCommand));
+            RecentSearches.Add(new RecentSearchViewModel(r, RunRecentSearchCommand, DeleteRecentSearchCommand));
         }
+    }
+
+    [RelayCommand]
+    private Task RunRecentSearchAsync(string? query, CancellationToken ct)
+    {
+        if (query is not { Length: > 0 } || query == Query)
+        {
+            return Task.CompletedTask;
+        }
+
+        Query = query;
+        return NewSearchAsync(ct);
     }
 
     [RelayCommand]
