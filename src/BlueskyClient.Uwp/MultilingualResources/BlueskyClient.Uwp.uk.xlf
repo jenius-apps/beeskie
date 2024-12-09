@@ -198,6 +198,10 @@
           <source>Recent searches</source>
           <target state="new">Recent searches</target>
         </trans-unit>
+        <trans-unit id="RecentSearchesPlaceholder" translate="yes" xml:space="preserve">
+          <source>Your recent searches will appear here. Start searching!</source>
+          <target state="new">Your recent searches will appear here. Start searching!</target>
+        </trans-unit>
       </group>
     </body>
   </file>

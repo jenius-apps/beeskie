@@ -204,6 +204,9 @@
   <data name="ProfileText" xml:space="preserve">
     <value>Profile</value>
   </data>
+  <data name="RecentSearchesPlaceholder" xml:space="preserve">
+    <value>Your recent searches will appear here. Start searching!</value>
+  </data>
   <data name="RecentSearchesText" xml:space="preserve">
     <value>Recent searches</value>
   </data>

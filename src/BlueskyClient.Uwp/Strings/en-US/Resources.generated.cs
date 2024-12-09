@@ -392,6 +392,19 @@ namespace BlueskyClient.Strings{
         }
         #endregion
 
+        #region RecentSearchesPlaceholder
+        /// <summary>
+        ///   Looks up a localized string similar to: Your recent searches will appear here. Start searching!
+        /// </summary>
+        public static string RecentSearchesPlaceholder
+        {
+            get
+            {
+                return _resourceLoader.GetString("RecentSearchesPlaceholder");
+            }
+        }
+        #endregion
+
         #region RecentSearchesText
         /// <summary>
         ///   Looks up a localized string similar to: Recent searches
@@ -678,6 +691,7 @@ namespace BlueskyClient.Strings{
             PostedReplyText,
             PostsText,
             ProfileText,
+            RecentSearchesPlaceholder,
             RecentSearchesText,
             RefreshText,
             ReplyText,

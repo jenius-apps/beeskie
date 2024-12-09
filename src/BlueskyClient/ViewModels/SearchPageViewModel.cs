@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using JeniusApps.Common.Telemetry;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -28,7 +29,11 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
         _searchService = searchService;
         _feedItemFactory = feedItemFactory;
         _telemetry = telemetry;
+
+        RecentSearches.CollectionChanged += OnRecentSearchesCollectionChanged;
     }
+
+    public bool RecentSearchPlaceholderVisible => RecentSearches.Count == 0;
 
     [ObservableProperty]
     private int _searchTabIndex = 0;
@@ -155,6 +160,11 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
     {
         NewSearchCommand.Cancel();
         await NewSearchCommand.ExecuteAsync(null);
+    }
+
+    private void OnRecentSearchesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+    {
+        OnPropertyChanged(nameof(RecentSearchPlaceholderVisible));
     }
 
     private void OnRecentSearchAdded(object sender, string newQuery)

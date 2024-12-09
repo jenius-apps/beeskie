@@ -153,11 +153,13 @@
                                     Padding="8,4"
                                     HorizontalAlignment="Stretch"
                                     HorizontalContentAlignment="Left"
+                                    AutomationProperties.Name="{x:Bind Query}"
                                     Command="{x:Bind RunQueryCommand}"
                                     CommandParameter="{x:Bind Query}"
-                                    Content="{x:Bind Query}"
                                     FontSize="12"
-                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+                                    <TextBlock Text="{x:Bind Query}" TextTrimming="CharacterEllipsis" />
+                                </HyperlinkButton>
                                 <Button
                                     Grid.Column="1"
                                     Margin="4,0,0,0"
@@ -178,6 +180,14 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+
+            <TextBlock
+                Margin="0,4,0,0"
+                FontSize="12"
+                Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                Text="{x:Bind strings:Resources.RecentSearchesPlaceholder}"
+                TextWrapping="WrapWholeWords"
+                Visibility="{x:Bind ViewModel.RecentSearchPlaceholderVisible, Mode=OneWay}" />
         </StackPanel>
     </Grid>
 </Page>
