@@ -28,19 +28,19 @@
     <value>Cтрічки</value>
   </data>
   <data name="FollowersText" xml:space="preserve">
-    <value>підписники</value>
+    <value>підписників</value>
   </data>
   <data name="FollowingFeedName" xml:space="preserve">
     <value>Підписки</value>
   </data>
   <data name="FollowingText" xml:space="preserve">
-    <value>підписки</value>
+    <value>підписок</value>
   </data>
   <data name="HomeText" xml:space="preserve">
     <value>Головна</value>
   </data>
   <data name="IdentifierBoxPlaceholder" xml:space="preserve">
-    <value>Електронна пошта або ім'я користувача Bluesky</value>
+    <value>Ел. пошта або ім'я користувача Bluesky</value>
   </data>
   <data name="ImageSelectText" xml:space="preserve">
     <value>Додати зображення</value>
@@ -82,7 +82,7 @@
     <value>Твій спеціальний пароль додатку</value>
   </data>
   <data name="PinnedFeedsSubtitle" xml:space="preserve">
-    <value>Виберіть стрічку, щоби змінити вигляд</value>
+    <value>Виберіть стрічку, яку ви хочете переглянути</value>
   </data>
   <data name="PinnedFeedsTitle" xml:space="preserve">
     <value>Закріплені стрічки</value>
@@ -91,7 +91,7 @@
     <value>Написав відповідь</value>
   </data>
   <data name="PostsText" xml:space="preserve">
-    <value>дописи</value>
+    <value>дописів</value>
   </data>
   <data name="ProfileText" xml:space="preserve">
     <value>Профіль</value>
@@ -124,7 +124,7 @@
     <value>Упевнені? Вас буде перенаправлено на сторінку входу.</value>
   </data>
   <data name="SignOutDialogTitle" xml:space="preserve">
-    <value>Виходимо</value>
+    <value>Перед виходом</value>
   </data>
   <data name="SignOutText" xml:space="preserve">
     <value>Вийти</value>
@@ -136,7 +136,7 @@
     <value>Опублікувати</value>
   </data>
   <data name="UploadingText" xml:space="preserve">
-    <value>Вивантажуємо</value>
+    <value>Опубліковуємо</value>
   </data>
   <data name="SearchText" xml:space="preserve">
     <value>Шукати</value>
