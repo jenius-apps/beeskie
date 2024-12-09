@@ -37,6 +37,11 @@ public sealed partial class SearchPage : Page
         SearchResultsListView.SetupRenderOutsideBounds();
     }
 
+    protected override void OnNavigatedFrom(NavigationEventArgs e)
+    {
+        ViewModel.Uninitialize();
+    }
+
     private async void OnQuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
     {
         if (!ViewModel.NewSearchCommand.IsRunning)

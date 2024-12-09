@@ -53,6 +53,7 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
     public async Task InitializeAsync(CancellationToken ct)
     {
         ct.ThrowIfCancellationRequested();
+        _searchService.RecentSearchAdded += OnRecentSearchAdded;
 
         await Task.Delay(1);
 
@@ -61,6 +62,11 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
         {
             RecentSearches.Add(new RecentSearchViewModel(r, RunRecentSearchCommand, DeleteRecentSearchCommand));
         }
+    }
+
+    public void Uninitialize()
+    {
+        _searchService.RecentSearchAdded -= OnRecentSearchAdded;
     }
 
     [RelayCommand]
@@ -149,5 +155,10 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
     {
         NewSearchCommand.Cancel();
         await NewSearchCommand.ExecuteAsync(null);
+    }
+
+    private void OnRecentSearchAdded(object sender, string newQuery)
+    {
+        RecentSearches.Insert(0, new RecentSearchViewModel(newQuery, RunRecentSearchCommand, DeleteRecentSearchCommand));
     }
 }

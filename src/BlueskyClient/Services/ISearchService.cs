@@ -1,5 +1,6 @@
 ﻿using Bluesky.NET.ApiClients;
 using Bluesky.NET.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,6 +12,11 @@ namespace BlueskyClient.Services;
 /// </summary>
 public interface ISearchService
 {
+    /// <summary>
+    /// Raised when a recent search was added.
+    /// </summary>
+    event EventHandler<string>? RecentSearchAdded;
+
     /// <summary>
     /// Gets list of recent searches orderd by most recent to oldest.
     /// </summary>

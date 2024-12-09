@@ -4,6 +4,7 @@ using BlueskyClient.Constants;
 using BlueskyClient.Models;
 using FluentResults;
 using JeniusApps.Common.Settings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -17,6 +18,9 @@ public class SearchService : ISearchService
     private readonly IBlueskyApiClient _apiClient;
     private readonly IAuthenticationService _authenticationService;
     private readonly IUserSettings _userSettings;
+
+    /// <inheritdoc/>
+    public event EventHandler<string>? RecentSearchAdded;
 
     public SearchService(
         IBlueskyApiClient blueskyApiClient,
@@ -117,5 +121,7 @@ public class SearchService : ISearchService
             UserSettingsConstants.RecentSearchesKey,
             [.. newSearches],
             LocalSerializerContext.CaseInsensitive.StringArray);
+
+        RecentSearchAdded?.Invoke(this, query);
     }
 }
