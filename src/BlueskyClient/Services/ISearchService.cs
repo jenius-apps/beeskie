@@ -12,6 +12,18 @@ namespace BlueskyClient.Services;
 public interface ISearchService
 {
     /// <summary>
+    /// Gets list of recent searches orderd by most recent to oldest.
+    /// </summary>
+    /// <returns>List of recent searches.</returns>
+    IReadOnlyList<string> GetRecentSearches();
+
+    /// <summary>
+    /// Deletes the given search from the user's history.
+    /// </summary>
+    /// <param name="query">The query to delete.</param>
+    void DeleteRecentSearch(string query);
+
+    /// <summary>
     /// Performs a search based on the given query.
     /// </summary>
     /// <param name="query">The user's query.</param>

@@ -36,6 +36,11 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
     /// <inheritdoc/>
     public ObservableCollection<FeedItemViewModel> CollectionSource { get; } = [];
 
+    /// <summary>
+    /// List of user's recent searches.
+    /// </summary>
+    public ObservableCollection<RecentSearchViewModel> RecentSearches { get; } = [];
+
     /// <inheritdoc/>
     public bool HasMoreItems => _cursor is not null;
 
@@ -50,6 +55,22 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
         ct.ThrowIfCancellationRequested();
 
         await Task.Delay(1);
+
+        var recentSearches = _searchService.GetRecentSearches();
+        foreach (var r in recentSearches)
+        {
+            RecentSearches.Add(new RecentSearchViewModel(r, DeleteRecentSearchCommand));
+        }
+    }
+
+    [RelayCommand]
+    private void DeleteRecentSearch(RecentSearchViewModel? vm)
+    {
+        if (vm?.Query is { Length: > 0 } query)
+        {
+            _searchService.DeleteRecentSearch(query);
+            RecentSearches.Remove(vm);
+        }
     }
 
     public async Task<int> LoadNextPageAsync(CancellationToken ct)

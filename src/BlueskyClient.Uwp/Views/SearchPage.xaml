@@ -11,7 +11,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:strings="using:BlueskyClient.Strings"
     xmlns:templates="using:BlueskyClient.ResourceDictionaries"
+    xmlns:vm="using:BlueskyClient.ViewModels"
     xmlns:wct="using:CommunityToolkit.WinUI.Controls"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     Background="Transparent"
     mc:Ignorable="d">
 
@@ -21,14 +23,14 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="112" />
+            <RowDefinition Height="104" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="240" />
         </Grid.ColumnDefinitions>
 
         <Border Background="{ThemeResource SystemControlAcrylicElementBrush}" Canvas.ZIndex="1" />
@@ -49,7 +51,6 @@
             </Grid.ColumnDefinitions>
         </Grid>
 
-
         <StackPanel
             MaxWidth="{StaticResource SearchHeaderMaxWidth}"
             Margin="20,20,20,0"
@@ -62,13 +63,12 @@
                 QuerySubmitted="OnQuerySubmitted"
                 Text="{x:Bind ViewModel.Query, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-            <wct:Segmented Margin="0,12,0,0" SelectedIndex="{x:Bind ViewModel.SearchTabIndex, Mode=TwoWay}">
+            <wct:Segmented Margin="0,8,0,0" SelectedIndex="{x:Bind ViewModel.SearchTabIndex, Mode=TwoWay}">
                 <wct:SegmentedItem Content="{x:Bind strings:Resources.SortTopText}" />
                 <wct:SegmentedItem Content="{x:Bind strings:Resources.SortLatestText}" />
             </wct:Segmented>
 
         </StackPanel>
-
 
         <Rectangle
             Height="1"
@@ -110,6 +110,66 @@
             <controls:FeedItemShimmer />
             <controls:FeedItemShimmer Margin="0,12,0,0" />
             <controls:FeedItemShimmer Margin="0,12,0,0" />
+        </StackPanel>
+
+        <Rectangle
+            Grid.RowSpan="2"
+            Grid.Column="1"
+            Width="1"
+            VerticalAlignment="Stretch"
+            Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
+
+        <StackPanel
+            Grid.RowSpan="2"
+            Grid.Column="2"
+            Margin="20,66,20,20">
+
+            <TextBlock FontWeight="SemiBold" Text="Recent searches" />
+
+            <ListView
+                Margin="-8,16,0,0"
+                ItemsSource="{x:Bind ViewModel.RecentSearches}"
+                SelectionMode="None">
+                <ListView.ItemContainerStyle>
+                    <Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="Margin" Value="0" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="vm:RecentSearchViewModel">
+                        <ListViewItem MinHeight="28" IsTabStop="False">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
+                                <HyperlinkButton
+                                    Padding="8,4"
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="Left"
+                                    Content="{x:Bind Query}"
+                                    FontSize="12"
+                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                <Button
+                                    Grid.Column="1"
+                                    Margin="4,0,0,0"
+                                    Padding="4"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent"
+                                    Command="{x:Bind DeleteCommand}"
+                                    CommandParameter="{x:Bind}">
+                                    <FontIcon
+                                        FontFamily="{StaticResource FluentUIGlyphs}"
+                                        FontSize="14"
+                                        Glyph="{StaticResource GlyphCloseThin}" />
+                                </Button>
+                            </Grid>
+                        </ListViewItem>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackPanel>
     </Grid>
 </Page>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace BlueskyClient.Constants;
 
@@ -20,11 +21,17 @@ public sealed class UserSettingsConstants
     public const string LocalUserIdKey = "LocalUserId";
 
     /// <summary>
+    /// Stores recent searches by the user.
+    /// </summary>
+    public const string RecentSearchesKey = "RecentSearches";
+
+    /// <summary>
     ///  Settings defaults.
     /// </summary>
     public static IReadOnlyDictionary<string, object> Defaults { get; } = new Dictionary<string, object>()
     {
         { LastUsedUserIdentifierInputKey, string.Empty },
         { SignedInDIDKey, string.Empty },
+        { RecentSearchesKey, Array.Empty<string>() },
     };
 }
