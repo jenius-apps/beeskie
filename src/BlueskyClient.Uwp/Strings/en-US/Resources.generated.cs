@@ -470,6 +470,32 @@ namespace BlueskyClient.Strings{
         }
         #endregion
 
+        #region SearchPagePlaceholder1
+        /// <summary>
+        ///   Looks up a localized string similar to: What are you waiting for?
+        /// </summary>
+        public static string SearchPagePlaceholder1
+        {
+            get
+            {
+                return _resourceLoader.GetString("SearchPagePlaceholder1");
+            }
+        }
+        #endregion
+
+        #region SearchPagePlaceholder2
+        /// <summary>
+        ///   Looks up a localized string similar to: Start searching!
+        /// </summary>
+        public static string SearchPagePlaceholder2
+        {
+            get
+            {
+                return _resourceLoader.GetString("SearchPagePlaceholder2");
+            }
+        }
+        #endregion
+
         #region SearchTabAutomationName
         /// <summary>
         ///   Looks up a localized string similar to: Sorting options
@@ -697,6 +723,8 @@ namespace BlueskyClient.Strings{
             ReplyText,
             RepostCaption,
             RepostText,
+            SearchPagePlaceholder1,
+            SearchPagePlaceholder2,
             SearchTabAutomationName,
             SearchText,
             SendFeedbackText,

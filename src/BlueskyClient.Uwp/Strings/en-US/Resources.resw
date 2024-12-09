@@ -222,6 +222,12 @@
   <data name="RepostText" xml:space="preserve">
     <value>Repost</value>
   </data>
+  <data name="SearchPagePlaceholder1" xml:space="preserve">
+    <value>What are you waiting for?</value>
+  </data>
+  <data name="SearchPagePlaceholder2" xml:space="preserve">
+    <value>Start searching!</value>
+  </data>
   <data name="SearchTabAutomationName" xml:space="preserve">
     <value>Sorting options</value>
   </data>

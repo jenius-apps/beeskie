@@ -38,6 +38,9 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
     [ObservableProperty]
     private int _searchTabIndex = 0;
 
+    [ObservableProperty]
+    private bool _searchPagePlaceholderVisible = true;
+
     /// <inheritdoc/>
     public ObservableCollection<FeedItemViewModel> CollectionSource { get; } = [];
 
@@ -147,6 +150,7 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
             return;
         }
 
+        SearchPagePlaceholderVisible = false;
         SearchLoading = true;
         _cursor = null;
         CollectionSource.Clear();

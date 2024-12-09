@@ -202,6 +202,14 @@
           <source>Your recent searches will appear here. Start searching!</source>
           <target state="new">Your recent searches will appear here. Start searching!</target>
         </trans-unit>
+        <trans-unit id="SearchPagePlaceholder1" translate="yes" xml:space="preserve">
+          <source>What are you waiting for?</source>
+          <target state="new">What are you waiting for?</target>
+        </trans-unit>
+        <trans-unit id="SearchPagePlaceholder2" translate="yes" xml:space="preserve">
+          <source>Start searching!</source>
+          <target state="new">Start searching!</target>
+        </trans-unit>
       </group>
     </body>
   </file>
