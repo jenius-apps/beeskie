@@ -1,5 +1,4 @@
 ﻿using Bluesky.NET.ApiClients;
-using Bluesky.NET.Constants;
 using BlueskyClient.Constants;
 using BlueskyClient.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -10,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Threading;
 using System.Threading.Tasks;
+using SearchConstants = Bluesky.NET.Constants.SearchConstants;
 
 namespace BlueskyClient.ViewModels;
 
@@ -184,5 +184,12 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
     private void OnRecentSearchAdded(object sender, string newQuery)
     {
         RecentSearches.Insert(0, new RecentSearchViewModel(newQuery, RunRecentSearchCommand, DeleteRecentSearchCommand));
+
+        int lastIndex = RecentSearches.Count - 1;
+        while (lastIndex > Constants.SearchConstants.RecentSearchMaxCount - 1)
+        {
+            RecentSearches.RemoveAt(lastIndex);
+            lastIndex = RecentSearches.Count - 1;
+        }
     }
 }

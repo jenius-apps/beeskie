@@ -14,7 +14,6 @@ namespace BlueskyClient.Services;
 
 public class SearchService : ISearchService
 {
-    private const int RecentSearchMaxCount = 5;
     private readonly IBlueskyApiClient _apiClient;
     private readonly IAuthenticationService _authenticationService;
     private readonly IUserSettings _userSettings;
@@ -108,9 +107,9 @@ public class SearchService : ISearchService
 
         List<string> newSearches = [query];
 
-        if (searches.Count >= RecentSearchMaxCount)
+        if (searches.Count >= SearchConstants.RecentSearchMaxCount)
         {
-            newSearches.AddRange(searches.Take(RecentSearchMaxCount - 1));
+            newSearches.AddRange(searches.Take(SearchConstants.RecentSearchMaxCount - 1));
         }
         else
         {

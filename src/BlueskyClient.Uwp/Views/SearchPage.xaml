@@ -143,18 +143,26 @@
             VerticalAlignment="Stretch"
             Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
 
-        <StackPanel
+        <Grid
             Grid.RowSpan="2"
             Grid.Column="2"
-            Margin="20,66,20,20">
+            Margin="0,66,0,0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
             <TextBlock
                 x:Name="RecentSearchesTitle"
+                Margin="20,0"
                 FontWeight="SemiBold"
-                Text="{x:Bind strings:Resources.RecentSearchesText}" />
+                Text="{x:Bind strings:Resources.RecentSearchesText}"
+                TextTrimming="CharacterEllipsis" />
 
             <ListView
-                Margin="-8,16,0,0"
+                Grid.Row="1"
+                Padding="12,16,20,20"
                 AutomationProperties.LabeledBy="{x:Bind RecentSearchesTitle}"
                 ItemsSource="{x:Bind ViewModel.RecentSearches}"
                 SelectionMode="None">
@@ -206,12 +214,13 @@
             </ListView>
 
             <TextBlock
-                Margin="0,4,0,0"
+                Grid.Row="1"
+                Margin="20,16,20,0"
                 FontSize="12"
                 Foreground="{ThemeResource TextFillColorTertiaryBrush}"
                 Text="{x:Bind strings:Resources.RecentSearchesPlaceholder}"
                 TextWrapping="WrapWholeWords"
                 Visibility="{x:Bind ViewModel.RecentSearchPlaceholderVisible, Mode=OneWay}" />
-        </StackPanel>
+        </Grid>
     </Grid>
 </Page>
