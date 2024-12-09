@@ -5,6 +5,7 @@ using BlueskyClient.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using JeniusApps.Common.Telemetry;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Threading;
@@ -85,6 +86,8 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
             return Task.CompletedTask;
         }
 
+        _telemetry.TrackEvent(TelemetryConstants.RecentSearchClicked);
+
         Query = query;
         return NewSearchAsync(ct);
     }
@@ -96,6 +99,8 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
         {
             _searchService.DeleteRecentSearch(query);
             RecentSearches.Remove(vm);
+
+            _telemetry.TrackEvent(TelemetryConstants.RecentSearchDeleted);
         }
     }
 
@@ -158,12 +163,17 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
         _currentOptions = null;
 
         await LoadNextPageAsync(ct);
+        _telemetry.TrackEvent(TelemetryConstants.SearchTriggered);
     }
 
     async partial void OnSearchTabIndexChanged(int value)
     {
         NewSearchCommand.Cancel();
         await NewSearchCommand.ExecuteAsync(null);
+        _telemetry.TrackEvent(TelemetryConstants.SearchTabClicked, new Dictionary<string, string>
+        {
+            { "newIndex", value.ToString() }
+        });
     }
 
     private void OnRecentSearchesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)

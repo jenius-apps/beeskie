@@ -38,4 +38,8 @@ public sealed class TelemetryConstants
 
     private const string SearchPage = "searchPage:";
     public const string SearchNextPageLoaded = SearchPage + "nextPageLoaded";
+    public const string SearchTriggered = SearchPage + "searchTriggered";
+    public const string RecentSearchClicked = SearchPage + "recentSearchClicked";
+    public const string RecentSearchDeleted = SearchPage + "recentSearchDeleted";
+    public const string SearchTabClicked = SearchPage + "searchTabClicked";
 }
