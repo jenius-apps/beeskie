@@ -7,6 +7,8 @@ public class FeedResponse
 {
     public string? Cursor { get; init; }
 
+    public Author[]? Actors { get; init; }
+
     public FeedItem[]? Feed { get; init; }
 
     public FeedGenerator[]? Feeds { get; init; }

@@ -18,6 +18,7 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
     private readonly ISearchService _searchService;
     private readonly IFeedItemViewModelFactory _feedItemFactory;
     private readonly ITelemetry _telemetry;
+    private readonly IDiscoverService _discoverService;
     private string? _cursor;
     private string? _currentQuery;
     private SearchOptions? _currentOptions;
@@ -25,11 +26,13 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
     public SearchPageViewModel(
         ISearchService searchService,
         IFeedItemViewModelFactory feedItemFactory,
-        ITelemetry telemetry)
+        ITelemetry telemetry,
+        IDiscoverService discoverService)
     {
         _searchService = searchService;
         _feedItemFactory = feedItemFactory;
         _telemetry = telemetry;
+        _discoverService = discoverService;
 
         RecentSearches.CollectionChanged += OnRecentSearchesCollectionChanged;
     }
@@ -45,10 +48,9 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
     /// <inheritdoc/>
     public ObservableCollection<FeedItemViewModel> CollectionSource { get; } = [];
 
-    /// <summary>
-    /// List of user's recent searches.
-    /// </summary>
     public ObservableCollection<RecentSearchViewModel> RecentSearches { get; } = [];
+
+    public ObservableCollection<AuthorViewModel> SuggestedPeople { get; } = [];
 
     /// <inheritdoc/>
     public bool HasMoreItems => _cursor is not null;
@@ -64,12 +66,18 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
         ct.ThrowIfCancellationRequested();
         _searchService.RecentSearchAdded += OnRecentSearchAdded;
 
-        await Task.Delay(1);
+        var discoverPeopleTask = _discoverService.GetSuggestedPeopleAsync(ct, count: 5);
 
         var recentSearches = _searchService.GetRecentSearches();
         foreach (var r in recentSearches)
         {
             RecentSearches.Add(new RecentSearchViewModel(r, RunRecentSearchCommand, DeleteRecentSearchCommand));
+        }
+
+        var (Authors, _) = await discoverPeopleTask;
+        foreach (var a in Authors)
+        {
+            SuggestedPeople.Add(new AuthorViewModel(a));
         }
     }
 

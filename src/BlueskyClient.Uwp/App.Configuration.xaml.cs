@@ -121,6 +121,7 @@ partial class App
     [Singleton(typeof(AuthenticationService), typeof(IAuthenticationService))]
     [Singleton(typeof(TimelineService), typeof(ITimelineService))]
     [Singleton(typeof(SearchService), typeof(ISearchService))]
+    [Singleton(typeof(DiscoverService), typeof(IDiscoverService))]
     [Singleton(typeof(FeedItemViewModelFactory), typeof(IFeedItemViewModelFactory))]
     [Singleton(typeof(NotificationViewModelFactory), typeof(INotificationViewModelFactory))]
     [Singleton(typeof(FeedGeneratorViewModelFactory), typeof(IFeedGeneratorViewModelFactory))]

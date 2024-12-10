@@ -9,6 +9,13 @@ public partial class AuthorViewModel : ObservableObject
 {
     private Author? _author;
 
+    public AuthorViewModel() { }
+
+    public AuthorViewModel(Author author)
+    {
+        _author = author;
+    }
+
     public string DisplayName => _author?.DisplayName is { Length: > 0 } displayName
         ? displayName
         : _author?.Handle ?? string.Empty;

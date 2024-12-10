@@ -79,4 +79,18 @@ public interface IBlueskyApiClient
         CancellationToken ct,
         string? cursor = null,
         SearchOptions? options = null);
+
+    /// <summary>
+    /// Retrieves list of suggested people to follow.
+    /// </summary>
+    /// <param name="accessToken">Access token for the logged in user.</param>
+    /// <param name="ct">A cancellation token.</param>
+    /// <param name="count">Number of people to retrieve.</param>
+    /// <param name="cursor">A bluesky-provided string to help with pagination.</param>
+    /// <returns>FeedResponse object with the Actors property populated.</returns>
+    Task<Result<FeedResponse>> GetSuggestedPeopleAsync(
+        string accessToken,
+        CancellationToken ct,
+        int count = 10,
+        string? cursor = null);
 }
