@@ -212,30 +212,6 @@
             </ListView>
         </Grid>
 
-        <!--<StackPanel
-            Grid.Row="2"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Visibility="{x:Bind ViewModel.SearchPagePlaceholderVisible, Mode=OneWay}">
-            <FontIcon
-                FontFamily="{StaticResource FluentUIGlyphs}"
-                FontSize="60"
-                Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                Glyph="{StaticResource GlyphSearch}" />
-            <TextBlock
-                Margin="0,12,0,0"
-                FontSize="12"
-                Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                Text="{x:Bind strings:Resources.SearchPagePlaceholder1}"
-                TextAlignment="Center" />
-            <TextBlock
-                Margin="0,2,0,0"
-                FontSize="12"
-                Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                Text="{x:Bind strings:Resources.SearchPagePlaceholder2}"
-                TextAlignment="Center" />
-        </StackPanel>-->
-
         <Rectangle
             Grid.RowSpan="2"
             Grid.Column="1"
