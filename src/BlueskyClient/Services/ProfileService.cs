@@ -5,6 +5,7 @@ using BlueskyClient.Constants;
 using FluentResults;
 using JeniusApps.Common.Settings;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BlueskyClient.Services;
@@ -53,5 +54,27 @@ public class ProfileService : IProfileService
         }
 
         return await _apiClient.GetAuthorFeedAsync(tokenResult.Value, handle);
+    }
+
+    /// <inheritdoc/>
+    public async Task<bool> FollowActorAsync(string subjectDid, CancellationToken ct)
+    {
+        if (subjectDid is not { Length: > 0 })
+        {
+            return false;
+        }
+
+        Author? currentUser = await GetCurrentUserAsync();
+        var tokenResult = await _authenticationService.TryGetFreshTokenAsync();
+        if (tokenResult.IsFailed || currentUser?.Handle is not { Length: > 0 } handle)
+        {
+            return false;
+        }
+
+        return await _apiClient.FollowActorAsync(
+            tokenResult.Value,
+            handle,
+            subjectDid,
+            ct);
     }
 }

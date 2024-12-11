@@ -45,6 +45,7 @@
                     <x:String x:Key="GlyphCloseThick">&#xEF2C;</x:String>
                     <x:String x:Key="GlyphClose">&#xE653;</x:String>
                     <x:String x:Key="GlyphCloseThin">&#xE894;</x:String>
+                    <x:String x:Key="GlyphCheckMark">&#xE73E;</x:String>
 
                     <x:Double x:Key="FeedMaxWidth">600</x:Double>
                     <x:Double x:Key="SearchHeaderMaxWidth">640</x:Double>

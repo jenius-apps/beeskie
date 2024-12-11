@@ -11,10 +11,32 @@ using System.Web;
 
 namespace Bluesky.NET.ApiClients;
 
-// Ref: https://docs.bsky.app/docs/api/app-bsky-feed-search-posts
-
 partial class BlueskyApiClient
 {
+    /// <inheritdoc/>
+    public async Task<Result<FeedResponse>> SearchActorsAsync(
+        string accessToken,
+        string query, 
+        CancellationToken ct,
+        string? cursor = null)
+    {
+        // Ref: https://docs.bsky.app/docs/api/app-bsky-actor-search-actors
+        var url = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.SearchActorsPath}?q={HttpUtility.UrlEncode(query)}";
+
+        if (cursor is not null)
+        {
+            url += $"&cursor={cursor}";
+        }
+
+        HttpRequestMessage message = new(HttpMethod.Get, url);
+        message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+        return await SendMessageAsync(
+            message,
+            ModelSerializerContext.CaseInsensitive.FeedResponse,
+            ct);
+    }
+
     public async Task<Result<(IReadOnlyList<FeedPost> Posts, string? Cursor)>> SearchPostsAsync(
         string accessToken,
         string query,
@@ -22,6 +44,7 @@ partial class BlueskyApiClient
         string? cursor = null,
         SearchOptions? options = null)
     {
+        // Ref: https://docs.bsky.app/docs/api/app-bsky-feed-search-posts
         options ??= new();
 
         var url = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.SearchPostsPath}?q={HttpUtility.UrlEncode(query)}";

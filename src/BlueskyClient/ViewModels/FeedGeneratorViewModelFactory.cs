@@ -18,6 +18,7 @@ public class FeedGeneratorViewModelFactory : IFeedGeneratorViewModelFactory
     {
         return new FeedGeneratorViewModel(
             feedGenerator,
-            _serviceProvider.GetRequiredService<ILocalizer>());
+            _serviceProvider.GetRequiredService<ILocalizer>(),
+            _serviceProvider.GetRequiredService<IAuthorViewModelFactory>());
     }
 }

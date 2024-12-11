@@ -132,6 +132,19 @@ namespace BlueskyClient.Strings{
         }
         #endregion
 
+        #region FollowText
+        /// <summary>
+        ///   Looks up a localized string similar to: Follow
+        /// </summary>
+        public static string FollowText
+        {
+            get
+            {
+                return _resourceLoader.GetString("FollowText");
+            }
+        }
+        #endregion
+
         #region HomeText
         /// <summary>
         ///   Looks up a localized string similar to: Home
@@ -323,6 +336,19 @@ namespace BlueskyClient.Strings{
             get
             {
                 return _resourceLoader.GetString("PasswordBoxPlaceholder");
+            }
+        }
+        #endregion
+
+        #region PeopleText
+        /// <summary>
+        ///   Looks up a localized string similar to: People
+        /// </summary>
+        public static string PeopleText
+        {
+            get
+            {
+                return _resourceLoader.GetString("PeopleText");
             }
         }
         #endregion
@@ -665,6 +691,32 @@ namespace BlueskyClient.Strings{
         }
         #endregion
 
+        #region SuggestedAccountsSubtitle
+        /// <summary>
+        ///   Looks up a localized string similar to: Follow more accounts to get connected to your interests and build your network.
+        /// </summary>
+        public static string SuggestedAccountsSubtitle
+        {
+            get
+            {
+                return _resourceLoader.GetString("SuggestedAccountsSubtitle");
+            }
+        }
+        #endregion
+
+        #region SuggestedAccountsTitle
+        /// <summary>
+        ///   Looks up a localized string similar to: Suggested accounts
+        /// </summary>
+        public static string SuggestedAccountsTitle
+        {
+            get
+            {
+                return _resourceLoader.GetString("SuggestedAccountsTitle");
+            }
+        }
+        #endregion
+
         #region UploadingText
         /// <summary>
         ///   Looks up a localized string similar to: Uploading
@@ -697,6 +749,7 @@ namespace BlueskyClient.Strings{
             FollowersText,
             FollowingFeedName,
             FollowingText,
+            FollowText,
             HomeText,
             IdentifierBoxPlaceholder,
             ImageSelectText,
@@ -712,6 +765,7 @@ namespace BlueskyClient.Strings{
             NotificationsText,
             OkayText,
             PasswordBoxPlaceholder,
+            PeopleText,
             PinnedFeedsSubtitle,
             PinnedFeedsTitle,
             PostedReplyText,
@@ -738,6 +792,8 @@ namespace BlueskyClient.Strings{
             SortTopText,
             StarterPackByText,
             SubmitText,
+            SuggestedAccountsSubtitle,
+            SuggestedAccountsTitle,
             UploadingText,
         }
 

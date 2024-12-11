@@ -20,6 +20,76 @@
         <Setter Property="Foreground" Value="{ThemeResource TextFillColorTertiaryBrush}" />
     </Style>
 
+    <DataTemplate x:Key="ActorTemplate" x:DataType="vm:AuthorViewModel">
+        <Grid
+            Grid.Row="1"
+            Padding="0,0,0,12"
+            BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}"
+            BorderThickness="0,0,0,1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <PersonPicture
+                Grid.RowSpan="3"
+                Width="48"
+                Height="48"
+                Margin="0,0,12,0"
+                VerticalAlignment="Top"
+                ProfilePicture="{x:Bind AvatarUrl, Mode=OneWay}" />
+
+            <TextBlock
+                Grid.Column="1"
+                FontWeight="SemiBold"
+                Text="{x:Bind DisplayName}"
+                TextTrimming="CharacterEllipsis" />
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="1"
+                Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                Text="{x:Bind AtHandle}"
+                TextTrimming="CharacterEllipsis" />
+
+            <Button
+                Grid.RowSpan="2"
+                Grid.Column="2"
+                MinWidth="80"
+                VerticalAlignment="Stretch"
+                AutomationProperties.Name="{x:Bind strings:Resources.FollowText}"
+                Command="{x:Bind FollowCommand}"
+                Style="{StaticResource AccentButtonStyle}">
+                <Grid>
+                    <TextBlock
+                        Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}"
+                        Text="{x:Bind strings:Resources.FollowText}"
+                        Visibility="{x:Bind ex:UIExtensions.InvertBoolToVis(AlreadyFollowed), Mode=OneWay}" />
+                    <FontIcon
+                        FontFamily="{StaticResource FluentUIGlyphs}"
+                        Glyph="{StaticResource GlyphCheckMark}"
+                        Visibility="{x:Bind AlreadyFollowed, Mode=OneWay}" />
+                </Grid>
+            </Button>
+
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Margin="0,8,0,0"
+                MaxLines="4"
+                Text="{x:Bind Description}"
+                TextTrimming="CharacterEllipsis"
+                TextWrapping="WrapWholeWords" />
+        </Grid>
+    </DataTemplate>
+
     <DataTemplate x:Key="FeedItemTemplate" x:DataType="vm:FeedItemViewModel">
         <Grid MaxWidth="{StaticResource FeedMaxWidth}">
             <Grid.RowDefinitions>

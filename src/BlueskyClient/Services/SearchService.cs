@@ -96,6 +96,41 @@ public class SearchService : ISearchService
             : ([], null);
     }
 
+    /// <inheritdoc/>
+    public async Task<(IReadOnlyList<Author> Actors, string? Cursor)> SearchActorsAsync(
+        string query,
+        CancellationToken ct,
+        string? cursor = null)
+    {
+        query = query.Trim();
+        if (string.IsNullOrEmpty(query))
+        {
+            return ([], null);
+        }
+
+        var tokenResult = await _authenticationService.TryGetFreshTokenAsync();
+        if (tokenResult.IsFailed)
+        {
+            return ([], null);
+        }
+
+
+        Result<FeedResponse> searchResult = await _apiClient.SearchActorsAsync(
+            tokenResult.Value,
+            query,
+            ct,
+            cursor);
+
+        if (searchResult.IsSuccess)
+        {
+            AddRecentSearch(query);
+        }
+
+        return searchResult.IsSuccess && searchResult.Value.Actors is IReadOnlyList<Author> authors
+            ? (authors, searchResult.Value.Cursor)
+            : ([], null);
+    }
+
     private void AddRecentSearch(string query)
     {
         IReadOnlyList<string> searches = GetRecentSearches();

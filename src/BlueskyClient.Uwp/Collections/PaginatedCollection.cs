@@ -11,10 +11,12 @@ public class PaginatedCollection<T> : ObservableCollection<T>, ISupportIncrement
 {
     private readonly ISupportPagination<T> _paginationSource;
 
-    public PaginatedCollection(ISupportPagination<T> source)
+    public PaginatedCollection(
+        ISupportPagination<T> source,
+        ObservableCollection<T> collectionSource)
     {
         _paginationSource = source;
-        source.CollectionSource.CollectionChanged += OnCollectionChanged;
+        collectionSource.CollectionChanged += OnCollectionChanged;
     }
 
     private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)

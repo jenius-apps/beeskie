@@ -13,11 +13,13 @@ using SearchConstants = Bluesky.NET.Constants.SearchConstants;
 
 namespace BlueskyClient.ViewModels;
 
-public partial class SearchPageViewModel : ObservableObject, ISupportPagination<FeedItemViewModel>
+public partial class SearchPageViewModel : ObservableObject, ISupportPagination<FeedItemViewModel>, ISupportPagination<AuthorViewModel>
 {
     private readonly ISearchService _searchService;
     private readonly IFeedItemViewModelFactory _feedItemFactory;
     private readonly ITelemetry _telemetry;
+    private readonly IDiscoverService _discoverService;
+    private readonly IAuthorViewModelFactory _authorViewModelFactory;
     private string? _cursor;
     private string? _currentQuery;
     private SearchOptions? _currentOptions;
@@ -25,18 +27,28 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
     public SearchPageViewModel(
         ISearchService searchService,
         IFeedItemViewModelFactory feedItemFactory,
-        ITelemetry telemetry)
+        ITelemetry telemetry,
+        IDiscoverService discoverService,
+        IAuthorViewModelFactory authorViewModelFactory)
     {
         _searchService = searchService;
         _feedItemFactory = feedItemFactory;
         _telemetry = telemetry;
+        _discoverService = discoverService;
+        _authorViewModelFactory = authorViewModelFactory;
 
         RecentSearches.CollectionChanged += OnRecentSearchesCollectionChanged;
     }
 
     public bool RecentSearchPlaceholderVisible => RecentSearches.Count == 0;
 
+    public bool ActorsResultsVisible => !SearchLoading && SearchTabIndex == 2;
+
+    public bool PostsResultsVisible => !SearchLoading && SearchTabIndex < 2;
+
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ActorsResultsVisible))]
+    [NotifyPropertyChangedFor(nameof(PostsResultsVisible))]
     private int _searchTabIndex = 0;
 
     [ObservableProperty]
@@ -45,10 +57,11 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
     /// <inheritdoc/>
     public ObservableCollection<FeedItemViewModel> CollectionSource { get; } = [];
 
-    /// <summary>
-    /// List of user's recent searches.
-    /// </summary>
     public ObservableCollection<RecentSearchViewModel> RecentSearches { get; } = [];
+
+    public ObservableCollection<AuthorViewModel> SuggestedPeople { get; } = [];
+
+    public ObservableCollection<AuthorViewModel> ActorsCollectionSource { get; } = [];
 
     /// <inheritdoc/>
     public bool HasMoreItems => _cursor is not null;
@@ -57,6 +70,8 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
     private string _query = string.Empty;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ActorsResultsVisible))]
+    [NotifyPropertyChangedFor(nameof(PostsResultsVisible))]
     private bool _searchLoading;
 
     public async Task InitializeAsync(CancellationToken ct)
@@ -64,12 +79,18 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
         ct.ThrowIfCancellationRequested();
         _searchService.RecentSearchAdded += OnRecentSearchAdded;
 
-        await Task.Delay(1);
+        var discoverPeopleTask = _discoverService.GetSuggestedPeopleAsync(ct, count: 5);
 
         var recentSearches = _searchService.GetRecentSearches();
         foreach (var r in recentSearches)
         {
             RecentSearches.Add(new RecentSearchViewModel(r, RunRecentSearchCommand, DeleteRecentSearchCommand));
+        }
+
+        var (Authors, _) = await discoverPeopleTask;
+        foreach (var a in Authors)
+        {
+            SuggestedPeople.Add(_authorViewModelFactory.Create(a, telemetryContext: "suggestedPeople"));
         }
     }
 
@@ -116,6 +137,38 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
             _telemetry.TrackEvent(TelemetryConstants.SearchNextPageLoaded);
         }
 
+        if (SearchTabIndex == 2)
+        {
+            // people tab
+            return await LoadNextActorsAsync(_currentQuery, ct);
+        }
+        else
+        {
+            return await LoadNextPostsAsync(_currentQuery, ct);
+        }
+    }
+
+    private async Task<int> LoadNextActorsAsync(string validatedQuery, CancellationToken ct)
+    {
+        var (Actors, Cursor) = await _searchService.SearchActorsAsync(
+           validatedQuery,
+           ct,
+           cursor: _cursor);
+
+        _cursor = Cursor;
+        SearchLoading = false;
+
+        foreach (var p in Actors)
+        {
+            var vm = _authorViewModelFactory.Create(p, telemetryContext: "searchResults");
+            ActorsCollectionSource.Add(vm);
+        }
+
+        return Actors.Count;
+    }
+
+    private async Task<int> LoadNextPostsAsync(string validatedQuery, CancellationToken ct)
+    {
         _currentOptions ??= new()
         {
             Sort = SearchTabIndex switch
@@ -127,18 +180,18 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
         };
 
         var (Posts, Cursor) = await _searchService.SearchPostsAsync(
-           _currentQuery,
+           validatedQuery,
            ct,
            cursor: _cursor,
            options: _currentOptions);
 
         _cursor = Cursor;
+        SearchLoading = false;
 
         foreach (var p in Posts)
         {
             var vm = _feedItemFactory.CreateViewModel(p, reason: null);
             CollectionSource.Add(vm);
-            SearchLoading = false;
         }
 
         return Posts.Count;
@@ -159,6 +212,7 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
         SearchLoading = true;
         _cursor = null;
         CollectionSource.Clear();
+        ActorsCollectionSource.Clear();
         _currentQuery = query;
         _currentOptions = null;
 

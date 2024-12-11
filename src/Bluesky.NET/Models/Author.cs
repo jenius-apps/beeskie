@@ -23,6 +23,8 @@ public class Author
 
     public int? PostsCount { get; init; }
 
+    public ViewerData? Viewer { get; init; }
+
     [JsonIgnore]
     public string AtHandle => Handle is null ? string.Empty : $"@{Handle}";
 }

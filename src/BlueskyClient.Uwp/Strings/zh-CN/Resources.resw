@@ -165,4 +165,16 @@
   <data name="SearchPagePlaceholder2" xml:space="preserve">
     <value>开始搜索吧！</value>
   </data>
+  <data name="FollowText" xml:space="preserve">
+    <value>跟随</value>
+  </data>
+  <data name="SuggestedAccountsSubtitle" xml:space="preserve">
+    <value>关注更多帐户以了解您的兴趣并建立您的网络。</value>
+  </data>
+  <data name="SuggestedAccountsTitle" xml:space="preserve">
+    <value>建议的账户</value>
+  </data>
+  <data name="PeopleText" xml:space="preserve">
+    <value>人</value>
+  </data>
 </root>

@@ -11,14 +11,15 @@ public partial class NotificationViewModel : ObservableObject
 
     public NotificationViewModel(
         Notification notification,
-        ILocalizer localizer)
+        ILocalizer localizer,
+        IAuthorViewModelFactory authorFactory)
     {
         Notification = notification;
         _localizer = localizer;
-        AuthorViewModel.SetAuthor(notification.Author);
+        AuthorViewModel = authorFactory.Create(notification.Author);
     }
 
-    public AuthorViewModel AuthorViewModel { get; } = new();
+    public AuthorViewModel AuthorViewModel { get; }
 
     public Notification Notification { get; }
 

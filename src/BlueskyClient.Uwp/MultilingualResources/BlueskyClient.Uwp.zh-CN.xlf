@@ -210,6 +210,22 @@
           <source>Start searching!</source>
           <target state="translated">开始搜索吧！</target>
         </trans-unit>
+        <trans-unit id="FollowText" translate="yes" xml:space="preserve">
+          <source>Follow</source>
+          <target state="translated">跟随</target>
+        </trans-unit>
+        <trans-unit id="SuggestedAccountsSubtitle" translate="yes" xml:space="preserve">
+          <source>Follow more accounts to get connected to your interests and build your network.</source>
+          <target state="translated">关注更多帐户以了解您的兴趣并建立您的网络。</target>
+        </trans-unit>
+        <trans-unit id="SuggestedAccountsTitle" translate="yes" xml:space="preserve">
+          <source>Suggested accounts</source>
+          <target state="translated">建议的账户</target>
+        </trans-unit>
+        <trans-unit id="PeopleText" translate="yes" xml:space="preserve">
+          <source>People</source>
+          <target state="translated">人</target>
+        </trans-unit>
       </group>
     </body>
   </file>

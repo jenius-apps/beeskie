@@ -104,7 +104,8 @@ partial class App
                 serviceProvider.GetRequiredService<IProfileService>(),
                 serviceProvider.GetRequiredService<IDialogService>(),
                 serviceProvider.GetRequiredService<IAuthenticationService>(),
-                serviceProvider.GetRequiredService<IImageViewerService>());
+                serviceProvider.GetRequiredService<IImageViewerService>(),
+                serviceProvider.GetRequiredService<IAuthorViewModelFactory>());
         });
 
         collection.AddSingleton<IUserSettings>(_ => new LocalSettings(UserSettingsConstants.Defaults));
@@ -121,9 +122,11 @@ partial class App
     [Singleton(typeof(AuthenticationService), typeof(IAuthenticationService))]
     [Singleton(typeof(TimelineService), typeof(ITimelineService))]
     [Singleton(typeof(SearchService), typeof(ISearchService))]
+    [Singleton(typeof(DiscoverService), typeof(IDiscoverService))]
     [Singleton(typeof(FeedItemViewModelFactory), typeof(IFeedItemViewModelFactory))]
     [Singleton(typeof(NotificationViewModelFactory), typeof(INotificationViewModelFactory))]
     [Singleton(typeof(FeedGeneratorViewModelFactory), typeof(IFeedGeneratorViewModelFactory))]
+    [Singleton(typeof(AuthorViewModelFactory), typeof(IAuthorViewModelFactory))]
     [Singleton(typeof(SecureCredentialStorage), typeof(ISecureCredentialStorage))]
     [Singleton(typeof(NotificationsService), typeof(INotificationsService))]
     [Singleton(typeof(ProfileCache), typeof(ICache<Author>))]

@@ -66,6 +66,7 @@
             <wct:Segmented Margin="0,8,0,0" SelectedIndex="{x:Bind ViewModel.SearchTabIndex, Mode=TwoWay}">
                 <wct:SegmentedItem Content="{x:Bind strings:Resources.SortTopText}" />
                 <wct:SegmentedItem Content="{x:Bind strings:Resources.SortLatestText}" />
+                <wct:SegmentedItem Content="{x:Bind strings:Resources.PeopleText}" />
             </wct:Segmented>
 
         </StackPanel>
@@ -87,7 +88,7 @@
             ItemTemplate="{StaticResource FeedItemTemplate}"
             ItemsSource="{x:Bind FeedCollection}"
             SelectionMode="None"
-            Visibility="{x:Bind ex:UIExtensions.InvertBoolToVis(ViewModel.SearchLoading), Mode=OneWay}">
+            Visibility="{x:Bind ViewModel.PostsResultsVisible, Mode=OneWay}">
             <ani:Implicit.ShowAnimations>
                 <ani:OpacityAnimation
                     From="0"
@@ -103,6 +104,33 @@
             </ListView.ItemContainerStyle>
         </ListView>
 
+        <ListView
+            x:Name="ActorResultsListView"
+            Grid.Row="2"
+            Padding="0,20,0,0"
+            DataFetchSize="1"
+            IncrementalLoadingThreshold="1"
+            IncrementalLoadingTrigger="Edge"
+            ItemTemplate="{StaticResource ActorTemplate}"
+            ItemsSource="{x:Bind ActorCollection}"
+            SelectionMode="None"
+            Visibility="{x:Bind ViewModel.ActorsResultsVisible, Mode=OneWay}">
+            <ani:Implicit.ShowAnimations>
+                <ani:OpacityAnimation
+                    From="0"
+                    To="1"
+                    Duration="0:0:0.3" />
+            </ani:Implicit.ShowAnimations>
+
+            <ListView.ItemContainerStyle>
+                <Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="Padding" Value="20,0,20,20" />
+                    <Setter Property="MaxWidth" Value="{StaticResource FeedMaxWidth}" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+
         <StackPanel
             Grid.Row="2"
             Margin="0,20,0,0"
@@ -112,29 +140,49 @@
             <controls:FeedItemShimmer Margin="0,12,0,0" />
         </StackPanel>
 
-        <StackPanel
+        <Grid
             Grid.Row="2"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
+            MaxWidth="{StaticResource SearchHeaderMaxWidth}"
+            Margin="20,20,20,0"
             Visibility="{x:Bind ViewModel.SearchPagePlaceholderVisible, Mode=OneWay}">
-            <FontIcon
-                FontFamily="{StaticResource FluentUIGlyphs}"
-                FontSize="60"
-                Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                Glyph="{StaticResource GlyphSearch}" />
-            <TextBlock
-                Margin="0,12,0,0"
-                FontSize="12"
-                Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                Text="{x:Bind strings:Resources.SearchPagePlaceholder1}"
-                TextAlignment="Center" />
-            <TextBlock
-                Margin="0,2,0,0"
-                FontSize="12"
-                Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                Text="{x:Bind strings:Resources.SearchPagePlaceholder2}"
-                TextAlignment="Center" />
-        </StackPanel>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <FontIcon
+                        FontFamily="{StaticResource FluentUIGlyphs}"
+                        FontSize="20"
+                        Foreground="{StaticResource SystemAccentColor}"
+                        Glyph="{StaticResource GlyphUser}" />
+                    <TextBlock
+                        Margin="8,0,0,0"
+                        VerticalAlignment="Center"
+                        FontSize="20"
+                        FontWeight="SemiBold"
+                        Text="{x:Bind strings:Resources.SuggestedAccountsTitle}" />
+                </StackPanel>
+                <TextBlock
+                    Margin="0,4,0,0"
+                    Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                    Text="{x:Bind strings:Resources.SuggestedAccountsSubtitle}"
+                    TextWrapping="WrapWholeWords" />
+            </StackPanel>
+            <ListView
+                Grid.Row="1"
+                Margin="0,20,0,0"
+                ItemTemplate="{StaticResource ActorTemplate}"
+                ItemsSource="{x:Bind ViewModel.SuggestedPeople}"
+                SelectionMode="None">
+                <ListView.ItemContainerStyle>
+                    <Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="Padding" Value="12,0,12,12" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+        </Grid>
 
         <Rectangle
             Grid.RowSpan="2"

@@ -42,4 +42,16 @@ public interface ISearchService
         CancellationToken ct,
         string? cursor = null,
         SearchOptions? options = null);
+
+    /// <summary>
+    /// Performs an actor search based on the given query.
+    /// </summary>
+    /// <param name="query">The user's query.</param>
+    /// <param name="ct">A cancellation token. </param>
+    /// <param name="cursor">A string used to fetch the next page.</param>
+    /// <returns>List of actor results.</returns>
+    Task<(IReadOnlyList<Author> Actors, string? Cursor)> SearchActorsAsync(
+        string query,
+        CancellationToken ct,
+        string? cursor = null);
 }

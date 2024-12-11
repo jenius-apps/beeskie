@@ -79,4 +79,46 @@ public interface IBlueskyApiClient
         CancellationToken ct,
         string? cursor = null,
         SearchOptions? options = null);
+
+    /// <summary>
+    /// Retrieves list of suggested people to follow.
+    /// </summary>
+    /// <param name="accessToken">Access token for the logged in user.</param>
+    /// <param name="ct">A cancellation token.</param>
+    /// <param name="count">Number of people to retrieve.</param>
+    /// <param name="cursor">A bluesky-provided string to help with pagination.</param>
+    /// <returns>FeedResponse object with the Actors property populated.</returns>
+    Task<Result<FeedResponse>> GetSuggestedPeopleAsync(
+        string accessToken,
+        CancellationToken ct,
+        int count = 10,
+        string? cursor = null);
+
+    /// <summary>
+    /// Follows the actor.
+    /// </summary>
+    /// <param name="accessToken">Access token for the logged in user.</param>
+    /// <param name="userHandle">This user's handle.</param>
+    /// <param name="subjectDid">The DID of the actor to follow.</param>
+    /// <param name="ct">A cancellation token.</param>
+    /// <returns>True if the follow was successful, false otherwise.</returns>
+    Task<bool> FollowActorAsync(
+        string accessToken,
+        string userHandle,
+        string subjectDid,
+        CancellationToken ct);
+
+    /// <summary>
+    /// Performs actors search.
+    /// </summary>
+    /// <param name="accessToken">Access token for the logged in user.</param>
+    /// <param name="query">The user-provided search query to use.</param>
+    /// <param name="ct">A cancellation token.</param>
+    /// <param name="cursor">A bluesky-provided string to help with pagination.</param>
+    /// <returns>FeedResponse object with the Actors property populated.</returns>
+    Task<Result<FeedResponse>> SearchActorsAsync(
+        string accessToken,
+        string query,
+        CancellationToken ct,
+        string? cursor = null);
 }
