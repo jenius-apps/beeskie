@@ -1,20 +1,32 @@
 ﻿using Bluesky.NET.Models;
 using BlueskyClient.Extensions;
+using BlueskyClient.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace BlueskyClient.ViewModels;
 
 public partial class AuthorViewModel : ObservableObject
 {
+    private readonly IProfileService _profileService;
     private Author? _author;
 
-    public AuthorViewModel() { }
-
-    public AuthorViewModel(Author author)
+    public AuthorViewModel(
+        Author? author,
+        IProfileService profileService)
     {
         _author = author;
+        _profileService = profileService;
     }
+
+    [ObservableProperty]
+    private bool _followTriggered;
+
+    [ObservableProperty]
+    private bool _followSuccessful;
 
     public string DisplayName => _author?.DisplayName is { Length: > 0 } displayName
         ? displayName
@@ -44,5 +56,18 @@ public partial class AuthorViewModel : ObservableObject
     {
         _author = author;
         OnPropertyChanged(string.Empty);
+    }
+
+    [RelayCommand]
+    private async Task FollowAsync(CancellationToken ct)
+    {
+        if (_author?.Did is not { Length: > 0 } subjectDid)
+        {
+            return;
+        }
+
+        FollowTriggered = true;
+        FollowSuccessful = await _profileService.FollowActorAsync(subjectDid, ct);
+        FollowTriggered = false;
     }
 }

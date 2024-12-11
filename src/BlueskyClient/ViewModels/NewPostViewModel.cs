@@ -25,19 +25,23 @@ public partial class NewPostViewModel : ObservableObject
         IProfileService profileService,
         IPostSubmissionService postSubmissionService,
         ITelemetry telemetry,
-        IFutureAccessFilePicker picker)
+        IFutureAccessFilePicker picker,
+        IAuthorViewModelFactory authorFactory)
     {
         _profileService = profileService;
         _postSubmissionService = postSubmissionService;
         _telemetry = telemetry;
         _picker = picker;
+
+        AuthorViewModel = authorFactory.CreateStub();
+        ReplyTargetAuthorViewModel = authorFactory.CreateStub();
     }
 
     public bool ImageListVisible => Images.Count > 0;
 
-    public AuthorViewModel AuthorViewModel { get; } = new();
+    public AuthorViewModel AuthorViewModel { get; }
 
-    public AuthorViewModel ReplyTargetAuthorViewModel { get; } = new();
+    public AuthorViewModel ReplyTargetAuthorViewModel { get; }
 
     public ObservableCollection<FutureAccessImage> Images { get; } = [];
 

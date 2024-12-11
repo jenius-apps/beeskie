@@ -93,4 +93,18 @@ public interface IBlueskyApiClient
         CancellationToken ct,
         int count = 10,
         string? cursor = null);
+
+    /// <summary>
+    /// Follows the actor.
+    /// </summary>
+    /// <param name="accessToken">Access token for the logged in user.</param>
+    /// <param name="userHandle">This user's handle.</param>
+    /// <param name="subjectDid">The DID of the actor to follow.</param>
+    /// <param name="ct">A cancellation token.</param>
+    /// <returns>True if the follow was successful, false otherwise.</returns>
+    Task<bool> FollowActorAsync(
+        string accessToken,
+        string userHandle,
+        string subjectDid,
+        CancellationToken ct);
 }

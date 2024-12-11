@@ -18,13 +18,15 @@ public partial class ProfileControlViewModel : ObservableObject
 
     public ProfileControlViewModel(
         IProfileService profileService,
-        IFeedItemViewModelFactory feedItemViewModelFactory)
+        IFeedItemViewModelFactory feedItemViewModelFactory,
+        IAuthorViewModelFactory authorFactory)
     {
         _profileService = profileService;
         _feedItemViewModelFactory = feedItemViewModelFactory;
+        AuthorViewModel = authorFactory.CreateStub();
     }
 
-    public AuthorViewModel AuthorViewModel { get; } = new();
+    public AuthorViewModel AuthorViewModel { get; }
 
     public ObservableCollection<FeedItemViewModel> FeedItems { get; } = [];
 

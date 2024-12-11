@@ -18,6 +18,7 @@ public class NotificationViewModelFactory : INotificationViewModelFactory
     {
         return new NotificationViewModel(
             notification,
-            _serviceProvider.GetRequiredService<ILocalizer>());
+            _serviceProvider.GetRequiredService<ILocalizer>(),
+            _serviceProvider.GetRequiredService<IAuthorViewModelFactory>());
     }
 }

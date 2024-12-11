@@ -17,6 +17,8 @@ namespace Bluesky.NET.Models;
 [JsonSerializable(typeof(FeedRecord[]))]
 [JsonSerializable(typeof(Author))]
 [JsonSerializable(typeof(Notification))]
+[JsonSerializable(typeof(FollowRecordBody))]
+[JsonSerializable(typeof(FollowRecord))]
 [JsonSerializable(typeof(CreateRecordBody))]
 [JsonSerializable(typeof(CreateRecordResponse))]
 [JsonSerializable(typeof(PostEmbed))]

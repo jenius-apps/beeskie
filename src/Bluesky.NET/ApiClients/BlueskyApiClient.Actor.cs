@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
@@ -68,5 +69,40 @@ partial class BlueskyApiClient
             message,
             ModelSerializerContext.CaseInsensitive.FeedResponse,
             ct);
+    }
+
+    /// <inheritdoc/>
+    public async Task<bool> FollowActorAsync(
+        string accessToken,
+        string userHandle,
+        string subjectDid,
+        CancellationToken ct)
+    {
+        var url = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.CreateRecordPath}";
+
+        FollowRecordBody body = new()
+        {
+            Repo = userHandle,
+            Record = new FollowRecord
+            {
+                CreatedAt = DateTime.Now,
+                Subject = subjectDid
+            },
+            Collection = RecordType.Follow.ToStringType()
+        };
+
+        HttpRequestMessage message = new(HttpMethod.Post, url)
+        {
+            Content = new StringContent(JsonSerializer.Serialize(body, ModelSerializerContext.CaseInsensitive.FollowRecordBody), Encoding.UTF8, "application/json"),
+        };
+
+        message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+        var result = await SendMessageAsync(
+            message,
+            ModelSerializerContext.CaseInsensitive.CreateRecordResponse,
+            ct);
+
+        return result.IsSuccess;
     }
 }

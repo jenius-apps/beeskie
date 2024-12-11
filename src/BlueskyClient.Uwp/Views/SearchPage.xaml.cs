@@ -1,6 +1,7 @@
 ﻿using BlueskyClient.Collections;
 using BlueskyClient.Extensions.Uwp;
 using BlueskyClient.ViewModels;
+using JeniusApps.Common.Telemetry;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using Windows.UI.Xaml;
@@ -28,6 +29,8 @@ public sealed partial class SearchPage : Page
 
     protected override async void OnNavigatedTo(NavigationEventArgs e)
     {
+        App.Services.GetRequiredService<ITelemetry>().TrackPageView(nameof(SearchPage));
+
         try
         {
             await ViewModel.InitializeAsync(default);

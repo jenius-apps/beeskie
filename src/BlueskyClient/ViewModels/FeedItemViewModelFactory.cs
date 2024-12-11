@@ -27,6 +27,7 @@ public class FeedItemViewModelFactory : IFeedItemViewModelFactory
             reason,
             _serviceProvider.GetRequiredService<IPostSubmissionService>(),
             _serviceProvider.GetRequiredService<IDialogService>(),
-            _serviceProvider.GetRequiredService<ILocalizer>());
+            _serviceProvider.GetRequiredService<ILocalizer>(),
+            _serviceProvider.GetRequiredService<IAuthorViewModelFactory>());
     }
 }

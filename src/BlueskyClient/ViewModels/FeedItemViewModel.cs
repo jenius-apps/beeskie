@@ -24,11 +24,12 @@ public partial class FeedItemViewModel : ObservableObject
         FeedPostReason? reason,
         IPostSubmissionService postSubmissionService,
         IDialogService dialogService,
-        ILocalizer localizer)
+        ILocalizer localizer,
+        IAuthorViewModelFactory authorFactory)
     {
         Post = post;
         _reason = reason;
-        AuthorViewModel.SetAuthor(post.Author);
+        AuthorViewModel = authorFactory.Create(post.Author);
         _postSubmissionService = postSubmissionService;
         _dialogService = dialogService;
         _localizer = localizer;
@@ -40,7 +41,7 @@ public partial class FeedItemViewModel : ObservableObject
         LikeCount = post.GetLikeCount();
     }
 
-    public AuthorViewModel AuthorViewModel { get; } = new();
+    public AuthorViewModel AuthorViewModel { get; }
 
     public FeedPost Post { get; }
 

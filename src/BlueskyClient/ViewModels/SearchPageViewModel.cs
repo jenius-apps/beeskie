@@ -19,6 +19,7 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
     private readonly IFeedItemViewModelFactory _feedItemFactory;
     private readonly ITelemetry _telemetry;
     private readonly IDiscoverService _discoverService;
+    private readonly IAuthorViewModelFactory _authorViewModelFactory;
     private string? _cursor;
     private string? _currentQuery;
     private SearchOptions? _currentOptions;
@@ -27,12 +28,14 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
         ISearchService searchService,
         IFeedItemViewModelFactory feedItemFactory,
         ITelemetry telemetry,
-        IDiscoverService discoverService)
+        IDiscoverService discoverService,
+        IAuthorViewModelFactory authorViewModelFactory)
     {
         _searchService = searchService;
         _feedItemFactory = feedItemFactory;
         _telemetry = telemetry;
         _discoverService = discoverService;
+        _authorViewModelFactory = authorViewModelFactory;
 
         RecentSearches.CollectionChanged += OnRecentSearchesCollectionChanged;
     }
@@ -77,7 +80,7 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
         var (Authors, _) = await discoverPeopleTask;
         foreach (var a in Authors)
         {
-            SuggestedPeople.Add(new AuthorViewModel(a));
+            SuggestedPeople.Add(_authorViewModelFactory.Create(a));
         }
     }
 

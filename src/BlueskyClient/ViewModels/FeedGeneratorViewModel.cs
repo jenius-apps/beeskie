@@ -12,11 +12,12 @@ public partial class FeedGeneratorViewModel : ObservableObject
 
     public FeedGeneratorViewModel(
         FeedGenerator feedGenerator,
-        ILocalizer localizer)
+        ILocalizer localizer,
+        IAuthorViewModelFactory authorFactory)
     {
         _feedGenerator = feedGenerator;
         _localizer = localizer;
-        AuthorViewModel.SetAuthor(feedGenerator.Creator);
+        AuthorViewModel = authorFactory.Create(feedGenerator.Creator);
     }
 
     public string? RawAtUri => _feedGenerator.Uri;
@@ -29,7 +30,7 @@ public partial class FeedGeneratorViewModel : ObservableObject
 
     public string FeedAvatar => _feedGenerator.SafeAvatarUrl();
 
-    public AuthorViewModel AuthorViewModel { get; } = new();
+    public AuthorViewModel AuthorViewModel { get; }
 
     public string Description => _feedGenerator.Description ?? string.Empty;
 

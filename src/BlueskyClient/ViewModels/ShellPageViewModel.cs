@@ -34,8 +34,10 @@ public partial class ShellPageViewModel : ObservableObject
         IProfileService profileService,
         IDialogService dialogService,
         IAuthenticationService authenticationService,
-        IImageViewerService imageViewerService)
+        IImageViewerService imageViewerService,
+        IAuthorViewModelFactory authorFactory)
     {
+        AuthorViewModel = authorFactory.CreateStub();
         _localizer = localizer;
         _telemetry = telemetry;
         _contentNavigator = contentNavigator;
@@ -54,7 +56,7 @@ public partial class ShellPageViewModel : ObservableObject
 #endif
     }
 
-    public AuthorViewModel AuthorViewModel { get; } = new();
+    public AuthorViewModel AuthorViewModel { get; }
 
     public ObservableCollection<MenuItem> MenuItems { get; } = [];
 

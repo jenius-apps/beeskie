@@ -194,6 +194,7 @@
                             <Button
                                 Grid.RowSpan="2"
                                 Grid.Column="2"
+                                Command="{x:Bind FollowCommand}"
                                 Content="Follow"
                                 Style="{StaticResource AccentButtonStyle}" />
 
