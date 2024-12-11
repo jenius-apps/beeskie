@@ -54,4 +54,16 @@ public interface ISearchService
         string query,
         CancellationToken ct,
         string? cursor = null);
+
+    /// <summary>
+    /// Performs a feed generator search based on the given query.
+    /// </summary>
+    /// <param name="query">The user's query.</param>
+    /// <param name="ct">A cancellation token. </param>
+    /// <param name="cursor">A string used to fetch the next page.</param>
+    /// <returns>List of feed generator results.</returns>
+    Task<(IReadOnlyList<FeedGenerator> Feeds, string? Cursor)> SearchFeedsAsync(
+        string query,
+        CancellationToken ct,
+        string? cursor = null);
 }

@@ -97,7 +97,7 @@ public class SearchService : ISearchService
     }
 
     /// <inheritdoc/>
-    public async Task<(IReadOnlyList<Author> Actors, string? Cursor)> SearchActorsAsync(
+    public async Task<(IReadOnlyList<FeedGenerator> Feeds, string? Cursor)> SearchFeedsAsync(
         string query,
         CancellationToken ct,
         string? cursor = null)
@@ -114,6 +114,39 @@ public class SearchService : ISearchService
             return ([], null);
         }
 
+        Result<FeedResponse> searchResult = await _apiClient.SearchFeedsAsync(
+            tokenResult.Value,
+            query,
+            ct,
+            cursor);
+
+        if (searchResult.IsSuccess)
+        {
+            AddRecentSearch(query);
+        }
+
+        return searchResult.IsSuccess && searchResult.Value.Feeds is IReadOnlyList<FeedGenerator> feeds
+            ? (feeds, searchResult.Value.Cursor)
+            : ([], null);
+    }
+
+    /// <inheritdoc/>
+    public async Task<(IReadOnlyList<Author> Actors, string? Cursor)> SearchActorsAsync(
+        string query,
+        CancellationToken ct,
+        string? cursor = null)
+    {
+        query = query.Trim();
+        if (string.IsNullOrEmpty(query))
+        {
+            return ([], null);
+        }
+
+        var tokenResult = await _authenticationService.TryGetFreshTokenAsync();
+        if (tokenResult.IsFailed)
+        {
+            return ([], null);
+        }
 
         Result<FeedResponse> searchResult = await _apiClient.SearchActorsAsync(
             tokenResult.Value,
