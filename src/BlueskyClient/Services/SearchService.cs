@@ -121,6 +121,11 @@ public class SearchService : ISearchService
             ct,
             cursor);
 
+        if (searchResult.IsSuccess)
+        {
+            AddRecentSearch(query);
+        }
+
         return searchResult.IsSuccess && searchResult.Value.Actors is IReadOnlyList<Author> authors
             ? (authors, searchResult.Value.Cursor)
             : ([], null);

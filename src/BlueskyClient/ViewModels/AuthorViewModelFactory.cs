@@ -1,5 +1,6 @@
 ﻿using Bluesky.NET.Models;
 using BlueskyClient.Services;
+using JeniusApps.Common.Telemetry;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
@@ -15,21 +16,23 @@ public sealed class AuthorViewModelFactory : IAuthorViewModelFactory
     }
 
     /// <inheritdoc/>
-    public AuthorViewModel CreateStub()
+    public AuthorViewModel CreateStub(string telemetryContext = "")
     {
-        return CreateInternal(null);
+        return CreateInternal(null, telemetryContext);
     }
 
     /// <inheritdoc/>
-    public AuthorViewModel Create(Author? author)
+    public AuthorViewModel Create(Author? author, string telemetryContext = "")
     {
-        return CreateInternal(author);
+        return CreateInternal(author, telemetryContext);
     }
 
-    private AuthorViewModel CreateInternal(Author? author)
+    private AuthorViewModel CreateInternal(Author? author, string telemetryContext)
     {
         return new AuthorViewModel(
             author,
-            _serviceProvider.GetRequiredService<IProfileService>());
+            _serviceProvider.GetRequiredService<IProfileService>(),
+            _serviceProvider.GetRequiredService<ITelemetry>(),
+            telemetryContext);
     }
 }

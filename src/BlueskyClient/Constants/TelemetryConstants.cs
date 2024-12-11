@@ -42,4 +42,7 @@ public sealed class TelemetryConstants
     public const string RecentSearchClicked = SearchPage + "recentSearchClicked";
     public const string RecentSearchDeleted = SearchPage + "recentSearchDeleted";
     public const string SearchTabClicked = SearchPage + "searchTabClicked";
+
+    private const string CreateRecord = "createRecord:";
+    public const string FollowCompleted = CreateRecord + "followCompleted";
 }

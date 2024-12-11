@@ -90,7 +90,7 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
         var (Authors, _) = await discoverPeopleTask;
         foreach (var a in Authors)
         {
-            SuggestedPeople.Add(_authorViewModelFactory.Create(a));
+            SuggestedPeople.Add(_authorViewModelFactory.Create(a, telemetryContext: "suggestedPeople"));
         }
     }
 
@@ -160,7 +160,7 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
 
         foreach (var p in Actors)
         {
-            var vm = _authorViewModelFactory.Create(p);
+            var vm = _authorViewModelFactory.Create(p, telemetryContext: "searchResults");
             ActorsCollectionSource.Add(vm);
         }
 

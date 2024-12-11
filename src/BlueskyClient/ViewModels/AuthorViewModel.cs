@@ -1,9 +1,12 @@
 ﻿using Bluesky.NET.Models;
+using BlueskyClient.Constants;
 using BlueskyClient.Extensions;
 using BlueskyClient.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using JeniusApps.Common.Telemetry;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -11,15 +14,21 @@ namespace BlueskyClient.ViewModels;
 
 public partial class AuthorViewModel : ObservableObject
 {
+    private string _telemetryContext;
     private readonly IProfileService _profileService;
+    private readonly ITelemetry _telemetry;
     private Author? _author;
 
     public AuthorViewModel(
         Author? author,
-        IProfileService profileService)
+        IProfileService profileService,
+        ITelemetry telemetry,
+        string telemetryContext)
     {
         _author = author;
         _profileService = profileService;
+        _telemetry = telemetry;
+        _telemetryContext = telemetryContext;
     }
 
     [ObservableProperty]
@@ -67,6 +76,10 @@ public partial class AuthorViewModel : ObservableObject
         }
 
         FollowSuccessful = await _profileService.FollowActorAsync(subjectDid, ct);
+        _telemetry.TrackEvent(TelemetryConstants.FollowCompleted, new Dictionary<string, string>
+        {
+            { "context", _telemetryContext }
+        });
     }
 
     public override string ToString()
