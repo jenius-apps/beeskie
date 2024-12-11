@@ -212,19 +212,19 @@
         </trans-unit>
         <trans-unit id="FollowText" translate="yes" xml:space="preserve">
           <source>Follow</source>
-          <target state="new">Follow</target>
+          <target state="translated">Seguir</target>
         </trans-unit>
         <trans-unit id="SuggestedAccountsSubtitle" translate="yes" xml:space="preserve">
           <source>Follow more accounts to get connected to your interests and build your network.</source>
-          <target state="new">Follow more accounts to get connected to your interests and build your network.</target>
+          <target state="translated">Siga más cuentas para conectarse con sus intereses y construir su red.</target>
         </trans-unit>
         <trans-unit id="SuggestedAccountsTitle" translate="yes" xml:space="preserve">
           <source>Suggested accounts</source>
-          <target state="new">Suggested accounts</target>
+          <target state="translated">Cuentas sugeridas</target>
         </trans-unit>
         <trans-unit id="PeopleText" translate="yes" xml:space="preserve">
           <source>People</source>
-          <target state="new">People</target>
+          <target state="translated">Gente</target>
         </trans-unit>
       </group>
     </body>

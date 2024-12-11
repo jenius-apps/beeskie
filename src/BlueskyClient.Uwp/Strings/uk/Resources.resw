@@ -165,4 +165,16 @@
   <data name="SearchPagePlaceholder2" xml:space="preserve">
     <value>Приступайте до пошуку!</value>
   </data>
+  <data name="FollowText" xml:space="preserve">
+    <value>Слідувати</value>
+  </data>
+  <data name="SuggestedAccountsSubtitle" xml:space="preserve">
+    <value>Підпишіться на більше облікових записів, щоб підключитися до своїх інтересів і побудувати свою мережу.</value>
+  </data>
+  <data name="SuggestedAccountsTitle" xml:space="preserve">
+    <value>Рекомендовані облікові записи</value>
+  </data>
+  <data name="PeopleText" xml:space="preserve">
+    <value>Народ</value>
+  </data>
 </root>

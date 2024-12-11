@@ -165,4 +165,16 @@
   <data name="SearchPagePlaceholder2" xml:space="preserve">
     <value>¡Empieza a buscar!</value>
   </data>
+  <data name="FollowText" xml:space="preserve">
+    <value>Seguir</value>
+  </data>
+  <data name="SuggestedAccountsSubtitle" xml:space="preserve">
+    <value>Siga más cuentas para conectarse con sus intereses y construir su red.</value>
+  </data>
+  <data name="SuggestedAccountsTitle" xml:space="preserve">
+    <value>Cuentas sugeridas</value>
+  </data>
+  <data name="PeopleText" xml:space="preserve">
+    <value>Gente</value>
+  </data>
 </root>

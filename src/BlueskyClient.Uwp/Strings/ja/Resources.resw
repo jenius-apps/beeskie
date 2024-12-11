@@ -165,4 +165,16 @@
   <data name="SearchPagePlaceholder2" xml:space="preserve">
     <value>検索を始めましょう!</value>
   </data>
+  <data name="FollowText" xml:space="preserve">
+    <value>従う</value>
+  </data>
+  <data name="SuggestedAccountsSubtitle" xml:space="preserve">
+    <value>より多くのアカウントをフォローして、興味のあるつながりを深め、ネットワークを構築しましょう。</value>
+  </data>
+  <data name="SuggestedAccountsTitle" xml:space="preserve">
+    <value>おすすめのアカウント</value>
+  </data>
+  <data name="PeopleText" xml:space="preserve">
+    <value>人</value>
+  </data>
 </root>
