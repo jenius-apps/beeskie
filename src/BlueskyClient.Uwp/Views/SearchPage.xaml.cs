@@ -41,7 +41,7 @@ public sealed partial class SearchPage : Page
         catch (OperationCanceledException) { }
 
         SearchResultsListView.SetupRenderOutsideBounds();
-        ActorResultsListView.SetupRenderOutsideBounds();
+        ActorResultsListView.SetupRenderOutsideBounds(); // TODO, this doesn't work because the listview is still collapsed.
     }
 
     protected override void OnNavigatedFrom(NavigationEventArgs e)

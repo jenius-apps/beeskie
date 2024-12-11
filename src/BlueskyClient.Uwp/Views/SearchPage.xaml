@@ -88,7 +88,7 @@
             ItemTemplate="{StaticResource FeedItemTemplate}"
             ItemsSource="{x:Bind FeedCollection}"
             SelectionMode="None"
-            Visibility="{x:Bind ex:UIExtensions.InvertBoolToVis(ViewModel.SearchLoading), Mode=OneWay}">
+            Visibility="{x:Bind ViewModel.PostsResultsVisible, Mode=OneWay}">
             <ani:Implicit.ShowAnimations>
                 <ani:OpacityAnimation
                     From="0"
@@ -114,7 +114,7 @@
             ItemTemplate="{StaticResource ActorTemplate}"
             ItemsSource="{x:Bind ActorCollection}"
             SelectionMode="None"
-            Visibility="{x:Bind ex:UIExtensions.InvertBoolToVis(ViewModel.SearchLoading), Mode=OneWay}">
+            Visibility="{x:Bind ViewModel.ActorsResultsVisible, Mode=OneWay}">
             <ani:Implicit.ShowAnimations>
                 <ani:OpacityAnimation
                     From="0"
@@ -126,10 +126,10 @@
                 <Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                     <Setter Property="Padding" Value="20,0,20,20" />
+                    <Setter Property="MaxWidth" Value="{StaticResource FeedMaxWidth}" />
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
-
 
         <StackPanel
             Grid.Row="2"

@@ -42,9 +42,9 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
 
     public bool RecentSearchPlaceholderVisible => RecentSearches.Count == 0;
 
-    public bool ActorsResultsVisible => SearchTabIndex == 2;
+    public bool ActorsResultsVisible => !SearchLoading && SearchTabIndex == 2;
 
-    public bool PostsResultsVisible => SearchTabIndex < 2;
+    public bool PostsResultsVisible => !SearchLoading && SearchTabIndex < 2;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ActorsResultsVisible))]
@@ -70,6 +70,8 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
     private string _query = string.Empty;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ActorsResultsVisible))]
+    [NotifyPropertyChangedFor(nameof(PostsResultsVisible))]
     private bool _searchLoading;
 
     public async Task InitializeAsync(CancellationToken ct)

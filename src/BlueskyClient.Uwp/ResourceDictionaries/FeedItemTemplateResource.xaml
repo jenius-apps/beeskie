@@ -70,11 +70,11 @@
                     <TextBlock
                         Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}"
                         Text="{x:Bind strings:Resources.FollowText}"
-                        Visibility="{x:Bind FollowTextVisible, Mode=OneWay}" />
+                        Visibility="{x:Bind ex:UIExtensions.InvertBoolToVis(AlreadyFollowed), Mode=OneWay}" />
                     <FontIcon
                         FontFamily="{StaticResource FluentUIGlyphs}"
                         Glyph="{StaticResource GlyphCheckMark}"
-                        Visibility="{x:Bind FollowSuccessful, Mode=OneWay}" />
+                        Visibility="{x:Bind AlreadyFollowed, Mode=OneWay}" />
                 </Grid>
             </Button>
 

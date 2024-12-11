@@ -23,10 +23,8 @@ public partial class AuthorViewModel : ObservableObject
     }
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(FollowTextVisible))]
+    [NotifyPropertyChangedFor(nameof(AlreadyFollowed))]
     private bool _followSuccessful;
-
-    public bool FollowTextVisible => !FollowSuccessful;
 
     public string DisplayName => _author?.DisplayName is { Length: > 0 } displayName
         ? displayName
@@ -52,6 +50,8 @@ public partial class AuthorViewModel : ObservableObject
 
     public bool BannerVisible => !string.IsNullOrEmpty(_author?.Banner);
 
+    public bool AlreadyFollowed => _author?.Viewer?.Following is { Length: > 0 } || FollowSuccessful;
+
     public void SetAuthor(Author? author)
     {
         _author = author;
@@ -61,7 +61,7 @@ public partial class AuthorViewModel : ObservableObject
     [RelayCommand]
     private async Task FollowAsync(CancellationToken ct)
     {
-        if (FollowSuccessful || _author?.Did is not { Length: > 0 } subjectDid)
+        if (AlreadyFollowed || _author?.Did is not { Length: > 0 } subjectDid)
         {
             return;
         }
