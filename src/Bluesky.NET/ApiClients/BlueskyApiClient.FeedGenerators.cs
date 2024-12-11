@@ -39,4 +39,25 @@ partial class BlueskyApiClient
             ? Result.Ok(feeds)
             : Result.Fail<IReadOnlyList<FeedGenerator>>(response.Errors);
     }
+
+    /// <inheritdoc/>
+    public async Task<Result<FeedResponse>> GetSuggestedFeedGeneratorsAsync(
+        string accessToken,
+        CancellationToken ct,
+        string? cursor = null)
+    {
+        var url = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.SuggestedFeedsPath}";
+        if (cursor is { Length: > 0 })
+        {
+            url += $"?cursor={cursor}";
+        }
+
+        HttpRequestMessage message = new(HttpMethod.Get, url);
+        message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+        return await SendMessageAsync(
+            message,
+            ModelSerializerContext.CaseInsensitive.FeedResponse,
+            ct);
+    }
 }

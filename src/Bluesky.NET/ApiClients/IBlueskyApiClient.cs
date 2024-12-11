@@ -121,4 +121,30 @@ public interface IBlueskyApiClient
         string query,
         CancellationToken ct,
         string? cursor = null);
+
+    /// <summary>
+    /// Performs feed search.
+    /// </summary>
+    /// <param name="accessToken">Access token for the logged in user.</param>
+    /// <param name="query">The user-provided search query to use.</param>
+    /// <param name="ct">A cancellation token.</param>
+    /// <param name="cursor">A bluesky-provided string to help with pagination.</param>
+    /// <returns>FeedResponse object with the Feeds property populated.</returns>
+    Task<Result<FeedResponse>> SearchFeedsAsync(
+        string accessToken,
+        string query, 
+        CancellationToken ct,
+        string? cursor = null);
+
+    /// <summary>
+    /// Retrieves list of suggested feeds.
+    /// </summary>
+    /// <param name="accessToken">Access token for the logged in user.</param>
+    /// <param name="ct">A cancellation token.</param>
+    /// <param name="cursor">A bluesky-provided string to help with pagination.</param>
+    /// <returns>FeedResponse object with the Feeds property populated.</returns>
+    Task<Result<FeedResponse>> GetSuggestedFeedGeneratorsAsync(
+        string accessToken,
+        CancellationToken ct,
+        string? cursor = null);
 }

@@ -14,6 +14,29 @@ namespace Bluesky.NET.ApiClients;
 partial class BlueskyApiClient
 {
     /// <inheritdoc/>
+    public async Task<Result<FeedResponse>> SearchFeedsAsync(
+        string accessToken,
+        string query,
+        CancellationToken ct,
+        string? cursor = null)
+    {
+        var url = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.SearchFeedsPath}?query={HttpUtility.UrlEncode(query)}";
+
+        if (cursor is not null)
+        {
+            url += $"&cursor={cursor}";
+        }
+
+        HttpRequestMessage message = new(HttpMethod.Get, url);
+        message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+        return await SendMessageAsync(
+            message,
+            ModelSerializerContext.CaseInsensitive.FeedResponse,
+            ct);
+    }
+
+    /// <inheritdoc/>
     public async Task<Result<FeedResponse>> SearchActorsAsync(
         string accessToken,
         string query, 
