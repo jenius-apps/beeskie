@@ -210,6 +210,18 @@
           <source>Start searching!</source>
           <target state="translated">Приступайте до пошуку!</target>
         </trans-unit>
+        <trans-unit id="FollowText" translate="yes" xml:space="preserve">
+          <source>Follow</source>
+          <target state="new">Follow</target>
+        </trans-unit>
+        <trans-unit id="SuggestedAccountsSubtitle" translate="yes" xml:space="preserve">
+          <source>Follow more accounts to get connected to your interests and build your network.</source>
+          <target state="new">Follow more accounts to get connected to your interests and build your network.</target>
+        </trans-unit>
+        <trans-unit id="SuggestedAccountsTitle" translate="yes" xml:space="preserve">
+          <source>Suggested accounts</source>
+          <target state="new">Suggested accounts</target>
+        </trans-unit>
       </group>
     </body>
   </file>

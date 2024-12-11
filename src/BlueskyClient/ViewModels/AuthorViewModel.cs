@@ -68,4 +68,9 @@ public partial class AuthorViewModel : ObservableObject
 
         FollowSuccessful = await _profileService.FollowActorAsync(subjectDid, ct);
     }
+
+    public override string ToString()
+    {
+        return $"{DisplayName}, {AtHandle}, {Description}";
+    }
 }

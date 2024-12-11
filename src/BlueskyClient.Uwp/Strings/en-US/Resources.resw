@@ -144,6 +144,9 @@
   <data name="FollowingText" xml:space="preserve">
     <value>following</value>
   </data>
+  <data name="FollowText" xml:space="preserve">
+    <value>Follow</value>
+  </data>
   <data name="HomeText" xml:space="preserve">
     <value>Home</value>
   </data>
@@ -266,6 +269,12 @@
   </data>
   <data name="SubmitText" xml:space="preserve">
     <value>Submit</value>
+  </data>
+  <data name="SuggestedAccountsSubtitle" xml:space="preserve">
+    <value>Follow more accounts to get connected to your interests and build your network.</value>
+  </data>
+  <data name="SuggestedAccountsTitle" xml:space="preserve">
+    <value>Suggested accounts</value>
   </data>
   <data name="UploadingText" xml:space="preserve">
     <value>Uploading</value>
