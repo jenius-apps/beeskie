@@ -20,6 +20,7 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
     private readonly ITelemetry _telemetry;
     private readonly IDiscoverService _discoverService;
     private readonly IAuthorViewModelFactory _authorViewModelFactory;
+    private readonly IFeedGeneratorViewModelFactory _feedGeneratorViewModelFactory;
     private string? _cursor;
     private string? _currentQuery;
     private SearchOptions? _currentOptions;
@@ -29,13 +30,15 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
         IFeedItemViewModelFactory feedItemFactory,
         ITelemetry telemetry,
         IDiscoverService discoverService,
-        IAuthorViewModelFactory authorViewModelFactory)
+        IAuthorViewModelFactory authorViewModelFactory,
+        IFeedGeneratorViewModelFactory feedGeneratorViewModelFactory)
     {
         _searchService = searchService;
         _feedItemFactory = feedItemFactory;
         _telemetry = telemetry;
         _discoverService = discoverService;
         _authorViewModelFactory = authorViewModelFactory;
+        _feedGeneratorViewModelFactory = feedGeneratorViewModelFactory;
 
         RecentSearches.CollectionChanged += OnRecentSearchesCollectionChanged;
     }
@@ -62,6 +65,8 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
     public ObservableCollection<AuthorViewModel> SuggestedPeople { get; } = [];
 
     public ObservableCollection<AuthorViewModel> ActorsCollectionSource { get; } = [];
+
+    public ObservableCollection<FeedGeneratorViewModel> FeedsCollectionSrouce { get; } = [];
 
     /// <inheritdoc/>
     public bool HasMoreItems => _cursor is not null;
@@ -137,15 +142,31 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
             _telemetry.TrackEvent(TelemetryConstants.SearchNextPageLoaded);
         }
 
-        if (SearchTabIndex == 2)
+        return SearchTabIndex switch
         {
-            // people tab
-            return await LoadNextActorsAsync(_currentQuery, ct);
-        }
-        else
+            3 => await LoadNextFeedsAsync(_currentQuery, ct),
+            2 => await LoadNextActorsAsync(_currentQuery, ct),
+            _ => await LoadNextPostsAsync(_currentQuery, ct)
+        };
+    }
+
+    private async Task<int> LoadNextFeedsAsync(string validatedQuery, CancellationToken ct)
+    {
+        var (Feeds, Cursor) = await _searchService.SearchFeedsAsync(
+           validatedQuery,
+           ct,
+           cursor: _cursor);
+
+        _cursor = Cursor;
+        SearchLoading = false;
+
+        foreach (var feed in Feeds)
         {
-            return await LoadNextPostsAsync(_currentQuery, ct);
+            var vm = _feedGeneratorViewModelFactory.Create(feed);
+            FeedsCollectionSrouce.Add(vm);
         }
+
+        return Feeds.Count;
     }
 
     private async Task<int> LoadNextActorsAsync(string validatedQuery, CancellationToken ct)
