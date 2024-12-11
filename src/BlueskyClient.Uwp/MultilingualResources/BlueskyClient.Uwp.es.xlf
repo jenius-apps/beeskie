@@ -222,6 +222,10 @@
           <source>Suggested accounts</source>
           <target state="new">Suggested accounts</target>
         </trans-unit>
+        <trans-unit id="PeopleText" translate="yes" xml:space="preserve">
+          <source>People</source>
+          <target state="new">People</target>
+        </trans-unit>
       </group>
     </body>
   </file>

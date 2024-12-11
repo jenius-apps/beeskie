@@ -18,7 +18,8 @@ public sealed partial class SearchPage : Page
     {
         this.InitializeComponent();
         ViewModel = App.Services.GetRequiredService<SearchPageViewModel>();
-        FeedCollection = new PaginatedCollection<FeedItemViewModel>(ViewModel);
+        FeedCollection = new PaginatedCollection<FeedItemViewModel>(ViewModel, ViewModel.CollectionSource);
+        ActorCollection = new PaginatedCollection<AuthorViewModel>(ViewModel, ViewModel.ActorsCollectionSource);
 
         Window.Current.SetTitleBar(TitleBar);
     }
@@ -26,6 +27,8 @@ public sealed partial class SearchPage : Page
     public SearchPageViewModel ViewModel { get; }
 
     public PaginatedCollection<FeedItemViewModel> FeedCollection { get; }
+
+    public PaginatedCollection<AuthorViewModel> ActorCollection { get; }
 
     protected override async void OnNavigatedTo(NavigationEventArgs e)
     {
@@ -38,6 +41,7 @@ public sealed partial class SearchPage : Page
         catch (OperationCanceledException) { }
 
         SearchResultsListView.SetupRenderOutsideBounds();
+        ActorResultsListView.SetupRenderOutsideBounds();
     }
 
     protected override void OnNavigatedFrom(NavigationEventArgs e)

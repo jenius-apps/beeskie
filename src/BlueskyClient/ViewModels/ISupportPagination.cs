@@ -13,11 +13,6 @@ namespace BlueskyClient.ViewModels;
 public interface ISupportPagination<T>
 {
     /// <summary>
-    /// The source of truth for items.
-    /// </summary>
-    ObservableCollection<T> CollectionSource { get; }
-
-    /// <summary>
     /// Indicates if more items are available to be fetched.
     /// </summary>
     bool HasMoreItems { get; }

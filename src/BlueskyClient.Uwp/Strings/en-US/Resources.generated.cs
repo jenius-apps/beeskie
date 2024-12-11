@@ -340,6 +340,19 @@ namespace BlueskyClient.Strings{
         }
         #endregion
 
+        #region PeopleText
+        /// <summary>
+        ///   Looks up a localized string similar to: People
+        /// </summary>
+        public static string PeopleText
+        {
+            get
+            {
+                return _resourceLoader.GetString("PeopleText");
+            }
+        }
+        #endregion
+
         #region PinnedFeedsSubtitle
         /// <summary>
         ///   Looks up a localized string similar to: Select a feed to change your view
@@ -752,6 +765,7 @@ namespace BlueskyClient.Strings{
             NotificationsText,
             OkayText,
             PasswordBoxPlaceholder,
+            PeopleText,
             PinnedFeedsSubtitle,
             PinnedFeedsTitle,
             PostedReplyText,

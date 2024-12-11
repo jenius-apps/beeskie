@@ -192,6 +192,9 @@
   <data name="PasswordBoxPlaceholder" xml:space="preserve">
     <value>Your special App Password</value>
   </data>
+  <data name="PeopleText" xml:space="preserve">
+    <value>People</value>
+  </data>
   <data name="PinnedFeedsSubtitle" xml:space="preserve">
     <value>Select a feed to change your view</value>
   </data>

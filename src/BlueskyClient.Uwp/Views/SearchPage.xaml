@@ -66,6 +66,7 @@
             <wct:Segmented Margin="0,8,0,0" SelectedIndex="{x:Bind ViewModel.SearchTabIndex, Mode=TwoWay}">
                 <wct:SegmentedItem Content="{x:Bind strings:Resources.SortTopText}" />
                 <wct:SegmentedItem Content="{x:Bind strings:Resources.SortLatestText}" />
+                <wct:SegmentedItem Content="{x:Bind strings:Resources.PeopleText}" />
             </wct:Segmented>
 
         </StackPanel>
@@ -102,6 +103,33 @@
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
+
+        <ListView
+            x:Name="ActorResultsListView"
+            Grid.Row="2"
+            Padding="0,20,0,0"
+            DataFetchSize="1"
+            IncrementalLoadingThreshold="1"
+            IncrementalLoadingTrigger="Edge"
+            ItemTemplate="{StaticResource ActorTemplate}"
+            ItemsSource="{x:Bind ActorCollection}"
+            SelectionMode="None"
+            Visibility="{x:Bind ex:UIExtensions.InvertBoolToVis(ViewModel.SearchLoading), Mode=OneWay}">
+            <ani:Implicit.ShowAnimations>
+                <ani:OpacityAnimation
+                    From="0"
+                    To="1"
+                    Duration="0:0:0.3" />
+            </ani:Implicit.ShowAnimations>
+
+            <ListView.ItemContainerStyle>
+                <Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="Padding" Value="20,0,20,20" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+
 
         <StackPanel
             Grid.Row="2"
@@ -144,6 +172,7 @@
             <ListView
                 Grid.Row="1"
                 Margin="0,20,0,0"
+                ItemTemplate="{StaticResource ActorTemplate}"
                 ItemsSource="{x:Bind ViewModel.SuggestedPeople}"
                 SelectionMode="None">
                 <ListView.ItemContainerStyle>
@@ -152,78 +181,6 @@
                         <Setter Property="Padding" Value="12,0,12,12" />
                     </Style>
                 </ListView.ItemContainerStyle>
-
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="vm:AuthorViewModel">
-                        <Grid
-                            Grid.Row="1"
-                            Padding="0,0,0,12"
-                            BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}"
-                            BorderThickness="0,0,0,1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="auto" />
-                            </Grid.ColumnDefinitions>
-
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                            </Grid.RowDefinitions>
-
-                            <PersonPicture
-                                Grid.RowSpan="3"
-                                Width="48"
-                                Height="48"
-                                Margin="0,0,12,0"
-                                VerticalAlignment="Top"
-                                ProfilePicture="{x:Bind AvatarUrl, Mode=OneWay}" />
-
-                            <TextBlock
-                                Grid.Column="1"
-                                FontWeight="SemiBold"
-                                Text="{x:Bind DisplayName}"
-                                TextTrimming="CharacterEllipsis" />
-                            <TextBlock
-                                Grid.Row="1"
-                                Grid.Column="1"
-                                Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                                Text="{x:Bind AtHandle}"
-                                TextTrimming="CharacterEllipsis" />
-
-                            <Button
-                                Grid.RowSpan="2"
-                                Grid.Column="2"
-                                MinWidth="80"
-                                VerticalAlignment="Stretch"
-                                AutomationProperties.Name="{x:Bind strings:Resources.FollowText}"
-                                Command="{x:Bind FollowCommand}"
-                                Style="{StaticResource AccentButtonStyle}">
-                                <Grid>
-                                    <TextBlock
-                                        Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}"
-                                        Text="{x:Bind strings:Resources.FollowText}"
-                                        Visibility="{x:Bind FollowTextVisible, Mode=OneWay}" />
-                                    <FontIcon
-                                        FontFamily="{StaticResource FluentUIGlyphs}"
-                                        Glyph="{StaticResource GlyphCheckMark}"
-                                        Visibility="{x:Bind FollowSuccessful, Mode=OneWay}" />
-                                </Grid>
-                            </Button>
-
-                            <TextBlock
-                                Grid.Row="2"
-                                Grid.Column="1"
-                                Grid.ColumnSpan="2"
-                                Margin="0,8,0,0"
-                                MaxLines="4"
-                                Text="{x:Bind Description}"
-                                TextTrimming="CharacterEllipsis"
-                                TextWrapping="WrapWholeWords" />
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
             </ListView>
         </Grid>
 

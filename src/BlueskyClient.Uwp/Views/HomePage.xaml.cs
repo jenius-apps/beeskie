@@ -20,7 +20,7 @@ public sealed partial class HomePage : Page
     {
         this.InitializeComponent();
         ViewModel = App.Services.GetRequiredService<HomePageViewModel>();
-        FeedCollection = new PaginatedCollection<FeedItemViewModel>(ViewModel);
+        FeedCollection = new PaginatedCollection<FeedItemViewModel>(ViewModel, ViewModel.CollectionSource);
 
         Window.Current.SetTitleBar(TitleBar);
     }
