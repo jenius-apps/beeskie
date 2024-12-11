@@ -23,10 +23,10 @@ public partial class AuthorViewModel : ObservableObject
     }
 
     [ObservableProperty]
-    private bool _followTriggered;
-
-    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(FollowTextVisible))]
     private bool _followSuccessful;
+
+    public bool FollowTextVisible => !FollowSuccessful;
 
     public string DisplayName => _author?.DisplayName is { Length: > 0 } displayName
         ? displayName
@@ -61,13 +61,11 @@ public partial class AuthorViewModel : ObservableObject
     [RelayCommand]
     private async Task FollowAsync(CancellationToken ct)
     {
-        if (_author?.Did is not { Length: > 0 } subjectDid)
+        if (FollowSuccessful || _author?.Did is not { Length: > 0 } subjectDid)
         {
             return;
         }
 
-        FollowTriggered = true;
         FollowSuccessful = await _profileService.FollowActorAsync(subjectDid, ct);
-        FollowTriggered = false;
     }
 }

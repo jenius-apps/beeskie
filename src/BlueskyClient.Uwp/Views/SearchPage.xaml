@@ -115,7 +115,8 @@
         <Grid
             Grid.Row="2"
             MaxWidth="{StaticResource SearchHeaderMaxWidth}"
-            Margin="20,20,20,0">
+            Margin="20,20,20,0"
+            Visibility="{x:Bind ViewModel.SearchPagePlaceholderVisible, Mode=OneWay}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
@@ -148,7 +149,7 @@
                 <ListView.ItemContainerStyle>
                     <Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                        <Setter Property="Padding" Value="0,0,0,12" />
+                        <Setter Property="Padding" Value="12,0,12,12" />
                     </Style>
                 </ListView.ItemContainerStyle>
 
@@ -194,9 +195,21 @@
                             <Button
                                 Grid.RowSpan="2"
                                 Grid.Column="2"
+                                MinWidth="80"
+                                VerticalAlignment="Stretch"
                                 Command="{x:Bind FollowCommand}"
-                                Content="Follow"
-                                Style="{StaticResource AccentButtonStyle}" />
+                                Style="{StaticResource AccentButtonStyle}">
+                                <Grid>
+                                    <TextBlock
+                                        Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}"
+                                        Text="Follow"
+                                        Visibility="{x:Bind FollowTextVisible, Mode=OneWay}" />
+                                    <FontIcon
+                                        FontFamily="{StaticResource FluentUIGlyphs}"
+                                        Glyph="{StaticResource GlyphCheckMark}"
+                                        Visibility="{x:Bind FollowSuccessful, Mode=OneWay}" />
+                                </Grid>
+                            </Button>
 
                             <TextBlock
                                 Grid.Row="2"
