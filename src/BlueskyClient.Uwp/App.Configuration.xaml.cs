@@ -105,9 +105,11 @@ partial class App
                 serviceProvider.GetRequiredService<IDialogService>(),
                 serviceProvider.GetRequiredService<IAuthenticationService>(),
                 serviceProvider.GetRequiredService<IImageViewerService>(),
-                serviceProvider.GetRequiredService<IAuthorViewModelFactory>());
+                serviceProvider.GetRequiredService<IAuthorViewModelFactory>(),
+                serviceProvider.GetRequiredService<INotificationsService>());
         });
 
+        collection.AddSingleton<ISecureCredentialStorage>(_ => new WindowsCredentialStorage("blueskyClientCredentials"));
         collection.AddSingleton<IUserSettings>(_ => new LocalSettings(UserSettingsConstants.Defaults));
 
         IServiceProvider provider = collection.BuildServiceProvider();
@@ -127,7 +129,6 @@ partial class App
     [Singleton(typeof(NotificationViewModelFactory), typeof(INotificationViewModelFactory))]
     [Singleton(typeof(FeedGeneratorViewModelFactory), typeof(IFeedGeneratorViewModelFactory))]
     [Singleton(typeof(AuthorViewModelFactory), typeof(IAuthorViewModelFactory))]
-    [Singleton(typeof(SecureCredentialStorage), typeof(ISecureCredentialStorage))]
     [Singleton(typeof(NotificationsService), typeof(INotificationsService))]
     [Singleton(typeof(ProfileCache), typeof(ICache<Author>))]
     [Singleton(typeof(FeedGeneratorCache), typeof(ICache<FeedGenerator>))]

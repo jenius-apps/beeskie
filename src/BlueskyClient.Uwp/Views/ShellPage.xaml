@@ -2,12 +2,14 @@
     x:Class="BlueskyClient.Views.ShellPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ani="using:CommunityToolkit.WinUI.Animations"
     xmlns:apiModels="using:Bluesky.NET.Models"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ex="using:JeniusApps.Common.UI.Uwp"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="using:JeniusApps.Common.Models"
     xmlns:strings="using:BlueskyClient.Strings"
+    xmlns:ui="using:Microsoft.Toolkit.Uwp.UI"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     winui:BackdropMaterial.ApplyToRootOrPageBackground="True"
     mc:Ignorable="d">
@@ -126,15 +128,47 @@
                         <DataTemplate x:DataType="models:MenuItem">
                             <Grid>
                                 <Button
+                                    VerticalContentAlignment="Stretch"
                                     AutomationProperties.Name="{x:Bind Text}"
                                     Command="{x:Bind ActionCommand}"
                                     CommandParameter="{x:Bind}"
                                     Style="{StaticResource LeftNavButtonStyle}"
                                     Visibility="{x:Bind ex:UIExtensions.InvertBoolToVis(IsSelected), Mode=OneWay}">
-                                    <StackPanel Orientation="Horizontal">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
                                         <FontIcon FontFamily="{StaticResource FluentUIGlyphs}" Glyph="{x:Bind Glyph}" />
-                                        <TextBlock Margin="12,0,0,0" Text="{x:Bind Text}" />
-                                    </StackPanel>
+                                        <winui:InfoBadge
+                                            Grid.ColumnSpan="2"
+                                            Margin="8,0,0,12"
+                                            HorizontalAlignment="Left"
+                                            ui:VisualExtensions.NormalizedCenterPoint="0.5"
+                                            Visibility="{x:Bind BadgeCountVisible, Mode=OneWay}"
+                                            Value="{x:Bind BadgeCount, Mode=OneWay}">
+                                            <ani:Implicit.ShowAnimations>
+                                                <ani:ScaleAnimation
+                                                    From="0.8"
+                                                    To="1.2"
+                                                    Duration="0:0:0.15" />
+                                                <ani:ScaleAnimation
+                                                    Delay="0:0:0.15"
+                                                    From="1.2"
+                                                    To="1"
+                                                    Duration="0:0:0.15" />
+                                                <ani:OpacityAnimation
+                                                    From="0"
+                                                    To="1"
+                                                    Duration="0:0:0.15" />
+                                            </ani:Implicit.ShowAnimations>
+                                        </winui:InfoBadge>
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            Margin="12,0,0,0"
+                                            VerticalAlignment="Center"
+                                            Text="{x:Bind Text}" />
+                                    </Grid>
                                 </Button>
                                 <Button
                                     AutomationProperties.Name="{x:Bind Text}"
@@ -142,7 +176,10 @@
                                     Visibility="{x:Bind IsSelected, Mode=OneWay}">
                                     <StackPanel Orientation="Horizontal">
                                         <FontIcon FontFamily="{StaticResource FluentUIGlyphs}" Glyph="{x:Bind Glyph}" />
-                                        <TextBlock Margin="12,0,0,0" Text="{x:Bind Text}" />
+                                        <TextBlock
+                                            Margin="12,0,0,0"
+                                            VerticalAlignment="Center"
+                                            Text="{x:Bind Text}" />
                                     </StackPanel>
                                 </Button>
                             </Grid>

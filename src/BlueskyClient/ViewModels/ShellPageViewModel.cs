@@ -24,7 +24,9 @@ public partial class ShellPageViewModel : ObservableObject
     private readonly IDialogService _dialogService;
     private readonly IAuthenticationService _authenticationService;
     private readonly IImageViewerService _imageViewerService;
+    private readonly INotificationsService _notificationService;
     private MenuItem? _lastSelectedMenu;
+    private MenuItem _notificationMenuItem;
 
     public ShellPageViewModel(
         ILocalizer localizer,
@@ -35,7 +37,8 @@ public partial class ShellPageViewModel : ObservableObject
         IDialogService dialogService,
         IAuthenticationService authenticationService,
         IImageViewerService imageViewerService,
-        IAuthorViewModelFactory authorFactory)
+        IAuthorViewModelFactory authorFactory,
+        INotificationsService notificationsService)
     {
         AuthorViewModel = authorFactory.CreateStub();
         _localizer = localizer;
@@ -46,10 +49,12 @@ public partial class ShellPageViewModel : ObservableObject
         _dialogService = dialogService;
         _authenticationService = authenticationService;
         _imageViewerService = imageViewerService;
+        _notificationService = notificationsService;
 
         MenuItems.Add(new MenuItem(NavigateContentPageCommand, _localizer.GetString("HomeText"), "\uEA8A", NavigationConstants.HomePage));
         MenuItems.Add(new MenuItem(NavigateContentPageCommand, _localizer.GetString("SearchText"), "\uE721", NavigationConstants.SearchPage));
-        MenuItems.Add(new MenuItem(NavigateContentPageCommand, _localizer.GetString("NotificationsText"), "\uEA8F", NavigationConstants.NotificationsPage));
+        _notificationMenuItem = new MenuItem(NavigateContentPageCommand, _localizer.GetString("NotificationsText"), "\uEA8F", NavigationConstants.NotificationsPage);
+        MenuItems.Add(_notificationMenuItem);
         MenuItems.Add(new MenuItem(NavigateContentPageCommand, _localizer.GetString("ProfileText"), "\uE77B", NavigationConstants.ProfilePage));
 #if DEBUG
         MenuItems.Add(new MenuItem(NavigateContentPageCommand, _localizer.GetString("FeedsText"), "\uF57F", NavigationConstants.FeedsPage));
@@ -108,6 +113,8 @@ public partial class ShellPageViewModel : ObservableObject
         Task<Author?> profileTask = _profileService.GetCurrentUserAsync();
         NavigateContentPage(MenuItems[0]);
         AuthorViewModel.SetAuthor(await profileTask);
+
+        _notificationMenuItem.BadgeCount = await _notificationService.GetUnreadCountAsync(default);
     }
 
     public void Unitialize()
@@ -151,6 +158,12 @@ public partial class ShellPageViewModel : ObservableObject
 
         item.IsSelected = true;
         _lastSelectedMenu = item;
+
+        if (key is NavigationConstants.NotificationsPage)
+        {
+            _notificationMenuItem.BadgeCount = 0;
+        }
+
         _contentNavigator.NavigateTo(key);
     }
 

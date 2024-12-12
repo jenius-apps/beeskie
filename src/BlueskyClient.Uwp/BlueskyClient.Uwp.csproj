@@ -165,7 +165,6 @@
     </Compile>
     <Compile Include="Tools\AppSettings.cs" />
     <Compile Include="Tools\FileReaderWriter.cs" />
-    <Compile Include="Tools\SecureCredentialStorage.cs" />
     <Compile Include="Tools\FutureAccessFilePicker.cs" />
     <Compile Include="Views\FeedsPage.xaml.cs">
       <DependentUpon>FeedsPage.xaml</DependentUpon>
@@ -277,7 +276,7 @@
       <Version>3.16.0</Version>
     </PackageReference>
     <PackageReference Include="JeniusApps.Common.Uwp">
-      <Version>0.0.41-preview</Version>
+      <Version>0.0.42-preview</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.14</Version>
