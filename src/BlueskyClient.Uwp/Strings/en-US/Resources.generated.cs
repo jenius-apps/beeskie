@@ -379,6 +379,19 @@ namespace BlueskyClient.Strings{
         }
         #endregion
 
+        #region PinToHomeText
+        /// <summary>
+        ///   Looks up a localized string similar to: Pin to Home
+        /// </summary>
+        public static string PinToHomeText
+        {
+            get
+            {
+                return _resourceLoader.GetString("PinToHomeText");
+            }
+        }
+        #endregion
+
         #region PostedReplyText
         /// <summary>
         ///   Looks up a localized string similar to: Posted a reply
@@ -768,6 +781,7 @@ namespace BlueskyClient.Strings{
             PeopleText,
             PinnedFeedsSubtitle,
             PinnedFeedsTitle,
+            PinToHomeText,
             PostedReplyText,
             PostsText,
             ProfileText,

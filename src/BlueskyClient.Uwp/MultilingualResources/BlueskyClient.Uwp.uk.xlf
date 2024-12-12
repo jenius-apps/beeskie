@@ -226,6 +226,11 @@
           <source>People</source>
           <target state="translated">Народ</target>
         </trans-unit>
+        <trans-unit id="PinToHomeText" translate="yes" xml:space="preserve">
+          <source>Pin to Home</source>
+          <target state="translated">Закріпити на головній сторінці</target>
+          <note from="MultilingualBuild" annotates="source" priority="2">Pinning or bookmarking a feed so you can see it from the home page</note>
+        </trans-unit>
       </group>
     </body>
   </file>

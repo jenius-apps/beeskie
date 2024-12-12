@@ -177,4 +177,8 @@
   <data name="PeopleText" xml:space="preserve">
     <value>人</value>
   </data>
+  <data name="PinToHomeText" xml:space="preserve">
+    <value>ホームにピン留め</value>
+    <comment>Pinning or bookmarking a feed so you can see it from the home page</comment>
+  </data>
 </root>

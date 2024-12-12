@@ -174,4 +174,8 @@
   <data name="PeopleText" xml:space="preserve">
     <value>Lud</value>
   </data>
+  <data name="PinToHomeText" xml:space="preserve">
+    <value>Przypnij do ekranu głównego</value>
+    <comment>Pinning or bookmarking a feed so you can see it from the home page</comment>
+  </data>
 </root>

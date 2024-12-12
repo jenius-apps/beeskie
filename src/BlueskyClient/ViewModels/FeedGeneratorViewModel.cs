@@ -36,6 +36,6 @@ public partial class FeedGeneratorViewModel : ObservableObject
 
     public override string ToString()
     {
-        return DisplayName;
+        return $"{DisplayName}. {Description}";
     }
 }
