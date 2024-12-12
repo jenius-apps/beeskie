@@ -84,7 +84,6 @@ public partial class BlueskyApiClient : IBlueskyApiClient
             var httpResponse = await _httpClient.SendAsync(message, ct);
             if (httpResponse.IsSuccessStatusCode)
             {
-                var content = await httpResponse.Content.ReadAsStringAsync();
                 using Stream contentStream = await httpResponse.Content.ReadAsStreamAsync();
                 T? response = JsonSerializer.Deserialize(contentStream, jsonTypeInfo);
                 return response is not null
@@ -100,6 +99,32 @@ public partial class BlueskyApiClient : IBlueskyApiClient
         catch (Exception e)
         {
             return Result.Fail<T>(e.Message);
+        }
+    }
+
+    private async Task<Result> SendMessageAsync(
+        string accessToken,
+        HttpRequestMessage message,
+        CancellationToken ct)
+    {
+        message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+        try
+        {
+            var httpResponse = await _httpClient.SendAsync(message, ct);
+            if (httpResponse.IsSuccessStatusCode)
+            {
+                return Result.Ok();
+            }
+            else
+            {
+                var errorMessage = await httpResponse.Content.ReadAsStringAsync();
+                return Result.Fail(errorMessage);
+            }
+        }
+        catch (Exception e)
+        {
+            return Result.Fail(e.Message);
         }
     }
 }

@@ -155,4 +155,11 @@ public interface IBlueskyApiClient
     /// <param name="ct">A cancellation token.</param>
     /// <returns>Int representing the unread count.</returns>
     Task<Result<int>> GetUnreadCountAsync(string accessToken, CancellationToken ct);
+
+    /// <summary>
+    /// Updates the last seen notifications date.
+    /// </summary>
+    /// <param name="accessToken">Access token for the logged in user.</param>
+    /// <param name="ct">A cancellation token.</param>
+    Task<Result> UpdateSeenAsync(string accessToken, CancellationToken ct);
 }

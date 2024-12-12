@@ -31,6 +31,7 @@ namespace Bluesky.NET.Models;
 [JsonSerializable(typeof(BlobRef))]
 [JsonSerializable(typeof(Blob))]
 [JsonSerializable(typeof(SubmissionImageBlob))]
+[JsonSerializable(typeof(UpdateSeenBody))]
 public sealed partial class ModelSerializerContext : JsonSerializerContext
 {
     /// <summary>
