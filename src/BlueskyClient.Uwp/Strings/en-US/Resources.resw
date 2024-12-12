@@ -201,6 +201,10 @@
   <data name="PinnedFeedsTitle" xml:space="preserve">
     <value>Pinned Feeds</value>
   </data>
+  <data name="PinToHomeText" xml:space="preserve">
+    <value>Pin to Home</value>
+    <comment>Pinning or bookmarking a feed so you can see it from the home page</comment>
+  </data>
   <data name="PostedReplyText" xml:space="preserve">
     <value>Posted a reply</value>
   </data>

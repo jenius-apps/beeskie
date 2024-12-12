@@ -13,7 +13,7 @@ using SearchConstants = Bluesky.NET.Constants.SearchConstants;
 
 namespace BlueskyClient.ViewModels;
 
-public partial class SearchPageViewModel : ObservableObject, ISupportPagination<FeedItemViewModel>, ISupportPagination<AuthorViewModel>
+public partial class SearchPageViewModel : ObservableObject, ISupportPagination<FeedItemViewModel>, ISupportPagination<AuthorViewModel>, ISupportPagination<FeedGeneratorViewModel>
 {
     private readonly ISearchService _searchService;
     private readonly IFeedItemViewModelFactory _feedItemFactory;
@@ -45,11 +45,14 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
 
     public bool RecentSearchPlaceholderVisible => RecentSearches.Count == 0;
 
+    public bool FeedsResultsVisible => !SearchLoading && SearchTabIndex == 3;
+
     public bool ActorsResultsVisible => !SearchLoading && SearchTabIndex == 2;
 
     public bool PostsResultsVisible => !SearchLoading && SearchTabIndex < 2;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(FeedsResultsVisible))]
     [NotifyPropertyChangedFor(nameof(ActorsResultsVisible))]
     [NotifyPropertyChangedFor(nameof(PostsResultsVisible))]
     private int _searchTabIndex = 0;
@@ -75,6 +78,7 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
     private string _query = string.Empty;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(FeedsResultsVisible))]
     [NotifyPropertyChangedFor(nameof(ActorsResultsVisible))]
     [NotifyPropertyChangedFor(nameof(PostsResultsVisible))]
     private bool _searchLoading;
@@ -234,6 +238,7 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
         _cursor = null;
         CollectionSource.Clear();
         ActorsCollectionSource.Clear();
+        FeedsCollectionSrouce.Clear();
         _currentQuery = query;
         _currentOptions = null;
 
