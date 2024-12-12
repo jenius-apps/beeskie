@@ -7,6 +7,7 @@ using FluentResults;
 using JeniusApps.Common.Telemetry;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BlueskyClient.Services;
@@ -27,6 +28,22 @@ public class NotificationsService : INotificationsService
         _telemetry = telemetry;
     }
 
+    /// <inheritdoc/>
+    public async Task<int> GetUnreadCountAsync(CancellationToken ct)
+    {
+        Result<string> accessTokenResult = await _authenticationService.TryGetFreshTokenAsync();
+        if (accessTokenResult.IsFailed)
+        {
+            return 0;
+        }
+
+        var result = await _blueskyApiClient.GetUnreadCountAsync(accessTokenResult.Value, ct);
+        return result.IsSuccess
+            ? result.Value
+            : 0;
+    }
+
+    /// <inheritdoc/>
     public async Task<IReadOnlyList<Notification>> GetNotificationsAsync()
     {
         Result<string> accessTokenResult = await _authenticationService.TryGetFreshTokenAsync();

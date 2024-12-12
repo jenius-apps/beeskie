@@ -5,6 +5,8 @@ namespace Bluesky.NET.Models;
 
 public class FeedResponse
 {
+    public int? Count { get; init; }
+
     public string? Cursor { get; init; }
 
     public Author[]? Actors { get; init; }

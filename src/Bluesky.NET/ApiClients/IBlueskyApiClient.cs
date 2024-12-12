@@ -147,4 +147,12 @@ public interface IBlueskyApiClient
         string accessToken,
         CancellationToken ct,
         string? cursor = null);
+
+    /// <summary>
+    /// Retrieves the unread notifications count for the user.
+    /// </summary>
+    /// <param name="accessToken">Access token for the logged in user.</param>
+    /// <param name="ct">A cancellation token.</param>
+    /// <returns>Int representing the unread count.</returns>
+    Task<Result<int>> GetUnreadCountAsync(string accessToken, CancellationToken ct);
 }

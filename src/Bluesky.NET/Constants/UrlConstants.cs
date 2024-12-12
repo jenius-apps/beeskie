@@ -23,4 +23,5 @@ public sealed class UrlConstants
     public const string SearchFeedsPath = "xrpc/app.bsky.unspecced.getPopularFeedGenerators";
     public const string SuggestedPeoplePath = "xrpc/app.bsky.actor.getSuggestions";
     public const string SuggestedFeedsPath = "xrpc/app.bsky.feed.getSuggestedFeeds";
+    public const string UnreadCountPath = "xrpc/app.bsky.notification.getUnreadCount";
 }

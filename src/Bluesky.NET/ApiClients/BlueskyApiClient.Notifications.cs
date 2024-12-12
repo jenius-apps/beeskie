@@ -1,5 +1,6 @@
 ﻿using Bluesky.NET.Constants;
 using Bluesky.NET.Models;
+using FluentResults;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,6 +8,7 @@ using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Bluesky.NET.ApiClients;
@@ -36,5 +38,22 @@ partial class BlueskyApiClient
         }
 
         return [];
+    }
+
+    /// <inheritdoc/>
+    public async Task<Result<int>> GetUnreadCountAsync(string accessToken, CancellationToken ct)
+    {
+        var url = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.UnreadCountPath}";
+        HttpRequestMessage message = new(HttpMethod.Get, url);
+        message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+        var result = await SendMessageAsync(
+            message,
+            ModelSerializerContext.CaseInsensitive.FeedResponse,
+            ct);
+
+        return result.IsSuccess
+            ? Result.Ok(result.Value.Count ?? 0)
+            : Result.Fail<int>(result.Errors);
     }
 }
