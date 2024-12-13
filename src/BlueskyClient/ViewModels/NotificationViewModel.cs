@@ -17,7 +17,11 @@ public partial class NotificationViewModel : ObservableObject
         Notification = notification;
         _localizer = localizer;
         AuthorViewModel = authorFactory.Create(notification.Author);
+        Unseen = !notification.IsRead;
     }
+
+    [ObservableProperty]
+    private bool _unseen;
 
     public AuthorViewModel AuthorViewModel { get; }
 
