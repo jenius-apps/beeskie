@@ -146,6 +146,13 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
+                <Rectangle
+                    Grid.ColumnSpan="2"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Fill="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                    Visibility="{x:Bind Unseen, Mode=OneWay}" />
+
                 <FontIcon
                     x:Name="LikeIcon"
                     Margin="0,4,0,0"
