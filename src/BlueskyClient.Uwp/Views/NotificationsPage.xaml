@@ -32,11 +32,24 @@
         </DataTemplate>
 
         <DataTemplate x:Name="ReplyTemplate" x:DataType="vm:NotificationViewModel">
-            <Grid MaxWidth="{StaticResource FeedMaxWidth}" ColumnSpacing="{StaticResource GutterGapSpacing}">
+            <Grid
+                MaxWidth="{StaticResource FeedMaxWidth}"
+                Padding="0,12"
+                BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}"
+                BorderThickness="0,0,0,1"
+                ColumnSpacing="{StaticResource GutterGapSpacing}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="{StaticResource LeftGutterWidth}" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
+
+                <Rectangle
+                    Grid.ColumnSpan="2"
+                    Margin="0,-12"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Fill="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                    Visibility="{x:Bind Unseen, Mode=OneWay}" />
 
                 <PersonPicture
                     Width="48"
@@ -47,7 +60,6 @@
 
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
@@ -82,25 +94,29 @@
                         MaxLines="10"
                         Text="{x:Bind Notification.Record.Text}"
                         TextWrapping="WrapWholeWords" />
-
-                    <Rectangle
-                        Grid.Row="3"
-                        Height="1"
-                        Margin="0,20,60,0"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Bottom"
-                        Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
-
                 </Grid>
             </Grid>
         </DataTemplate>
 
         <DataTemplate x:Name="FollowTemplate" x:DataType="vm:NotificationViewModel">
-            <Grid MaxWidth="{StaticResource FeedMaxWidth}" ColumnSpacing="{StaticResource GutterGapSpacing}">
+            <Grid
+                MaxWidth="{StaticResource FeedMaxWidth}"
+                Padding="0,12"
+                BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}"
+                BorderThickness="0,0,0,1"
+                ColumnSpacing="{StaticResource GutterGapSpacing}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="{StaticResource LeftGutterWidth}" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
+
+                <Rectangle
+                    Grid.ColumnSpan="2"
+                    Margin="0,-12"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Fill="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                    Visibility="{x:Bind Unseen, Mode=OneWay}" />
 
                 <FontIcon
                     Margin="0,4,0,0"
@@ -115,7 +131,6 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
                     <PersonPicture
@@ -126,21 +141,17 @@
                         Grid.Row="1"
                         Margin="0,8,0,0"
                         Text="{x:Bind CaptionString}" />
-
-                    <Rectangle
-                        Grid.Row="2"
-                        Height="1"
-                        Margin="0,20,60,0"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Bottom"
-                        Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
-
                 </Grid>
             </Grid>
         </DataTemplate>
 
         <DataTemplate x:Name="LikeRepostTemplate" x:DataType="vm:NotificationViewModel">
-            <Grid MaxWidth="{StaticResource FeedMaxWidth}" ColumnSpacing="{StaticResource GutterGapSpacing}">
+            <Grid
+                MaxWidth="{StaticResource FeedMaxWidth}"
+                Padding="0,12"
+                BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}"
+                BorderThickness="0,0,0,1"
+                ColumnSpacing="{StaticResource GutterGapSpacing}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="{StaticResource LeftGutterWidth}" />
                     <ColumnDefinition Width="*" />
@@ -148,6 +159,7 @@
 
                 <Rectangle
                     Grid.ColumnSpan="2"
+                    Margin="0,-12"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
                     Fill="{ThemeResource CardBackgroundFillColorDefaultBrush}"
@@ -179,7 +191,6 @@
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
                     <PersonPicture
@@ -198,14 +209,6 @@
                         MaxLines="4"
                         Text="{x:Bind SubjectText, Mode=OneWay}"
                         TextWrapping="WrapWholeWords" />
-
-                    <Rectangle
-                        Grid.Row="3"
-                        Height="1"
-                        Margin="0,20,60,0"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Bottom"
-                        Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
                 </Grid>
             </Grid>
         </DataTemplate>
@@ -221,7 +224,7 @@
             <ListView.ItemContainerStyle>
                 <Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                    <Setter Property="Padding" Value="20,0,20,20" />
+                    <Setter Property="Padding" Value="0" />
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
