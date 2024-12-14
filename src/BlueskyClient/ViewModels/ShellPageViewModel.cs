@@ -161,6 +161,16 @@ public partial class ShellPageViewModel : ObservableObject
 
         if (key is NavigationConstants.NotificationsPage)
         {
+            if (_notificationMenuItem.BadgeCount > 0)
+            {
+                _telemetry.TrackEvent(
+                    TelemetryConstants.UserInteractedWithNotificationBadge,
+                    new Dictionary<string, string>
+                    {
+                        { "badgeCount", _notificationMenuItem.BadgeCount.ToString() }
+                    });
+            }
+
             _notificationMenuItem.BadgeCount = 0;
         }
 
