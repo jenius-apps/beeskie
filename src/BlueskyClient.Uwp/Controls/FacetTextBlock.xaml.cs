@@ -1,4 +1,8 @@
 ﻿using Bluesky.NET.Models;
+using BlueskyClient.Constants;
+using BlueskyClient.Models;
+using JeniusApps.Common.Tools;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -127,7 +131,11 @@ public sealed partial class FacetTextBlock : UserControl
         }
         else if (feature.FeatureType is FacetFeatureType.Tag && feature.Tag is string tag)
         {
-            // navigate to search page and search the tag immediately
+            var contentNavigator = App.Services.GetRequiredKeyedService<INavigator>(NavigationConstants.ContentNavigatorKey);
+            contentNavigator.NavigateTo(NavigationConstants.SearchPage, new SearchPageNavigationArgs
+            {
+                RequestedQuery = tag
+            });
         }
         else if (feature.FeatureType is FacetFeatureType.Mention && feature.Did is string did)
         {

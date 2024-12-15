@@ -1,5 +1,6 @@
 ﻿using BlueskyClient.Collections;
 using BlueskyClient.Extensions.Uwp;
+using BlueskyClient.Models;
 using BlueskyClient.ViewModels;
 using JeniusApps.Common.Telemetry;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,7 +40,7 @@ public sealed partial class SearchPage : Page
 
         try
         {
-            await ViewModel.InitializeAsync(default);
+            await ViewModel.InitializeAsync(e.Parameter as SearchPageNavigationArgs, default);
         }
         catch (OperationCanceledException) { }
 

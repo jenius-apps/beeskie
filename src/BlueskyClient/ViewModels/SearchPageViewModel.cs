@@ -1,5 +1,6 @@
 ﻿using Bluesky.NET.ApiClients;
 using BlueskyClient.Constants;
+using BlueskyClient.Models;
 using BlueskyClient.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -24,6 +25,7 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
     private string? _cursor;
     private string? _currentQuery;
     private SearchOptions? _currentOptions;
+    private bool _initialized;
 
     public SearchPageViewModel(
         ISearchService searchService,
@@ -83,12 +85,15 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
     [NotifyPropertyChangedFor(nameof(PostsResultsVisible))]
     private bool _searchLoading;
 
-    public async Task InitializeAsync(CancellationToken ct)
+    public async Task InitializeAsync(SearchPageNavigationArgs? args, CancellationToken ct)
     {
         ct.ThrowIfCancellationRequested();
-        _searchService.RecentSearchAdded += OnRecentSearchAdded;
 
-        var discoverPeopleTask = _discoverService.GetSuggestedPeopleAsync(ct, count: 5);
+        if (!_initialized)
+        {
+            _initialized = true;
+            _searchService.RecentSearchAdded += OnRecentSearchAdded;
+        }
 
         var recentSearches = _searchService.GetRecentSearches();
         foreach (var r in recentSearches)
@@ -96,10 +101,19 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
             RecentSearches.Add(new RecentSearchViewModel(r, RunRecentSearchCommand, DeleteRecentSearchCommand));
         }
 
-        var (Authors, _) = await discoverPeopleTask;
-        foreach (var a in Authors)
+        if (args is null)
         {
-            SuggestedPeople.Add(_authorViewModelFactory.Create(a, telemetryContext: "suggestedPeople"));
+            var (Authors, _) = await _discoverService.GetSuggestedPeopleAsync(ct, count: 5);
+            foreach (var a in Authors)
+            {
+                SuggestedPeople.Add(_authorViewModelFactory.Create(a, telemetryContext: "suggestedPeople"));
+            }
+        }
+        else
+        {
+            Query = args.RequestedQuery ?? string.Empty;
+            SearchTabIndex = args.RequestedSearchTabIndex;
+            await NewSearchCommand.ExecuteAsync(null);
         }
     }
 

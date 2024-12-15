@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using Bluesky.NET.Models;
+﻿using Bluesky.NET.Models;
 using BlueskyClient.Constants;
 using BlueskyClient.Models;
 using BlueskyClient.Services;
@@ -11,6 +8,9 @@ using FluentResults;
 using JeniusApps.Common.Models;
 using JeniusApps.Common.Telemetry;
 using JeniusApps.Common.Tools;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace BlueskyClient.ViewModels;
 
@@ -26,7 +26,7 @@ public partial class ShellPageViewModel : ObservableObject
     private readonly IImageViewerService _imageViewerService;
     private readonly INotificationsService _notificationService;
     private MenuItem? _lastSelectedMenu;
-    private MenuItem _notificationMenuItem;
+    private readonly MenuItem _notificationMenuItem;
 
     public ShellPageViewModel(
         ILocalizer localizer,
@@ -59,6 +59,27 @@ public partial class ShellPageViewModel : ObservableObject
 #if DEBUG
         MenuItems.Add(new MenuItem(NavigateContentPageCommand, _localizer.GetString("FeedsText"), "\uF57F", NavigationConstants.FeedsPage));
 #endif
+    }
+
+    private void OnContentPageNavigated(object sender, string key)
+    {
+        if (_lastSelectedMenu?.Tag == key)
+        {
+            return;
+        }
+
+        foreach (var item in MenuItems)
+        {
+            if (item.Tag == key)
+            {
+                item.IsSelected = true;
+                _lastSelectedMenu = item;
+            }
+            else
+            {
+                item.IsSelected = false;
+            }
+        }
     }
 
     public AuthorViewModel AuthorViewModel { get; }
@@ -109,6 +130,7 @@ public partial class ShellPageViewModel : ObservableObject
         }
 
         _imageViewerService.ImageViewerRequested += OnImageViewerRequested;
+        _contentNavigator.PageNavigated += OnContentPageNavigated;
 
         Task<Author?> profileTask = _profileService.GetCurrentUserAsync();
         NavigateContentPage(MenuItems[0]);
@@ -120,6 +142,7 @@ public partial class ShellPageViewModel : ObservableObject
     public void Unitialize()
     {
         _imageViewerService.ImageViewerRequested -= OnImageViewerRequested;
+        _contentNavigator.PageNavigated -= OnContentPageNavigated;
     }
 
     private void OnImageViewerRequested(object sender, ImageViewerArgs args)

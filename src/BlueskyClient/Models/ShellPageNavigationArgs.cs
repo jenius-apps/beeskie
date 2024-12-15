@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace BlueskyClient.Models;
 
-namespace BlueskyClient.Models;
-
-public class ShellPageNavigationArgs
+public sealed class ShellPageNavigationArgs
 {
     public bool AlreadySignedIn { get; init; }
 }
