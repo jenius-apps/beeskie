@@ -125,5 +125,13 @@ public sealed partial class FacetTextBlock : UserControl
         {
             await Launcher.LaunchUriAsync(result);
         }
+        else if (feature.FeatureType is FacetFeatureType.Tag && feature.Tag is string tag)
+        {
+            // navigate to search page and search the tag immediately
+        }
+        else if (feature.FeatureType is FacetFeatureType.Mention && feature.Did is string did)
+        {
+            // open profile side panel? 
+        }
     }
 }
