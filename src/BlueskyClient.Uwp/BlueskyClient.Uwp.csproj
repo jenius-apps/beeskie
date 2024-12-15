@@ -133,6 +133,9 @@
     <Compile Include="Controls\EmbeddedPost.xaml.cs">
       <DependentUpon>EmbeddedPost.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\FacetTextBlock.xaml.cs">
+      <DependentUpon>FacetTextBlock.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\FeedItemShimmer.xaml.cs">
       <DependentUpon>FeedItemShimmer.xaml</DependentUpon>
     </Compile>
@@ -284,9 +287,18 @@
     <PackageReference Include="Microsoft.UI.Xaml">
       <Version>2.8.6</Version>
     </PackageReference>
+    <PackageReference Include="PolySharp">
+      <Version>1.15.0</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\EmbeddedPost.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\FacetTextBlock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

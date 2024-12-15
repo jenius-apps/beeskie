@@ -1,5 +1,4 @@
-﻿using System.Runtime.ConstrainedExecution;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace Bluesky.NET.Models;
 
@@ -12,7 +11,8 @@ public class Facet
 
 /// <summary>
 /// An index range that has an inclusive start and an exclusive end. That means the end number goes 1 past what you might expect.
-/// Exclusive-end helps the math stay consistent. If you subtract the end from the start, you get the correct length of the target string. In this case, 15-6 = 9, which is the length of the "this site" string.
+/// Exclusive-end helps the math stay consistent. If you subtract the end from the start, you get the correct length of the target string.
+/// In this case, 15-6 = 9, which is the length of the "this site" string.
 /// </summary>
 public class IndexData
 {
@@ -25,6 +25,9 @@ public class IndexData
     /// Exclusive end.
     /// </summary>
     public int ByteEnd { get; init; }
+
+    [JsonIgnore]
+    public int Length => ByteEnd - ByteStart;
 }
 
 public class FacetFeature : TypedItem
