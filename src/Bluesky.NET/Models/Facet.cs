@@ -17,12 +17,12 @@ public class Facet
 public class IndexData
 {
     /// <summary>
-    /// Inclusive start.
+    /// Inclusive start in the byte array (not in the string position).
     /// </summary>
     public int ByteStart { get; init; }
 
     /// <summary>
-    /// Exclusive end.
+    /// Exclusive end in the byte array (not in the string position).
     /// </summary>
     public int ByteEnd { get; init; }
 
@@ -50,11 +50,23 @@ public class FacetFeature : TypedItem
 
 public enum FacetFeatureType
 {
+    /// <summary>
+    /// Unknown facet type.
+    /// </summary>
     Unknown,
 
+    /// <summary>
+    /// Facet is a URL link. The facet feature Uri property should be populated.
+    /// </summary>
     Link,
 
+    /// <summary>
+    /// Facet is a mention. The facet feature DID property should be populated.
+    /// </summary>
     Mention,
 
+    /// <summary>
+    /// Facet is a hashtag. The facet feature Tag proprety should be populated.
+    /// </summary>
     Tag
 }
