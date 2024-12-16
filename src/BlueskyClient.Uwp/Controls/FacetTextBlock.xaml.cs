@@ -62,6 +62,12 @@ public sealed partial class FacetTextBlock : UserControl
                     continue;
                 }
 
+                if (features.FirstOrDefault()?.FeatureType is FacetFeatureType.Mention)
+                {
+                    // TODO add support for mentions.
+                    continue;
+                }
+
                 DisplayTextBlock.Inlines.Add(new Run { Text = GetSubstring(recordText, currentByteIndex, byteLength: indexData.ByteStart - currentByteIndex) });
 
                 var hyperlink = new Hyperlink()
@@ -139,7 +145,7 @@ public sealed partial class FacetTextBlock : UserControl
         }
         else if (feature.FeatureType is FacetFeatureType.Mention && feature.Did is string did)
         {
-            // open profile side panel? 
+            // TODO add support for mention clicks
         }
     }
 }
