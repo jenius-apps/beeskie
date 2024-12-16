@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlueskyClient", "BlueskyCli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueskyClient.Uwp", "BlueskyClient.Uwp\BlueskyClient.Uwp.csproj", "{2F0DEF6B-3D93-4DB8-905B-19E3983A0BBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bluesky.NET", "Bluesky.NET\Bluesky.NET.csproj", "{0C16ABBF-64F4-4880-9DFD-5EC48247C0B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bluesky.NET", "Bluesky.NET\Bluesky.NET.csproj", "{0C16ABBF-64F4-4880-9DFD-5EC48247C0B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueskyClient.Tests", "BlueskyClient.Tests\BlueskyClient.Tests.csproj", "{E13AAC48-CF68-47B6-B29D-110D8E127FA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +95,26 @@ Global
 		{0C16ABBF-64F4-4880-9DFD-5EC48247C0B2}.Release|x64.Build.0 = Release|Any CPU
 		{0C16ABBF-64F4-4880-9DFD-5EC48247C0B2}.Release|x86.ActiveCfg = Release|Any CPU
 		{0C16ABBF-64F4-4880-9DFD-5EC48247C0B2}.Release|x86.Build.0 = Release|Any CPU
+		{E13AAC48-CF68-47B6-B29D-110D8E127FA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E13AAC48-CF68-47B6-B29D-110D8E127FA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E13AAC48-CF68-47B6-B29D-110D8E127FA2}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{E13AAC48-CF68-47B6-B29D-110D8E127FA2}.Debug|ARM.Build.0 = Debug|Any CPU
+		{E13AAC48-CF68-47B6-B29D-110D8E127FA2}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{E13AAC48-CF68-47B6-B29D-110D8E127FA2}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{E13AAC48-CF68-47B6-B29D-110D8E127FA2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E13AAC48-CF68-47B6-B29D-110D8E127FA2}.Debug|x64.Build.0 = Debug|Any CPU
+		{E13AAC48-CF68-47B6-B29D-110D8E127FA2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E13AAC48-CF68-47B6-B29D-110D8E127FA2}.Debug|x86.Build.0 = Debug|Any CPU
+		{E13AAC48-CF68-47B6-B29D-110D8E127FA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E13AAC48-CF68-47B6-B29D-110D8E127FA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E13AAC48-CF68-47B6-B29D-110D8E127FA2}.Release|ARM.ActiveCfg = Release|Any CPU
+		{E13AAC48-CF68-47B6-B29D-110D8E127FA2}.Release|ARM.Build.0 = Release|Any CPU
+		{E13AAC48-CF68-47B6-B29D-110D8E127FA2}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{E13AAC48-CF68-47B6-B29D-110D8E127FA2}.Release|ARM64.Build.0 = Release|Any CPU
+		{E13AAC48-CF68-47B6-B29D-110D8E127FA2}.Release|x64.ActiveCfg = Release|Any CPU
+		{E13AAC48-CF68-47B6-B29D-110D8E127FA2}.Release|x64.Build.0 = Release|Any CPU
+		{E13AAC48-CF68-47B6-B29D-110D8E127FA2}.Release|x86.ActiveCfg = Release|Any CPU
+		{E13AAC48-CF68-47B6-B29D-110D8E127FA2}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

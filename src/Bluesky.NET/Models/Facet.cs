@@ -2,6 +2,8 @@
 
 namespace Bluesky.NET.Models;
 
+// Ref: https://docs.bsky.app/docs/advanced-guides/post-richtext
+
 public class Facet
 {
     public IndexData? Index { get; init; }

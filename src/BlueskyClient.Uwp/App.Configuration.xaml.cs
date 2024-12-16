@@ -142,6 +142,7 @@ partial class App
     [Singleton(typeof(FileReaderWriter), typeof(IFileReadWriter))]
     [Singleton(typeof(FutureAccessFilePicker), typeof(IFutureAccessFilePicker))]
     [Singleton(typeof(UploadBlobService), typeof(IUploadBlobService))]
+    [Singleton(typeof(FacetService), typeof(IFacetService))]
     [Transient(typeof(HomePageViewModel))]
     [Transient(typeof(NotificationsPageViewModel))]
     [Transient(typeof(ProfileControlViewModel))]
