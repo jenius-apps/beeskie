@@ -156,10 +156,7 @@
                         <TextBlock Foreground="{ThemeResource TextFillColorTertiaryBrush}" Text="{x:Bind TimeSinceCreation}" />
                     </StackPanel>
 
-                    <TextBlock
-                        Grid.Row="1"
-                        Text="{x:Bind Post.Record.Text}"
-                        TextWrapping="WrapWholeWords" />
+                    <controls:FacetTextBlock Grid.Row="1" Record="{x:Bind Post.Record}" />
 
                     <controls:PostEmbeds
                         Grid.Row="2"

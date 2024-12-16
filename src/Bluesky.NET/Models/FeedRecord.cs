@@ -34,4 +34,6 @@ public class FeedRecord
     public FeedRecord? Record { get; init; }
 
     public Author? Creator { get; init; }
+
+    public Facet[]? Facets { get; init; }
 }
