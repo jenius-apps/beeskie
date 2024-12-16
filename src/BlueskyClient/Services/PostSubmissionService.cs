@@ -19,6 +19,7 @@ public class PostSubmissionService : IPostSubmissionService
     private readonly IAuthenticationService _authenticationService;
     private readonly ITelemetry _telemetry;
     private readonly IUploadBlobService _uploadBlobService;
+    private readonly IFacetService _facetService;
 
     public event EventHandler<(SubmissionRecord, CreateRecordResponse)>? RecordCreated;
 
@@ -27,13 +28,15 @@ public class PostSubmissionService : IPostSubmissionService
         IUserSettings userSettings,
         IAuthenticationService authenticationService,
         ITelemetry telemetry,
-        IUploadBlobService uploadBlobService)
+        IUploadBlobService uploadBlobService,
+        IFacetService facetService)
     {
         _blueskyApiClient = blueskyApiClient;
         _userSettings = userSettings;
         _authenticationService = authenticationService;
         _telemetry = telemetry;
         _uploadBlobService = uploadBlobService;
+        _facetService = facetService;
     }
 
     /// <inheritdoc/>
@@ -156,6 +159,7 @@ public class PostSubmissionService : IPostSubmissionService
 
     private async Task<CreateRecordResponse?> SubmitAsync(SubmissionRecord record, RecordType recordType)
     {
+        record.Facets = [.. await _facetService.ExtractFacetsAsync(record.Text, default)];
         Result<string> tokenResult = await _authenticationService.TryGetFreshTokenAsync();
         var handle = _userSettings.Get<string>(UserSettingsConstants.SignedInDIDKey);
 

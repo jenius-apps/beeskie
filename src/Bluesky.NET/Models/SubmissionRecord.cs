@@ -14,6 +14,8 @@ public class SubmissionRecord
     public ReplyRecord? Reply { get; init; }
 
     public SubmissionEmbed? Embed { get; init; }
+
+    public Facet[]? Facets { get; set; }
 }
 
 public class SubmissionEmbed
