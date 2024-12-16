@@ -46,4 +46,8 @@ public sealed class TelemetryConstants
 
     private const string CreateRecord = "createRecord:";
     public const string FollowCompleted = CreateRecord + "followCompleted";
+
+    private const string Facets = "facet:";
+    public const string TagClicked = Facets + "tagClicked";
+    public const string LinkClicked = Facets + "linkClicked";
 }

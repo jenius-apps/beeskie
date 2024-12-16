@@ -1,6 +1,7 @@
 ﻿using Bluesky.NET.Models;
 using BlueskyClient.Constants;
 using BlueskyClient.Models;
+using JeniusApps.Common.Telemetry;
 using JeniusApps.Common.Tools;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -134,6 +135,7 @@ public sealed partial class FacetTextBlock : UserControl
             Uri.TryCreate(uri, UriKind.Absolute, out Uri result))
         {
             await Launcher.LaunchUriAsync(result);
+            App.Services.GetRequiredService<ITelemetry>().TrackEvent(TelemetryConstants.LinkClicked);
         }
         else if (feature.FeatureType is FacetFeatureType.Tag && feature.Tag is string tag)
         {
@@ -141,6 +143,11 @@ public sealed partial class FacetTextBlock : UserControl
             contentNavigator.NavigateTo(NavigationConstants.SearchPage, new SearchPageNavigationArgs
             {
                 RequestedQuery = tag
+            });
+
+            App.Services.GetRequiredService<ITelemetry>().TrackEvent(TelemetryConstants.TagClicked, new Dictionary<string, string>
+            {
+                { "tag", tag }
             });
         }
         else if (feature.FeatureType is FacetFeatureType.Mention && feature.Did is string did)
