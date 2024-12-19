@@ -101,45 +101,53 @@ public partial class FeedItemViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private async Task LikeAsync()
+    private async Task LikeClickedAsync()
     {
         if (IsLiked)
         {
-            return;
+            var result = await _postSubmissionService.LikeOrRepostUndoAsync(RecordType.Like, Post);
+
+            if (result)
+            {
+                LikeCount = Math.Max(0, Post.LikeCount - 1).ToString();
+            }
         }
-
-        var result = await _postSubmissionService.LikeOrRepostAsync(
-            RecordType.Like,
-            Post.Uri,
-            Post.Cid);
-
-        if (result)
+        else
         {
-            LikeCount = (Post.LikeCount + 1).ToString();
+            var result = await _postSubmissionService.LikeOrRepostAsync(RecordType.Like, Post.Uri, Post.Cid);
+
+            if (result)
+            {
+                LikeCount = (Post.LikeCount + 1).ToString();
+            }
         }
 
-        IsLiked = result;
+        IsLiked = !IsLiked;
     }
 
     [RelayCommand]
-    private async Task RepostAsync()
+    private async Task RepostClickedAsync()
     {
         if (IsReposted)
         {
-            return;
+            var result = await _postSubmissionService.LikeOrRepostUndoAsync(RecordType.Repost, Post);
+
+            if (result)
+            {
+                RepostCount = Math.Max(0, Post.RepostCount - 1).ToString();
+            }
         }
-
-        var result = await _postSubmissionService.LikeOrRepostAsync(
-            RecordType.Repost,
-            Post.Uri,
-            Post.Cid);
-
-        if (result)
+        else
         {
-            RepostCount = (Post.RepostCount + 1).ToString();
+            var result = await _postSubmissionService.LikeOrRepostAsync(RecordType.Repost, Post.Uri, Post.Cid);
+
+            if (result)
+            {
+                RepostCount = (Post.RepostCount + 1).ToString();
+            }
         }
 
-        IsReposted = result;
+        IsReposted = !IsReposted;
     }
 
     public override string ToString()
