@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Bluesky.NET.Models;
 
@@ -15,6 +13,12 @@ public class CreateRecordBody : BaseRecordBody
 {
     public required SubmissionRecord Record { get; init; }
 }
+
+public class DeleteRecordBody : BaseRecordBody
+{
+    public required string Rkey { get; init; }
+}
+
 
 public class FollowRecordBody : BaseRecordBody
 {

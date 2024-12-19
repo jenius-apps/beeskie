@@ -86,4 +86,39 @@ partial class BlueskyApiClient
 
         return null;
     }
+
+    /// <inheritdoc/>
+    public async Task SubmitPostUndoAsync(string accessToken, string handle, string rkey, RecordType recordType)
+    {
+        var url = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.DeleteRecordPath}";
+
+        DeleteRecordBody body = new()
+        {
+            Repo = handle,
+            Rkey = rkey,
+            Collection = recordType.ToStringType()
+        };
+
+        HttpRequestMessage message = new(HttpMethod.Post, url)
+        {
+            Content = new StringContent(JsonSerializer.Serialize(body, ModelSerializerContext.CaseInsensitive.DeleteRecordBody), Encoding.UTF8, "application/json"),
+        };
+
+        message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+        try
+        {
+            var response = await _httpClient.SendAsync(message);
+            if (!response.IsSuccessStatusCode)
+            {
+                var errorText = await response.Content.ReadAsStringAsync();
+                Debug.WriteLine(errorText);
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.WriteLine(e);
+            throw;
+        }
+    }
 }
