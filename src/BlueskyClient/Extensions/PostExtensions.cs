@@ -6,6 +6,14 @@ namespace BlueskyClient.Extensions;
 
 public static class PostExtensions
 {
+    public static ReadOnlySpan<char> GetRecordKey(this FeedPost post)
+    {
+        var uriSpan = post.Uri.AsSpan();
+        var lastSlashIndex = uriSpan.LastIndexOf('/');
+
+        return lastSlashIndex != -1 ? uriSpan[(lastSlashIndex + 1)..] : (ReadOnlySpan<char>)null;
+    }
+
     public static string GetReplyCount(this FeedPost post) => GetPostButtonIconString(post.ReplyCount);
 
     public static string GetRepostCount(this FeedPost post) => GetPostButtonIconString(post.RepostCount);

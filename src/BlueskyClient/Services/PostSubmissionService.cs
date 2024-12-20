@@ -2,6 +2,7 @@
 using Bluesky.NET.Constants;
 using Bluesky.NET.Models;
 using BlueskyClient.Constants;
+using BlueskyClient.Extensions;
 using FluentResults;
 using JeniusApps.Common.Settings;
 using JeniusApps.Common.Telemetry;
@@ -100,6 +101,19 @@ public class PostSubmissionService : IPostSubmissionService
     }
 
     /// <inheritdoc/>
+    public async Task<bool> LikeOrRepostUndoAsync(RecordType recordType, FeedPost target)
+    {
+        if ((recordType is not RecordType.Like && recordType is not RecordType.Repost) || string.IsNullOrEmpty(target.Uri))
+        {
+            return false;
+        }
+
+        await SubmitUndoAsync(target, recordType);
+        
+        return true;
+    }
+
+    /// <inheritdoc/>
     public bool ValidatePost(string text)
     {
         if (string.IsNullOrEmpty(text))
@@ -192,5 +206,32 @@ public class PostSubmissionService : IPostSubmissionService
         }
 
         return result;
+    }
+
+    private async Task SubmitUndoAsync(FeedPost feedPost, RecordType recordType)
+    {
+        var tokenResult = await _authenticationService.TryGetFreshTokenAsync();
+        var handle = _userSettings.Get<string>(UserSettingsConstants.SignedInDIDKey);
+
+        if (tokenResult.IsFailed || handle is null)
+        {
+            return;
+        }
+
+        try
+        {
+            await _blueskyApiClient.SubmitPostUndoAsync(tokenResult.Value, handle, feedPost.GetRecordKey().ToString(), recordType);
+        }
+        catch (Exception e)
+        {
+            var dict = new Dictionary<string, string>
+            {
+                { "method", "SubmitAsync" },
+                { "recordType", recordType.ToString() },
+                { "message", e.Message },
+            };
+            _telemetry.TrackEvent(TelemetryConstants.ApiError, dict);
+            _telemetry.TrackError(e, dict);
+        }
     }
 }

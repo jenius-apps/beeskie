@@ -194,8 +194,8 @@
                         <HyperlinkButton
                             Grid.Column="1"
                             AutomationProperties.Name="{x:Bind strings:Resources.RepostText}"
-                            Command="{x:Bind RepostCommand}"
-                            IsEnabled="{x:Bind ex:UIExtensions.Not(RepostCommand.IsRunning), Mode=OneWay}">
+                            Command="{x:Bind RepostClickedCommand}"
+                            IsEnabled="{x:Bind ex:UIExtensions.Not(RepostClickedCommand.IsRunning), Mode=OneWay}">
                             <StackPanel Orientation="Horizontal">
                                 <Grid>
                                     <FontIcon
@@ -217,8 +217,8 @@
                         <HyperlinkButton
                             Grid.Column="2"
                             AutomationProperties.Name="{x:Bind strings:Resources.LikeText}"
-                            Command="{x:Bind LikeCommand}"
-                            IsEnabled="{x:Bind ex:UIExtensions.Not(LikeCommand.IsRunning), Mode=OneWay}">
+                            Command="{x:Bind LikeClickedCommand}"
+                            IsEnabled="{x:Bind ex:UIExtensions.Not(LikeClickedCommand.IsRunning), Mode=OneWay}">
                             <StackPanel Orientation="Horizontal">
                                 <Grid>
                                     <FontIcon
