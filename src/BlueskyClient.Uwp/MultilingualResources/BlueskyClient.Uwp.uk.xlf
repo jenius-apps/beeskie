@@ -184,7 +184,7 @@
         </trans-unit>
         <trans-unit id="SortTopText" translate="yes" xml:space="preserve">
           <source>Top</source>
-          <target state="translated">Верх</target>
+          <target state="translated">Популярне</target>
         </trans-unit>
         <trans-unit id="SearchTabAutomationName" translate="yes" xml:space="preserve">
           <source>Sorting options</source>
