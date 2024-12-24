@@ -20,6 +20,9 @@ public partial class FeedItemViewModel : ObservableObject
     private readonly ILocalizer _localizer;
     private readonly FeedPostReason? _reason;
 
+    private string? _likeUri;
+    private string? _repostUri;
+
     public FeedItemViewModel(
         FeedPost post,
         FeedPostReason? reason,
@@ -34,12 +37,15 @@ public partial class FeedItemViewModel : ObservableObject
         _postSubmissionService = postSubmissionService;
         _dialogService = dialogService;
         _localizer = localizer;
-        
+
         IsLiked = post.Viewer?.Like is not null;
         IsReposted = post.Viewer?.Repost is not null;
         ReplyCount = post.GetReplyCount();
         RepostCount = post.GetRepostCount();
         LikeCount = post.GetLikeCount();
+
+        _likeUri = post.Viewer?.Like;
+        _repostUri = post.Viewer?.Repost;
     }
 
     public AuthorViewModel AuthorViewModel { get; }
@@ -106,20 +112,21 @@ public partial class FeedItemViewModel : ObservableObject
     {
         if (IsLiked)
         {
-            var result = await _postSubmissionService.LikeOrRepostUndoAsync(RecordType.Like, Post, ct);
+            var result = await _postSubmissionService.LikeOrRepostUndoAsync(RecordType.Like, _likeUri!, ct);
 
             if (result)
             {
-                LikeCount = Math.Max(0, Post.LikeCount - 1).ToString();
+                LikeCount = Math.Max(0, int.Parse(LikeCount) - 1).ToString();
             }
         }
         else
         {
             var result = await _postSubmissionService.LikeOrRepostAsync(RecordType.Like, Post.Uri, Post.Cid);
 
-            if (result)
+            if (result is not null)
             {
-                LikeCount = (Post.LikeCount + 1).ToString();
+                _likeUri = result;
+                LikeCount = (int.Parse(LikeCount) + 1).ToString();
             }
         }
 
@@ -131,20 +138,22 @@ public partial class FeedItemViewModel : ObservableObject
     {
         if (IsReposted)
         {
-            var result = await _postSubmissionService.LikeOrRepostUndoAsync(RecordType.Repost, Post, ct);
+            //TODO: Recover URL and add it to viewer repost
+            var result = await _postSubmissionService.LikeOrRepostUndoAsync(RecordType.Repost, _repostUri!, ct);
 
             if (result)
             {
-                RepostCount = Math.Max(0, Post.RepostCount - 1).ToString();
+                RepostCount = Math.Max(0, int.Parse(RepostCount) - 1).ToString();
             }
         }
         else
         {
             var result = await _postSubmissionService.LikeOrRepostAsync(RecordType.Repost, Post.Uri, Post.Cid);
 
-            if (result)
+            if (result is not null)
             {
-                RepostCount = (Post.RepostCount + 1).ToString();
+                _repostUri = result;
+                RepostCount = int.Parse(RepostCount + 1).ToString();
             }
         }
 

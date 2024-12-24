@@ -6,46 +6,6 @@ namespace BlueskyClient.Extensions;
 
 public static class PostExtensions
 {
-    public static ReadOnlySpan<char> GetRecordKey(this FeedPost post)
-    {
-        var uriSpan = post.Uri.AsSpan();
-        var recordKey = GetRecordKey(uriSpan);
-
-        return recordKey;
-    }
-
-    public static ReadOnlySpan<char> GetRepostRecordKey(this FeedPost post)
-    {
-        if (post.Viewer is not null && !string.IsNullOrWhiteSpace(post.Viewer.Repost))
-        {
-            var uriSpan = post.Viewer.Repost.AsSpan();
-            var recordKey = GetRecordKey(uriSpan);
-
-            return recordKey;
-        }
-
-        return null;
-    }
-
-    public static ReadOnlySpan<char> GetLikeRecordKey(this FeedPost post)
-    {
-        if (post.Viewer is not null && !string.IsNullOrWhiteSpace(post.Viewer.Like))
-        {
-            var uriSpan = post.Viewer.Like.AsSpan();
-            var recordKey = GetRecordKey(uriSpan);
-
-            return recordKey;
-        }
-
-        return null;
-    }
-
-    private static ReadOnlySpan<Char> GetRecordKey(ReadOnlySpan<char> uriSpan)
-    {
-        var lastSlashIndex = uriSpan.LastIndexOf('/');
-
-        return lastSlashIndex != -1 ? uriSpan[(lastSlashIndex + 1)..] : (ReadOnlySpan<char>)null;
-    }
 
     public static string GetReplyCount(this FeedPost post) => GetPostButtonIconString(post.ReplyCount);
 
@@ -80,7 +40,7 @@ public static class PostExtensions
         ? result
         : new Uri("http://localhost");
 
-    private static string SafeUrl(this string? url) => 
+    private static string SafeUrl(this string? url) =>
         url is { Length: > 0 } safeUrl && Uri.IsWellFormedUriString(safeUrl, UriKind.Absolute)
         ? safeUrl
         : "http://localhost";
