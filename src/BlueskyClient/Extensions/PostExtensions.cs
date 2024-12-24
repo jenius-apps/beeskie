@@ -1,6 +1,6 @@
-﻿using System;
-using Bluesky.NET.Constants;
+﻿using Bluesky.NET.Constants;
 using Bluesky.NET.Models;
+using System;
 
 namespace BlueskyClient.Extensions;
 
@@ -9,6 +9,39 @@ public static class PostExtensions
     public static ReadOnlySpan<char> GetRecordKey(this FeedPost post)
     {
         var uriSpan = post.Uri.AsSpan();
+        var recordKey = GetRecordKey(uriSpan);
+
+        return recordKey;
+    }
+
+    public static ReadOnlySpan<char> GetRepostRecordKey(this FeedPost post)
+    {
+        if (post.Viewer is not null && !string.IsNullOrWhiteSpace(post.Viewer.Repost))
+        {
+            var uriSpan = post.Viewer.Repost.AsSpan();
+            var recordKey = GetRecordKey(uriSpan);
+
+            return recordKey;
+        }
+
+        return null;
+    }
+
+    public static ReadOnlySpan<char> GetLikeRecordKey(this FeedPost post)
+    {
+        if (post.Viewer is not null && !string.IsNullOrWhiteSpace(post.Viewer.Like))
+        {
+            var uriSpan = post.Viewer.Like.AsSpan();
+            var recordKey = GetRecordKey(uriSpan);
+
+            return recordKey;
+        }
+
+        return null;
+    }
+
+    private static ReadOnlySpan<Char> GetRecordKey(ReadOnlySpan<char> uriSpan)
+    {
         var lastSlashIndex = uriSpan.LastIndexOf('/');
 
         return lastSlashIndex != -1 ? uriSpan[(lastSlashIndex + 1)..] : (ReadOnlySpan<char>)null;

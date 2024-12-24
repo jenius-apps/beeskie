@@ -9,6 +9,7 @@ using JeniusApps.Common.Telemetry;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BlueskyClient.Services;
@@ -101,15 +102,15 @@ public class PostSubmissionService : IPostSubmissionService
     }
 
     /// <inheritdoc/>
-    public async Task<bool> LikeOrRepostUndoAsync(RecordType recordType, FeedPost target)
+    public async Task<bool> LikeOrRepostUndoAsync(RecordType recordType, FeedPost post, CancellationToken cancellationToken)
     {
-        if ((recordType is not RecordType.Like && recordType is not RecordType.Repost) || string.IsNullOrEmpty(target.Uri))
+        if ((recordType is not RecordType.Like && recordType is not RecordType.Repost) || string.IsNullOrEmpty(post.Uri))
         {
             return false;
         }
 
-        await SubmitUndoAsync(target, recordType);
-        
+        await SubmitUndoAsync(recordType, post, cancellationToken);
+
         return true;
     }
 
@@ -208,7 +209,7 @@ public class PostSubmissionService : IPostSubmissionService
         return result;
     }
 
-    private async Task SubmitUndoAsync(FeedPost feedPost, RecordType recordType)
+    private async Task SubmitUndoAsync(RecordType recordType, FeedPost feedPost, CancellationToken cancellationToken)
     {
         var tokenResult = await _authenticationService.TryGetFreshTokenAsync();
         var handle = _userSettings.Get<string>(UserSettingsConstants.SignedInDIDKey);
@@ -220,7 +221,14 @@ public class PostSubmissionService : IPostSubmissionService
 
         try
         {
-            await _blueskyApiClient.SubmitPostUndoAsync(tokenResult.Value, handle, feedPost.GetRecordKey().ToString(), recordType);
+            var recordKey = recordType switch
+            {
+                RecordType.Repost => feedPost.GetRepostRecordKey().ToString(),
+                RecordType.Like => feedPost.GetLikeRecordKey().ToString(),
+                _ => throw new ArgumentException("Invalid RecordType, should be a Repost or a Like")
+            };
+
+            await _blueskyApiClient.SubmitPostUndoAsync(tokenResult.Value, handle, recordKey, recordType, cancellationToken);
         }
         catch (Exception e)
         {

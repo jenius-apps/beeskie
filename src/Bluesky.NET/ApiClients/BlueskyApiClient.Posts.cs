@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Bluesky.NET.ApiClients;
@@ -88,7 +89,7 @@ partial class BlueskyApiClient
     }
 
     /// <inheritdoc/>
-    public async Task SubmitPostUndoAsync(string accessToken, string handle, string rkey, RecordType recordType)
+    public async Task SubmitPostUndoAsync(string accessToken, string handle, string rkey, RecordType recordType, CancellationToken cancellationToken)
     {
         var url = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.DeleteRecordPath}";
 
@@ -106,19 +107,6 @@ partial class BlueskyApiClient
 
         message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
-        try
-        {
-            var response = await _httpClient.SendAsync(message);
-            if (!response.IsSuccessStatusCode)
-            {
-                var errorText = await response.Content.ReadAsStringAsync();
-                Debug.WriteLine(errorText);
-            }
-        }
-        catch (Exception e)
-        {
-            Debug.WriteLine(e);
-            throw;
-        }
+        _ = await SendMessageAsync(accessToken, message, cancellationToken);
     }
 }

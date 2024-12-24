@@ -8,6 +8,7 @@ using Humanizer;
 using Humanizer.Localisation;
 using JeniusApps.Common.Tools;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BlueskyClient.ViewModels;
@@ -101,11 +102,11 @@ public partial class FeedItemViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private async Task LikeClickedAsync()
+    private async Task LikeClickedAsync(CancellationToken ct)
     {
         if (IsLiked)
         {
-            var result = await _postSubmissionService.LikeOrRepostUndoAsync(RecordType.Like, Post);
+            var result = await _postSubmissionService.LikeOrRepostUndoAsync(RecordType.Like, Post, ct);
 
             if (result)
             {
@@ -126,11 +127,11 @@ public partial class FeedItemViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private async Task RepostClickedAsync()
+    private async Task RepostClickedAsync(CancellationToken ct)
     {
         if (IsReposted)
         {
-            var result = await _postSubmissionService.LikeOrRepostUndoAsync(RecordType.Repost, Post);
+            var result = await _postSubmissionService.LikeOrRepostUndoAsync(RecordType.Repost, Post, ct);
 
             if (result)
             {
