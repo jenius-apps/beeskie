@@ -2,12 +2,13 @@
 using Bluesky.NET.Constants;
 using Bluesky.NET.Models;
 using BlueskyClient.Constants;
-using FluentResults;
+using BlueskyClient.Helpers;
 using JeniusApps.Common.Settings;
 using JeniusApps.Common.Telemetry;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BlueskyClient.Services;
@@ -76,13 +77,13 @@ public class PostSubmissionService : IPostSubmissionService
     }
 
     /// <inheritdoc/>
-    public async Task<bool> LikeOrRepostAsync(RecordType recordType, string targetUri, string targetCid)
+    public async Task<string?> LikeOrRepostAsync(RecordType recordType, string targetUri, string targetCid)
     {
         if ((recordType is not RecordType.Like && recordType is not RecordType.Repost) ||
             string.IsNullOrEmpty(targetUri) ||
             string.IsNullOrEmpty(targetCid))
         {
-            return false;
+            return null;
         }
 
         SubmissionRecord newRecord = new()
@@ -96,7 +97,21 @@ public class PostSubmissionService : IPostSubmissionService
         };
 
         var response = await SubmitAsync(newRecord, recordType);
-        return response is not null;
+
+        return response!.Uri;
+    }
+
+    /// <inheritdoc/>
+    public async Task<bool> LikeOrRepostUndoAsync(RecordType recordType, string targetUri, CancellationToken cancellationToken)
+    {
+        if ((recordType is not RecordType.Like && recordType is not RecordType.Repost) || string.IsNullOrEmpty(targetUri))
+        {
+            return false;
+        }
+
+        await SubmitUndoAsync(recordType, targetUri, cancellationToken);
+
+        return true;
     }
 
     /// <inheritdoc/>
@@ -160,7 +175,7 @@ public class PostSubmissionService : IPostSubmissionService
     private async Task<CreateRecordResponse?> SubmitAsync(SubmissionRecord record, RecordType recordType)
     {
         record.Facets = [.. await _facetService.ExtractFacetsAsync(record.Text, default)];
-        Result<string> tokenResult = await _authenticationService.TryGetFreshTokenAsync();
+        var tokenResult = await _authenticationService.TryGetFreshTokenAsync();
         var handle = _userSettings.Get<string>(UserSettingsConstants.SignedInDIDKey);
 
         if (tokenResult.IsFailed || handle is null)
@@ -192,5 +207,34 @@ public class PostSubmissionService : IPostSubmissionService
         }
 
         return result;
+    }
+
+    private async Task SubmitUndoAsync(RecordType recordType, string targetUri, CancellationToken cancellationToken)
+    {
+        var tokenResult = await _authenticationService.TryGetFreshTokenAsync();
+        var handle = _userSettings.Get<string>(UserSettingsConstants.SignedInDIDKey);
+
+        if (tokenResult.IsFailed || handle is null)
+        {
+            return;
+        }
+
+        try
+        {
+            var recordKey = UriStringHelper.GetRecordKey(targetUri).ToString();
+
+            await _blueskyApiClient.SubmitPostUndoAsync(tokenResult.Value, handle, recordKey, recordType, cancellationToken);
+        }
+        catch (Exception e)
+        {
+            var dict = new Dictionary<string, string>
+            {
+                { "method", "SubmitAsync" },
+                { "recordType", recordType.ToString() },
+                { "message", e.Message },
+            };
+            _telemetry.TrackEvent(TelemetryConstants.ApiError, dict);
+            _telemetry.TrackError(e, dict);
+        }
     }
 }

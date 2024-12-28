@@ -8,6 +8,7 @@ using Humanizer;
 using Humanizer.Localisation;
 using JeniusApps.Common.Tools;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BlueskyClient.ViewModels;
@@ -18,6 +19,9 @@ public partial class FeedItemViewModel : ObservableObject
     private readonly IDialogService _dialogService;
     private readonly ILocalizer _localizer;
     private readonly FeedPostReason? _reason;
+
+    private string? _likeUri;
+    private string? _repostUri;
 
     public FeedItemViewModel(
         FeedPost post,
@@ -33,12 +37,15 @@ public partial class FeedItemViewModel : ObservableObject
         _postSubmissionService = postSubmissionService;
         _dialogService = dialogService;
         _localizer = localizer;
-        
+
         IsLiked = post.Viewer?.Like is not null;
         IsReposted = post.Viewer?.Repost is not null;
         ReplyCount = post.GetReplyCount();
         RepostCount = post.GetRepostCount();
         LikeCount = post.GetLikeCount();
+
+        _likeUri = post.Viewer?.Like;
+        _repostUri = post.Viewer?.Repost;
     }
 
     public AuthorViewModel AuthorViewModel { get; }
@@ -101,45 +108,56 @@ public partial class FeedItemViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private async Task LikeAsync()
+    private async Task LikeClickedAsync(CancellationToken ct)
     {
         if (IsLiked)
         {
-            return;
+            var result = await _postSubmissionService.LikeOrRepostUndoAsync(RecordType.Like, _likeUri!, ct);
+
+            if (result)
+            {
+                LikeCount = Math.Max(0, int.Parse(LikeCount) - 1).ToString();
+            }
         }
-
-        var result = await _postSubmissionService.LikeOrRepostAsync(
-            RecordType.Like,
-            Post.Uri,
-            Post.Cid);
-
-        if (result)
+        else
         {
-            LikeCount = (Post.LikeCount + 1).ToString();
+            var result = await _postSubmissionService.LikeOrRepostAsync(RecordType.Like, Post.Uri, Post.Cid);
+
+            if (result is not null)
+            {
+                _likeUri = result;
+                LikeCount = (int.Parse(LikeCount) + 1).ToString();
+            }
         }
 
-        IsLiked = result;
+        IsLiked = !IsLiked;
     }
 
     [RelayCommand]
-    private async Task RepostAsync()
+    private async Task RepostClickedAsync(CancellationToken ct)
     {
         if (IsReposted)
         {
-            return;
+            //TODO: Recover URL and add it to viewer repost
+            var result = await _postSubmissionService.LikeOrRepostUndoAsync(RecordType.Repost, _repostUri!, ct);
+
+            if (result)
+            {
+                RepostCount = Math.Max(0, int.Parse(RepostCount) - 1).ToString();
+            }
         }
-
-        var result = await _postSubmissionService.LikeOrRepostAsync(
-            RecordType.Repost,
-            Post.Uri,
-            Post.Cid);
-
-        if (result)
+        else
         {
-            RepostCount = (Post.RepostCount + 1).ToString();
+            var result = await _postSubmissionService.LikeOrRepostAsync(RecordType.Repost, Post.Uri, Post.Cid);
+
+            if (result is not null)
+            {
+                _repostUri = result;
+                RepostCount = int.Parse(RepostCount + 1).ToString();
+            }
         }
 
-        IsReposted = result;
+        IsReposted = !IsReposted;
     }
 
     public override string ToString()

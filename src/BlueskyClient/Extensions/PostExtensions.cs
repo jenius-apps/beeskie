@@ -1,11 +1,12 @@
-﻿using System;
-using Bluesky.NET.Constants;
+﻿using Bluesky.NET.Constants;
 using Bluesky.NET.Models;
+using System;
 
 namespace BlueskyClient.Extensions;
 
 public static class PostExtensions
 {
+
     public static string GetReplyCount(this FeedPost post) => GetPostButtonIconString(post.ReplyCount);
 
     public static string GetRepostCount(this FeedPost post) => GetPostButtonIconString(post.RepostCount);
@@ -39,7 +40,7 @@ public static class PostExtensions
         ? result
         : new Uri("http://localhost");
 
-    private static string SafeUrl(this string? url) => 
+    private static string SafeUrl(this string? url) =>
         url is { Length: > 0 } safeUrl && Uri.IsWellFormedUriString(safeUrl, UriKind.Absolute)
         ? safeUrl
         : "http://localhost";
