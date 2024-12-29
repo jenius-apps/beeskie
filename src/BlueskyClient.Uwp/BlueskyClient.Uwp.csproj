@@ -161,11 +161,6 @@
       <DependentUpon>FeedItemTemplateResource.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\DialogService.cs" />
-    <Compile Include="Strings\en-US\Resources.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resw</DependentUpon>
-    </Compile>
     <Compile Include="Tools\AppSettings.cs" />
     <Compile Include="Tools\FileReaderWriter.cs" />
     <Compile Include="Tools\FutureAccessFilePicker.cs" />
@@ -291,6 +286,9 @@
       <Version>1.15.0</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="ReswPlus">
+      <Version>0.2.6</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
