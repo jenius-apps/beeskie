@@ -20,7 +20,7 @@ public partial class BlueskyApiClient : IBlueskyApiClient
 
     public async Task<Result<AuthResponse>> RefreshAsync(string refreshToken, string baseUrl = UrlConstants.BlueskyBaseUrl)
     {
-        this._baseUrl = baseUrl;
+        _baseUrl = baseUrl;
         var refreshUrl = $"{baseUrl}/{UrlConstants.RefreshAuthPath}";
         HttpRequestMessage message = new(HttpMethod.Post, refreshUrl);
         message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", refreshToken);
@@ -30,7 +30,7 @@ public partial class BlueskyApiClient : IBlueskyApiClient
     /// <inheritdoc/>
     public async Task<Result<AuthResponse>> AuthenticateAsync(string identifer, string appPassword, string baseUrl = UrlConstants.BlueskyBaseUrl)
     {
-        this._baseUrl = baseUrl;
+        _baseUrl = baseUrl;
         var authUrl = $"{baseUrl}/{UrlConstants.AuthPath}";
 
         var requestBody = new AuthRequestBody

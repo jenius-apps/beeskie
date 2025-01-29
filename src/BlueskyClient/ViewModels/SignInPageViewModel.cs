@@ -59,7 +59,7 @@ public partial class SignInPageViewModel : ObservableObject
 
         _telemetry.TrackEvent(TelemetryConstants.SignInClicked);
 
-        Result<AuthResponse> result = await _authService.SignInAsync(UserHandleInput, AppPasswordInput, PdsInput);
+        Result<AuthResponse> result = await _authService.SignInAsync(UserHandleInput, AppPasswordInput, PdsInput.Contains("://") ? PdsInput : $"https://{PdsInput}");
 
         SignInErrorMessage = result.IsSuccess
             ? string.Empty
