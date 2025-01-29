@@ -63,6 +63,27 @@
                     Command="{x:Bind ViewModel.SignInCommand}"
                     Content="{x:Bind strings:Resources.SignInText}"
                     IsEnabled="{x:Bind ex:UIExtensions.Not(ViewModel.SigningIn), Mode=OneWay}" />
+
+                <winui:Expander Header="{x:Bind strings:Resources.AdvancedText}"
+                                HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Stretch"
+                                Margin="0,8,0,0">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock
+                            x:Name="PDSHeader"
+                            FontSize="12"
+                            Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                            Text="{x:Bind strings:Resources.PDSBoxPlaceholder}"
+                            TextWrapping="WrapWholeWords" />
+                        <TextBox
+                            Margin="0,4,0,0"
+                            AutomationProperties.LabeledBy="{x:Bind IdentifierHeader}"
+                            IsEnabled="{x:Bind ex:UIExtensions.Not(ViewModel.SigningIn), Mode=OneWay}"
+                            IsSpellCheckEnabled="False"
+                            PlaceholderText="https://bsky.social"
+                            Text="{x:Bind ViewModel.PdsInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+                </winui:Expander>
             </StackPanel>
 
             <winui:InfoBar

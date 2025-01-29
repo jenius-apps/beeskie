@@ -16,19 +16,22 @@ namespace Bluesky.NET.ApiClients;
 public partial class BlueskyApiClient : IBlueskyApiClient
 {
     private readonly HttpClient _httpClient = new();
+    private string _baseUrl = "https://bsky.social";
 
-    public async Task<Result<AuthResponse>> RefreshAsync(string refreshToken)
+    public async Task<Result<AuthResponse>> RefreshAsync(string refreshToken, string baseUrl = UrlConstants.BlueskyBaseUrl)
     {
-        var refreshUrl = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.RefreshAuthPath}";
+        this._baseUrl = baseUrl;
+        var refreshUrl = $"{baseUrl}/{UrlConstants.RefreshAuthPath}";
         HttpRequestMessage message = new(HttpMethod.Post, refreshUrl);
         message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", refreshToken);
         return await PostAuthMessageAsync(message);
     }
 
     /// <inheritdoc/>
-    public async Task<Result<AuthResponse>> AuthenticateAsync(string identifer, string appPassword)
+    public async Task<Result<AuthResponse>> AuthenticateAsync(string identifer, string appPassword, string baseUrl = UrlConstants.BlueskyBaseUrl)
     {
-        var authUrl = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.AuthPath}";
+        this._baseUrl = baseUrl;
+        var authUrl = $"{baseUrl}/{UrlConstants.AuthPath}";
 
         var requestBody = new AuthRequestBody
         {

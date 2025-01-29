@@ -16,9 +16,9 @@ public interface IBlueskyApiClient
     /// <param name="userHandle">The user's handle or email address or DID.</param>
     /// <param name="appPassword">An app password provided by the user.</param>
     /// <returns>An <see cref="AuthResponse"/>.</returns>
-    Task<Result<AuthResponse>> AuthenticateAsync(string identifier, string appPassword);
+    Task<Result<AuthResponse>> AuthenticateAsync(string identifier, string appPassword, string baseUrl = UrlConstants.BlueskyBaseUrl);
     Task<FeedResponse> GetTimelineAsync(string accesstoken, string? cursor = null);
-    Task<Result<AuthResponse>> RefreshAsync(string refreshToken);
+    Task<Result<AuthResponse>> RefreshAsync(string refreshToken, string baseUrl = UrlConstants.BlueskyBaseUrl);
 
     Task<Author?> GetAuthorAsync(string accessToken, string identifier);
 

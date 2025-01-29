@@ -44,6 +44,9 @@ public partial class SignInPageViewModel : ObservableObject
     private string _appPasswordInput = string.Empty;
 
     [ObservableProperty]
+    private string _pdsInput = "bsky.social";
+
+    [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ErrorBannerVisible))]
     private string _signInErrorMessage = string.Empty;
 
@@ -56,7 +59,7 @@ public partial class SignInPageViewModel : ObservableObject
 
         _telemetry.TrackEvent(TelemetryConstants.SignInClicked);
 
-        Result<AuthResponse> result = await _authService.SignInAsync(UserHandleInput, AppPasswordInput);
+        Result<AuthResponse> result = await _authService.SignInAsync(UserHandleInput, AppPasswordInput, PdsInput);
 
         SignInErrorMessage = result.IsSuccess
             ? string.Empty

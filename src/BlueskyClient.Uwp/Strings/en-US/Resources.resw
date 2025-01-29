@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AdvancedText" xml:space="preserve">
+    <value>Advanced</value>
+  </data>
   <data name="AppPasswordHelpText" xml:space="preserve">
     <value>What's an App Password?</value>
   </data>
@@ -191,6 +194,9 @@
   </data>
   <data name="PasswordBoxPlaceholder" xml:space="preserve">
     <value>Your special App Password</value>
+  </data>
+  <data name="PDSBoxPlaceholder" xml:space="preserve">
+    <value>Custom PDS URL</value>
   </data>
   <data name="PeopleText" xml:space="preserve">
     <value>People</value>
