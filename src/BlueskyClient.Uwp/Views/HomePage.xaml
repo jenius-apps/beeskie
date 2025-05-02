@@ -25,11 +25,6 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="auto" />
-        </Grid.ColumnDefinitions>
-
         <StackPanel
             MaxWidth="600"
             Margin="0,12,240,12"
@@ -48,7 +43,6 @@
         </StackPanel>
 
         <Rectangle
-            Grid.ColumnSpan="2"
             Height="1"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Bottom"
@@ -82,86 +76,14 @@
             </ListView.ItemContainerStyle>
         </ListView>
 
+        <!--  Loading shimmer  -->
         <StackPanel
             Grid.Row="1"
-            Margin="0,20,0,0"
+            Margin="0,20,240,0"
             Visibility="{x:Bind ViewModel.FeedLoading, Mode=OneWay}">
             <controls:FeedItemShimmer />
             <controls:FeedItemShimmer Margin="0,12,0,0" />
             <controls:FeedItemShimmer Margin="0,12,0,0" />
         </StackPanel>
-
-        <Rectangle
-            Grid.RowSpan="2"
-            Grid.Column="1"
-            Width="1"
-            VerticalAlignment="Stretch"
-            Fill="{ThemeResource DividerStrokeColorDefaultBrush}"
-            Visibility="Collapsed" />
-
-        <Grid
-            Grid.Row="1"
-            Grid.Column="2"
-            Padding="20,12,20,0"
-            Visibility="Collapsed">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <Grid VerticalAlignment="Top">
-                    <Ellipse
-                        Width="40"
-                        Height="40"
-                        Fill="{ThemeResource AccentFillColorDefaultBrush}" />
-                    <FontIcon
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        FontFamily="{StaticResource FluentUIGlyphs}"
-                        FontSize="14"
-                        Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}"
-                        Glyph="{StaticResource GlyphPinned}" />
-                    <FontIcon
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        FontFamily="{StaticResource FluentUIGlyphs}"
-                        FontSize="14"
-                        Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}"
-                        Glyph="{StaticResource GlyphPinnedFillOverlay}" />
-                </Grid>
-
-                <StackPanel Grid.Column="1" Margin="12,0,0,0">
-                    <TextBlock FontWeight="SemiBold" Text="{x:Bind strings:Resources.PinnedFeedsTitle}" />
-                    <TextBlock
-                        FontSize="12"
-                        Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                        Text="{x:Bind strings:Resources.PinnedFeedsSubtitle}"
-                        TextWrapping="Wrap" />
-                </StackPanel>
-            </Grid>
-
-            <ListView
-                Grid.Row="1"
-                Margin="0,12,0,0"
-                AutomationProperties.Name="{x:Bind strings:Resources.PinnedFeedsTitle}"
-                ItemsSource="{x:Bind ViewModel.Feeds}"
-                SelectedItem="{x:Bind ViewModel.SelectedFeed, Mode=OneWay}"
-                SelectionChanged="OnFeedSelectionChanged"
-                SingleSelectionFollowsFocus="False">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="vm:FeedGeneratorViewModel">
-                        <StackPanel>
-                            <TextBlock Text="{x:Bind DisplayName}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </Grid>
     </Grid>
 </Page>
