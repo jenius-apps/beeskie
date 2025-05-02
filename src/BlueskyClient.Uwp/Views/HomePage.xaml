@@ -12,6 +12,7 @@
     xmlns:strings="using:BlueskyClient.Strings"
     xmlns:templates="using:BlueskyClient.ResourceDictionaries"
     xmlns:vm="using:BlueskyClient.ViewModels"
+    xmlns:wct="using:CommunityToolkit.WinUI.Controls"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -19,11 +20,40 @@
     </Page.Resources>
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="auto" />
         </Grid.ColumnDefinitions>
+
+        <StackPanel
+            MaxWidth="600"
+            Margin="0,12,240,12"
+            Visibility="{x:Bind ViewModel.FeedSelectorVisible, Mode=OneWay}">
+            <wct:Segmented
+                HorizontalAlignment="Stretch"
+                ItemsSource="{x:Bind ViewModel.Feeds}"
+                SelectedItem="{x:Bind ViewModel.SelectedFeed, Mode=OneWay}"
+                SelectionChanged="OnFeedSelectionChanged">
+                <wct:Segmented.ItemTemplate>
+                    <DataTemplate x:DataType="vm:FeedGeneratorViewModel">
+                        <TextBlock Text="{x:Bind DisplayName}" TextTrimming="CharacterEllipsis" />
+                    </DataTemplate>
+                </wct:Segmented.ItemTemplate>
+            </wct:Segmented>
+        </StackPanel>
+
+        <Rectangle
+            Grid.ColumnSpan="2"
+            Height="1"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Bottom"
+            Fill="{ThemeResource DividerStrokeColorDefaultBrush}"
+            Visibility="{x:Bind ViewModel.FeedSelectorVisible, Mode=OneWay}" />
 
         <ListView
             x:Name="FeedListView"

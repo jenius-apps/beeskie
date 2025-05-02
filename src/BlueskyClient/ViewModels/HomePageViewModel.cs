@@ -50,6 +50,12 @@ public partial class HomePageViewModel : ObservableObject, ISupportPagination<Fe
 
     public ObservableCollection<FeedItemViewModel> CollectionSource { get; } = [];
 
+    /// <summary>
+    /// Determines if the feed selector is visible;
+    /// </summary>
+    [ObservableProperty]
+    private bool _feedSelectorVisible;
+
     public async Task InitializeAsync(CancellationToken ct)
     {
         ct.ThrowIfCancellationRequested();
@@ -69,6 +75,7 @@ public partial class HomePageViewModel : ObservableObject, ISupportPagination<Fe
             SelectedFeed ??= vm;
         }
 
+        FeedSelectorVisible = Feeds.Count > 1;
         await LoadNextPageAsync(ct);
     }
 
