@@ -9,58 +9,74 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="using:JeniusApps.Common.Models"
     xmlns:strings="using:BlueskyClient.Strings"
+    xmlns:templates="using:BlueskyClient.ResourceDictionaries"
     xmlns:ui="using:Microsoft.Toolkit.Uwp.UI"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     winui:BackdropMaterial.ApplyToRootOrPageBackground="True"
     mc:Ignorable="d">
 
     <Page.Resources>
-        <Style
-            x:Key="LeftNavButtonStyle"
-            BasedOn="{StaticResource DefaultButtonStyle}"
-            TargetType="Button">
-            <Setter Property="Height" Value="40" />
-            <Setter Property="HorizontalAlignment" Value="Stretch" />
-            <Setter Property="HorizontalContentAlignment" Value="Left" />
-            <Setter Property="Margin" Value="12,0,12,4" />
-            <Setter Property="Background" Value="Transparent" />
-            <Setter Property="BorderBrush" Value="Transparent" />
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <templates:FeedItemTemplateResource />
+            </ResourceDictionary.MergedDictionaries>
 
-        <Style
-            x:Key="LeftNavAccentButtonStyle"
-            BasedOn="{StaticResource AccentButtonStyle}"
-            TargetType="Button">
-            <Setter Property="Height" Value="40" />
-            <Setter Property="HorizontalAlignment" Value="Stretch" />
-            <Setter Property="HorizontalContentAlignment" Value="Left" />
-            <Setter Property="Margin" Value="12,0,12,4" />
-        </Style>
+            <Style
+                x:Key="LeftNavButtonStyle"
+                BasedOn="{StaticResource DefaultButtonStyle}"
+                TargetType="Button">
+                <Setter Property="Height" Value="40" />
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
+                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                <Setter Property="Margin" Value="12,0,12,4" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+            </Style>
+
+            <Style
+                x:Key="LeftNavAccentButtonStyle"
+                BasedOn="{StaticResource AccentButtonStyle}"
+                TargetType="Button">
+                <Setter Property="Height" Value="40" />
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
+                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                <Setter Property="Margin" Value="12,0,12,4" />
+            </Style>
+        </ResourceDictionary>
     </Page.Resources>
 
     <Grid>
         <Grid Visibility="{x:Bind ex:UIExtensions.InvertBoolToVis(ViewModel.IsImageViewerVisible), Mode=OneWay}">
             <Grid.RowDefinitions>
-                <RowDefinition Height="48" />
+                <RowDefinition Height="52" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="240" />
-                <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Border
-                Grid.ColumnSpan="3"
-                BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}"
-                BorderThickness="0,0,0,1"
-                Canvas.ZIndex="1" />
+            <Grid
+                x:Name="TitleBar"
+                Grid.ColumnSpan="2"
+                Background="Transparent">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition x:Name="LeftPaddingColumn" Width="0" />
+                    <ColumnDefinition />
+                    <ColumnDefinition x:Name="RightPaddingColumn" Width="0" />
+                </Grid.ColumnDefinitions>
+
+                <Border
+                    Grid.ColumnSpan="3"
+                    Background="{ThemeResource LayerFillColorDefaultBrush}"
+                    BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}"
+                    BorderThickness="0,0,0,1" />
+            </Grid>
 
             <StackPanel
                 Margin="12,0,0,0"
                 VerticalAlignment="Center"
-                Canvas.ZIndex="1"
                 Orientation="Horizontal">
                 <Image
                     Width="20"
@@ -69,20 +85,89 @@
                 <TextBlock
                     Margin="12,0,0,0"
                     VerticalAlignment="Center"
-                    FontSize="10"
+                    FontSize="12"
                     Foreground="{ThemeResource TextFillColorTertiaryBrush}"
                     Text="{x:Bind DisplayTitle}" />
             </StackPanel>
 
-            <TextBlock
-                Grid.ColumnSpan="3"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Canvas.ZIndex="1"
-                FontWeight="SemiBold"
-                Text="{x:Bind ViewModel.ShellHeaderText, Mode=OneWay}" />
+            <Grid Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="3*" MaxWidth="600" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <Grid Grid.Row="1" Margin="0,12,0,0">
+                <StackPanel
+                    Margin="0,0,8,0"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal">
+                    <HyperlinkButton
+                        Width="32"
+                        Height="32"
+                        Padding="0">
+                        <FontIcon
+                            FontFamily="{StaticResource FluentUIGlyphs}"
+                            FontSize="14"
+                            Glyph="{StaticResource GlyphBack}"
+                            Style="{StaticResource PostButtonIconStyle}" />
+                    </HyperlinkButton>
+                    <HyperlinkButton
+                        Width="32"
+                        Height="32"
+                        Margin="2,0,0,0"
+                        Padding="0">
+                        <FontIcon
+                            FontFamily="{StaticResource FluentUIGlyphs}"
+                            FontSize="14"
+                            Glyph="{StaticResource GlyphBack}"
+                            Style="{StaticResource PostButtonIconStyle}" />
+                    </HyperlinkButton>
+                </StackPanel>
+
+
+                <AutoSuggestBox
+                    Grid.Column="1"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    FontSize="12"
+                    PlaceholderText="Search Bluesky"
+                    QueryIcon="Find" />
+
+                <StackPanel
+                    Grid.Column="2"
+                    Margin="8,0,0,0"
+                    Orientation="Horizontal">
+                    <HyperlinkButton
+                        Width="32"
+                        Height="32"
+                        Padding="0">
+                        <FontIcon
+                            FontFamily="{StaticResource FluentUIGlyphs}"
+                            FontSize="14"
+                            Glyph="{StaticResource GlyphRefresh}"
+                            Style="{StaticResource PostButtonIconStyle}" />
+                    </HyperlinkButton>
+                    <HyperlinkButton
+                        Width="32"
+                        Height="32"
+                        Margin="2,0,0,0"
+                        Padding="0">
+                        <FontIcon
+                            FontFamily="{StaticResource FluentUIGlyphs}"
+                            FontSize="14"
+                            Glyph="{StaticResource GlyphFeeds}"
+                            Style="{StaticResource PostButtonIconStyle}" />
+                    </HyperlinkButton>
+                </StackPanel>
+            </Grid>
+
+            <Grid
+                Grid.Row="1"
+                Margin="0,0,0,0"
+                BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}"
+                BorderThickness="0,0,1,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
@@ -92,7 +177,7 @@
                 </Grid.RowDefinitions>
 
                 <Button
-                    Margin="12,0"
+                    Margin="12,12,12,0"
                     Padding="8,8"
                     HorizontalAlignment="Stretch"
                     HorizontalContentAlignment="Left"
@@ -238,13 +323,6 @@
                     Foreground="{ThemeResource TextFillColorTertiaryBrush}"
                     NavigateUri="mailto:beeskie_app@outlook.com" />
             </Grid>
-
-            <Rectangle
-                Grid.Row="1"
-                Grid.Column="1"
-                Width="1"
-                VerticalAlignment="Stretch"
-                Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
 
             <Grid Grid.Row="1" Grid.Column="2">
                 <Frame x:Name="ContentFrame" />

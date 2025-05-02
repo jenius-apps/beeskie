@@ -6,6 +6,7 @@ using JeniusApps.Common.Tools;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Uwp.Helpers;
 using Windows.System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
@@ -21,6 +22,8 @@ public sealed partial class ShellPage : Page
     {
         this.InitializeComponent();
         ViewModel = App.Services.GetRequiredService<ShellPageViewModel>();
+
+        Window.Current.SetTitleBar(TitleBar);
     }
 
     public ShellPageViewModel ViewModel { get; }

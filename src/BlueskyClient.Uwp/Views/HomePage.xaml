@@ -28,7 +28,8 @@
         <ListView
             x:Name="FeedListView"
             Grid.Row="1"
-            Padding="0,32,0,0"
+            Margin="0,0,-1,0"
+            Padding="0,32,240,0"
             DataFetchSize="1"
             IncrementalLoadingThreshold="1"
             IncrementalLoadingTrigger="Edge"
