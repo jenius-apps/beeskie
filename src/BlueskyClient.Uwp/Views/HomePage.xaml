@@ -19,73 +19,16 @@
     </Page.Resources>
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="48" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="300" />
         </Grid.ColumnDefinitions>
-
-        <Border Background="{ThemeResource SystemControlAcrylicElementBrush}" Canvas.ZIndex="1" />
-
-        <Grid
-            x:Name="TitleBar"
-            Grid.ColumnSpan="3"
-            Height="32"
-            Margin="-240,0,0,0"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Top"
-            Background="Transparent"
-            Canvas.ZIndex="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition x:Name="LeftPaddingColumn" Width="0" />
-                <ColumnDefinition />
-                <ColumnDefinition x:Name="RightPaddingColumn" Width="0" />
-            </Grid.ColumnDefinitions>
-        </Grid>
-
-        <TextBlock
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Canvas.ZIndex="1"
-            FontWeight="SemiBold"
-            Text="{x:Bind ViewModel.SelectedFeed.DisplayName, Mode=OneWay}" />
-
-        <Button
-            Margin="0,0,12,0"
-            Padding="8"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Center"
-            AutomationProperties.Name="{x:Bind strings:Resources.RefreshText}"
-            Background="Transparent"
-            BorderBrush="Transparent"
-            Canvas.ZIndex="3"
-            Command="{x:Bind ViewModel.RefreshFeedCommand}"
-            ToolTipService.ToolTip="{x:Bind const:StringShortcuts.RefreshTooltip}">
-            <Button.KeyboardAccelerators>
-                <KeyboardAccelerator Key="R" Modifiers="Control" />
-            </Button.KeyboardAccelerators>
-            <FontIcon
-                FontFamily="{StaticResource FluentUIGlyphs}"
-                FontSize="14"
-                Glyph="{StaticResource GlyphRefresh}" />
-        </Button>
-
-        <Rectangle
-            Height="1"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Bottom"
-            Canvas.ZIndex="1"
-            Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
 
         <ListView
             x:Name="FeedListView"
             Grid.Row="1"
-            Padding="0,20,0,0"
+            Padding="0,32,0,0"
             DataFetchSize="1"
             IncrementalLoadingThreshold="1"
             IncrementalLoadingTrigger="Edge"
@@ -122,12 +65,14 @@
             Grid.Column="1"
             Width="1"
             VerticalAlignment="Stretch"
-            Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
+            Fill="{ThemeResource DividerStrokeColorDefaultBrush}"
+            Visibility="Collapsed" />
 
         <Grid
             Grid.Row="1"
             Grid.Column="2"
-            Padding="20,12,20,0">
+            Padding="20,12,20,0"
+            Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />

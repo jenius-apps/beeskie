@@ -74,6 +74,7 @@ public partial class ShellPageViewModel : ObservableObject
             {
                 item.IsSelected = true;
                 _lastSelectedMenu = item;
+                ShellHeaderText = item.Text;
             }
             else
             {
@@ -81,6 +82,9 @@ public partial class ShellPageViewModel : ObservableObject
             }
         }
     }
+
+    [ObservableProperty]
+    private string _shellHeaderText = string.Empty;
 
     public AuthorViewModel AuthorViewModel { get; }
 
@@ -181,6 +185,7 @@ public partial class ShellPageViewModel : ObservableObject
 
         item.IsSelected = true;
         _lastSelectedMenu = item;
+        ShellHeaderText = item.Text;
 
         if (key is NavigationConstants.NotificationsPage)
         {
