@@ -25,6 +25,7 @@ public partial class ShellPageViewModel : ObservableObject
     private readonly IAuthenticationService _authenticationService;
     private readonly IImageViewerService _imageViewerService;
     private readonly INotificationsService _notificationService;
+    private readonly ISearchInPlaceRequester _searchInPlaceRequester;
     private MenuItem? _lastSelectedMenu;
     private readonly MenuItem _notificationMenuItem;
 
@@ -38,7 +39,8 @@ public partial class ShellPageViewModel : ObservableObject
         IAuthenticationService authenticationService,
         IImageViewerService imageViewerService,
         IAuthorViewModelFactory authorFactory,
-        INotificationsService notificationsService)
+        INotificationsService notificationsService,
+        ISearchInPlaceRequester searchInPlaceRequester)
     {
         AuthorViewModel = authorFactory.CreateStub();
         _localizer = localizer;
@@ -50,6 +52,7 @@ public partial class ShellPageViewModel : ObservableObject
         _authenticationService = authenticationService;
         _imageViewerService = imageViewerService;
         _notificationService = notificationsService;
+        _searchInPlaceRequester = searchInPlaceRequester;
 
         MenuItems.Add(new MenuItem(NavigateContentPageCommand, _localizer.GetString("HomeText"), "\uEA8A", NavigationConstants.HomePage));
         MenuItems.Add(new MenuItem(NavigateContentPageCommand, _localizer.GetString("SearchText"), "\uE721", NavigationConstants.SearchPage));
@@ -223,13 +226,20 @@ public partial class ShellPageViewModel : ObservableObject
     [RelayCommand]
     private async Task NewSearchAsync()
     {
-        _contentNavigator.NavigateTo(NavigationConstants.SearchPage, new SearchPageNavigationArgs
+        if (_lastSelectedMenu?.Tag == NavigationConstants.SearchPage)
         {
-            RequestedQuery = Query
-        });
+            // perform search in-place
+            _searchInPlaceRequester.RequestSearch(Query);
+        }
+        else
+        {
+            _contentNavigator.NavigateTo(NavigationConstants.SearchPage, new SearchPageNavigationArgs
+            {
+                RequestedQuery = Query
+            });
+        }
 
         _telemetry.TrackEvent(TelemetryConstants.SearchTriggered);
-
         await Task.Delay(1000); // To help prevent spam clicks, we add this 1s buffer
     }
 

@@ -116,7 +116,6 @@
                     Grid.Column="1"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center"
-                    HorizontalContentAlignment="Center"
                     VerticalContentAlignment="Center"
                     FontSize="12"
                     PlaceholderText="{x:Bind strings:Resources.SearchText}"

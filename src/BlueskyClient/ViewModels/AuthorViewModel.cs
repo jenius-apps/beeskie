@@ -14,7 +14,7 @@ namespace BlueskyClient.ViewModels;
 
 public partial class AuthorViewModel : ObservableObject
 {
-    private string _telemetryContext;
+    private readonly string _telemetryContext;
     private readonly IProfileService _profileService;
     private readonly ITelemetry _telemetry;
     private Author? _author;
