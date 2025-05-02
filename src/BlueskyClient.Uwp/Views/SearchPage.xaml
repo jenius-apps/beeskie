@@ -33,21 +33,12 @@
 
 
         <StackPanel MaxWidth="600" Margin="0,12">
-
-            <!--<AutoSuggestBox
-                Margin="0"
-                PlaceholderText="{x:Bind strings:Resources.SearchText}"
-                QueryIcon="Find"
-                QuerySubmitted="OnQuerySubmitted"
-                Text="{x:Bind ViewModel.Query, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />-->
-
             <wct:Segmented HorizontalAlignment="Stretch" SelectedIndex="{x:Bind ViewModel.SearchTabIndex, Mode=TwoWay}">
                 <wct:SegmentedItem Content="{x:Bind strings:Resources.SortTopText}" />
                 <wct:SegmentedItem Content="{x:Bind strings:Resources.SortLatestText}" />
                 <wct:SegmentedItem Content="{x:Bind strings:Resources.PeopleText}" />
                 <!--<wct:SegmentedItem Content="{x:Bind strings:Resources.FeedsText}" />-->
             </wct:Segmented>
-
         </StackPanel>
 
         <Rectangle

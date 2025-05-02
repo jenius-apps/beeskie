@@ -61,30 +61,11 @@ public partial class ShellPageViewModel : ObservableObject
 #endif
     }
 
-    private void OnContentPageNavigated(object sender, string key)
-    {
-        if (_lastSelectedMenu?.Tag == key)
-        {
-            return;
-        }
-
-        foreach (var item in MenuItems)
-        {
-            if (item.Tag == key)
-            {
-                item.IsSelected = true;
-                _lastSelectedMenu = item;
-                ShellHeaderText = item.Text;
-            }
-            else
-            {
-                item.IsSelected = false;
-            }
-        }
-    }
-
+    /// <summary>
+    /// The user's search query input.
+    /// </summary>
     [ObservableProperty]
-    private string _shellHeaderText = string.Empty;
+    private string _query = string.Empty;
 
     public AuthorViewModel AuthorViewModel { get; }
 
@@ -185,7 +166,6 @@ public partial class ShellPageViewModel : ObservableObject
 
         item.IsSelected = true;
         _lastSelectedMenu = item;
-        ShellHeaderText = item.Text;
 
         if (key is NavigationConstants.NotificationsPage)
         {
@@ -238,5 +218,39 @@ public partial class ShellPageViewModel : ObservableObject
         {
             { "signedOut", result.ToString() }
         });
+    }
+
+    [RelayCommand]
+    private async Task NewSearchAsync()
+    {
+        _contentNavigator.NavigateTo(NavigationConstants.SearchPage, new SearchPageNavigationArgs
+        {
+            RequestedQuery = Query
+        });
+
+        _telemetry.TrackEvent(TelemetryConstants.SearchTriggered);
+
+        await Task.Delay(1000); // To help prevent spam clicks, we add this 1s buffer
+    }
+
+    private void OnContentPageNavigated(object sender, string key)
+    {
+        if (_lastSelectedMenu?.Tag == key)
+        {
+            return;
+        }
+
+        foreach (var item in MenuItems)
+        {
+            if (item.Tag == key)
+            {
+                item.IsSelected = true;
+                _lastSelectedMenu = item;
+            }
+            else
+            {
+                item.IsSelected = false;
+            }
+        }
     }
 }

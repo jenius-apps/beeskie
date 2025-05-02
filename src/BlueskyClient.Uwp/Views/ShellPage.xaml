@@ -120,7 +120,9 @@
                     VerticalContentAlignment="Center"
                     FontSize="12"
                     PlaceholderText="{x:Bind strings:Resources.SearchText}"
-                    QueryIcon="Find" />
+                    QueryIcon="Find"
+                    QuerySubmitted="OnQuerySubmitted"
+                    Text="{x:Bind ViewModel.Query, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                 <StackPanel
                     Grid.Column="2"

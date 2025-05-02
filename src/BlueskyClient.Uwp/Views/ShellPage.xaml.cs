@@ -72,4 +72,12 @@ public sealed partial class ShellPage : Page
             FlyoutBase.ShowAttachedFlyout(b);
         }
     }
+
+    private async void OnQuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+    {
+        if (!ViewModel.NewSearchCommand.IsRunning)
+        {
+            await ViewModel.NewSearchCommand.ExecuteAsync(null);
+        }
+    }
 }
