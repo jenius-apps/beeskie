@@ -16,33 +16,27 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <templates:FeedItemTemplateResource />
-            </ResourceDictionary.MergedDictionaries>
+        <Style
+            x:Key="LeftNavButtonStyle"
+            BasedOn="{StaticResource DefaultButtonStyle}"
+            TargetType="Button">
+            <Setter Property="Height" Value="40" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Margin" Value="12,0,12,4" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+        </Style>
 
-            <Style
-                x:Key="LeftNavButtonStyle"
-                BasedOn="{StaticResource DefaultButtonStyle}"
-                TargetType="Button">
-                <Setter Property="Height" Value="40" />
-                <Setter Property="HorizontalAlignment" Value="Stretch" />
-                <Setter Property="HorizontalContentAlignment" Value="Left" />
-                <Setter Property="Margin" Value="12,0,12,4" />
-                <Setter Property="Background" Value="Transparent" />
-                <Setter Property="BorderBrush" Value="Transparent" />
-            </Style>
-
-            <Style
-                x:Key="LeftNavAccentButtonStyle"
-                BasedOn="{StaticResource AccentButtonStyle}"
-                TargetType="Button">
-                <Setter Property="Height" Value="40" />
-                <Setter Property="HorizontalAlignment" Value="Stretch" />
-                <Setter Property="HorizontalContentAlignment" Value="Left" />
-                <Setter Property="Margin" Value="12,0,12,4" />
-            </Style>
-        </ResourceDictionary>
+        <Style
+            x:Key="LeftNavAccentButtonStyle"
+            BasedOn="{StaticResource AccentButtonStyle}"
+            TargetType="Button">
+            <Setter Property="Height" Value="40" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Margin" Value="12,0,12,4" />
+        </Style>
     </Page.Resources>
 
     <Grid>
@@ -101,22 +95,22 @@
                     Margin="0,0,8,0"
                     HorizontalAlignment="Right"
                     Orientation="Horizontal">
-                    <HyperlinkButton Style="{StaticResource SquareSmallHyperlinkButton}">
+                    <HyperlinkButton
+                        AutomationProperties.Name="{x:Bind strings:Resources.BackText}"
+                        Style="{StaticResource SquareSmallHyperlinkButton}"
+                        ToolTipService.ToolTip="{x:Bind strings:Resources.BackText}">
                         <FontIcon
-                            FontFamily="{StaticResource FluentUIGlyphs}"
                             FontSize="14"
                             Glyph="{StaticResource GlyphBack}"
                             Style="{StaticResource PostButtonIconStyle}" />
                     </HyperlinkButton>
                     <HyperlinkButton Margin="2,0,0,0" Style="{StaticResource SquareSmallHyperlinkButton}">
                         <FontIcon
-                            FontFamily="{StaticResource FluentUIGlyphs}"
                             FontSize="14"
                             Glyph="{StaticResource GlyphForward}"
                             Style="{StaticResource PostButtonIconStyle}" />
                     </HyperlinkButton>
                 </StackPanel>
-
 
                 <AutoSuggestBox
                     Grid.Column="1"
@@ -125,16 +119,18 @@
                     HorizontalContentAlignment="Center"
                     VerticalContentAlignment="Center"
                     FontSize="12"
-                    PlaceholderText="Search Bluesky"
+                    PlaceholderText="{x:Bind strings:Resources.SearchText}"
                     QueryIcon="Find" />
 
                 <StackPanel
                     Grid.Column="2"
                     Margin="8,0,0,0"
                     Orientation="Horizontal">
-                    <HyperlinkButton Style="{StaticResource SquareSmallHyperlinkButton}">
+                    <HyperlinkButton
+                        AutomationProperties.Name="{x:Bind strings:Resources.RefreshText}"
+                        Style="{StaticResource SquareSmallHyperlinkButton}"
+                        ToolTipService.ToolTip="{x:Bind strings:Resources.RefreshText}">
                         <FontIcon
-                            FontFamily="{StaticResource FluentUIGlyphs}"
                             FontSize="14"
                             Glyph="{StaticResource GlyphRefresh}"
                             Style="{StaticResource PostButtonIconStyle}" />
