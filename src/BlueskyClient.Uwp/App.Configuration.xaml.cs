@@ -107,7 +107,8 @@ partial class App
                 serviceProvider.GetRequiredService<IImageViewerService>(),
                 serviceProvider.GetRequiredService<IAuthorViewModelFactory>(),
                 serviceProvider.GetRequiredService<INotificationsService>(),
-                serviceProvider.GetRequiredService<ISearchInPlaceRequester>());
+                serviceProvider.GetRequiredService<ISearchInPlaceRequester>(),
+                serviceProvider.GetRequiredService<IRefreshPageRequester>());
         });
 
         collection.AddSingleton<ISecureCredentialStorage>(_ => new WindowsCredentialStorage("blueskyClientCredentials"));
@@ -145,6 +146,7 @@ partial class App
     [Singleton(typeof(UploadBlobService), typeof(IUploadBlobService))]
     [Singleton(typeof(FacetService), typeof(IFacetService))]
     [Singleton(typeof(SearchInPlaceRequester), typeof(ISearchInPlaceRequester))]
+    [Singleton(typeof(RefreshPageRequester), typeof(IRefreshPageRequester))]
     [Transient(typeof(HomePageViewModel))]
     [Transient(typeof(NotificationsPageViewModel))]
     [Transient(typeof(ProfileControlViewModel))]

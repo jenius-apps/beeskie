@@ -129,6 +129,7 @@
                     Orientation="Horizontal">
                     <HyperlinkButton
                         AutomationProperties.Name="{x:Bind strings:Resources.RefreshText}"
+                        Command="{x:Bind ViewModel.RefreshPageCommand}"
                         Style="{StaticResource SquareSmallHyperlinkButton}"
                         ToolTipService.ToolTip="{x:Bind strings:Resources.RefreshText}">
                         <FontIcon

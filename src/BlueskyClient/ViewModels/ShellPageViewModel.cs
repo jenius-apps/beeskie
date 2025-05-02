@@ -26,6 +26,7 @@ public partial class ShellPageViewModel : ObservableObject
     private readonly IImageViewerService _imageViewerService;
     private readonly INotificationsService _notificationService;
     private readonly ISearchInPlaceRequester _searchInPlaceRequester;
+    private readonly IRefreshPageRequester _refreshPageRequester;
     private MenuItem? _lastSelectedMenu;
     private readonly MenuItem _notificationMenuItem;
 
@@ -40,7 +41,8 @@ public partial class ShellPageViewModel : ObservableObject
         IImageViewerService imageViewerService,
         IAuthorViewModelFactory authorFactory,
         INotificationsService notificationsService,
-        ISearchInPlaceRequester searchInPlaceRequester)
+        ISearchInPlaceRequester searchInPlaceRequester,
+        IRefreshPageRequester refreshPageRequester)
     {
         AuthorViewModel = authorFactory.CreateStub();
         _localizer = localizer;
@@ -53,6 +55,7 @@ public partial class ShellPageViewModel : ObservableObject
         _imageViewerService = imageViewerService;
         _notificationService = notificationsService;
         _searchInPlaceRequester = searchInPlaceRequester;
+        _refreshPageRequester = refreshPageRequester;
 
         MenuItems.Add(new MenuItem(NavigateContentPageCommand, _localizer.GetString("HomeText"), "\uEA8A", NavigationConstants.HomePage));
         MenuItems.Add(new MenuItem(NavigateContentPageCommand, _localizer.GetString("SearchText"), "\uE721", NavigationConstants.SearchPage));
@@ -241,6 +244,12 @@ public partial class ShellPageViewModel : ObservableObject
 
         _telemetry.TrackEvent(TelemetryConstants.SearchTriggered);
         await Task.Delay(1000); // To help prevent spam clicks, we add this 1s buffer
+    }
+
+    [RelayCommand]
+    private void RefreshPage()
+    {
+        _refreshPageRequester.RequestRefresh();
     }
 
     private void OnContentPageNavigated(object sender, string key)

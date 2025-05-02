@@ -35,6 +35,11 @@ public sealed partial class HomePage : Page
         }
     }
 
+    protected override void OnNavigatedFrom(NavigationEventArgs e)
+    {
+        ViewModel.Uninitialize();
+    }
+
     private async void OnFeedSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (e.AddedItems.FirstOrDefault() is FeedGeneratorViewModel vm)
