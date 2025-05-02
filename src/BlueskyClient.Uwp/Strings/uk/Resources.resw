@@ -145,7 +145,7 @@
     <value>Останні</value>
   </data>
   <data name="SortTopText" xml:space="preserve">
-    <value>Верх</value>
+    <value>Популярне</value>
   </data>
   <data name="SearchTabAutomationName" xml:space="preserve">
     <value>Параметри сортування</value>
@@ -166,16 +166,16 @@
     <value>Приступайте до пошуку!</value>
   </data>
   <data name="FollowText" xml:space="preserve">
-    <value>Слідувати</value>
+    <value>Підписатися</value>
   </data>
   <data name="SuggestedAccountsSubtitle" xml:space="preserve">
-    <value>Підпишіться на більше облікових записів, щоб підключитися до своїх інтересів і побудувати свою мережу.</value>
+    <value>Підпишіться на більше облікових записів, щоб знайти спільні інтереси і сформувати свою мережу.</value>
   </data>
   <data name="SuggestedAccountsTitle" xml:space="preserve">
     <value>Рекомендовані облікові записи</value>
   </data>
   <data name="PeopleText" xml:space="preserve">
-    <value>Народ</value>
+    <value>Люди</value>
   </data>
   <data name="PinToHomeText" xml:space="preserve">
     <value>Закріпити на головній сторінці</value>
