@@ -217,7 +217,7 @@
     <Grid>
         <ListView
             Grid.Column="1"
-            Margin="0,40,0,0"
+            Padding="0,32,240,0"
             ItemTemplateSelector="{StaticResource NotifTemplateSelector}"
             ItemsSource="{x:Bind ViewModel.Notifications}"
             SelectionMode="None">
