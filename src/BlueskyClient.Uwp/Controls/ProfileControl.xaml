@@ -22,8 +22,21 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource FullTitleBarMinWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ProfileGrid.Margin" Value="0,0,240,0" />
+                        <Setter Target="ProfilePosts.Padding" Value="0,0,240,0" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
 
-        <Grid MaxWidth="{StaticResource FeedMaxWidth}" Margin="0,0,240,0">
+        <Grid x:Name="ProfileGrid" MaxWidth="{StaticResource FeedMaxWidth}">
             <Grid.RowDefinitions>
                 <!--  0 hero image  -->
                 <RowDefinition Height="auto" />
@@ -119,8 +132,9 @@
         </Grid>
 
         <ListView
+            x:Name="ProfilePosts"
             Grid.Row="1"
-            Margin="0,20,240,0"
+            Margin="0,20,0,0"
             ItemTemplate="{StaticResource FeedItemTemplate}"
             ItemsSource="{x:Bind ViewModel.FeedItems}"
             SelectionMode="None">

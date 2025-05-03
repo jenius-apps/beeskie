@@ -32,7 +32,7 @@
         </Grid.ColumnDefinitions>
 
 
-        <StackPanel MaxWidth="600" Margin="0,12">
+        <StackPanel MaxWidth="600" Margin="12">
             <wct:Segmented HorizontalAlignment="Stretch" SelectedIndex="{x:Bind ViewModel.SearchTabIndex, Mode=TwoWay}">
                 <wct:SegmentedItem Content="{x:Bind strings:Resources.SortTopText}" />
                 <wct:SegmentedItem Content="{x:Bind strings:Resources.SortLatestText}" />

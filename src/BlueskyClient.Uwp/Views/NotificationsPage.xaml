@@ -215,9 +215,23 @@
     </Page.Resources>
 
     <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource FullTitleBarMinWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="NotificationsList.Padding" Value="0,32,240,0" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
         <ListView
+            x:Name="NotificationsList"
             Grid.Column="1"
-            Padding="0,32,240,0"
+            Padding="0,32,0,0"
             ItemTemplateSelector="{StaticResource NotifTemplateSelector}"
             ItemsSource="{x:Bind ViewModel.Notifications}"
             SelectionMode="None">
