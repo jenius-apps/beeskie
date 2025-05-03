@@ -29,115 +29,117 @@
                         <AdaptiveTrigger MinWindowWidth="{StaticResource FullTitleBarMinWidth}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="ProfileGrid.Margin" Value="0,0,240,0" />
                         <Setter Target="ProfilePosts.Padding" Value="0,0,240,0" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <Grid x:Name="ProfileGrid" MaxWidth="{StaticResource FeedMaxWidth}">
-            <Grid.RowDefinitions>
-                <!--  0 hero image  -->
-                <RowDefinition Height="auto" />
-                <!--  1 Avatar and options  -->
-                <RowDefinition Height="auto" />
-                <!--  2 display name  -->
-                <RowDefinition Height="auto" />
-                <!--  3 handle  -->
-                <RowDefinition Height="auto" />
-                <!--  4 stats  -->
-                <RowDefinition Height="auto" />
-                <!--  5 description  -->
-                <RowDefinition Height="auto" />
-            </Grid.RowDefinitions>
-
-            <Rectangle
-                Height="180"
-                Fill="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                Visibility="{x:Bind ex:UIExtensions.InvertBoolToVis(ViewModel.AuthorViewModel.BannerVisible), Mode=OneWay}" />
-
-            <Image
-                Height="180"
-                Stretch="UniformToFill"
-                Visibility="{x:Bind ViewModel.AuthorViewModel.BannerVisible, Mode=OneWay}">
-                <Image.Source>
-                    <BitmapImage UriSource="{x:Bind ViewModel.AuthorViewModel.BannerUri, Mode=OneWay}" />
-                </Image.Source>
-            </Image>
-
-            <Grid Grid.Row="1" Margin="20,-40,20,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="auto" />
-                </Grid.ColumnDefinitions>
-
-                <PersonPicture
-                    Height="120"
-                    HorizontalAlignment="Left"
-                    ProfilePicture="{x:Bind ViewModel.AuthorViewModel.AvatarUrl, Mode=OneWay}" />
-            </Grid>
-
-            <TextBlock
-                Grid.Row="2"
-                Margin="20,0"
-                FontSize="16"
-                FontWeight="SemiBold"
-                MaxLines="2"
-                Text="{x:Bind ViewModel.AuthorViewModel.DisplayName, Mode=OneWay}"
-                TextTrimming="CharacterEllipsis"
-                TextWrapping="Wrap" />
-
-            <TextBlock
-                Grid.Row="3"
-                Margin="20,0"
-                Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                Text="{x:Bind ViewModel.AuthorViewModel.AtHandle, Mode=OneWay}"
-                TextTrimming="CharacterEllipsis" />
-
-            <StackPanel
-                Grid.Row="4"
-                Margin="20,4,20,0"
-                Orientation="Horizontal">
-                <TextBlock FontWeight="SemiBold" Text="{x:Bind ViewModel.AuthorViewModel.FollowersCount, Mode=OneWay}" />
-                <TextBlock
-                    Margin="4,0,0,0"
-                    Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                    Text="{x:Bind strings:Resources.FollowersText}" />
-                <TextBlock
-                    Margin="8,0,0,0"
-                    FontWeight="SemiBold"
-                    Text="{x:Bind ViewModel.AuthorViewModel.FollowingCount, Mode=OneWay}" />
-                <TextBlock
-                    Margin="4,0,0,0"
-                    Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                    Text="{x:Bind strings:Resources.FollowingText}" />
-                <TextBlock
-                    Margin="8,0,0,0"
-                    FontWeight="SemiBold"
-                    Text="{x:Bind ViewModel.AuthorViewModel.PostsCount, Mode=OneWay}" />
-                <TextBlock
-                    Margin="4,0,0,0"
-                    Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                    Text="{x:Bind strings:Resources.PostsText}" />
-            </StackPanel>
-
-            <TextBlock
-                Grid.Row="5"
-                Margin="20,12,20,0"
-                MaxLines="10"
-                Text="{x:Bind ViewModel.AuthorViewModel.Description, Mode=OneWay}"
-                TextTrimming="CharacterEllipsis"
-                TextWrapping="Wrap" />
-        </Grid>
-
         <ListView
             x:Name="ProfilePosts"
             Grid.Row="1"
-            Margin="0,20,0,0"
             ItemTemplate="{StaticResource FeedItemTemplate}"
             ItemsSource="{x:Bind ViewModel.FeedItems}"
             SelectionMode="None">
+            <ListView.Header>
+                <Grid
+                    x:Name="ProfileGrid"
+                    MaxWidth="{StaticResource FeedMaxWidth}"
+                    Margin="0,0,0,20">
+                    <Grid.RowDefinitions>
+                        <!--  0 hero image  -->
+                        <RowDefinition Height="auto" />
+                        <!--  1 Avatar and options  -->
+                        <RowDefinition Height="auto" />
+                        <!--  2 display name  -->
+                        <RowDefinition Height="auto" />
+                        <!--  3 handle  -->
+                        <RowDefinition Height="auto" />
+                        <!--  4 stats  -->
+                        <RowDefinition Height="auto" />
+                        <!--  5 description  -->
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+
+                    <Rectangle
+                        Height="180"
+                        Fill="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        Visibility="{x:Bind ex:UIExtensions.InvertBoolToVis(ViewModel.AuthorViewModel.BannerVisible), Mode=OneWay}" />
+
+                    <Image
+                        Height="180"
+                        Stretch="UniformToFill"
+                        Visibility="{x:Bind ViewModel.AuthorViewModel.BannerVisible, Mode=OneWay}">
+                        <Image.Source>
+                            <BitmapImage UriSource="{x:Bind ViewModel.AuthorViewModel.BannerUri, Mode=OneWay}" />
+                        </Image.Source>
+                    </Image>
+
+                    <Grid Grid.Row="1" Margin="20,-40,20,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <PersonPicture
+                            Height="120"
+                            HorizontalAlignment="Left"
+                            ProfilePicture="{x:Bind ViewModel.AuthorViewModel.AvatarUrl, Mode=OneWay}" />
+                    </Grid>
+
+                    <TextBlock
+                        Grid.Row="2"
+                        Margin="20,0"
+                        FontSize="16"
+                        FontWeight="SemiBold"
+                        MaxLines="2"
+                        Text="{x:Bind ViewModel.AuthorViewModel.DisplayName, Mode=OneWay}"
+                        TextTrimming="CharacterEllipsis"
+                        TextWrapping="Wrap" />
+
+                    <TextBlock
+                        Grid.Row="3"
+                        Margin="20,0"
+                        Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                        Text="{x:Bind ViewModel.AuthorViewModel.AtHandle, Mode=OneWay}"
+                        TextTrimming="CharacterEllipsis" />
+
+                    <StackPanel
+                        Grid.Row="4"
+                        Margin="20,4,20,0"
+                        Orientation="Horizontal">
+                        <TextBlock FontWeight="SemiBold" Text="{x:Bind ViewModel.AuthorViewModel.FollowersCount, Mode=OneWay}" />
+                        <TextBlock
+                            Margin="4,0,0,0"
+                            Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                            Text="{x:Bind strings:Resources.FollowersText}" />
+                        <TextBlock
+                            Margin="8,0,0,0"
+                            FontWeight="SemiBold"
+                            Text="{x:Bind ViewModel.AuthorViewModel.FollowingCount, Mode=OneWay}" />
+                        <TextBlock
+                            Margin="4,0,0,0"
+                            Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                            Text="{x:Bind strings:Resources.FollowingText}" />
+                        <TextBlock
+                            Margin="8,0,0,0"
+                            FontWeight="SemiBold"
+                            Text="{x:Bind ViewModel.AuthorViewModel.PostsCount, Mode=OneWay}" />
+                        <TextBlock
+                            Margin="4,0,0,0"
+                            Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                            Text="{x:Bind strings:Resources.PostsText}" />
+                    </StackPanel>
+
+                    <TextBlock
+                        Grid.Row="5"
+                        Margin="20,12,20,0"
+                        MaxLines="10"
+                        Text="{x:Bind ViewModel.AuthorViewModel.Description, Mode=OneWay}"
+                        TextTrimming="CharacterEllipsis"
+                        TextWrapping="Wrap" />
+                </Grid>
+            </ListView.Header>
             <ListView.ItemContainerStyle>
                 <Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
