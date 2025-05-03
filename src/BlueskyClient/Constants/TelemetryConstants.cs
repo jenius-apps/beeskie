@@ -24,6 +24,8 @@ public sealed class TelemetryConstants
     public const string ImageViewerClosed = ShellPage + "imageViewerClosed";
     public const string FeedbackClicked = ShellPage + "feedbackClicked";
     public const string LogoutClicked = ShellPage + "logoutClicked";
+    public const string ShellBackClicked = $"{ShellPage}backClicked";
+    public const string ShellForwardClicked = $"{ShellPage}forwardClicked";
 
     private const string NewPostDialog = "newPostDialog:";
     public const string PostSubmissionClicked = NewPostDialog + "submissionClicked";

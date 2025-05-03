@@ -14,7 +14,6 @@
     xmlns:vm="using:BlueskyClient.ViewModels"
     xmlns:wct="using:CommunityToolkit.WinUI.Controls"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
-    Background="Transparent"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -23,53 +22,23 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="104" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="240" />
         </Grid.ColumnDefinitions>
 
-        <Border Background="{ThemeResource SystemControlAcrylicElementBrush}" Canvas.ZIndex="1" />
 
-        <Grid
-            x:Name="TitleBar"
-            Grid.ColumnSpan="3"
-            Height="32"
-            Margin="-240,0,0,0"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Top"
-            Background="Transparent"
-            Canvas.ZIndex="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition x:Name="LeftPaddingColumn" Width="0" />
-                <ColumnDefinition />
-                <ColumnDefinition x:Name="RightPaddingColumn" Width="0" />
-            </Grid.ColumnDefinitions>
-        </Grid>
-
-        <StackPanel
-            MaxWidth="{StaticResource SearchHeaderMaxWidth}"
-            Margin="20,20,20,0"
-            Canvas.ZIndex="3">
-
-            <AutoSuggestBox
-                Margin="0"
-                PlaceholderText="{x:Bind strings:Resources.SearchText}"
-                QueryIcon="Find"
-                QuerySubmitted="OnQuerySubmitted"
-                Text="{x:Bind ViewModel.Query, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
-            <wct:Segmented Margin="0,8,0,0" SelectedIndex="{x:Bind ViewModel.SearchTabIndex, Mode=TwoWay}">
+        <StackPanel MaxWidth="600" Margin="0,12">
+            <wct:Segmented HorizontalAlignment="Stretch" SelectedIndex="{x:Bind ViewModel.SearchTabIndex, Mode=TwoWay}">
                 <wct:SegmentedItem Content="{x:Bind strings:Resources.SortTopText}" />
                 <wct:SegmentedItem Content="{x:Bind strings:Resources.SortLatestText}" />
                 <wct:SegmentedItem Content="{x:Bind strings:Resources.PeopleText}" />
                 <!--<wct:SegmentedItem Content="{x:Bind strings:Resources.FeedsText}" />-->
             </wct:Segmented>
-
         </StackPanel>
 
         <Rectangle
@@ -81,7 +50,7 @@
 
         <ListView
             x:Name="SearchResultsListView"
-            Grid.Row="2"
+            Grid.Row="1"
             Padding="0,20,0,0"
             DataFetchSize="1"
             IncrementalLoadingThreshold="1"
@@ -107,7 +76,7 @@
 
         <ListView
             x:Name="FeedGeneratorResultsListView"
-            Grid.Row="2"
+            Grid.Row="1"
             Padding="0,20,0,0"
             DataFetchSize="1"
             IncrementalLoadingThreshold="1"
@@ -199,7 +168,7 @@
 
         <ListView
             x:Name="ActorResultsListView"
-            Grid.Row="2"
+            Grid.Row="1"
             Padding="0,20,0,0"
             DataFetchSize="1"
             IncrementalLoadingThreshold="1"
@@ -225,7 +194,7 @@
         </ListView>
 
         <StackPanel
-            Grid.Row="2"
+            Grid.Row="1"
             Margin="0,20,0,0"
             Visibility="{x:Bind ViewModel.SearchLoading, Mode=OneWay}">
             <controls:FeedItemShimmer />
@@ -234,7 +203,7 @@
         </StackPanel>
 
         <Grid
-            Grid.Row="2"
+            Grid.Row="1"
             MaxWidth="{StaticResource SearchHeaderMaxWidth}"
             Margin="20,20,20,0"
             Visibility="{x:Bind ViewModel.SearchPagePlaceholderVisible, Mode=OneWay}">
@@ -277,17 +246,11 @@
             </ListView>
         </Grid>
 
-        <Rectangle
-            Grid.RowSpan="2"
-            Grid.Column="1"
-            Width="1"
-            VerticalAlignment="Stretch"
-            Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
-
         <Grid
             Grid.RowSpan="2"
-            Grid.Column="2"
-            Margin="0,66,0,0">
+            Grid.Column="1"
+            BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}"
+            BorderThickness="1,0,0,0">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -296,7 +259,7 @@
 
             <TextBlock
                 x:Name="RecentSearchesTitle"
-                Margin="20,0"
+                Margin="20,20,20,0"
                 FontWeight="SemiBold"
                 Text="{x:Bind strings:Resources.RecentSearchesText}"
                 TextTrimming="CharacterEllipsis" />
@@ -344,9 +307,9 @@
                                     CommandParameter="{x:Bind}"
                                     ToolTipService.ToolTip="{x:Bind strings:Resources.DeleteText}">
                                     <FontIcon
-                                        FontFamily="{StaticResource FluentUIGlyphs}"
                                         FontSize="14"
-                                        Glyph="{StaticResource GlyphCloseThin}" />
+                                        Glyph="{StaticResource GlyphCloseThin}"
+                                        Style="{StaticResource PostButtonIconStyle}" />
                                 </Button>
                             </Grid>
                         </ListViewItem>

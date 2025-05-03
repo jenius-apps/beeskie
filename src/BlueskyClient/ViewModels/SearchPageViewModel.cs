@@ -22,6 +22,7 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
     private readonly IDiscoverService _discoverService;
     private readonly IAuthorViewModelFactory _authorViewModelFactory;
     private readonly IFeedGeneratorViewModelFactory _feedGeneratorViewModelFactory;
+    private readonly ISearchInPlaceRequester _searchInPlaceRequester;
     private string? _cursor;
     private string? _currentQuery;
     private SearchOptions? _currentOptions;
@@ -33,7 +34,8 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
         ITelemetry telemetry,
         IDiscoverService discoverService,
         IAuthorViewModelFactory authorViewModelFactory,
-        IFeedGeneratorViewModelFactory feedGeneratorViewModelFactory)
+        IFeedGeneratorViewModelFactory feedGeneratorViewModelFactory,
+        ISearchInPlaceRequester searchInPlaceRequester)
     {
         _searchService = searchService;
         _feedItemFactory = feedItemFactory;
@@ -41,6 +43,7 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
         _discoverService = discoverService;
         _authorViewModelFactory = authorViewModelFactory;
         _feedGeneratorViewModelFactory = feedGeneratorViewModelFactory;
+        _searchInPlaceRequester = searchInPlaceRequester;
 
         RecentSearches.CollectionChanged += OnRecentSearchesCollectionChanged;
     }
@@ -93,6 +96,7 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
         {
             _initialized = true;
             _searchService.RecentSearchAdded += OnRecentSearchAdded;
+            _searchInPlaceRequester.SearchRequested += OnSearchRequested;
         }
 
         var recentSearches = _searchService.GetRecentSearches();
@@ -134,6 +138,17 @@ public partial class SearchPageViewModel : ObservableObject, ISupportPagination<
 
         Query = query;
         return NewSearchAsync(ct);
+    }
+
+    private async void OnSearchRequested(object sender, SearchPageNavigationArgs e)
+    {
+        if (e.RequestedQuery is not { Length: > 0 } query || query == Query)
+        {
+            return;
+        }
+
+        Query = query;
+        await NewSearchAsync(default);
     }
 
     [RelayCommand]

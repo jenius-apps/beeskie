@@ -106,7 +106,9 @@ partial class App
                 serviceProvider.GetRequiredService<IAuthenticationService>(),
                 serviceProvider.GetRequiredService<IImageViewerService>(),
                 serviceProvider.GetRequiredService<IAuthorViewModelFactory>(),
-                serviceProvider.GetRequiredService<INotificationsService>());
+                serviceProvider.GetRequiredService<INotificationsService>(),
+                serviceProvider.GetRequiredService<ISearchInPlaceRequester>(),
+                serviceProvider.GetRequiredService<IRefreshPageRequester>());
         });
 
         collection.AddSingleton<ISecureCredentialStorage>(_ => new WindowsCredentialStorage("blueskyClientCredentials"));
@@ -130,8 +132,8 @@ partial class App
     [Singleton(typeof(FeedGeneratorViewModelFactory), typeof(IFeedGeneratorViewModelFactory))]
     [Singleton(typeof(AuthorViewModelFactory), typeof(IAuthorViewModelFactory))]
     [Singleton(typeof(NotificationsService), typeof(INotificationsService))]
-    [Singleton(typeof(ProfileCache), typeof(ICache<Author>))]
-    [Singleton(typeof(FeedGeneratorCache), typeof(ICache<FeedGenerator>))]
+    [Singleton(typeof(ProfileCache), typeof(Caches.ICache<Author>))]
+    [Singleton(typeof(FeedGeneratorCache), typeof(Caches.ICache<FeedGenerator>))]
     [Singleton(typeof(ProfileService), typeof(IProfileService))]
     [Singleton(typeof(FeedGeneratorService), typeof(IFeedGeneratorService))]
     [Singleton(typeof(PostSubmissionService), typeof(IPostSubmissionService))]
@@ -143,6 +145,8 @@ partial class App
     [Singleton(typeof(FutureAccessFilePicker), typeof(IFutureAccessFilePicker))]
     [Singleton(typeof(UploadBlobService), typeof(IUploadBlobService))]
     [Singleton(typeof(FacetService), typeof(IFacetService))]
+    [Singleton(typeof(SearchInPlaceRequester), typeof(ISearchInPlaceRequester))]
+    [Singleton(typeof(RefreshPageRequester), typeof(IRefreshPageRequester))]
     [Transient(typeof(HomePageViewModel))]
     [Transient(typeof(NotificationsPageViewModel))]
     [Transient(typeof(ProfileControlViewModel))]

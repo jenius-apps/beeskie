@@ -1,11 +1,9 @@
 ﻿using BlueskyClient.Collections;
-using BlueskyClient.Extensions.Uwp;
 using BlueskyClient.Models;
 using BlueskyClient.ViewModels;
 using JeniusApps.Common.Telemetry;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -22,8 +20,6 @@ public sealed partial class SearchPage : Page
         FeedCollection = new PaginatedCollection<FeedItemViewModel>(ViewModel, ViewModel.CollectionSource);
         ActorCollection = new PaginatedCollection<AuthorViewModel>(ViewModel, ViewModel.ActorsCollectionSource);
         FeedGeneratorsCollection = new PaginatedCollection<FeedGeneratorViewModel>(ViewModel, ViewModel.FeedsCollectionSrouce);
-
-        Window.Current.SetTitleBar(TitleBar);
     }
 
     public SearchPageViewModel ViewModel { get; }
@@ -43,10 +39,6 @@ public sealed partial class SearchPage : Page
             await ViewModel.InitializeAsync(e.Parameter as SearchPageNavigationArgs, default);
         }
         catch (OperationCanceledException) { }
-
-        SearchResultsListView.SetupRenderOutsideBounds();
-        ActorResultsListView.SetupRenderOutsideBounds(); // TODO, this doesn't work because the listview is still collapsed.
-        FeedGeneratorResultsListView.SetupRenderOutsideBounds(); // TODO, this doesn't work because the listview is still collapsed.
     }
 
     protected override void OnNavigatedFrom(NavigationEventArgs e)

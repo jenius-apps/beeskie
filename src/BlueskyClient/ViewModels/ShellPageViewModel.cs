@@ -25,6 +25,8 @@ public partial class ShellPageViewModel : ObservableObject
     private readonly IAuthenticationService _authenticationService;
     private readonly IImageViewerService _imageViewerService;
     private readonly INotificationsService _notificationService;
+    private readonly ISearchInPlaceRequester _searchInPlaceRequester;
+    private readonly IRefreshPageRequester _refreshPageRequester;
     private MenuItem? _lastSelectedMenu;
     private readonly MenuItem _notificationMenuItem;
 
@@ -38,7 +40,9 @@ public partial class ShellPageViewModel : ObservableObject
         IAuthenticationService authenticationService,
         IImageViewerService imageViewerService,
         IAuthorViewModelFactory authorFactory,
-        INotificationsService notificationsService)
+        INotificationsService notificationsService,
+        ISearchInPlaceRequester searchInPlaceRequester,
+        IRefreshPageRequester refreshPageRequester)
     {
         AuthorViewModel = authorFactory.CreateStub();
         _localizer = localizer;
@@ -50,6 +54,8 @@ public partial class ShellPageViewModel : ObservableObject
         _authenticationService = authenticationService;
         _imageViewerService = imageViewerService;
         _notificationService = notificationsService;
+        _searchInPlaceRequester = searchInPlaceRequester;
+        _refreshPageRequester = refreshPageRequester;
 
         MenuItems.Add(new MenuItem(NavigateContentPageCommand, _localizer.GetString("HomeText"), "\uEA8A", NavigationConstants.HomePage));
         MenuItems.Add(new MenuItem(NavigateContentPageCommand, _localizer.GetString("SearchText"), "\uE721", NavigationConstants.SearchPage));
@@ -61,26 +67,11 @@ public partial class ShellPageViewModel : ObservableObject
 #endif
     }
 
-    private void OnContentPageNavigated(object sender, string key)
-    {
-        if (_lastSelectedMenu?.Tag == key)
-        {
-            return;
-        }
-
-        foreach (var item in MenuItems)
-        {
-            if (item.Tag == key)
-            {
-                item.IsSelected = true;
-                _lastSelectedMenu = item;
-            }
-            else
-            {
-                item.IsSelected = false;
-            }
-        }
-    }
+    /// <summary>
+    /// The user's search query input.
+    /// </summary>
+    [ObservableProperty]
+    private string _query = string.Empty;
 
     public AuthorViewModel AuthorViewModel { get; }
 
@@ -233,5 +224,66 @@ public partial class ShellPageViewModel : ObservableObject
         {
             { "signedOut", result.ToString() }
         });
+    }
+
+    [RelayCommand]
+    private async Task NewSearchAsync()
+    {
+        if (_lastSelectedMenu?.Tag == NavigationConstants.SearchPage)
+        {
+            // perform search in-place
+            _searchInPlaceRequester.RequestSearch(Query);
+        }
+        else
+        {
+            _contentNavigator.NavigateTo(NavigationConstants.SearchPage, new SearchPageNavigationArgs
+            {
+                RequestedQuery = Query
+            });
+        }
+
+        _telemetry.TrackEvent(TelemetryConstants.SearchTriggered);
+        await Task.Delay(1000); // To help prevent spam clicks, we add this 1s buffer
+    }
+
+    [RelayCommand]
+    private void RefreshPage()
+    {
+        _refreshPageRequester.RequestRefresh();
+    }
+
+    [RelayCommand]
+    private void GoBack()
+    {
+        _contentNavigator.GoBack();
+        _telemetry.TrackEvent(TelemetryConstants.ShellBackClicked);
+    }
+
+    [RelayCommand]
+    private void GoForward()
+    {
+        _contentNavigator.GoForward();
+        _telemetry.TrackEvent(TelemetryConstants.ShellForwardClicked);
+    }
+
+    private void OnContentPageNavigated(object sender, string key)
+    {
+        if (_lastSelectedMenu?.Tag == key)
+        {
+            return;
+        }
+
+        foreach (var item in MenuItems)
+        {
+            if (item.Tag == key)
+            {
+                item.IsSelected = true;
+                _lastSelectedMenu = item;
+            }
+            else
+            {
+                item.IsSelected = false;
+            }
+        }
     }
 }

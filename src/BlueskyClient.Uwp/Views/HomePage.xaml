@@ -12,6 +12,7 @@
     xmlns:strings="using:BlueskyClient.Strings"
     xmlns:templates="using:BlueskyClient.ResourceDictionaries"
     xmlns:vm="using:BlueskyClient.ViewModels"
+    xmlns:wct="using:CommunityToolkit.WinUI.Controls"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -20,72 +21,39 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="48" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="300" />
-        </Grid.ColumnDefinitions>
-
-        <Border Background="{ThemeResource SystemControlAcrylicElementBrush}" Canvas.ZIndex="1" />
-
-        <Grid
-            x:Name="TitleBar"
-            Grid.ColumnSpan="3"
-            Height="32"
-            Margin="-240,0,0,0"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Top"
-            Background="Transparent"
-            Canvas.ZIndex="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition x:Name="LeftPaddingColumn" Width="0" />
-                <ColumnDefinition />
-                <ColumnDefinition x:Name="RightPaddingColumn" Width="0" />
-            </Grid.ColumnDefinitions>
-        </Grid>
-
-        <TextBlock
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Canvas.ZIndex="1"
-            FontWeight="SemiBold"
-            Text="{x:Bind ViewModel.SelectedFeed.DisplayName, Mode=OneWay}" />
-
-        <Button
-            Margin="0,0,12,0"
-            Padding="8"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Center"
-            AutomationProperties.Name="{x:Bind strings:Resources.RefreshText}"
-            Background="Transparent"
-            BorderBrush="Transparent"
-            Canvas.ZIndex="3"
-            Command="{x:Bind ViewModel.RefreshFeedCommand}"
-            ToolTipService.ToolTip="{x:Bind const:StringShortcuts.RefreshTooltip}">
-            <Button.KeyboardAccelerators>
-                <KeyboardAccelerator Key="R" Modifiers="Control" />
-            </Button.KeyboardAccelerators>
-            <FontIcon
-                FontFamily="{StaticResource FluentUIGlyphs}"
-                FontSize="14"
-                Glyph="{StaticResource GlyphRefresh}" />
-        </Button>
+        <StackPanel
+            MaxWidth="600"
+            Margin="0,12,240,12"
+            Visibility="{x:Bind ViewModel.FeedSelectorVisible, Mode=OneWay}">
+            <wct:Segmented
+                HorizontalAlignment="Stretch"
+                ItemsSource="{x:Bind ViewModel.Feeds}"
+                SelectedItem="{x:Bind ViewModel.SelectedFeed, Mode=OneWay}"
+                SelectionChanged="OnFeedSelectionChanged">
+                <wct:Segmented.ItemTemplate>
+                    <DataTemplate x:DataType="vm:FeedGeneratorViewModel">
+                        <TextBlock Text="{x:Bind DisplayName}" TextTrimming="CharacterEllipsis" />
+                    </DataTemplate>
+                </wct:Segmented.ItemTemplate>
+            </wct:Segmented>
+        </StackPanel>
 
         <Rectangle
             Height="1"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Bottom"
-            Canvas.ZIndex="1"
-            Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
+            Fill="{ThemeResource DividerStrokeColorDefaultBrush}"
+            Visibility="{x:Bind ViewModel.FeedSelectorVisible, Mode=OneWay}" />
 
         <ListView
             x:Name="FeedListView"
             Grid.Row="1"
-            Padding="0,20,0,0"
+            Margin="0,0,-1,0"
+            Padding="0,32,240,0"
             DataFetchSize="1"
             IncrementalLoadingThreshold="1"
             IncrementalLoadingTrigger="Edge"
@@ -108,84 +76,14 @@
             </ListView.ItemContainerStyle>
         </ListView>
 
+        <!--  Loading shimmer  -->
         <StackPanel
             Grid.Row="1"
-            Margin="0,20,0,0"
+            Margin="0,20,240,0"
             Visibility="{x:Bind ViewModel.FeedLoading, Mode=OneWay}">
             <controls:FeedItemShimmer />
             <controls:FeedItemShimmer Margin="0,12,0,0" />
             <controls:FeedItemShimmer Margin="0,12,0,0" />
         </StackPanel>
-
-        <Rectangle
-            Grid.RowSpan="2"
-            Grid.Column="1"
-            Width="1"
-            VerticalAlignment="Stretch"
-            Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
-
-        <Grid
-            Grid.Row="1"
-            Grid.Column="2"
-            Padding="20,12,20,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <Grid VerticalAlignment="Top">
-                    <Ellipse
-                        Width="40"
-                        Height="40"
-                        Fill="{ThemeResource AccentFillColorDefaultBrush}" />
-                    <FontIcon
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        FontFamily="{StaticResource FluentUIGlyphs}"
-                        FontSize="14"
-                        Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}"
-                        Glyph="{StaticResource GlyphPinned}" />
-                    <FontIcon
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        FontFamily="{StaticResource FluentUIGlyphs}"
-                        FontSize="14"
-                        Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}"
-                        Glyph="{StaticResource GlyphPinnedFillOverlay}" />
-                </Grid>
-
-                <StackPanel Grid.Column="1" Margin="12,0,0,0">
-                    <TextBlock FontWeight="SemiBold" Text="{x:Bind strings:Resources.PinnedFeedsTitle}" />
-                    <TextBlock
-                        FontSize="12"
-                        Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                        Text="{x:Bind strings:Resources.PinnedFeedsSubtitle}"
-                        TextWrapping="Wrap" />
-                </StackPanel>
-            </Grid>
-
-            <ListView
-                Grid.Row="1"
-                Margin="0,12,0,0"
-                AutomationProperties.Name="{x:Bind strings:Resources.PinnedFeedsTitle}"
-                ItemsSource="{x:Bind ViewModel.Feeds}"
-                SelectedItem="{x:Bind ViewModel.SelectedFeed, Mode=OneWay}"
-                SelectionChanged="OnFeedSelectionChanged"
-                SingleSelectionFollowsFocus="False">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="vm:FeedGeneratorViewModel">
-                        <StackPanel>
-                            <TextBlock Text="{x:Bind DisplayName}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </Grid>
     </Grid>
 </Page>

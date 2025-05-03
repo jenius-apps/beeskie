@@ -23,7 +23,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid MaxWidth="{StaticResource FeedMaxWidth}">
+        <Grid MaxWidth="{StaticResource FeedMaxWidth}" Margin="0,0,240,0">
             <Grid.RowDefinitions>
                 <!--  0 hero image  -->
                 <RowDefinition Height="auto" />
@@ -120,7 +120,7 @@
 
         <ListView
             Grid.Row="1"
-            Margin="0,20,0,0"
+            Margin="0,20,240,0"
             ItemTemplate="{StaticResource FeedItemTemplate}"
             ItemsSource="{x:Bind ViewModel.FeedItems}"
             SelectionMode="None">

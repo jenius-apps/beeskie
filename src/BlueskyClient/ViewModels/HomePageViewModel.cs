@@ -3,6 +3,7 @@ using BlueskyClient.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using JeniusApps.Common.Telemetry;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading;
@@ -17,20 +18,24 @@ public partial class HomePageViewModel : ObservableObject, ISupportPagination<Fe
     private readonly IFeedGeneratorService _feedGeneratorService;
     private readonly IFeedGeneratorViewModelFactory _feedGeneratorViewModelFactory;
     private readonly ITelemetry _telemetry;
+    private readonly IRefreshPageRequester _refreshPageRequester;
     private string? _cursor;
+    private bool _initialized;
 
     public HomePageViewModel(
         ITimelineService timelineService,
         IFeedItemViewModelFactory feedItemViewModelFactory,
         IFeedGeneratorService feedGeneratorService,
         IFeedGeneratorViewModelFactory feedGeneratorViewModelFactory,
-        ITelemetry telemetry)
+        ITelemetry telemetry,
+        IRefreshPageRequester refreshPageRequester)
     {
         _timelineService = timelineService;
         _feedItemViewModelFactory = feedItemViewModelFactory;
         _feedGeneratorService = feedGeneratorService;
         _feedGeneratorViewModelFactory = feedGeneratorViewModelFactory;
         _telemetry = telemetry;
+        _refreshPageRequester = refreshPageRequester;
     }
 
     [ObservableProperty]
@@ -45,10 +50,22 @@ public partial class HomePageViewModel : ObservableObject, ISupportPagination<Fe
 
     public ObservableCollection<FeedItemViewModel> CollectionSource { get; } = [];
 
+    /// <summary>
+    /// Determines if the feed selector is visible;
+    /// </summary>
+    [ObservableProperty]
+    private bool _feedSelectorVisible;
+
     public async Task InitializeAsync(CancellationToken ct)
     {
         ct.ThrowIfCancellationRequested();
         FeedLoading = true;
+
+        if (!_initialized)
+        {
+            _initialized = true;
+            _refreshPageRequester.RefreshRequested += OnRefreshRequested;
+        }
 
         var feedGenerators = await _feedGeneratorService.GetSavedFeedsAsync(true, ct);
         foreach (var f in feedGenerators)
@@ -58,7 +75,13 @@ public partial class HomePageViewModel : ObservableObject, ISupportPagination<Fe
             SelectedFeed ??= vm;
         }
 
+        FeedSelectorVisible = Feeds.Count > 1;
         await LoadNextPageAsync(ct);
+    }
+
+    public void Uninitialize()
+    {
+        _refreshPageRequester.RefreshRequested -= OnRefreshRequested;
     }
 
     public async Task<int> LoadNextPageAsync(CancellationToken ct)
@@ -117,5 +140,10 @@ public partial class HomePageViewModel : ObservableObject, ISupportPagination<Fe
         CollectionSource.Clear();
         FeedLoading = true;
         await LoadNextPageAsync(default);
+    }
+
+    private async void OnRefreshRequested(object sender, EventArgs e)
+    {
+        await RefreshAsync();
     }
 }

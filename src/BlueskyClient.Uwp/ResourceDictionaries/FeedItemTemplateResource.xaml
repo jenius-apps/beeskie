@@ -9,11 +9,6 @@
     xmlns:strings="using:BlueskyClient.Strings"
     xmlns:vm="using:BlueskyClient.ViewModels">
 
-    <Style x:Key="PostButtonIconStyle" TargetType="FontIcon">
-        <Setter Property="FontSize" Value="16" />
-        <Setter Property="FontFamily" Value="{StaticResource FluentUIGlyphs}" />
-        <Setter Property="Foreground" Value="{ThemeResource TextFillColorTertiaryBrush}" />
-    </Style>
     <Style x:Key="PostButtonIconTextStyle" TargetType="TextBlock">
         <Setter Property="FontSize" Value="12" />
         <Setter Property="Margin" Value="8,0,0,0" />
