@@ -50,6 +50,7 @@
 
                     <x:Double x:Key="FeedMaxWidth">600</x:Double>
                     <x:Double x:Key="SearchHeaderMaxWidth">640</x:Double>
+                    <x:Double x:Key="FullTitleBarMinWidth">1080</x:Double>
 
                     <Style
                         x:Key="SquareSmallHyperlinkButton"

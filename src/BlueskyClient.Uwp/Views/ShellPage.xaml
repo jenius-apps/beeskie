@@ -44,10 +44,15 @@
             <VisualStateGroup>
                 <VisualState>
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1080" />
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource FullTitleBarMinWidth}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="AppDisplayText.Visibility" Value="Visible" />
+                        <Setter Target="SearchBox.Visibility" Value="Visible" />
+                        <Setter Target="RightTitleBarButtons.(Grid.Column)" Value="2" />
+                        <Setter Target="LeftButtonsColumn.Width" Value="*" />
+                        <Setter Target="LeftTitleBarButtons.Margin" Value="0,0,8,0" />
+                        <Setter Target="RightTitleBarButtons.Margin" Value="8,0,0,0" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -112,13 +117,14 @@
 
             <Grid Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition x:Name="LeftButtonsColumn" Width="auto" />
                     <ColumnDefinition Width="3*" MaxWidth="600" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
                 <StackPanel
-                    Margin="0,0,8,0"
+                    x:Name="LeftTitleBarButtons"
+                    Margin="40,0,0,0"
                     HorizontalAlignment="Right"
                     Orientation="Horizontal">
                     <HyperlinkButton
@@ -145,6 +151,7 @@
                 </StackPanel>
 
                 <AutoSuggestBox
+                    x:Name="SearchBox"
                     Grid.Column="1"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center"
@@ -153,11 +160,20 @@
                     PlaceholderText="{x:Bind strings:Resources.SearchText}"
                     QueryIcon="Find"
                     QuerySubmitted="OnQuerySubmitted"
-                    Text="{x:Bind ViewModel.Query, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    Text="{x:Bind ViewModel.Query, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Visibility="Collapsed">
+                    <ani:Implicit.ShowAnimations>
+                        <ani:OpacityAnimation
+                            From="0"
+                            To="1"
+                            Duration="0:0:0.3" />
+                    </ani:Implicit.ShowAnimations>
+                </AutoSuggestBox>
 
                 <StackPanel
-                    Grid.Column="2"
-                    Margin="8,0,0,0"
+                    x:Name="RightTitleBarButtons"
+                    Grid.Column="1"
+                    Margin="2,0,0,0"
                     Orientation="Horizontal">
                     <HyperlinkButton
                         AutomationProperties.Name="{x:Bind strings:Resources.RefreshText}"

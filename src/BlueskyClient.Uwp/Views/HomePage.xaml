@@ -24,10 +24,25 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource FullTitleBarMinWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="FeedSelector.Margin" Value="12,12,240,12" />
+                        <Setter Target="FeedListView.Padding" Value="0,32,240,0" />
+                        <Setter Target="ShimmerPlaceholder.Margin" Value="0,20,240,0" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
 
         <StackPanel
+            x:Name="FeedSelector"
             MaxWidth="600"
-            Margin="0,12,240,12"
+            Margin="12"
             Visibility="{x:Bind ViewModel.FeedSelectorVisible, Mode=OneWay}">
             <wct:Segmented
                 HorizontalAlignment="Stretch"
@@ -53,7 +68,7 @@
             x:Name="FeedListView"
             Grid.Row="1"
             Margin="0,0,-1,0"
-            Padding="0,32,240,0"
+            Padding="0,32,0,0"
             DataFetchSize="1"
             IncrementalLoadingThreshold="1"
             IncrementalLoadingTrigger="Edge"
@@ -78,8 +93,9 @@
 
         <!--  Loading shimmer  -->
         <StackPanel
+            x:Name="ShimmerPlaceholder"
             Grid.Row="1"
-            Margin="0,20,240,0"
+            Margin="0,20,0,0"
             Visibility="{x:Bind ViewModel.FeedLoading, Mode=OneWay}">
             <controls:FeedItemShimmer />
             <controls:FeedItemShimmer Margin="0,12,0,0" />
