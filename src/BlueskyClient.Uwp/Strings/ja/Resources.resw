@@ -181,4 +181,7 @@
     <value>ホームにピン留め</value>
     <comment>Pinning or bookmarking a feed so you can see it from the home page</comment>
   </data>
+  <data name="ForwardText" xml:space="preserve">
+    <value>フォワード</value>
+  </data>
 </root>

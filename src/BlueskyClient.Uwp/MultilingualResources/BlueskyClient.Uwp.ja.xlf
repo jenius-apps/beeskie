@@ -233,7 +233,7 @@
         </trans-unit>
         <trans-unit id="ForwardText" translate="yes" xml:space="preserve">
           <source>Forward</source>
-          <target state="new">Forward</target>
+          <target state="translated">フォワード</target>
         </trans-unit>
       </group>
     </body>

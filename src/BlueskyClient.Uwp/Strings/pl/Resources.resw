@@ -178,4 +178,7 @@
     <value>Przypnij do ekranu głównego</value>
     <comment>Pinning or bookmarking a feed so you can see it from the home page</comment>
   </data>
+  <data name="ForwardText" xml:space="preserve">
+    <value>Naprzód</value>
+  </data>
 </root>

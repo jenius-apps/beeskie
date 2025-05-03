@@ -181,4 +181,7 @@
     <value>Anclar a la página de inicio</value>
     <comment>Pinning or bookmarking a feed so you can see it from the home page</comment>
   </data>
+  <data name="ForwardText" xml:space="preserve">
+    <value>Adelante</value>
+  </data>
 </root>
