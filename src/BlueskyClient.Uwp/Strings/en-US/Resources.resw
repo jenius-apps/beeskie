@@ -147,6 +147,9 @@
   <data name="FollowText" xml:space="preserve">
     <value>Follow</value>
   </data>
+  <data name="ForwardText" xml:space="preserve">
+    <value>Forward</value>
+  </data>
   <data name="HomeText" xml:space="preserve">
     <value>Home</value>
   </data>

@@ -252,6 +252,20 @@ public partial class ShellPageViewModel : ObservableObject
         _refreshPageRequester.RequestRefresh();
     }
 
+    [RelayCommand]
+    private void GoBack()
+    {
+        _contentNavigator.GoBack();
+        _telemetry.TrackEvent(TelemetryConstants.ShellBackClicked);
+    }
+
+    [RelayCommand]
+    private void GoForward()
+    {
+        _contentNavigator.GoForward();
+        _telemetry.TrackEvent(TelemetryConstants.ShellForwardClicked);
+    }
+
     private void OnContentPageNavigated(object sender, string key)
     {
         if (_lastSelectedMenu?.Tag == key)

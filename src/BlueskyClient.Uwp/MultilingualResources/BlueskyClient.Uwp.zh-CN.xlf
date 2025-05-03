@@ -231,6 +231,10 @@
           <target state="translated">固定到主页</target>
           <note from="MultilingualBuild" annotates="source" priority="2">Pinning or bookmarking a feed so you can see it from the home page</note>
         </trans-unit>
+        <trans-unit id="ForwardText" translate="yes" xml:space="preserve">
+          <source>Forward</source>
+          <target state="new">Forward</target>
+        </trans-unit>
       </group>
     </body>
   </file>
