@@ -29,6 +29,7 @@ public class ProfileService : IProfileService
         _authenticationService = authenticationService;
     }
 
+    /// <inheritdoc/>
     public async Task<Author?> GetCurrentUserAsync()
     {
         string? identifier = _userSettings.Get<string>(UserSettingsConstants.SignedInDIDKey);
@@ -40,6 +41,20 @@ public class ProfileService : IProfileService
         return await _profileCache.GetItemAsync(identifier, default);
     }
 
+    /// <inheritdoc/>
+    public async Task<Author?> GetFullAuthorProfileAsync(string? identifier, CancellationToken cancellationToken)
+    {
+        if (identifier is not { Length: > 0 })
+        {
+            return null;
+        }
+
+        cancellationToken.ThrowIfCancellationRequested();
+
+        return await _profileCache.GetItemAsync(identifier, cancellationToken);
+    }
+
+    /// <inheritdoc/>
     public async Task<IReadOnlyList<FeedItem>> GetProfileFeedAsync(string handle)
     {
         if (handle is not { Length: > 0 })
