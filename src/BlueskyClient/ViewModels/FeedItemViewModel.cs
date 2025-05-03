@@ -1,7 +1,10 @@
 ﻿using Bluesky.NET.Constants;
 using Bluesky.NET.Models;
+using BlueskyClient.Constants;
 using BlueskyClient.Extensions;
+using BlueskyClient.Models;
 using BlueskyClient.Services;
+using CommunityToolkit.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Humanizer;
@@ -19,6 +22,7 @@ public partial class FeedItemViewModel : ObservableObject
     private readonly IDialogService _dialogService;
     private readonly ILocalizer _localizer;
     private readonly FeedPostReason? _reason;
+    private readonly INavigator _contentNavigator;
 
     private string? _likeUri;
     private string? _repostUri;
@@ -29,7 +33,8 @@ public partial class FeedItemViewModel : ObservableObject
         IPostSubmissionService postSubmissionService,
         IDialogService dialogService,
         ILocalizer localizer,
-        IAuthorViewModelFactory authorFactory)
+        IAuthorViewModelFactory authorFactory,
+        INavigator contentNavigator)
     {
         Post = post;
         _reason = reason;
@@ -37,6 +42,7 @@ public partial class FeedItemViewModel : ObservableObject
         _postSubmissionService = postSubmissionService;
         _dialogService = dialogService;
         _localizer = localizer;
+        _contentNavigator = contentNavigator;
 
         IsLiked = post.Viewer?.Like is not null;
         IsReposted = post.Viewer?.Repost is not null;
@@ -80,7 +86,7 @@ public partial class FeedItemViewModel : ObservableObject
 
     public PostEmbed? PostEmbed => Post?.Embed;
 
-    public FeedRecord? QuotedPost => 
+    public FeedRecord? QuotedPost =>
         (Post?.Embed?.Record?.Record ?? Post?.Embed?.Record) is FeedRecord record &&
         record.Type.GetRecordType() is not RecordType.StarterPack
             ? record
@@ -100,6 +106,18 @@ public partial class FeedItemViewModel : ObservableObject
 
     [ObservableProperty]
     private string _likeCount = string.Empty;
+
+    /// <summary>
+    /// Navigates to the profile page of the user associated wtih this feed item.
+    /// </summary>
+    [RelayCommand]
+    private void OpenProfile()
+    {
+        _contentNavigator.NavigateTo(NavigationConstants.ProfilePage, new ProfileNavigationArgs
+        {
+            Author = AuthorViewModel.Author
+        });
+    }
 
     [RelayCommand]
     private async Task ReplyAsync()

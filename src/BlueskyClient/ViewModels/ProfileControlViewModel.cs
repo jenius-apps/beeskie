@@ -1,11 +1,8 @@
 ﻿using Bluesky.NET.Models;
-using BlueskyClient.Extensions;
+using BlueskyClient.Models;
 using BlueskyClient.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -30,22 +27,23 @@ public partial class ProfileControlViewModel : ObservableObject
 
     public ObservableCollection<FeedItemViewModel> FeedItems { get; } = [];
 
-    public async Task InitializeCurrentUserProfileAsync(CancellationToken ct)
+    public async Task InitializeAsync(ProfileNavigationArgs? args, CancellationToken cancellationToken)
     {
-        ct.ThrowIfCancellationRequested();
-        Author? author = await _profileService.GetCurrentUserAsync();
+        cancellationToken.ThrowIfCancellationRequested();
+        Author? author = args?.Author ?? await _profileService.GetCurrentUserAsync();
         AuthorViewModel.SetAuthor(author);
 
         if (author?.Handle is not { Length: > 0 } handle)
         {
             return;
         }
-        ct.ThrowIfCancellationRequested();
+        cancellationToken.ThrowIfCancellationRequested();
 
+        FeedItems.Clear();
         var feedItems = await _profileService.GetProfileFeedAsync(handle);
         foreach (var f in feedItems)
         {
-            ct.ThrowIfCancellationRequested();
+            cancellationToken.ThrowIfCancellationRequested();
             var vm = _feedItemViewModelFactory.CreateViewModel(f);
             FeedItems.Add(vm);
         }

@@ -123,11 +123,19 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <PersonPicture
-                    Width="48"
-                    Height="48"
+                <HyperlinkButton
+                    Width="52"
+                    Height="52"
+                    Padding="0"
                     VerticalAlignment="Top"
-                    ProfilePicture="{x:Bind AuthorViewModel.AvatarUrl, Mode=OneWay}" />
+                    AutomationProperties.Name="{x:Bind AuthorViewModel.DisplayName, Mode=OneWay}"
+                    Command="{x:Bind OpenProfileCommand}"
+                    CornerRadius="26">
+                    <PersonPicture
+                        Width="48"
+                        Height="48"
+                        ProfilePicture="{x:Bind AuthorViewModel.AvatarUrl, Mode=OneWay}" />
+                </HyperlinkButton>
 
                 <Grid Grid.Column="1" Margin="12,0,0,0">
                     <Grid.RowDefinitions>

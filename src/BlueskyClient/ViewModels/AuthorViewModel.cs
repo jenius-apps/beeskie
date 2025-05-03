@@ -17,7 +17,6 @@ public partial class AuthorViewModel : ObservableObject
     private readonly string _telemetryContext;
     private readonly IProfileService _profileService;
     private readonly ITelemetry _telemetry;
-    private Author? _author;
 
     public AuthorViewModel(
         Author? author,
@@ -25,52 +24,57 @@ public partial class AuthorViewModel : ObservableObject
         ITelemetry telemetry,
         string telemetryContext)
     {
-        _author = author;
+        Author = author;
         _profileService = profileService;
         _telemetry = telemetry;
         _telemetryContext = telemetryContext;
     }
 
+    /// <summary>
+    /// The <see cref="Bluesky.NET.Models.Author"/> associated with this viewmodel.
+    /// </summary>
+    public Author? Author { get; private set; }
+
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(AlreadyFollowed))]
     private bool _followSuccessful;
 
-    public string DisplayName => _author?.DisplayName is { Length: > 0 } displayName
+    public string DisplayName => Author?.DisplayName is { Length: > 0 } displayName
         ? displayName
-        : _author?.Handle ?? string.Empty;
+        : Author?.Handle ?? string.Empty;
 
-    public string AtHandle => _author?.AtHandle ?? string.Empty;
+    public string AtHandle => Author?.AtHandle ?? string.Empty;
 
-    public string Handle => _author?.Handle ?? string.Empty;
+    public string Handle => Author?.Handle ?? string.Empty;
 
-    public string Description => _author?.Description ?? string.Empty;
+    public string Description => Author?.Description ?? string.Empty;
 
-    public string AvatarUrl => _author.SafeAvatarUrl();
+    public string AvatarUrl => Author.SafeAvatarUrl();
 
-    public string BannerUrl => _author.SafeAvatarUrl();
+    public string BannerUrl => Author.SafeAvatarUrl();
 
-    public Uri BannerUri => _author.SafeBannerUri();
+    public Uri BannerUri => Author.SafeBannerUri();
 
-    public string FollowersCount => _author.FollowersCount();
+    public string FollowersCount => Author.FollowersCount();
 
-    public string FollowingCount => _author.FollowsCount();
+    public string FollowingCount => Author.FollowsCount();
 
-    public string PostsCount => _author.PostsCount();
+    public string PostsCount => Author.PostsCount();
 
-    public bool BannerVisible => !string.IsNullOrEmpty(_author?.Banner);
+    public bool BannerVisible => !string.IsNullOrEmpty(Author?.Banner);
 
-    public bool AlreadyFollowed => _author?.Viewer?.Following is { Length: > 0 } || FollowSuccessful;
+    public bool AlreadyFollowed => Author?.Viewer?.Following is { Length: > 0 } || FollowSuccessful;
 
     public void SetAuthor(Author? author)
     {
-        _author = author;
+        Author = author;
         OnPropertyChanged(string.Empty);
     }
 
     [RelayCommand]
     private async Task FollowAsync(CancellationToken ct)
     {
-        if (AlreadyFollowed || _author?.Did is not { Length: > 0 } subjectDid)
+        if (AlreadyFollowed || Author?.Did is not { Length: > 0 } subjectDid)
         {
             return;
         }
