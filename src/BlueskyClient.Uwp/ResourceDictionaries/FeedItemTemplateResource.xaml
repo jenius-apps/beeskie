@@ -147,11 +147,23 @@
                     </Grid.RowDefinitions>
 
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock FontWeight="SemiBold" Text="{x:Bind AuthorViewModel.DisplayName, Mode=OneWay}" />
-                        <TextBlock
-                            Margin="4,0,0,0"
-                            Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                            Text="{x:Bind AuthorViewModel.AtHandle, Mode=OneWay}" />
+                        <HyperlinkButton
+                            Margin="-2,0,0,0"
+                            Padding="0"
+                            AutomationProperties.Name="{x:Bind AuthorViewModel.DisplayName, Mode=OneWay}"
+                            Command="{x:Bind OpenProfileCommand}">
+                            <TextBlock
+                                FontWeight="SemiBold"
+                                Foreground="{ThemeResource TextFillColorPrimaryBrush}"
+                                Text="{x:Bind AuthorViewModel.DisplayName, Mode=OneWay}" />
+                        </HyperlinkButton>
+                        <HyperlinkButton
+                            Margin="2,0,0,0"
+                            Padding="0"
+                            AutomationProperties.Name="{x:Bind AuthorViewModel.AtHandle, Mode=OneWay}"
+                            Command="{x:Bind OpenProfileCommand}">
+                            <TextBlock Foreground="{ThemeResource TextFillColorTertiaryBrush}" Text="{x:Bind AuthorViewModel.AtHandle, Mode=OneWay}" />
+                        </HyperlinkButton>
                         <TextBlock
                             Margin="4,0"
                             Foreground="{ThemeResource TextFillColorTertiaryBrush}"
