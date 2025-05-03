@@ -164,6 +164,9 @@
     <Compile Include="Tools\AppSettings.cs" />
     <Compile Include="Tools\FileReaderWriter.cs" />
     <Compile Include="Tools\FutureAccessFilePicker.cs" />
+    <Compile Include="Views\AuthorPage.xaml.cs">
+      <DependentUpon>AuthorPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\FeedsPage.xaml.cs">
       <DependentUpon>FeedsPage.xaml</DependentUpon>
     </Compile>
@@ -325,6 +328,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ResourceDictionaries\FeedItemTemplateResource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AuthorPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

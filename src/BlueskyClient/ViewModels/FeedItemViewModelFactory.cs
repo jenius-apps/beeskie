@@ -1,4 +1,5 @@
 ﻿using Bluesky.NET.Models;
+using BlueskyClient.Constants;
 using BlueskyClient.Services;
 using JeniusApps.Common.Tools;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +29,7 @@ public class FeedItemViewModelFactory : IFeedItemViewModelFactory
             _serviceProvider.GetRequiredService<IPostSubmissionService>(),
             _serviceProvider.GetRequiredService<IDialogService>(),
             _serviceProvider.GetRequiredService<ILocalizer>(),
-            _serviceProvider.GetRequiredService<IAuthorViewModelFactory>());
+            _serviceProvider.GetRequiredService<IAuthorViewModelFactory>(),
+            _serviceProvider.GetRequiredKeyedService<INavigator>(NavigationConstants.ContentNavigatorKey));
     }
 }
