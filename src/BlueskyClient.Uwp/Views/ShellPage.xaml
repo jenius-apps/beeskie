@@ -40,6 +40,19 @@
     </Page.Resources>
 
     <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1080" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="AppDisplayText.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
         <Grid Visibility="{x:Bind ex:UIExtensions.InvertBoolToVis(ViewModel.IsImageViewerVisible), Mode=OneWay}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="52" />
@@ -77,11 +90,24 @@
                     Height="20"
                     Source="ms-appx:///Assets/AppLogo100.png" />
                 <TextBlock
+                    x:Name="AppDisplayText"
                     Margin="12,0,0,0"
                     VerticalAlignment="Center"
                     FontSize="12"
                     Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                    Text="{x:Bind DisplayTitle}" />
+                    Text="{x:Bind DisplayTitle}"
+                    Visibility="Collapsed">
+                    <ani:Implicit.ShowAnimations>
+                        <ani:TranslationAnimation
+                            From="-4,0,0"
+                            To="0"
+                            Duration="0:0:0.3" />
+                        <ani:OpacityAnimation
+                            From="0"
+                            To="1"
+                            Duration="0:0:0.3" />
+                    </ani:Implicit.ShowAnimations>
+                </TextBlock>
             </StackPanel>
 
             <Grid Grid.ColumnSpan="2">
