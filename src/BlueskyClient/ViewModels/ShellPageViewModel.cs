@@ -285,5 +285,13 @@ public partial class ShellPageViewModel : ObservableObject
                 item.IsSelected = false;
             }
         }
+
+        if (_lastSelectedMenu?.Tag != key)
+        {
+            // If the last selected menu is still not the same as the provided key,
+            // then it means we navigated to a page that isn't on the side bar.
+            // This is fine, but we just need to make sure to reset the last selected menu.
+            _lastSelectedMenu = null;
+        }
     }
 }

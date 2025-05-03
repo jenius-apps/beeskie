@@ -4,7 +4,6 @@ using BlueskyClient.Constants;
 using BlueskyClient.Extensions;
 using BlueskyClient.Models;
 using BlueskyClient.Services;
-using CommunityToolkit.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Humanizer;
@@ -113,7 +112,7 @@ public partial class FeedItemViewModel : ObservableObject
     [RelayCommand]
     private void OpenProfile()
     {
-        _contentNavigator.NavigateTo(NavigationConstants.ProfilePage, new ProfileNavigationArgs
+        _contentNavigator.NavigateTo(NavigationConstants.AuthorPage, new ProfileNavigationArgs
         {
             Author = AuthorViewModel.Author
         });
