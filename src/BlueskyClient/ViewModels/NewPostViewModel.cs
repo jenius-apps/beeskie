@@ -113,19 +113,16 @@ public partial class NewPostViewModel : ObservableObject
         Uploading = true;
         string? newPostAtUri;
 
-        if (TargetPost is { } target)
+        if (TargetPost is { } target && ReplyTargetVisible)
         {
             newPostAtUri = await _postSubmissionService.ReplyAsync(input, target);
         }
-        else if (Images.Count > 0)
-        {
-            newPostAtUri = await _postSubmissionService.SubmitPostWithImagesAsync(
-                input,
-                Images.Select(x => x.Path).ToArray());
-        }
         else
         {
-            newPostAtUri = await _postSubmissionService.SubmitPostAsync(input);
+            newPostAtUri = await _postSubmissionService.SubmitPostAsync(
+                input,
+                pathsToImages: Images is { Count: > 0 } images ? [.. images.Select(static x => x.Path)] : null,
+                quotePost: QuoteVisible && TargetPost is { } post ? post : null);
         }
 
         Uploading = false;

@@ -131,7 +131,17 @@ public class PostSubmissionService : IPostSubmissionService
     }
 
     /// <inheritdoc/>
-    public async Task<string?> SubmitPostAsync(string text)
+    public async Task<string?> SubmitPostAsync(string text, IReadOnlyList<string>? pathsToImages = null, FeedPost? quotePost = null)
+    {
+        if (pathsToImages is { Count: > 0 } images)
+        {
+            return await SubmitPostWithImagesAsync(text, images /*, quoteEmbed*/);
+        }
+
+        return await SubmitTextPostAsync(text, quotePost);
+    }
+
+    private async Task<string?> SubmitTextPostAsync(string text, FeedPost? quotePost = null)
     {
         text = text.Trim();
         if (string.IsNullOrEmpty(text))
@@ -141,15 +151,27 @@ public class PostSubmissionService : IPostSubmissionService
 
         SubmissionRecord newRecord = new()
         {
+            Type = RecordTypes.NewPost,
             CreatedAt = DateTime.Now,
-            Text = text
+            Text = text,
+            Embed = quotePost is null
+                ? null
+                : new SubmissionEmbed
+                {
+                    Type = EmbedTypes.QuotePost,
+                    Record = new FeedRecord
+                    {
+                        Cid = quotePost.Cid,
+                        Uri = quotePost.Uri
+                    }
+                }
         };
 
         var response = await SubmitAsync(newRecord, RecordType.NewPost);
         return response?.Uri;
     }
 
-    public async Task<string?> SubmitPostWithImagesAsync(string text, IReadOnlyList<string> pathsToImages)
+    private async Task<string?> SubmitPostWithImagesAsync(string text, IReadOnlyList<string> pathsToImages, FeedPost? quotePost = null)
     {
         text = text.Trim();
         IReadOnlyList<Blob?> blobs = await _uploadBlobService.UploadBlobsAsync(pathsToImages, "image/jpeg");
@@ -160,11 +182,18 @@ public class PostSubmissionService : IPostSubmissionService
             Text = text,
             Embed = new SubmissionEmbed
             {
-                Type = EmbedTypes.Images,
+                Type = EmbedTypes.Images, // TODO there may be a bug here because idk if the type is correct if both images and quote is provided
                 Images = blobs.Select(blob => new SubmissionImageBlob
                 {
                     Image = blob
-                }).ToArray()
+                }).ToArray(),
+                Record = quotePost is null
+                    ? null
+                    : new FeedRecord
+                    {
+                        Cid = quotePost.Cid,
+                        Uri = quotePost.Uri
+                    }
             }
         };
 

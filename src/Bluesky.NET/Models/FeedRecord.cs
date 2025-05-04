@@ -6,22 +6,22 @@ namespace Bluesky.NET.Models;
 public class FeedRecord
 {
     [JsonPropertyName("$type")]
-    public string Type { get; init; } = string.Empty;
+    public string? Type { get; init; }
 
     public string? Uri { get; init; }
 
     public string? Cid { get; init; }
 
     [JsonPropertyName("createdAt")]
-    public DateTime CreatedAtUtc { get; init; }
+    public DateTime? CreatedAtUtc { get; init; }
 
     public string? Description { get; init; }
 
     public string? Name { get; init; }
 
-    public DateTime UpdatedAt { get; init; }
+    public DateTime? UpdatedAt { get; init; }
 
-    public string Text { get; init; } = string.Empty;
+    public string? Text { get; init; }
 
     public ReplyRecord? Reply { get; init; }
 
