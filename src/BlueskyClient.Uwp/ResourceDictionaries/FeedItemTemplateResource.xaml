@@ -231,7 +231,10 @@
                                             <FontIcon FontFamily="{StaticResource FluentUIGlyphs}" Glyph="{StaticResource GlyphRepost}" />
                                         </MenuFlyoutItem.Icon>
                                     </MenuFlyoutItem>
-                                    <MenuFlyoutItem AutomationProperties.Name="{x:Bind strings:Resources.QuotePostText}" Text="{x:Bind strings:Resources.QuotePostText}">
+                                    <MenuFlyoutItem
+                                        AutomationProperties.Name="{x:Bind strings:Resources.QuotePostText}"
+                                        Command="{x:Bind QuotePostCommand}"
+                                        Text="{x:Bind strings:Resources.QuotePostText}">
                                         <MenuFlyoutItem.Icon>
                                             <FontIcon FontFamily="{StaticResource FluentUIGlyphs}" Glyph="{StaticResource GlyphQuote}" />
                                         </MenuFlyoutItem.Icon>

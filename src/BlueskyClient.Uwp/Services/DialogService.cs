@@ -33,6 +33,24 @@ public sealed class DialogService : IDialogService
         _dialogOpen = false;
     }
 
+    /// <inheritdoc/>
+    public async Task OpenQuoteDialogAsync(FeedPost target)
+    {
+        if (_dialogOpen)
+        {
+            return;
+        }
+
+        _dialogOpen = true;
+
+        var dialog = new NewPostDialog();
+        dialog.Initialize(target, quoteMode: true);
+        await dialog.ShowAsync();
+
+        _dialogOpen = false;
+    }
+
+    /// <inheritdoc/>
     public async Task OpenReplyDialogAsync(FeedPost target)
     {
         if (_dialogOpen)

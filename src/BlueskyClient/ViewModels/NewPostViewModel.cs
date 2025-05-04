@@ -6,7 +6,6 @@ using BlueskyClient.Tools;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using JeniusApps.Common.Telemetry;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -64,11 +63,25 @@ public partial class NewPostViewModel : ObservableObject
     [ObservableProperty]
     private bool _uploading;
 
+    /// <summary>
+    /// Determines if the quote post is visible.
+    /// </summary>
+    [ObservableProperty]
+    private bool _quoteVisible;
+
+    /// <summary>
+    /// Determines if the reply target is visible.
+    /// </summary>
+    [ObservableProperty]
+    private bool _replyTargetVisible;
+
     public string TargetText => TargetPost?.Record?.Text ?? string.Empty;
 
-    public async Task InitializeAsync(FeedPost? targetPost = null)
+    public async Task InitializeAsync(FeedPost? targetPost = null, bool quoteMode = false)
     {
         TargetPost = targetPost;
+        QuoteVisible = quoteMode && TargetPost is not null;
+        ReplyTargetVisible = !quoteMode && TargetPost is not null;
         ReplyTargetAuthorViewModel.SetAuthor(targetPost?.Author);
         AuthorViewModel.SetAuthor(await _profileService.GetCurrentUserAsync());
     }

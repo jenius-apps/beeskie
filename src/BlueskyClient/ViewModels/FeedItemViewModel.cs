@@ -151,6 +151,12 @@ public partial class FeedItemViewModel : ObservableObject
     }
 
     [RelayCommand]
+    private async Task QuotePostAsync()
+    {
+        await _dialogService.OpenQuoteDialogAsync(Post);
+    }
+
+    [RelayCommand]
     private async Task RepostClickedAsync(CancellationToken ct)
     {
         if (IsReposted)

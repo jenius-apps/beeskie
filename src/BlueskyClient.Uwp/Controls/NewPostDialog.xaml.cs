@@ -12,9 +12,9 @@ public sealed partial class NewPostDialog : ContentDialog
         this.InitializeComponent();
     }
 
-    public void Initialize(FeedPost? targetPost = null)
+    public void Initialize(FeedPost? targetPost = null, bool quoteMode = false)
     {
-        _ = NewPostControl.ViewModel.InitializeAsync(targetPost).ConfigureAwait(false);
+        _ = NewPostControl.ViewModel.InitializeAsync(targetPost, quoteMode).ConfigureAwait(false);
     }
 
     private async void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
