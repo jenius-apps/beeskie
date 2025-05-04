@@ -237,11 +237,11 @@
         </trans-unit>
         <trans-unit id="QuotePostText" translate="yes" xml:space="preserve">
           <source>Quote post</source>
-          <target state="new">Quote post</target>
+          <target state="translated">Citar post</target>
         </trans-unit>
         <trans-unit id="UndoRepostText" translate="yes" xml:space="preserve">
           <source>Undo repost</source>
-          <target state="new">Undo repost</target>
+          <target state="translated">Deshacer volver a publicar</target>
         </trans-unit>
       </group>
     </body>

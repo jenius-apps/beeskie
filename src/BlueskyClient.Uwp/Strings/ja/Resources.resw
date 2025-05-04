@@ -184,4 +184,10 @@
   <data name="ForwardText" xml:space="preserve">
     <value>フォワード</value>
   </data>
+  <data name="QuotePostText" xml:space="preserve">
+    <value>見積もり投稿</value>
+  </data>
+  <data name="UndoRepostText" xml:space="preserve">
+    <value>再投稿を元に戻す</value>
+  </data>
 </root>

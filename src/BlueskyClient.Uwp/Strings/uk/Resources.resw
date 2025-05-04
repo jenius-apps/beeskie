@@ -184,4 +184,10 @@
   <data name="ForwardText" xml:space="preserve">
     <value>Вперед</value>
   </data>
+  <data name="QuotePostText" xml:space="preserve">
+    <value>Цитувати пост</value>
+  </data>
+  <data name="UndoRepostText" xml:space="preserve">
+    <value>Скасувати репост</value>
+  </data>
 </root>
