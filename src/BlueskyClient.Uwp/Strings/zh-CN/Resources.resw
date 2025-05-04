@@ -184,4 +184,10 @@
   <data name="ForwardText" xml:space="preserve">
     <value>向前</value>
   </data>
+  <data name="QuotePostText" xml:space="preserve">
+    <value>引用帖子</value>
+  </data>
+  <data name="UndoRepostText" xml:space="preserve">
+    <value>撤消重新发布</value>
+  </data>
 </root>

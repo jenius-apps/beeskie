@@ -63,7 +63,7 @@ public partial class FeedItemViewModel : ObservableObject
         {
             var now = DateTime.Now;
 
-            if (Post.Record?.CreatedAtUtc.ToLocalTime() is not DateTime createdAt ||
+            if (Post.Record?.CreatedAtUtc?.ToLocalTime() is not DateTime createdAt ||
                 createdAt > now)
             {
                 return string.Empty;
@@ -87,7 +87,7 @@ public partial class FeedItemViewModel : ObservableObject
 
     public FeedRecord? QuotedPost =>
         (Post?.Embed?.Record?.Record ?? Post?.Embed?.Record) is FeedRecord record &&
-        record.Type.GetRecordType() is not RecordType.StarterPack
+        record.Type?.GetRecordType() is not RecordType.StarterPack
             ? record
             : null;
 
@@ -148,6 +148,12 @@ public partial class FeedItemViewModel : ObservableObject
         }
 
         IsLiked = !IsLiked;
+    }
+
+    [RelayCommand]
+    private async Task QuotePostAsync()
+    {
+        await _dialogService.OpenQuoteDialogAsync(Post);
     }
 
     [RelayCommand]

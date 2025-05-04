@@ -6,7 +6,6 @@ using BlueskyClient.Tools;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using JeniusApps.Common.Telemetry;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -64,11 +63,25 @@ public partial class NewPostViewModel : ObservableObject
     [ObservableProperty]
     private bool _uploading;
 
+    /// <summary>
+    /// Determines if the quote post is visible.
+    /// </summary>
+    [ObservableProperty]
+    private bool _quoteVisible;
+
+    /// <summary>
+    /// Determines if the reply target is visible.
+    /// </summary>
+    [ObservableProperty]
+    private bool _replyTargetVisible;
+
     public string TargetText => TargetPost?.Record?.Text ?? string.Empty;
 
-    public async Task InitializeAsync(FeedPost? targetPost = null)
+    public async Task InitializeAsync(FeedPost? targetPost = null, bool quoteMode = false)
     {
         TargetPost = targetPost;
+        QuoteVisible = quoteMode && TargetPost is not null;
+        ReplyTargetVisible = !quoteMode && TargetPost is not null;
         ReplyTargetAuthorViewModel.SetAuthor(targetPost?.Author);
         AuthorViewModel.SetAuthor(await _profileService.GetCurrentUserAsync());
     }
@@ -100,19 +113,16 @@ public partial class NewPostViewModel : ObservableObject
         Uploading = true;
         string? newPostAtUri;
 
-        if (TargetPost is { } target)
+        if (TargetPost is { } target && ReplyTargetVisible)
         {
             newPostAtUri = await _postSubmissionService.ReplyAsync(input, target);
         }
-        else if (Images.Count > 0)
-        {
-            newPostAtUri = await _postSubmissionService.SubmitPostWithImagesAsync(
-                input,
-                Images.Select(x => x.Path).ToArray());
-        }
         else
         {
-            newPostAtUri = await _postSubmissionService.SubmitPostAsync(input);
+            newPostAtUri = await _postSubmissionService.SubmitPostAsync(
+                input,
+                pathsToImages: Images is { Count: > 0 } images ? [.. images.Select(static x => x.Path)] : null,
+                quotePost: QuoteVisible && TargetPost is { } post ? post : null);
         }
 
         Uploading = false;

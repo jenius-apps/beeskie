@@ -10,5 +10,11 @@ public interface IDialogService
 
     Task OpenReplyDialogAsync(FeedPost target);
 
+    /// <summary>
+    /// Opens the new post dialog with quote mode enabled.
+    /// </summary>
+    /// <param name="target">The post to quote.</param>
+    Task OpenQuoteDialogAsync(FeedPost target);
+
     Task OpenSignInRequiredAsync();
 }

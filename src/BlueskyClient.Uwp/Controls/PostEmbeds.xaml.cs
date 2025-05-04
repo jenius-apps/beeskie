@@ -51,7 +51,7 @@ public sealed partial class PostEmbeds : UserControl
         set => SetValue(EmbedProperty, value);
     }
 
-    private bool IsStarterPack => Embed?.Record?.Record?.Type.GetRecordType() is RecordType.StarterPack;
+    private bool IsStarterPack => Embed?.Record?.Record?.Type?.GetRecordType() is RecordType.StarterPack;
 
     private string StarterPackName => Embed?.Record?.Record?.Name ?? string.Empty;
 

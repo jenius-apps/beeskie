@@ -5,6 +5,9 @@ namespace Bluesky.NET.Models;
 
 public class SubmissionRecord
 {
+    [JsonPropertyName("$type")]
+    public string? Type { get; init; }
+
     public DateTime CreatedAt { get; init; }
 
     public string Text { get; init; } = string.Empty;
@@ -24,6 +27,8 @@ public class SubmissionEmbed
     public string? Type { get; init; }
 
     public SubmissionImageBlob[]? Images { get; init; }
+
+    public FeedRecord? Record { get; init; }
 }
 
 public class SubmissionImageBlob

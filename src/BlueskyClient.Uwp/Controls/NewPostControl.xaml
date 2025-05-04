@@ -20,6 +20,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
@@ -48,7 +49,7 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <Grid Margin="0,0,0,20" Visibility="{x:Bind ex:UIExtensions.CollapsedIfNull(ViewModel.TargetPost), Mode=OneWay}">
+        <Grid Margin="0,0,0,20" Visibility="{x:Bind ViewModel.ReplyTargetVisible, Mode=OneWay}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="*" />
@@ -80,7 +81,6 @@
                     TextWrapping="Wrap" />
             </StackPanel>
         </Grid>
-
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -155,7 +155,7 @@
 
         <GridView
             Grid.Row="3"
-            Margin="0,12,0,-24"
+            Margin="0,12,0,-12"
             ItemsSource="{x:Bind ViewModel.Images}"
             SelectionMode="None"
             Visibility="{x:Bind ViewModel.ImageListVisible, Mode=OneWay}">
@@ -166,7 +166,41 @@
             </GridView.ItemTemplate>
         </GridView>
 
-        <Grid Grid.Row="4" Margin="0,24,0,-20">
+        <Grid
+            Grid.Row="4"
+            Margin="0,12,0,-12"
+            Padding="12"
+            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+            BorderBrush="{StaticResource CardStrokeColorDefaultBrush}"
+            BorderThickness="1"
+            CornerRadius="12"
+            Visibility="{x:Bind ViewModel.QuoteVisible, Mode=OneWay}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <winui:PersonPicture
+                Width="40"
+                VerticalAlignment="Top"
+                PreferSmallImage="True"
+                ProfilePicture="{x:Bind ViewModel.ReplyTargetAuthorViewModel.AvatarUrl, Mode=OneWay}" />
+
+            <StackPanel
+                Grid.Column="1"
+                Margin="12,0,0,0"
+                VerticalAlignment="Center">
+                <TextBlock FontWeight="SemiBold" Text="{x:Bind ViewModel.ReplyTargetAuthorViewModel.DisplayName, Mode=OneWay}" />
+                <TextBlock
+                    Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                    MaxLines="4"
+                    Text="{x:Bind ViewModel.TargetText, Mode=OneWay}"
+                    TextTrimming="CharacterEllipsis"
+                    TextWrapping="Wrap" />
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="5" Margin="0,24,0,-20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="*" />

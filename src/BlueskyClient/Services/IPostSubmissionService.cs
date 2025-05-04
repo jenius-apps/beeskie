@@ -14,7 +14,6 @@ public interface IPostSubmissionService
     Task<string?> LikeOrRepostAsync(RecordType recordType, string targetUri, string targetCid);
     Task<bool> LikeOrRepostUndoAsync(RecordType recordType, string targetUri, CancellationToken cancellationToken);
     Task<string?> ReplyAsync(string text, FeedPost parent);
-    Task<string?> SubmitPostAsync(string text);
-    Task<string?> SubmitPostWithImagesAsync(string text, IReadOnlyList<string> pathsToImages);
+    Task<string?> SubmitPostAsync(string text, IReadOnlyList<string>? pathsToImages = null, FeedPost? quotePost = null);
     bool ValidatePost(string text);
 }

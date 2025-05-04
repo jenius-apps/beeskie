@@ -184,4 +184,10 @@
   <data name="ForwardText" xml:space="preserve">
     <value>Adelante</value>
   </data>
+  <data name="QuotePostText" xml:space="preserve">
+    <value>Citar post</value>
+  </data>
+  <data name="UndoRepostText" xml:space="preserve">
+    <value>Deshacer volver a publicar</value>
+  </data>
 </root>
