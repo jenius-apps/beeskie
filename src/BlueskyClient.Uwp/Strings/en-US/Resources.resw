@@ -217,6 +217,9 @@
   <data name="ProfileText" xml:space="preserve">
     <value>Profile</value>
   </data>
+  <data name="QuotePostText" xml:space="preserve">
+    <value>Quote post</value>
+  </data>
   <data name="RecentSearchesPlaceholder" xml:space="preserve">
     <value>Your recent searches will appear here. Start searching!</value>
   </data>
@@ -285,6 +288,9 @@
   </data>
   <data name="SuggestedAccountsTitle" xml:space="preserve">
     <value>Suggested accounts</value>
+  </data>
+  <data name="UndoRepostText" xml:space="preserve">
+    <value>Undo repost</value>
   </data>
   <data name="UploadingText" xml:space="preserve">
     <value>Uploading</value>

@@ -209,8 +209,35 @@
                         <HyperlinkButton
                             Grid.Column="1"
                             AutomationProperties.Name="{x:Bind strings:Resources.RepostText}"
-                            Command="{x:Bind RepostClickedCommand}"
+                            Click="OnRepostClicked"
                             IsEnabled="{x:Bind ex:UIExtensions.Not(RepostClickedCommand.IsRunning), Mode=OneWay}">
+                            <FlyoutBase.AttachedFlyout>
+                                <MenuFlyout Placement="Bottom">
+                                    <MenuFlyoutItem
+                                        AutomationProperties.Name="{x:Bind strings:Resources.UndoRepostText}"
+                                        Command="{x:Bind RepostClickedCommand}"
+                                        Text="{x:Bind strings:Resources.UndoRepostText}"
+                                        Visibility="{x:Bind IsReposted, Mode=OneWay}">
+                                        <MenuFlyoutItem.Icon>
+                                            <FontIcon FontFamily="{StaticResource FluentUIGlyphs}" Glyph="{StaticResource GlyphRepost}" />
+                                        </MenuFlyoutItem.Icon>
+                                    </MenuFlyoutItem>
+                                    <MenuFlyoutItem
+                                        AutomationProperties.Name="{x:Bind strings:Resources.RepostText}"
+                                        Command="{x:Bind RepostClickedCommand}"
+                                        Text="{x:Bind strings:Resources.RepostText}"
+                                        Visibility="{x:Bind ex:UIExtensions.InvertBoolToVis(IsReposted), Mode=OneWay}">
+                                        <MenuFlyoutItem.Icon>
+                                            <FontIcon FontFamily="{StaticResource FluentUIGlyphs}" Glyph="{StaticResource GlyphRepost}" />
+                                        </MenuFlyoutItem.Icon>
+                                    </MenuFlyoutItem>
+                                    <MenuFlyoutItem AutomationProperties.Name="{x:Bind strings:Resources.QuotePostText}" Text="{x:Bind strings:Resources.QuotePostText}">
+                                        <MenuFlyoutItem.Icon>
+                                            <FontIcon FontFamily="{StaticResource FluentUIGlyphs}" Glyph="{StaticResource GlyphQuote}" />
+                                        </MenuFlyoutItem.Icon>
+                                    </MenuFlyoutItem>
+                                </MenuFlyout>
+                            </FlyoutBase.AttachedFlyout>
                             <StackPanel Orientation="Horizontal">
                                 <Grid>
                                     <FontIcon

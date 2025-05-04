@@ -235,6 +235,14 @@
           <source>Forward</source>
           <target state="translated">Вперед</target>
         </trans-unit>
+        <trans-unit id="QuotePostText" translate="yes" xml:space="preserve">
+          <source>Quote post</source>
+          <target state="new">Quote post</target>
+        </trans-unit>
+        <trans-unit id="UndoRepostText" translate="yes" xml:space="preserve">
+          <source>Undo repost</source>
+          <target state="new">Undo repost</target>
+        </trans-unit>
       </group>
     </body>
   </file>

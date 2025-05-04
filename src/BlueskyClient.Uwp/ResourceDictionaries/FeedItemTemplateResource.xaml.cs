@@ -4,6 +4,9 @@
 
 #nullable enable
 
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls.Primitives;
+
 namespace BlueskyClient.ResourceDictionaries;
 
 public sealed partial class FeedItemTemplateResource
@@ -11,5 +14,13 @@ public sealed partial class FeedItemTemplateResource
     public FeedItemTemplateResource()
     {
         this.InitializeComponent();
+    }
+
+    private void OnRepostClicked(object sender, RoutedEventArgs e)
+    {
+        if (sender is FrameworkElement fe)
+        {
+            FlyoutBase.ShowAttachedFlyout(fe);
+        }
     }
 }
