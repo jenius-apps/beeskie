@@ -83,6 +83,7 @@ partial class App
                 { NavigationConstants.AuthorPage, typeof(AuthorPage) },
                 { NavigationConstants.FeedsPage, typeof(FeedsPage) },
                 { NavigationConstants.SearchPage, typeof(SearchPage) },
+                { NavigationConstants.PostPage, typeof(PostPage) },
             });
         });
 

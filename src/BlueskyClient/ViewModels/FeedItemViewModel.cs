@@ -119,6 +119,12 @@ public partial class FeedItemViewModel : ObservableObject
     }
 
     [RelayCommand]
+    private void OpenPostThread()
+    {
+        _contentNavigator.NavigateTo(NavigationConstants.PostPage);
+    }
+
+    [RelayCommand]
     private async Task ReplyAsync()
     {
         await _dialogService.OpenReplyDialogAsync(Post);
