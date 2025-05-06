@@ -192,6 +192,9 @@
   <data name="OkayText" xml:space="preserve">
     <value>Okay</value>
   </data>
+  <data name="OpenThreadText" xml:space="preserve">
+    <value>Open thread</value>
+  </data>
   <data name="PasswordBoxPlaceholder" xml:space="preserve">
     <value>Your special App Password</value>
   </data>

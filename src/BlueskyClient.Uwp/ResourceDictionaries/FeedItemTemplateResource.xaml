@@ -192,12 +192,14 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
                         <HyperlinkButton
                             AutomationProperties.Name="{x:Bind strings:Resources.ReplyText}"
                             Command="{x:Bind ReplyCommand}"
-                            IsEnabled="{x:Bind ex:UIExtensions.Not(ReplyCommand.IsRunning), Mode=OneWay}">
+                            IsEnabled="{x:Bind ex:UIExtensions.Not(ReplyCommand.IsRunning), Mode=OneWay}"
+                            ToolTipService.ToolTip="{x:Bind strings:Resources.ReplyText}">
                             <StackPanel Orientation="Horizontal">
                                 <FontIcon Glyph="{StaticResource GlyphMessage}" Style="{StaticResource PostButtonIconStyle}" />
                                 <TextBlock
@@ -210,7 +212,8 @@
                             Grid.Column="1"
                             AutomationProperties.Name="{x:Bind strings:Resources.RepostText}"
                             Click="OnRepostClicked"
-                            IsEnabled="{x:Bind ex:UIExtensions.Not(RepostClickedCommand.IsRunning), Mode=OneWay}">
+                            IsEnabled="{x:Bind ex:UIExtensions.Not(RepostClickedCommand.IsRunning), Mode=OneWay}"
+                            ToolTipService.ToolTip="{x:Bind strings:Resources.RepostText}">
                             <FlyoutBase.AttachedFlyout>
                                 <MenuFlyout Placement="Bottom">
                                     <MenuFlyoutItem
@@ -263,7 +266,8 @@
                             Grid.Column="2"
                             AutomationProperties.Name="{x:Bind strings:Resources.LikeText}"
                             Command="{x:Bind LikeClickedCommand}"
-                            IsEnabled="{x:Bind ex:UIExtensions.Not(LikeClickedCommand.IsRunning), Mode=OneWay}">
+                            IsEnabled="{x:Bind ex:UIExtensions.Not(LikeClickedCommand.IsRunning), Mode=OneWay}"
+                            ToolTipService.ToolTip="{x:Bind strings:Resources.LikeText}">
                             <StackPanel Orientation="Horizontal">
                                 <Grid>
                                     <FontIcon
@@ -284,6 +288,13 @@
                         </HyperlinkButton>
                         <HyperlinkButton Grid.Column="3">
                             <FontIcon Glyph="{StaticResource GlyphThreeDots}" Style="{StaticResource PostButtonIconStyle}" />
+                        </HyperlinkButton>
+                        <HyperlinkButton
+                            Grid.Column="4"
+                            AutomationProperties.Name="{x:Bind strings:Resources.OpenThreadText}"
+                            Command="{x:Bind OpenPostThreadCommand}"
+                            ToolTipService.ToolTip="{x:Bind strings:Resources.OpenThreadText}">
+                            <FontIcon Glyph="{StaticResource GlyphOpenThread}" Style="{StaticResource PostButtonIconStyle}" />
                         </HyperlinkButton>
                     </Grid>
                 </Grid>

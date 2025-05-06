@@ -48,6 +48,7 @@
                     <x:String x:Key="GlyphCloseThin">&#xE894;</x:String>
                     <x:String x:Key="GlyphCheckMark">&#xE73E;</x:String>
                     <x:String x:Key="GlyphQuote">&#xE8F2;</x:String>
+                    <x:String x:Key="GlyphOpenThread">&#xF716;</x:String>
 
                     <x:Double x:Key="FeedMaxWidth">600</x:Double>
                     <x:Double x:Key="SearchHeaderMaxWidth">640</x:Double>

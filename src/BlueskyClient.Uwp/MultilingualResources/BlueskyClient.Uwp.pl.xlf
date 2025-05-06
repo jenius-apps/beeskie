@@ -243,6 +243,10 @@
           <source>Undo repost</source>
           <target state="translated">Cofnij ponowne opublikowanie</target>
         </trans-unit>
+        <trans-unit id="OpenThreadText" translate="yes" xml:space="preserve">
+          <source>Open thread</source>
+          <target state="new">Open thread</target>
+        </trans-unit>
       </group>
     </body>
   </file>
