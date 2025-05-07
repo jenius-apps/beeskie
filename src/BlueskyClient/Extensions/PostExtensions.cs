@@ -13,7 +13,7 @@ public static class PostExtensions
 
     public static string GetLikeCount(this FeedPost post) => GetPostButtonIconString(post.LikeCount);
 
-    private static string GetPostButtonIconString(int count)
+    public static string GetPostButtonIconString(this int count)
     {
         return count <= 0
             ? string.Empty
