@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Bluesky.NET.Models;
 
 // src: https://docs.bsky.app/docs/api/app-bsky-feed-get-timeline
 
-public class FeedPost
+public class FeedPost : ILabeledResource
 {
     public string Uri { get; init; } = string.Empty;
 
@@ -27,4 +28,7 @@ public class FeedPost
     public Author? Author { get; init; }
 
     public Viewer? Viewer { get; init; }
+
+    /// <inheritdoc/>
+    public IReadOnlyList<Label>? Labels { get; init; }
 }
