@@ -17,6 +17,7 @@ public class SearchService : ISearchService
     private readonly IBlueskyApiClient _apiClient;
     private readonly IAuthenticationService _authenticationService;
     private readonly IUserSettings _userSettings;
+    private readonly IModerationService _moderationService;
 
     /// <inheritdoc/>
     public event EventHandler<string>? RecentSearchAdded;
@@ -24,11 +25,13 @@ public class SearchService : ISearchService
     public SearchService(
         IBlueskyApiClient blueskyApiClient,
         IAuthenticationService authenticationService,
-        IUserSettings userSettings)
+        IUserSettings userSettings,
+        IModerationService moderationService)
     {
         _apiClient = blueskyApiClient;
         _authenticationService = authenticationService;
         _userSettings = userSettings;
+        _moderationService = moderationService;
     }
 
     /// <inheritdoc/>
@@ -91,8 +94,10 @@ public class SearchService : ISearchService
             AddRecentSearch(query);
         }
 
+        IEnumerable<FeedPost> moderatedItems = _moderationService.ModerateItems(searchResult.Value.Posts);
+
         return searchResult.IsSuccess
-            ? searchResult.Value
+            ? ([.. moderatedItems], searchResult.Value.Cursor)
             : ([], null);
     }
 
