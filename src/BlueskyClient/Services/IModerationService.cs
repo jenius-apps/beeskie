@@ -23,4 +23,12 @@ public interface IModerationService
     /// <param name="unfilteredItems">List of items to filter.</param>
     /// <returns>Filtered list of items.</returns>
     IEnumerable<T> ModerateItems<T>(IReadOnlyList<T> unfilteredItems) where T : ILabeledResource;
+
+    /// <summary>
+    /// Filters the list and removes blocked items.
+    /// </summary>
+    /// <typeparam name="T">A <see cref="ILabeledResource"/>.</typeparam>
+    /// <param name="unfilteredItems">List of items to filter.</param>
+    /// <returns>Filtered list of items.</returns>
+    IEnumerable<FeedItem> ModerateFeedItems(IReadOnlyList<FeedItem> unfilteredItems);
 }

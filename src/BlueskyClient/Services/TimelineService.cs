@@ -16,18 +16,21 @@ public class TimelineService : ITimelineService
     private readonly IAuthenticationService _authentication;
     private readonly IProfileService _profileService;
     private readonly ITelemetry _telemetry;
+    private readonly IModerationService _moderationService;
     private readonly Lazy<Task<Author?>> _currentUser;
 
     public TimelineService(
         IBlueskyApiClient blueskyApiClient,
         IAuthenticationService authenticationService,
         IProfileService profileService,
-        ITelemetry telemetry)
+        ITelemetry telemetry,
+        IModerationService moderationService)
     {
         _apiClient = blueskyApiClient;
         _authentication = authenticationService;
         _profileService = profileService;
         _telemetry = telemetry;
+        _moderationService = moderationService;
 
         _currentUser = new Lazy<Task<Author?>>(() => _profileService.GetCurrentUserAsync());
     }
@@ -52,7 +55,7 @@ public class TimelineService : ITimelineService
             cursor);
 
         return response is { IsSuccess: true, Value.Feed: IReadOnlyList<FeedItem> feed }
-            ? (feed, response.Value.Cursor)
+            ? ([.. _moderationService.ModerateFeedItems(feed)], response.Value.Cursor)
             : ([], null);
     }
 
@@ -94,13 +97,13 @@ public class TimelineService : ITimelineService
                 parentAuthor.Handle != currentUserHandle)
             {
                 // Filter out replies for now if they aren't responding to the current user.
-                // In the future, need to properly build this experience. 
+                // TODO: In the future, need to properly build this experience. 
                 continue;
             }
 
             results.Add(t);
         }
 
-        return (results, feedResponse.Cursor);
+        return ([.. _moderationService.ModerateFeedItems(results)], feedResponse.Cursor);
     }
 }

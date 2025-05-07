@@ -37,4 +37,18 @@ public sealed class ModerationService : IModerationService
     {
         return item.Labels.Any(x => _blockList.Contains(x.Val));
     }
+
+    /// <inheritdoc/>
+    public IEnumerable<FeedItem> ModerateFeedItems(IReadOnlyList<FeedItem> unfilteredItems)
+    {
+        foreach (FeedItem item in unfilteredItems)
+        {
+            if (IsBlocked(item.Post))
+            {
+                continue;
+            }
+
+            yield return item;
+        }
+    }
 }
