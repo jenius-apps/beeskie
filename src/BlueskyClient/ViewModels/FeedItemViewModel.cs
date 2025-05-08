@@ -47,7 +47,7 @@ public partial class FeedItemViewModel : ObservableObject
         IsReposted = post.Viewer?.Repost is not null;
         ReplyCount = post.GetReplyCount();
         RepostCount = post.GetRepostCount();
-        LikeCount = post.GetLikeCount();
+        RawLikeCount = post.LikeCount;
 
         _likeUri = post.Viewer?.Like;
         _repostUri = post.Viewer?.Repost;
@@ -103,8 +103,11 @@ public partial class FeedItemViewModel : ObservableObject
     [ObservableProperty]
     private string _repostCount = string.Empty;
 
+    public string LikeCount => RawLikeCount.GetPostButtonIconString();
+
     [ObservableProperty]
-    private string _likeCount = string.Empty;
+    [NotifyPropertyChangedFor(nameof(LikeCount))]
+    private int _rawLikeCount;
 
     /// <summary>
     /// Navigates to the profile page of the user associated wtih this feed item.
@@ -139,7 +142,7 @@ public partial class FeedItemViewModel : ObservableObject
 
             if (result)
             {
-                LikeCount = Math.Max(0, int.Parse(LikeCount) - 1).ToString();
+                RawLikeCount = Math.Max(0, RawLikeCount - 1);
             }
         }
         else
@@ -149,7 +152,7 @@ public partial class FeedItemViewModel : ObservableObject
             if (result is not null)
             {
                 _likeUri = result;
-                LikeCount = (int.Parse(LikeCount) + 1).ToString();
+                RawLikeCount += 1;
             }
         }
 

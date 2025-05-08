@@ -149,6 +149,7 @@ partial class App
     [Singleton(typeof(FacetService), typeof(IFacetService))]
     [Singleton(typeof(SearchInPlaceRequester), typeof(ISearchInPlaceRequester))]
     [Singleton(typeof(RefreshPageRequester), typeof(IRefreshPageRequester))]
+    [Singleton(typeof(ModerationService), typeof(IModerationService))]
     [Transient(typeof(HomePageViewModel))]
     [Transient(typeof(NotificationsPageViewModel))]
     [Transient(typeof(ProfileControlViewModel))]
