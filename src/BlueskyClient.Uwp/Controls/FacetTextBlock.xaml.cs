@@ -63,12 +63,6 @@ public sealed partial class FacetTextBlock : UserControl
                     continue;
                 }
 
-                if (features.FirstOrDefault()?.FeatureType is FacetFeatureType.Mention)
-                {
-                    // TODO add support for mentions.
-                    continue;
-                }
-
                 DisplayTextBlock.Inlines.Add(new Run { Text = GetSubstring(recordText, currentByteIndex, byteLength: indexData.ByteStart - currentByteIndex) });
 
                 var hyperlink = new Hyperlink()
@@ -145,14 +139,17 @@ public sealed partial class FacetTextBlock : UserControl
                 RequestedQuery = tag
             });
 
-            App.Services.GetRequiredService<ITelemetry>().TrackEvent(TelemetryConstants.TagClicked, new Dictionary<string, string>
-            {
-                { "tag", tag }
-            });
+            App.Services.GetRequiredService<ITelemetry>().TrackEvent(TelemetryConstants.TagClicked);
         }
         else if (feature.FeatureType is FacetFeatureType.Mention && feature.Did is string did)
         {
-            // TODO add support for mention clicks
+            var contentNavigator = App.Services.GetRequiredKeyedService<INavigator>(NavigationConstants.ContentNavigatorKey);
+            contentNavigator.NavigateTo(NavigationConstants.AuthorPage, new ProfileNavigationArgs
+            {
+                AuthorDid = did
+            });
+
+            App.Services.GetRequiredService<ITelemetry>().TrackEvent(TelemetryConstants.FacetProfileClicked);
         }
     }
 }

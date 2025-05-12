@@ -30,9 +30,9 @@ public partial class ProfileControlViewModel : ObservableObject
     public async Task InitializeAsync(ProfileNavigationArgs? args, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
-        Author? author = args?.Author is null
+        Author? author = args?.AuthorDid is null
             ? await _profileService.GetCurrentUserAsync()
-            : await _profileService.GetFullAuthorProfileAsync(args.Author.Did, cancellationToken);
+            : await _profileService.GetFullAuthorProfileAsync(args.AuthorDid, cancellationToken);
 
         AuthorViewModel.SetAuthor(author);
 

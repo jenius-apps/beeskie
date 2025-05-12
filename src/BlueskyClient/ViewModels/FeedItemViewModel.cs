@@ -117,7 +117,7 @@ public partial class FeedItemViewModel : ObservableObject
     {
         _contentNavigator.NavigateTo(NavigationConstants.AuthorPage, new ProfileNavigationArgs
         {
-            Author = AuthorViewModel.Author
+            AuthorDid = AuthorViewModel.Author?.Did
         });
     }
 

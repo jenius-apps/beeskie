@@ -16,18 +16,71 @@ public sealed class FacetService : IFacetService
     private static readonly Lazy<Regex> _linkRegexLazy = new(() => new Regex(@"(^|\s|\()((https?:\/\/[\S]+)|((?<domain>[a-z][a-z0-9]*(\.[a-z0-9]+)+)[\S]*))", RegexOptions.IgnoreCase | RegexOptions.Multiline | RegexOptions.Compiled));
     private const string EndPunctuationRegexPattern = @"[^\w\s]+$";
 
+    private readonly IProfileService _profileService;
+
+    public FacetService(IProfileService profileService)
+    {
+        _profileService = profileService;
+    }
+
+    /// <inheritdoc/>
     public async Task<IReadOnlyList<Facet>> ExtractFacetsAsync(string text, CancellationToken ct)
     {
         ct.ThrowIfCancellationRequested();
 
-        List<Facet> results = new();
+        List<Facet> results = [];
+
+        await foreach (var mention in ExtractMentionsAsync(text))
+        {
+            results.Add(mention);
+        }
 
         results.AddRange(ExtractHashtags(text));
         results.AddRange(ExtractLinks(text));
 
-        await Task.Delay(1);
-
         return results;
+    }
+
+    private async IAsyncEnumerable<Facet> ExtractMentionsAsync(string text)
+    {
+        var matches = _mentionRegexLazy.Value.Matches(text);
+
+        foreach (Match match in matches)
+        {
+            Group target = match.Groups[3];
+            if (!IsValidDomain(target.Value))
+            {
+                // probably not a handle, skip.
+                continue;
+            }
+
+            if (await _profileService.GetDIDAsync(target.Value, default) is not { Length: > 0 } did)
+            {
+                // username may not be an actual account.
+                continue;
+            }
+
+            int startIndex = target.Index - 1; // To include the @ symbol.
+
+            Facet facet = new()
+            {
+                Index = new IndexData
+                {
+                    ByteStart = GetByteIndex(text, startIndex),
+                    ByteEnd = GetByteIndex(text, startIndex + target.Length + 1) // The +1 is to compensate for moving the start index left to capture the @ symbol
+                },
+                Features =
+                [
+                    new FacetFeature
+                    {
+                        Type = FacetTypes.Mention,
+                        Did = did
+                    }
+                ]
+            };
+
+            yield return facet;
+        }
     }
 
     private static IEnumerable<Facet> ExtractHashtags(string text)
