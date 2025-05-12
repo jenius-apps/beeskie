@@ -54,7 +54,7 @@ public sealed class FacetService : IFacetService
                 continue;
             }
 
-            if (await _profileService.GetFullAuthorProfileAsync(target.Value, default) is not { Did: string did })
+            if (await _profileService.GetDIDAsync(target.Value, default) is not { Length: > 0 } did)
             {
                 // username may not be an actual account.
                 continue;

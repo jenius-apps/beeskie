@@ -42,6 +42,16 @@ public class ProfileService : IProfileService
     }
 
     /// <inheritdoc/>
+    public async Task<string?> GetDIDAsync(string? atIdenfitifer, CancellationToken cancellationToken = default)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+
+        return await GetFullAuthorProfileAsync(atIdenfitifer, cancellationToken) is { Did: string did }
+            ? did
+            : null;
+    }
+
+    /// <inheritdoc/>
     public async Task<Author?> GetFullAuthorProfileAsync(string? identifier, CancellationToken cancellationToken)
     {
         if (identifier is not { Length: > 0 })

@@ -17,6 +17,14 @@ public interface IProfileService
     Task<Author?> GetCurrentUserAsync();
 
     /// <summary>
+    /// Retrieves the DID for the user based on their given @identifier.
+    /// </summary>
+    /// <param name="atIdentifier">Their @ username. E.g. kidjenius.bsky.social.</param>
+    /// <param name="cancellationToken">A cancel token.</param>
+    /// <returns>The DID, or null if not found.</returns>
+    Task<string?> GetDIDAsync(string? atIdentifier, CancellationToken cancellationToken = default);
+
+    /// <summary>
     /// Retrieves the full author information for the given author identifier.
     /// </summary>
     /// <param name="identifier">The DID for the author.</param>
