@@ -14,8 +14,12 @@ public class FacetServiceTests
             .Setup(x => x.GetDIDAsync("kidjenius.bsky.social", default))
             .ReturnsAsync("testDid");
 
+        _ = profileServiceMock
+            .Setup(x => x.GetDIDAsync("notRealAccount.bsky.social", default))
+            .ReturnsAsync(string.Empty);
+
         var facetService = new FacetService(profileServiceMock.Object);
-        var results = await facetService.ExtractFacetsAsync("this is a #test @kidjenius.bsky.social! Wow #amazing.", default);
+        var results = await facetService.ExtractFacetsAsync("this is a #test @kidjenius.bsky.social! Wow #amazing. @notRealAccount.bsky.social", default);
 
         Assert.Equal(3, results.Count);
 
