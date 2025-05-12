@@ -26,7 +26,7 @@ partial class BlueskyApiClient
 
         string combined = string.Join("&", feedParameters);
 
-        var url = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.FeedGeneratorsPath}?{combined}";
+        var url = $"{_baseUrl}/{UrlConstants.FeedGeneratorsPath}?{combined}";
         HttpRequestMessage message = new(HttpMethod.Get, url);
         message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
@@ -46,7 +46,7 @@ partial class BlueskyApiClient
         CancellationToken ct,
         string? cursor = null)
     {
-        var url = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.SuggestedFeedsPath}";
+        var url = $"{_baseUrl}/{UrlConstants.SuggestedFeedsPath}";
         if (cursor is { Length: > 0 })
         {
             url += $"?cursor={cursor}";

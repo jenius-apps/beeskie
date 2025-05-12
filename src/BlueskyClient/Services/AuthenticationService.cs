@@ -1,4 +1,5 @@
 ﻿using Bluesky.NET.ApiClients;
+using Bluesky.NET.Constants;
 using Bluesky.NET.Models;
 using BlueskyClient.Constants;
 using FluentResults;
@@ -53,7 +54,7 @@ public sealed class AuthenticationService : IAuthenticationService
         string? storedAppPassword = _secureCredentialStorage.GetCredential(AppPasswordCredentialKey(storedDid));
         if (storedAppPassword is { Length: > 0 })
         {
-            result = await SignInWithValidatedCredentialsAsync(storedDid, storedAppPassword);
+            result = await SignInWithValidatedCredentialsAsync(storedDid, storedAppPassword, _secureCredentialStorage.GetCredential(BaseURLCredentialKey(storedDid)));
         }
 
         return result;
@@ -67,6 +68,7 @@ public sealed class AuthenticationService : IAuthenticationService
         {
             _secureCredentialStorage.SetCredential(storedDid, string.Empty);
             _secureCredentialStorage.SetCredential(AppPasswordCredentialKey(storedDid), string.Empty);
+            _secureCredentialStorage.SetCredential(BaseURLCredentialKey(storedDid), string.Empty);
         }
 
         _userSettings.Set(UserSettingsConstants.LocalUserIdKey, string.Empty);
@@ -77,7 +79,7 @@ public sealed class AuthenticationService : IAuthenticationService
     }
 
     /// <inheritdoc/>
-    public async Task<Result<AuthResponse>> SignInAsync(string rawUserHandleOrEmail, string rawPassword)
+    public async Task<Result<AuthResponse>> SignInAsync(string rawUserHandleOrEmail, string rawPassword, string? baseUrl)
     {
         var userHandleOrEmail = rawUserHandleOrEmail.Trim().TrimStart('@');
         var password = rawPassword.Trim();
@@ -87,7 +89,7 @@ public sealed class AuthenticationService : IAuthenticationService
             return Result.Fail<AuthResponse>("Empty identifier or password");
         }
 
-        return await SignInWithValidatedCredentialsAsync(userHandleOrEmail, password);
+        return await SignInWithValidatedCredentialsAsync(userHandleOrEmail, password, baseUrl ?? "bsky.social");
     }
 
     public async Task<Result<string>> TryGetFreshTokenAsync()
@@ -142,9 +144,9 @@ public sealed class AuthenticationService : IAuthenticationService
         }
     }
 
-    private async Task<Result<AuthResponse>> SignInWithValidatedCredentialsAsync(string identifier, string password)
+    private async Task<Result<AuthResponse>> SignInWithValidatedCredentialsAsync(string identifier, string password, string? baseUrl)
     {
-        Result<AuthResponse> result = await _apiClient.AuthenticateAsync(identifier, password);
+        Result<AuthResponse> result = await _apiClient.AuthenticateAsync(identifier, password, baseUrl ?? "bsky.social");
 
         if (result.IsSuccess)
         {
@@ -154,6 +156,9 @@ public sealed class AuthenticationService : IAuthenticationService
             {
                 _userSettings.Set(UserSettingsConstants.SignedInDIDKey, did);
                 _secureCredentialStorage.SetCredential(AppPasswordCredentialKey(did), password);
+                _secureCredentialStorage.SetCredential(
+                    BaseURLCredentialKey(did),
+                    baseUrl ?? UrlConstants.BlueskyBaseUrl);
             }
         }
 
@@ -162,4 +167,5 @@ public sealed class AuthenticationService : IAuthenticationService
 
 
     private static string AppPasswordCredentialKey(string did) => $"{did}-appPassword";
+    private static string BaseURLCredentialKey(string did) => $"{did}-baseUrl";
 }

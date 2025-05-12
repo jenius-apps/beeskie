@@ -16,7 +16,7 @@ partial class BlueskyApiClient
 {
     public async Task<IReadOnlyList<Notification>> GetNotificationsAsync(string accessToken)
     {
-        var url = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.NotificationsPath}";
+        var url = $"{_baseUrl}/{UrlConstants.NotificationsPath}";
         HttpRequestMessage message = new(HttpMethod.Get, url);
         message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
@@ -35,7 +35,7 @@ partial class BlueskyApiClient
     /// <inheritdoc/>
     public async Task<Result> UpdateSeenAsync(string accessToken, CancellationToken ct)
     {
-        var url = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.UpdateSeenPath}";
+        var url = $"{_baseUrl}/{UrlConstants.UpdateSeenPath}";
         UpdateSeenBody body = new()
         {
             SeenAt = DateTime.Now.ToUniversalTime().ToString("O")
@@ -52,7 +52,7 @@ partial class BlueskyApiClient
     /// <inheritdoc/>
     public async Task<Result<int>> GetUnreadCountAsync(string accessToken, CancellationToken ct)
     {
-        var url = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.UnreadCountPath}";
+        var url = $"{_baseUrl}/{UrlConstants.UnreadCountPath}";
         HttpRequestMessage message = new(HttpMethod.Get, url);
         message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
