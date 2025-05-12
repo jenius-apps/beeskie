@@ -50,13 +50,13 @@ public sealed partial class FacetTextBlock : UserControl
         }
 
         var recordText = Record.Text;
-        if (Record.Facets is Facet[] facets)
+        if (Record.Facets is Facet[] facets && recordText is { Length: > 0 })
         {
             DisplayTextBlock.Inlines.Clear();
 
             int currentByteIndex = 0;
 
-            foreach (var f in facets)
+            foreach (var f in facets.OrderBy(x => x.Index?.ByteStart))
             {
                 if (f is not { Features: { } features, Index: { }  indexData })
                 {
