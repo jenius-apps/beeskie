@@ -1,4 +1,5 @@
 ﻿using BlueskyClient.Services;
+using Moq;
 
 namespace BlueskyClient.Tests.Services;
 
@@ -7,7 +8,7 @@ public class FacetServiceTests
     [Fact]
     public async Task ExtractHashtagsAsync()
     {
-        var facetService = new FacetService();
+        var facetService = new FacetService(Mock.Of<IProfileService>());
 
         var results = await facetService.ExtractFacetsAsync("This is a #canucks test #123 #vancouver!!! #thishashtagisinvalidbecauseitpassesthemaximumtaglengthallowedddd", default);
 
@@ -28,7 +29,7 @@ public class FacetServiceTests
     [Fact]
     public async Task ExtractLinksAsync()
     {
-        var facetService = new FacetService();
+        var facetService = new FacetService(Mock.Of<IProfileService>());
 
         var results = await facetService.ExtractFacetsAsync("Ambie is here: https://ambieapp.com!!! Or ambieapp.com. Or (http://ambieapp.com)", default);
 
