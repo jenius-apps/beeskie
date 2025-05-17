@@ -11,14 +11,41 @@
     mc:Ignorable="d">
     <UserControl.Resources>
         <templates:FeedItemTemplateResource />
-
     </UserControl.Resources>
 
     <Grid>
-        <ContentControl
-            Margin="0,20,240,0"
-            HorizontalContentAlignment="Stretch"
-            Content="{x:Bind ViewModel.MainPostViewModel, Mode=OneWay}"
-            ContentTemplate="{StaticResource FeedItemTemplate}" />
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource FullTitleBarMinWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Thread.Padding" Value="0,20,240,0" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <ListView
+            x:Name="Thread"
+            Padding="0,20,0,0"
+            ItemTemplate="{StaticResource FeedItemTemplate}"
+            ItemsSource="{x:Bind ViewModel.Replies}"
+            SelectionMode="None">
+            <ListView.Header>
+                <ContentControl
+                    Margin="0,0,0,20"
+                    HorizontalContentAlignment="Stretch"
+                    Content="{x:Bind ViewModel.MainPostViewModel, Mode=OneWay}"
+                    ContentTemplate="{StaticResource FeedItemTemplate}" />
+            </ListView.Header>
+            <ListView.ItemContainerStyle>
+                <Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="Padding" Value="0,0,0,20" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
     </Grid>
 </UserControl>

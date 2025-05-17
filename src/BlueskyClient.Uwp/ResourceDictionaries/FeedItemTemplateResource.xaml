@@ -320,6 +320,16 @@
                 VerticalAlignment="Bottom"
                 Fill="{ThemeResource DividerStrokeColorDefaultBrush}"
                 Visibility="{x:Bind IsNotPostThreadParent}" />
+
+            <Button
+                Grid.Row="2"
+                Height="48"
+                Margin="52,12,52,0"
+                HorizontalAlignment="Stretch"
+                AutomationProperties.Name="{x:Bind strings:Resources.ReplyText}"
+                Command="{x:Bind ReplyCommand}"
+                Content="LOC: Write your reply"
+                Visibility="{x:Bind IsPostThreadParent}" />
         </Grid>
     </DataTemplate>
 </ResourceDictionary>

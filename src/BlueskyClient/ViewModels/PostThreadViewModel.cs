@@ -2,6 +2,8 @@
 using BlueskyClient.Models;
 using BlueskyClient.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -20,8 +22,16 @@ public partial class PostThreadViewModel : ObservableObject
         _feedItemViewModelFactory = feedItemViewModelFactory;
     }
 
+    /// <summary>
+    /// The viewmodel of the parent post.
+    /// </summary>
     [ObservableProperty]
     private FeedItemViewModel? _mainPostViewModel;
+
+    /// <summary>
+    /// Top-level replies to the parent post.
+    /// </summary>
+    public ObservableCollection<FeedItemViewModel> Replies { get; } = [];
 
     public async Task InitializeAsync(PostThreadArgs? args, CancellationToken cancellationToken = default)
     {
@@ -41,5 +51,15 @@ public partial class PostThreadViewModel : ObservableObject
         }
 
         MainPostViewModel = _feedItemViewModelFactory.CreateViewModel(thread.Post, isPostThreadParent: true);
+
+        foreach (PostThread reply in thread.Replies.OrderBy(x => x.Post?.Record?.CreatedAtUtc))
+        {
+            if (reply.Post is null)
+            {
+                continue;
+            }
+
+            Replies.Add(_feedItemViewModelFactory.CreateViewModel(reply.Post));
+        }
     }
 }
