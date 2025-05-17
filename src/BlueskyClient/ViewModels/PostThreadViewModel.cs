@@ -40,6 +40,6 @@ public partial class PostThreadViewModel : ObservableObject
             return;
         }
 
-        MainPostViewModel = _feedItemViewModelFactory.CreateViewModel(thread.Post);
+        MainPostViewModel = _feedItemViewModelFactory.CreateViewModel(thread.Post, canExpandThread: false);
     }
 }

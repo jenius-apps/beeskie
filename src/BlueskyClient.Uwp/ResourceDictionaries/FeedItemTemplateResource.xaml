@@ -293,7 +293,8 @@
                             Grid.Column="4"
                             AutomationProperties.Name="{x:Bind strings:Resources.OpenThreadText}"
                             Command="{x:Bind OpenPostThreadCommand}"
-                            ToolTipService.ToolTip="{x:Bind strings:Resources.OpenThreadText}">
+                            ToolTipService.ToolTip="{x:Bind strings:Resources.OpenThreadText}"
+                            Visibility="{x:Bind OpenThreadButtonVisible, Mode=OneWay}">
                             <FontIcon Glyph="{StaticResource GlyphOpenThread}" Style="{StaticResource PostButtonIconStyle}" />
                         </HyperlinkButton>
                     </Grid>

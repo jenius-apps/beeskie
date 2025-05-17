@@ -6,5 +6,8 @@ public interface IFeedItemViewModelFactory
 {
     FeedItemViewModel CreateViewModel(FeedItem feedItem);
 
-    FeedItemViewModel CreateViewModel(FeedPost post, FeedPostReason? reason = null);
+    FeedItemViewModel CreateViewModel(
+        FeedPost post,
+        FeedPostReason? reason = null,
+        bool canExpandThread = true);
 }

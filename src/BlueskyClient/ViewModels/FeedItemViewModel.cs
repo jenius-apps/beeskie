@@ -33,7 +33,8 @@ public partial class FeedItemViewModel : ObservableObject
         IDialogService dialogService,
         ILocalizer localizer,
         IAuthorViewModelFactory authorFactory,
-        INavigator contentNavigator)
+        INavigator contentNavigator,
+        bool openThreadButtonVisible = true)
     {
         Post = post;
         _reason = reason;
@@ -42,6 +43,7 @@ public partial class FeedItemViewModel : ObservableObject
         _dialogService = dialogService;
         _localizer = localizer;
         _contentNavigator = contentNavigator;
+        OpenThreadButtonVisible = openThreadButtonVisible;
 
         IsLiked = post.Viewer?.Like is not null;
         IsReposted = post.Viewer?.Repost is not null;
@@ -51,7 +53,14 @@ public partial class FeedItemViewModel : ObservableObject
 
         _likeUri = post.Viewer?.Like;
         _repostUri = post.Viewer?.Repost;
+        _openThreadButtonVisible = openThreadButtonVisible;
     }
+
+    /// <summary>
+    /// Determines if the user can open the full post thread.
+    /// </summary>
+    [ObservableProperty]
+    private bool _openThreadButtonVisible;
 
     public AuthorViewModel AuthorViewModel { get; }
 
