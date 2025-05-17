@@ -133,7 +133,7 @@ public interface IBlueskyApiClient
     /// <returns>FeedResponse object with the Feeds property populated.</returns>
     Task<Result<FeedResponse>> SearchFeedsAsync(
         string accessToken,
-        string query, 
+        string query,
         CancellationToken ct,
         string? cursor = null);
 
@@ -163,4 +163,16 @@ public interface IBlueskyApiClient
     /// <param name="accessToken">Access token for the logged in user.</param>
     /// <param name="ct">A cancellation token.</param>
     Task<Result> UpdateSeenAsync(string accessToken, CancellationToken ct);
+
+    /// <summary>
+    /// Retrieves the full thread for the given post.
+    /// </summary>
+    /// <param name="accessToken">Access token for the logged in user.</param>
+    /// <param name="postAtUri">The AT URI for the post to fetch.</param>
+    /// <param name="cancellationToken">A cancellation token.</param>
+    /// <returns>The post thread response.</returns>
+    Task<Result<PostThreadResponse?>> GetPostThreadAsync(
+        string accessToken,
+        string postAtUri,
+        CancellationToken cancellationToken);
 }

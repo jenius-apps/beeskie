@@ -8,5 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <controls:PostThreadControl x:Name="PostThread" />
+    <Grid Background="Blue">
+        <controls:PostThreadControl x:Name="PostThread" HorizontalAlignment="Stretch" />
+    </Grid>
 </Page>

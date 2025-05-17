@@ -150,6 +150,7 @@ partial class App
     [Singleton(typeof(SearchInPlaceRequester), typeof(ISearchInPlaceRequester))]
     [Singleton(typeof(RefreshPageRequester), typeof(IRefreshPageRequester))]
     [Singleton(typeof(ModerationService), typeof(IModerationService))]
+    [Singleton(typeof(PostThreadService), typeof(IPostThreadService))]
     [Transient(typeof(HomePageViewModel))]
     [Transient(typeof(NotificationsPageViewModel))]
     [Transient(typeof(ProfileControlViewModel))]

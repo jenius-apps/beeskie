@@ -26,4 +26,5 @@ public sealed class UrlConstants
     public const string SuggestedFeedsPath = "xrpc/app.bsky.feed.getSuggestedFeeds";
     public const string UnreadCountPath = "xrpc/app.bsky.notification.getUnreadCount";
     public const string UpdateSeenPath = "xrpc/app.bsky.notification.updateSeen";
+    public const string PostThreadPath = "xrpc/app.bsky.feed.getPostThread";
 }

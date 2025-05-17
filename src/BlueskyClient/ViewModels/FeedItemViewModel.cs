@@ -124,7 +124,10 @@ public partial class FeedItemViewModel : ObservableObject
     [RelayCommand]
     private void OpenPostThread()
     {
-        _contentNavigator.NavigateTo(NavigationConstants.PostPage);
+        _contentNavigator.NavigateTo(NavigationConstants.PostPage, new PostThreadArgs
+        {
+            AtUri = Post.Uri
+        });
     }
 
     [RelayCommand]

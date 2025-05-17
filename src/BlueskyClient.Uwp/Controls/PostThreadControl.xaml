@@ -2,14 +2,23 @@
     x:Class="BlueskyClient.Controls.PostThreadControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:BlueskyClient.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:BlueskyClient.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
+    xmlns:templates="using:BlueskyClient.ResourceDictionaries"
     d:DesignHeight="300"
-    d:DesignWidth="400">
+    d:DesignWidth="400"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <templates:FeedItemTemplateResource />
 
-    <Grid>
+    </UserControl.Resources>
 
+    <Grid Background="Green">
+        <ContentControl
+            Margin="0,0,240,0"
+            HorizontalContentAlignment="Stretch"
+            Content="{x:Bind ViewModel.MainPostViewModel, Mode=OneWay}"
+            ContentTemplate="{StaticResource FeedItemTemplate}" />
     </Grid>
 </UserControl>
