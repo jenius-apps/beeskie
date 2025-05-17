@@ -9,5 +9,5 @@ public interface IFeedItemViewModelFactory
     FeedItemViewModel CreateViewModel(
         FeedPost post,
         FeedPostReason? reason = null,
-        bool canExpandThread = true);
+        bool isPostThreadParent = false);
 }

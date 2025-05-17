@@ -24,7 +24,7 @@ public class FeedItemViewModelFactory : IFeedItemViewModelFactory
     public FeedItemViewModel CreateViewModel(
         FeedPost post,
         FeedPostReason? reason = null,
-        bool canOpenPostThread = true)
+        bool isPostThreadParent = false)
     {
         return new FeedItemViewModel(
             post,
@@ -34,6 +34,6 @@ public class FeedItemViewModelFactory : IFeedItemViewModelFactory
             _serviceProvider.GetRequiredService<ILocalizer>(),
             _serviceProvider.GetRequiredService<IAuthorViewModelFactory>(),
             _serviceProvider.GetRequiredKeyedService<INavigator>(NavigationConstants.ContentNavigatorKey),
-            canOpenPostThread);
+            isPostThreadParent);
     }
 }

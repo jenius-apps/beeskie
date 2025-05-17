@@ -144,6 +144,7 @@
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
                     <StackPanel Orientation="Horizontal">
@@ -167,8 +168,12 @@
                         <TextBlock
                             Margin="4,0"
                             Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                            Text="•" />
-                        <TextBlock Foreground="{ThemeResource TextFillColorTertiaryBrush}" Text="{x:Bind TimeSinceCreation}" />
+                            Text="•"
+                            Visibility="{x:Bind IsNotPostThreadParent}" />
+                        <TextBlock
+                            Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                            Text="{x:Bind TimeSinceCreation}"
+                            Visibility="{x:Bind IsNotPostThreadParent}" />
                     </StackPanel>
 
                     <controls:FacetTextBlock Grid.Row="1" Record="{x:Bind Post.Record}" />
@@ -185,8 +190,14 @@
                         Record="{x:Bind QuotedPost}"
                         Visibility="{x:Bind ex:UIExtensions.CollapsedIfNull(QuotedPost)}" />
 
+                    <TextBlock
+                        Grid.Row="4"
+                        Margin="0,8,0,0"
+                        Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                        Text="{x:Bind LocalCreatedTime}"
+                        Visibility="{x:Bind IsPostThreadParent}" />
 
-                    <Grid Grid.Row="4" Margin="-12,8,0,0">
+                    <Grid Grid.Row="5" Margin="-12,8,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
@@ -294,7 +305,7 @@
                             AutomationProperties.Name="{x:Bind strings:Resources.OpenThreadText}"
                             Command="{x:Bind OpenPostThreadCommand}"
                             ToolTipService.ToolTip="{x:Bind strings:Resources.OpenThreadText}"
-                            Visibility="{x:Bind OpenThreadButtonVisible, Mode=OneWay}">
+                            Visibility="{x:Bind IsNotPostThreadParent}">
                             <FontIcon Glyph="{StaticResource GlyphOpenThread}" Style="{StaticResource PostButtonIconStyle}" />
                         </HyperlinkButton>
                     </Grid>
@@ -307,7 +318,8 @@
                 Margin="40,12,40,0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Bottom"
-                Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
+                Fill="{ThemeResource DividerStrokeColorDefaultBrush}"
+                Visibility="{x:Bind IsNotPostThreadParent}" />
         </Grid>
     </DataTemplate>
 </ResourceDictionary>
