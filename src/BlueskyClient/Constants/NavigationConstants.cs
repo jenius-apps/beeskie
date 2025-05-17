@@ -13,4 +13,5 @@ public sealed class NavigationConstants
     public const string AuthorPage = nameof(AuthorPage);
     public const string FeedsPage = nameof(FeedsPage);
     public const string SearchPage = nameof(SearchPage);
+    public const string PostPage = nameof(PostPage);
 }

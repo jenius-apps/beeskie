@@ -21,7 +21,10 @@ public class FeedItemViewModelFactory : IFeedItemViewModelFactory
         return CreateViewModel(feedItem.Post, feedItem.Reason);
     }
 
-    public FeedItemViewModel CreateViewModel(FeedPost post, FeedPostReason? reason = null)
+    public FeedItemViewModel CreateViewModel(
+        FeedPost post,
+        FeedPostReason? reason = null,
+        bool isPostThreadParent = false)
     {
         return new FeedItemViewModel(
             post,
@@ -30,6 +33,7 @@ public class FeedItemViewModelFactory : IFeedItemViewModelFactory
             _serviceProvider.GetRequiredService<IDialogService>(),
             _serviceProvider.GetRequiredService<ILocalizer>(),
             _serviceProvider.GetRequiredService<IAuthorViewModelFactory>(),
-            _serviceProvider.GetRequiredKeyedService<INavigator>(NavigationConstants.ContentNavigatorKey));
+            _serviceProvider.GetRequiredKeyedService<INavigator>(NavigationConstants.ContentNavigatorKey),
+            isPostThreadParent);
     }
 }
