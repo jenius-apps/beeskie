@@ -24,7 +24,7 @@ partial class BlueskyApiClient
     {
         ct.ThrowIfCancellationRequested();
 
-        var url = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.FeedPath}?feed={atUri}";
+        var url = $"{_baseUrl}/{UrlConstants.FeedPath}?feed={atUri}";
         if (cursor is { Length: > 0 } cursorParameter)
         {
             url += $"&cursor={cursorParameter}";
@@ -45,7 +45,7 @@ partial class BlueskyApiClient
 
     public async Task<FeedResponse> GetTimelineAsync(string accesstoken, string? cursor = null)
     {
-        var timelineUrl = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.TimelinePath}";
+        var timelineUrl = $"{_baseUrl}/{UrlConstants.TimelinePath}";
         if (cursor is { Length: > 0 } cursorParameter)
         {
             timelineUrl += $"?cursor={cursorParameter}";
@@ -74,7 +74,7 @@ partial class BlueskyApiClient
 
     public async Task<IReadOnlyList<FeedItem>> GetAuthorFeedAsync(string accesstoken, string handle)
     {
-        var feedUrl = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.AuthorFeedPath}?actor={handle}";
+        var feedUrl = $"{_baseUrl}/{UrlConstants.AuthorFeedPath}?actor={handle}";
         HttpRequestMessage message = new(HttpMethod.Get, feedUrl);
         message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
 
