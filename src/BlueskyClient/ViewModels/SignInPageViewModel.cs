@@ -83,4 +83,10 @@ public partial class SignInPageViewModel : ObservableObject
 
         SigningIn = false;
     }
+
+    [RelayCommand]
+    private void CloseError()
+    {
+        SignInErrorMessage = string.Empty;
+    }
 }
