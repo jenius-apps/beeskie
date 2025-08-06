@@ -10,7 +10,6 @@ using Humanizer;
 using Humanizer.Localisation;
 using JeniusApps.Common.Tools;
 using System;
-using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -23,6 +22,7 @@ public partial class FeedItemViewModel : ObservableObject
     private readonly ILocalizer _localizer;
     private readonly FeedPostReason? _reason;
     private readonly INavigator _contentNavigator;
+    private readonly string _uiHostNameForTelemetry;
 
     private string? _likeUri;
     private string? _repostUri;
@@ -35,6 +35,7 @@ public partial class FeedItemViewModel : ObservableObject
         ILocalizer localizer,
         IAuthorViewModelFactory authorFactory,
         INavigator contentNavigator,
+        string uiHostNameForTelemetry,
         bool isPostThreadParent = false)
     {
         Post = post;
@@ -44,6 +45,7 @@ public partial class FeedItemViewModel : ObservableObject
         _dialogService = dialogService;
         _localizer = localizer;
         _contentNavigator = contentNavigator;
+        _uiHostNameForTelemetry = uiHostNameForTelemetry;
         IsPostThreadParent = isPostThreadParent;
 
         IsLiked = post.Viewer?.Like is not null;
@@ -146,7 +148,8 @@ public partial class FeedItemViewModel : ObservableObject
     {
         _contentNavigator.NavigateTo(NavigationConstants.PostPage, new PostThreadArgs
         {
-            AtUri = Post.Uri
+            AtUri = Post.Uri,
+            NavigationRequester = _uiHostNameForTelemetry
         });
     }
 

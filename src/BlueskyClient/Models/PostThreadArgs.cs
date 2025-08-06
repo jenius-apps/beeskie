@@ -10,4 +10,9 @@ public class PostThreadArgs
     /// The AT URI for the post thread.
     /// </summary>
     public required string AtUri { get; init; }
+
+    /// <summary>
+    /// A string representing which component of Beeskie requested the navigation.
+    /// </summary>
+    public required string NavigationRequester { get; init; }
 }

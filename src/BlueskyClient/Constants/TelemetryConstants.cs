@@ -53,4 +53,7 @@ public sealed class TelemetryConstants
     public const string TagClicked = Facets + "tagClicked";
     public const string LinkClicked = Facets + "linkClicked";
     public const string FacetProfileClicked = Facets + "profileClicked";
+
+    private const string PostPage = "postPage:";
+    public const string PostThreadPageOpened = $"{PostPage}opened";
 }
