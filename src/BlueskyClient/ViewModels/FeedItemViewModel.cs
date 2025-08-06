@@ -59,7 +59,7 @@ public partial class FeedItemViewModel : ObservableObject
     }
 
     /// <summary>
-    /// Determines if the user can open the full post thread.
+    /// Same reasoning as <see cref="_isPostThreadParent"/>.
     /// </summary>
     public bool IsNotPostThreadParent => !IsPostThreadParent;
 
