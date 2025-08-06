@@ -65,14 +65,6 @@
                     IsEnabled="{x:Bind ex:UIExtensions.Not(ViewModel.SigningIn), Mode=OneWay}" />
             </StackPanel>
 
-            <winui:InfoBar
-                Margin="20"
-                VerticalAlignment="Bottom"
-                IsOpen="{x:Bind ViewModel.ErrorBannerVisible, Mode=OneWay}"
-                Message="{x:Bind ViewModel.SignInErrorMessage, Mode=OneWay}"
-                Severity="Error"
-                Visibility="Collapsed" />
-
             <HyperlinkButton
                 Margin="12"
                 HorizontalAlignment="Stretch"
@@ -96,5 +88,15 @@
             Grid.Column="2"
             Source="https://images.unsplash.com/photo-1531147646552-1eec68116469?w=2000"
             Stretch="UniformToFill" />
+
+        <winui:InfoBar
+            Grid.ColumnSpan="3"
+            Margin="20,32,20,0"
+            VerticalAlignment="Top"
+            CloseButtonCommand="{x:Bind ViewModel.CloseErrorCommand}"
+            IsOpen="{x:Bind ViewModel.ErrorBannerVisible, Mode=OneWay}"
+            Message="{x:Bind ViewModel.SignInErrorMessage, Mode=OneWay}"
+            Severity="Error"
+            Visibility="{x:Bind ViewModel.ErrorBannerVisible, Mode=OneWay}" />
     </Grid>
 </Page>
