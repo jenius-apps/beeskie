@@ -298,4 +298,7 @@
   <data name="UploadingText" xml:space="preserve">
     <value>Uploading</value>
   </data>
+  <data name="WriteYourReplyText" xml:space="preserve">
+    <value>Write your reply</value>
+  </data>
 </root>

@@ -187,4 +187,10 @@
   <data name="UndoRepostText" xml:space="preserve">
     <value>Cofnij ponowne opublikowanie</value>
   </data>
+  <data name="OpenThreadText" xml:space="preserve">
+    <value>Otwórz wątek</value>
+  </data>
+  <data name="WriteYourReplyText" xml:space="preserve">
+    <value>Napisz swoją odpowiedź</value>
+  </data>
 </root>

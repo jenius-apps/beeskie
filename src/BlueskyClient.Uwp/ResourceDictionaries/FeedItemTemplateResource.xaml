@@ -319,7 +319,8 @@
                 HorizontalAlignment="Stretch"
                 AutomationProperties.Name="{x:Bind strings:Resources.ReplyText}"
                 Command="{x:Bind ReplyCommand}"
-                Content="LOC: Write your reply"
+                Content="{x:Bind strings:Resources.WriteYourReplyText}"
+                Style="{ThemeResource AccentButtonStyle}"
                 Visibility="{x:Bind IsPostThreadParent}" />
         </Grid>
     </DataTemplate>

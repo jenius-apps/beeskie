@@ -245,7 +245,11 @@
         </trans-unit>
         <trans-unit id="OpenThreadText" translate="yes" xml:space="preserve">
           <source>Open thread</source>
-          <target state="new">Open thread</target>
+          <target state="translated">Abrir hilo</target>
+        </trans-unit>
+        <trans-unit id="WriteYourReplyText" translate="yes" xml:space="preserve">
+          <source>Write your reply</source>
+          <target state="translated">Escribe tu respuesta</target>
         </trans-unit>
       </group>
     </body>
