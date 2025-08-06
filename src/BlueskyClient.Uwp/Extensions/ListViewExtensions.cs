@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.WinUI;
+﻿using BlueskyClient.ViewModels;
+using CommunityToolkit.WinUI;
 using Windows.UI.Xaml.Controls;
 
 #nullable enable
@@ -22,5 +23,16 @@ public static class ListViewExtensions
         }
 
         return false;
+    }
+
+    /// <summary>
+    /// Helper method for navigating to post page when a feed item is clicked.
+    /// </summary>
+    public static void OnFeedListViewItemClicked(object sender, ItemClickEventArgs e)
+    {
+        if (e.ClickedItem is FeedItemViewModel vm)
+        {
+            vm.OpenPostThreadCommand.Execute(null);
+        }
     }
 }
