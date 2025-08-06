@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ex="using:JeniusApps.Common.UI.Uwp"
+    xmlns:extensions="using:BlueskyClient.Extensions.Uwp"
     xmlns:local="using:BlueskyClient.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:p="using:BlueskyClient.Extensions"
@@ -38,6 +39,8 @@
         <ListView
             x:Name="ProfilePosts"
             Grid.Row="1"
+            IsItemClickEnabled="True"
+            ItemClick="{x:Bind extensions:ListViewExtensions.OnFeedListViewItemClicked}"
             ItemTemplate="{StaticResource FeedItemTemplate}"
             ItemsSource="{x:Bind ViewModel.FeedItems}"
             SelectionMode="None">
@@ -140,12 +143,6 @@
                         TextWrapping="Wrap" />
                 </Grid>
             </ListView.Header>
-            <ListView.ItemContainerStyle>
-                <Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                    <Setter Property="Padding" Value="20,0,20,20" />
-                </Style>
-            </ListView.ItemContainerStyle>
         </ListView>
     </Grid>
 </UserControl>

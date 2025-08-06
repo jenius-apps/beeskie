@@ -7,6 +7,7 @@
     xmlns:controls="using:BlueskyClient.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ex="using:JeniusApps.Common.UI.Uwp"
+    xmlns:extensions="using:BlueskyClient.Extensions.Uwp"
     xmlns:local="using:BlueskyClient.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:strings="using:BlueskyClient.Strings"
@@ -55,6 +56,8 @@
             DataFetchSize="1"
             IncrementalLoadingThreshold="1"
             IncrementalLoadingTrigger="Edge"
+            IsItemClickEnabled="True"
+            ItemClick="{x:Bind extensions:ListViewExtensions.OnFeedListViewItemClicked}"
             ItemTemplate="{StaticResource FeedItemTemplate}"
             ItemsSource="{x:Bind FeedCollection}"
             SelectionMode="None"
@@ -65,13 +68,6 @@
                     To="1"
                     Duration="0:0:0.3" />
             </ani:Implicit.ShowAnimations>
-
-            <ListView.ItemContainerStyle>
-                <Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                    <Setter Property="Padding" Value="20,0,20,20" />
-                </Style>
-            </ListView.ItemContainerStyle>
         </ListView>
 
         <ListView

@@ -9,6 +9,10 @@
     mc:Ignorable="d">
 
     <Grid>
+        <!--
+            We're using a post thread control on this page because we may
+            reuse the postThreadControl in new surfaces in the future.
+        -->
         <controls:PostThreadControl x:Name="PostThread" HorizontalAlignment="Stretch" />
     </Grid>
 </Page>
