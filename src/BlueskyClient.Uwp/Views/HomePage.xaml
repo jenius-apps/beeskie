@@ -33,7 +33,7 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="FeedSelector.Margin" Value="12,12,240,12" />
-                        <Setter Target="FeedListView.Padding" Value="0,32,240,0" />
+                        <Setter Target="FeedListView.Padding" Value="0,12,240,0" />
                         <Setter Target="ShimmerPlaceholder.Margin" Value="0,20,240,0" />
                     </VisualState.Setters>
                 </VisualState>
@@ -69,7 +69,7 @@
             x:Name="FeedListView"
             Grid.Row="1"
             Margin="0,0,-1,0"
-            Padding="0,32,0,0"
+            Padding="0,12,0,0"
             DataFetchSize="1"
             IncrementalLoadingThreshold="1"
             IncrementalLoadingTrigger="Edge"
