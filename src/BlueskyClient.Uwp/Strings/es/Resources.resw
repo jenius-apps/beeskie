@@ -190,4 +190,10 @@
   <data name="UndoRepostText" xml:space="preserve">
     <value>Deshacer volver a publicar</value>
   </data>
+  <data name="OpenThreadText" xml:space="preserve">
+    <value>Abrir hilo</value>
+  </data>
+  <data name="WriteYourReplyText" xml:space="preserve">
+    <value>Escribe tu respuesta</value>
+  </data>
 </root>

@@ -190,4 +190,10 @@
   <data name="UndoRepostText" xml:space="preserve">
     <value>再投稿を元に戻す</value>
   </data>
+  <data name="OpenThreadText" xml:space="preserve">
+    <value>オープンスレッド</value>
+  </data>
+  <data name="WriteYourReplyText" xml:space="preserve">
+    <value>返信を書く</value>
+  </data>
 </root>

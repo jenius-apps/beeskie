@@ -22,6 +22,7 @@ public partial class FeedItemViewModel : ObservableObject
     private readonly ILocalizer _localizer;
     private readonly FeedPostReason? _reason;
     private readonly INavigator _contentNavigator;
+    private readonly string _uiHostNameForTelemetry;
 
     private string? _likeUri;
     private string? _repostUri;
@@ -33,7 +34,9 @@ public partial class FeedItemViewModel : ObservableObject
         IDialogService dialogService,
         ILocalizer localizer,
         IAuthorViewModelFactory authorFactory,
-        INavigator contentNavigator)
+        INavigator contentNavigator,
+        string uiHostNameForTelemetry,
+        bool isPostThreadParent = false)
     {
         Post = post;
         _reason = reason;
@@ -42,6 +45,8 @@ public partial class FeedItemViewModel : ObservableObject
         _dialogService = dialogService;
         _localizer = localizer;
         _contentNavigator = contentNavigator;
+        _uiHostNameForTelemetry = uiHostNameForTelemetry;
+        IsPostThreadParent = isPostThreadParent;
 
         IsLiked = post.Viewer?.Like is not null;
         IsReposted = post.Viewer?.Repost is not null;
@@ -53,9 +58,26 @@ public partial class FeedItemViewModel : ObservableObject
         _repostUri = post.Viewer?.Repost;
     }
 
+    /// <summary>
+    /// Same reasoning as <see cref="_isPostThreadParent"/>.
+    /// </summary>
+    public bool IsNotPostThreadParent => !IsPostThreadParent;
+
+    /// <summary>
+    /// Determines if this feed item is actually a post thread parent.
+    /// This indicates that the UI should be slightly different.
+    /// </summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsNotPostThreadParent))]
+    private bool _isPostThreadParent;
+
     public AuthorViewModel AuthorViewModel { get; }
 
     public FeedPost Post { get; }
+
+    public string LocalCreatedTime => Post.Record?.CreatedAtUtc?.ToLocalTime() is DateTime local
+        ? $"{local.ToLongDateString()} - {local.ToShortTimeString()}"
+        : "---";
 
     public string TimeSinceCreation
     {
@@ -118,6 +140,16 @@ public partial class FeedItemViewModel : ObservableObject
         _contentNavigator.NavigateTo(NavigationConstants.AuthorPage, new ProfileNavigationArgs
         {
             AuthorDid = AuthorViewModel.Author?.Did
+        });
+    }
+
+    [RelayCommand]
+    private void OpenPostThread()
+    {
+        _contentNavigator.NavigateTo(NavigationConstants.PostPage, new PostThreadArgs
+        {
+            AtUri = Post.Uri,
+            NavigationRequester = _uiHostNameForTelemetry
         });
     }
 

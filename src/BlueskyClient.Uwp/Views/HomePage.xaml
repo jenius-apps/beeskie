@@ -7,6 +7,7 @@
     xmlns:controls="using:BlueskyClient.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ex="using:JeniusApps.Common.UI.Uwp"
+    xmlns:extensions="using:BlueskyClient.Extensions.Uwp"
     xmlns:local="using:BlueskyClient.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:strings="using:BlueskyClient.Strings"
@@ -32,7 +33,7 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="FeedSelector.Margin" Value="12,12,240,12" />
-                        <Setter Target="FeedListView.Padding" Value="0,32,240,0" />
+                        <Setter Target="FeedListView.Padding" Value="0,12,240,0" />
                         <Setter Target="ShimmerPlaceholder.Margin" Value="0,20,240,0" />
                     </VisualState.Setters>
                 </VisualState>
@@ -68,10 +69,12 @@
             x:Name="FeedListView"
             Grid.Row="1"
             Margin="0,0,-1,0"
-            Padding="0,32,0,0"
+            Padding="0,12,0,0"
             DataFetchSize="1"
             IncrementalLoadingThreshold="1"
             IncrementalLoadingTrigger="Edge"
+            IsItemClickEnabled="True"
+            ItemClick="{x:Bind extensions:ListViewExtensions.OnFeedListViewItemClicked}"
             ItemTemplate="{StaticResource FeedItemTemplate}"
             ItemsSource="{x:Bind FeedCollection}"
             SelectionMode="None"
@@ -82,13 +85,6 @@
                     To="1"
                     Duration="0:0:0.3" />
             </ani:Implicit.ShowAnimations>
-
-            <ListView.ItemContainerStyle>
-                <Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                    <Setter Property="Padding" Value="20,0,20,20" />
-                </Style>
-            </ListView.ItemContainerStyle>
         </ListView>
 
         <!--  Loading shimmer  -->

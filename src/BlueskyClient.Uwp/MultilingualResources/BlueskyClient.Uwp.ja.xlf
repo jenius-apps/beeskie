@@ -243,6 +243,14 @@
           <source>Undo repost</source>
           <target state="translated">再投稿を元に戻す</target>
         </trans-unit>
+        <trans-unit id="OpenThreadText" translate="yes" xml:space="preserve">
+          <source>Open thread</source>
+          <target state="translated">オープンスレッド</target>
+        </trans-unit>
+        <trans-unit id="WriteYourReplyText" translate="yes" xml:space="preserve">
+          <source>Write your reply</source>
+          <target state="translated">返信を書く</target>
+        </trans-unit>
       </group>
     </body>
   </file>

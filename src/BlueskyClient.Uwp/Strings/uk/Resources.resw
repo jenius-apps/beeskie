@@ -190,4 +190,10 @@
   <data name="UndoRepostText" xml:space="preserve">
     <value>Скасувати репост</value>
   </data>
+  <data name="OpenThreadText" xml:space="preserve">
+    <value>Відкрита нитка</value>
+  </data>
+  <data name="WriteYourReplyText" xml:space="preserve">
+    <value>Напишіть свою відповідь</value>
+  </data>
 </root>

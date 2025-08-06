@@ -190,4 +190,10 @@
   <data name="UndoRepostText" xml:space="preserve">
     <value>撤消重新发布</value>
   </data>
+  <data name="OpenThreadText" xml:space="preserve">
+    <value>开放式线程</value>
+  </data>
+  <data name="WriteYourReplyText" xml:space="preserve">
+    <value>写下你的回复</value>
+  </data>
 </root>

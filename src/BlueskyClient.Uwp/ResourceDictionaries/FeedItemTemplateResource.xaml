@@ -85,7 +85,7 @@
         </Grid>
     </DataTemplate>
 
-    <DataTemplate x:Key="FeedItemTemplate" x:DataType="vm:FeedItemViewModel">
+    <DataTemplate x:Key="NonClickableFeedItemTemplate" x:DataType="vm:FeedItemViewModel">
         <Grid MaxWidth="{StaticResource FeedMaxWidth}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -144,6 +144,7 @@
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
                     <StackPanel Orientation="Horizontal">
@@ -167,8 +168,12 @@
                         <TextBlock
                             Margin="4,0"
                             Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                            Text="•" />
-                        <TextBlock Foreground="{ThemeResource TextFillColorTertiaryBrush}" Text="{x:Bind TimeSinceCreation}" />
+                            Text="•"
+                            Visibility="{x:Bind IsNotPostThreadParent}" />
+                        <TextBlock
+                            Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                            Text="{x:Bind TimeSinceCreation}"
+                            Visibility="{x:Bind IsNotPostThreadParent}" />
                     </StackPanel>
 
                     <controls:FacetTextBlock Grid.Row="1" Record="{x:Bind Post.Record}" />
@@ -185,8 +190,14 @@
                         Record="{x:Bind QuotedPost}"
                         Visibility="{x:Bind ex:UIExtensions.CollapsedIfNull(QuotedPost)}" />
 
+                    <TextBlock
+                        Grid.Row="4"
+                        Margin="0,8,0,0"
+                        Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                        Text="{x:Bind LocalCreatedTime}"
+                        Visibility="{x:Bind IsPostThreadParent}" />
 
-                    <Grid Grid.Row="4" Margin="-12,8,0,0">
+                    <Grid Grid.Row="5" Margin="-12,8,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
@@ -197,7 +208,8 @@
                         <HyperlinkButton
                             AutomationProperties.Name="{x:Bind strings:Resources.ReplyText}"
                             Command="{x:Bind ReplyCommand}"
-                            IsEnabled="{x:Bind ex:UIExtensions.Not(ReplyCommand.IsRunning), Mode=OneWay}">
+                            IsEnabled="{x:Bind ex:UIExtensions.Not(ReplyCommand.IsRunning), Mode=OneWay}"
+                            ToolTipService.ToolTip="{x:Bind strings:Resources.ReplyText}">
                             <StackPanel Orientation="Horizontal">
                                 <FontIcon Glyph="{StaticResource GlyphMessage}" Style="{StaticResource PostButtonIconStyle}" />
                                 <TextBlock
@@ -210,7 +222,8 @@
                             Grid.Column="1"
                             AutomationProperties.Name="{x:Bind strings:Resources.RepostText}"
                             Click="OnRepostClicked"
-                            IsEnabled="{x:Bind ex:UIExtensions.Not(RepostClickedCommand.IsRunning), Mode=OneWay}">
+                            IsEnabled="{x:Bind ex:UIExtensions.Not(RepostClickedCommand.IsRunning), Mode=OneWay}"
+                            ToolTipService.ToolTip="{x:Bind strings:Resources.RepostText}">
                             <FlyoutBase.AttachedFlyout>
                                 <MenuFlyout Placement="Bottom">
                                     <MenuFlyoutItem
@@ -263,7 +276,8 @@
                             Grid.Column="2"
                             AutomationProperties.Name="{x:Bind strings:Resources.LikeText}"
                             Command="{x:Bind LikeClickedCommand}"
-                            IsEnabled="{x:Bind ex:UIExtensions.Not(LikeClickedCommand.IsRunning), Mode=OneWay}">
+                            IsEnabled="{x:Bind ex:UIExtensions.Not(LikeClickedCommand.IsRunning), Mode=OneWay}"
+                            ToolTipService.ToolTip="{x:Bind strings:Resources.LikeText}">
                             <StackPanel Orientation="Horizontal">
                                 <Grid>
                                     <FontIcon
@@ -295,7 +309,28 @@
                 Margin="40,12,40,0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Bottom"
-                Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
+                Fill="{ThemeResource DividerStrokeColorDefaultBrush}"
+                Visibility="{x:Bind IsNotPostThreadParent}" />
+
+            <Button
+                Grid.Row="2"
+                Height="48"
+                Margin="52,12,52,0"
+                HorizontalAlignment="Stretch"
+                AutomationProperties.Name="{x:Bind strings:Resources.ReplyText}"
+                Command="{x:Bind ReplyCommand}"
+                Content="{x:Bind strings:Resources.WriteYourReplyText}"
+                Style="{ThemeResource AccentButtonStyle}"
+                Visibility="{x:Bind IsPostThreadParent}" />
         </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="FeedItemTemplate" x:DataType="vm:FeedItemViewModel">
+        <ListViewItem MaxWidth="{StaticResource FeedMaxWidth}" Padding="12">
+            <ContentControl
+                HorizontalContentAlignment="Stretch"
+                Content="{x:Bind}"
+                ContentTemplate="{StaticResource NonClickableFeedItemTemplate}" />
+        </ListViewItem>
     </DataTemplate>
 </ResourceDictionary>

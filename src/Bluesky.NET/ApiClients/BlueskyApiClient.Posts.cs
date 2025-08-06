@@ -1,5 +1,6 @@
 ﻿using Bluesky.NET.Constants;
 using Bluesky.NET.Models;
+using FluentResults;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,6 +16,7 @@ namespace Bluesky.NET.ApiClients;
 
 partial class BlueskyApiClient
 {
+    /// <inheritdoc/>
     public async Task<IReadOnlyList<FeedPost>> GetPostsAsync(string accessToken, IReadOnlyList<string> atUriList)
     {
         if (atUriList.Count == 0)
@@ -108,5 +110,26 @@ partial class BlueskyApiClient
         message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
         _ = await SendMessageAsync(accessToken, message, cancellationToken);
+    }
+
+    /// <inheritdoc/>
+    public async Task<Result<PostThreadResponse?>> GetPostThreadAsync(string accessToken, string postAtUri, CancellationToken cancellationToken)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+
+        if (accessToken is not { Length: > 0 })
+        {
+            return Result.Fail<PostThreadResponse?>("Empty access token");
+        }
+
+        if (postAtUri is not { Length: > 0 })
+        {
+            return Result.Fail<PostThreadResponse?>("Empty postAtUri");
+        }
+
+        var url = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.PostThreadPath}?uri={postAtUri}";
+        HttpRequestMessage message = new(HttpMethod.Get, url);
+        message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+        return await SendMessageAsync(message, ModelSerializerContext.CaseInsensitive.PostThreadResponse, cancellationToken);
     }
 }

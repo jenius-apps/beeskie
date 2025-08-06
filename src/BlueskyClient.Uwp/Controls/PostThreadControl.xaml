@@ -1,0 +1,48 @@
+﻿<UserControl
+    x:Class="BlueskyClient.Controls.PostThreadControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:extensions="using:BlueskyClient.Extensions.Uwp"
+    xmlns:local="using:BlueskyClient.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:templates="using:BlueskyClient.ResourceDictionaries"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <templates:FeedItemTemplateResource />
+    </UserControl.Resources>
+
+    <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource FullTitleBarMinWidth}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Thread.Padding" Value="0,20,240,0" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <ListView
+            x:Name="Thread"
+            Padding="0,20,0,0"
+            IsItemClickEnabled="True"
+            ItemClick="{x:Bind extensions:ListViewExtensions.OnFeedListViewItemClicked}"
+            ItemTemplate="{StaticResource FeedItemTemplate}"
+            ItemsSource="{x:Bind ViewModel.Replies}"
+            SelectionMode="None">
+            <ListView.Header>
+                <ContentControl
+                    Margin="0,0,0,20"
+                    HorizontalContentAlignment="Stretch"
+                    Content="{x:Bind ViewModel.MainPostViewModel, Mode=OneWay}"
+                    ContentTemplate="{StaticResource NonClickableFeedItemTemplate}" />
+            </ListView.Header>
+        </ListView>
+    </Grid>
+</UserControl>

@@ -83,6 +83,7 @@ partial class App
                 { NavigationConstants.AuthorPage, typeof(AuthorPage) },
                 { NavigationConstants.FeedsPage, typeof(FeedsPage) },
                 { NavigationConstants.SearchPage, typeof(SearchPage) },
+                { NavigationConstants.PostPage, typeof(PostPage) },
             });
         });
 
@@ -149,12 +150,14 @@ partial class App
     [Singleton(typeof(SearchInPlaceRequester), typeof(ISearchInPlaceRequester))]
     [Singleton(typeof(RefreshPageRequester), typeof(IRefreshPageRequester))]
     [Singleton(typeof(ModerationService), typeof(IModerationService))]
+    [Singleton(typeof(PostThreadService), typeof(IPostThreadService))]
     [Transient(typeof(HomePageViewModel))]
     [Transient(typeof(NotificationsPageViewModel))]
     [Transient(typeof(ProfileControlViewModel))]
     [Transient(typeof(NewPostViewModel))]
     [Transient(typeof(FeedsPageViewModel))]
     [Transient(typeof(SearchPageViewModel))]
+    [Transient(typeof(PostThreadViewModel))]
     private static partial void ConfigureServices(IServiceCollection services);
 
     private static TelemetryContext? GetContext()

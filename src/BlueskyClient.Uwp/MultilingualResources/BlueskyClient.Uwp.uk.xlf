@@ -243,6 +243,14 @@
           <source>Undo repost</source>
           <target state="translated">Скасувати репост</target>
         </trans-unit>
+        <trans-unit id="OpenThreadText" translate="yes" xml:space="preserve">
+          <source>Open thread</source>
+          <target state="translated">Відкрита нитка</target>
+        </trans-unit>
+        <trans-unit id="WriteYourReplyText" translate="yes" xml:space="preserve">
+          <source>Write your reply</source>
+          <target state="translated">Напишіть свою відповідь</target>
+        </trans-unit>
       </group>
     </body>
   </file>

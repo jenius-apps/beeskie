@@ -192,6 +192,9 @@
   <data name="OkayText" xml:space="preserve">
     <value>Okay</value>
   </data>
+  <data name="OpenThreadText" xml:space="preserve">
+    <value>Open thread</value>
+  </data>
   <data name="PasswordBoxPlaceholder" xml:space="preserve">
     <value>Your special App Password</value>
   </data>
@@ -294,5 +297,8 @@
   </data>
   <data name="UploadingText" xml:space="preserve">
     <value>Uploading</value>
+  </data>
+  <data name="WriteYourReplyText" xml:space="preserve">
+    <value>Write your reply</value>
   </data>
 </root>

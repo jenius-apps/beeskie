@@ -1,0 +1,18 @@
+﻿<Page
+    x:Class="BlueskyClient.Views.PostPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:BlueskyClient.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:BlueskyClient.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid>
+        <!--
+            We're using a post thread control on this page because we may
+            reuse the postThreadControl in new surfaces in the future.
+        -->
+        <controls:PostThreadControl x:Name="PostThread" HorizontalAlignment="Stretch" />
+    </Grid>
+</Page>
