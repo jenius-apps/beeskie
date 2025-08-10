@@ -21,7 +21,7 @@ partial class BlueskyApiClient
     {
         ct.ThrowIfCancellationRequested();
 
-        var url = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.PreferencesPath}";
+        var url = $"{_baseUrl}/{UrlConstants.PreferencesPath}";
         HttpRequestMessage message = new(HttpMethod.Get, url);
         message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 

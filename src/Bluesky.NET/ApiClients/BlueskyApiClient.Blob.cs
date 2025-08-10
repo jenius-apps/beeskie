@@ -14,7 +14,7 @@ partial class BlueskyApiClient
 {
     public async Task<Blob?> UploadBlobAsync(string accessToken, byte[] blob, string mimeType)
     {
-        var url = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.UploadBlobPath}";
+        var url = $"{_baseUrl}/{UrlConstants.UploadBlobPath}";
 
         HttpRequestMessage message = new(HttpMethod.Post, url)
         {

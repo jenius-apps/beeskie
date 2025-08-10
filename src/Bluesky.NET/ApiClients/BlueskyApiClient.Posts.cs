@@ -24,7 +24,7 @@ partial class BlueskyApiClient
             return [];
         }
 
-        var timelineUrl = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.PostsPath}?uris={string.Join(",", atUriList)}";
+        var timelineUrl = $"{_baseUrl}/{UrlConstants.PostsPath}?uris={string.Join(",", atUriList)}";
         HttpRequestMessage message = new(HttpMethod.Get, timelineUrl);
         message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
@@ -50,7 +50,7 @@ partial class BlueskyApiClient
     /// <inheritdoc/>
     public async Task<CreateRecordResponse?> SubmitPostAsync(string accessToken, string handle, SubmissionRecord record, RecordType recordType)
     {
-        var url = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.CreateRecordPath}";
+        var url = $"{_baseUrl}/{UrlConstants.CreateRecordPath}";
 
         CreateRecordBody body = new()
         {
@@ -93,7 +93,7 @@ partial class BlueskyApiClient
     /// <inheritdoc/>
     public async Task SubmitPostUndoAsync(string accessToken, string handle, string rkey, RecordType recordType, CancellationToken cancellationToken)
     {
-        var url = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.DeleteRecordPath}";
+        var url = $"{_baseUrl}/{UrlConstants.DeleteRecordPath}";
 
         DeleteRecordBody body = new()
         {

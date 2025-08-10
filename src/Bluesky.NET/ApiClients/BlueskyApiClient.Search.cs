@@ -20,7 +20,7 @@ partial class BlueskyApiClient
         CancellationToken ct,
         string? cursor = null)
     {
-        var url = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.SearchFeedsPath}?query={HttpUtility.UrlEncode(query)}";
+        var url = $"{_baseUrl}/{UrlConstants.SearchFeedsPath}?query={HttpUtility.UrlEncode(query)}";
 
         if (cursor is not null)
         {
@@ -44,7 +44,7 @@ partial class BlueskyApiClient
         string? cursor = null)
     {
         // Ref: https://docs.bsky.app/docs/api/app-bsky-actor-search-actors
-        var url = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.SearchActorsPath}?q={HttpUtility.UrlEncode(query)}";
+        var url = $"{_baseUrl}/{UrlConstants.SearchActorsPath}?q={HttpUtility.UrlEncode(query)}";
 
         if (cursor is not null)
         {
@@ -70,7 +70,7 @@ partial class BlueskyApiClient
         // Ref: https://docs.bsky.app/docs/api/app-bsky-feed-search-posts
         options ??= new();
 
-        var url = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.SearchPostsPath}?q={HttpUtility.UrlEncode(query)}";
+        var url = $"{_baseUrl}/{UrlConstants.SearchPostsPath}?q={HttpUtility.UrlEncode(query)}";
 
         if (cursor is not null)
         {

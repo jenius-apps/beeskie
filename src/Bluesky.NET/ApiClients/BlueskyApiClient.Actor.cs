@@ -17,7 +17,7 @@ partial class BlueskyApiClient
 {
     public async Task<Author?> GetAuthorAsync(string accessToken, string identifier)
     {
-        var timelineUrl = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.ProfilePath}?actor={identifier}";
+        var timelineUrl = $"{_baseUrl}/{UrlConstants.ProfilePath}?actor={identifier}";
         HttpRequestMessage message = new(HttpMethod.Get, timelineUrl);
         message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
@@ -56,7 +56,7 @@ partial class BlueskyApiClient
             count = 100;
         }
 
-        var url = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.SuggestedPeoplePath}?limit={count}";
+        var url = $"{_baseUrl}/{UrlConstants.SuggestedPeoplePath}?limit={count}";
         if (cursor is { Length: > 0 })
         {
             url += $"&cursor={cursor}";
@@ -78,7 +78,7 @@ partial class BlueskyApiClient
         string subjectDid,
         CancellationToken ct)
     {
-        var url = $"{UrlConstants.BlueskyBaseUrl}/{UrlConstants.CreateRecordPath}";
+        var url = $"{_baseUrl}/{UrlConstants.CreateRecordPath}";
 
         FollowRecordBody body = new()
         {
